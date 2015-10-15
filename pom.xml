@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.derpgroup.derpwizard</groupId>
+  <artifactId>derpwizard-project</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>DERP Wizard</name>
+
+  <modules>
+    <module>service</module>
+  </modules>
+
+  <properties>
+    <project.mainClass>com.derpgroup.derpwizard.App</project.mainClass>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.jdkVersion>1.8</project.build.jdkVersion>
+    <project.releaseRepo>file://~/.m2/repository/</project.releaseRepo>
+    <project.snapshotRepo>file://~/.m2/repository/</project.snapshotRepo>
+  </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>${project.releaseRepo}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>${project.snapshotRepo}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <connection>scm:git:git@github.com:DERP-group/derpwizard.git</connection>
+    <developerConnection>scm:git:git@github.com:DERP-group/derpwizard.git</developerConnection>
+    <url>http://github.com/DERP-group/derpwizard</url>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>GNU General Public License, Version 3</name>
+      <url>http://www.gnu.org/licenses/gpl.txt</url>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>DERP Group</name>
+    <url>http://derpgroup.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>r-gerard</id>
+      <name>Rusty Gerard</name>
+    </developer>
+  </developers>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

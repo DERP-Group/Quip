@@ -1,0 +1,40 @@
+{
+  "server": {
+    "applicationConnectors": [
+      {
+        "type": "http",
+        "port" : 8080
+      },
+      {
+        "type": "https",
+        "port" : 8443,
+        "keyStorePath": "/var/lib/derpwizard/keystore.jks",
+        "keyStorePassword": "changeit",
+        "trustStorePath": "/usr/lib/jvm/jre/lib/security/cacerts",
+        "certAlias": "selfsigned"
+      }
+    ],
+    "adminConnectors": [
+      {
+        "type": "http",
+        "port": 8081
+      }
+    ]
+  },
+  "logging": {
+    "appenders": [
+      {
+        "type": "file",
+        "currentLogFilename": "/var/log/derpwizard/derpwizard.log",
+        "archivedLogFilenamePattern": "/var/log/derpwizard/derpwizard-%d.log",
+        "archivedFileCount": 5
+      }
+    ],
+    "level": "INFO",
+    "loggers": {
+      "com": {
+        "derpgroup": "DEBUG"
+      }
+    }
+  }
+}
