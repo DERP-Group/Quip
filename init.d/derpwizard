@@ -1,0 +1,132 @@
+#! /bin/sh
+#
+# chkconfig: 2345 95 20
+# description:  <%= @name %> init script
+#
+#
+
+. /etc/rc.d/init.d/functions
+
+NAME="derpwizard"
+BASEDIR="/var/lib/derpwizard"
+USER="derpwizard"
+PROG="derpwizard"
+CMD="java -jar /var/lib/derpwizard/derpwizard-service.jar server /var/lib/derpwizard/derpwizard.json"
+PIDFILE="/var/run/derpwizard.pid"
+LOGFILE="/var/log/derpwizard/nohup.out"
+
+RETVAL=0
+
+function get_pid {
+  cat "$PIDFILE"
+}
+
+function is_running {
+  [ -f "$PIDFILE" ] && ps `get_pid` > /dev/null 2>&1
+}
+
+function eko_line {
+  len=${#@}
+  if [ $len -gt 55 ]; then
+    echo $@
+  else
+    echo -n $@
+  fi
+}
+
+function eko_fail {
+  eko_line $@
+  echo_failure
+  echo
+  exit 1
+}
+
+function eko_pass {
+  eko_line $@
+  echo_success
+  echo
+  exit 0
+}
+
+function touch_file {
+  touch "$1"
+  RETVAL=$?
+  if [ $RETVAL -ne 0 ]; then
+    eko_fail "No access to $1. This usually means you need to be root, or the directory does not exist."
+  fi
+  chown ${USER}:${USER} "$1"
+  chmod 0664 "$1"
+}
+
+case "$1" in
+  start)
+  if is_running; then
+    eko_pass "Already started."
+  else
+    echo "Starting $NAME..."
+    cd "$BASEDIR"
+    touch_file "$PIDFILE"
+    touch_file "$LOGFILE"
+    #runuser "$USER" -c "nohup $CMD" >> "$LOGFILE" 2>> "$LOGFILE" &
+    runuser "$USER" -c "nohup $CMD" &> "$LOGFILE" &
+    PID=$!
+    echo $PID > $PIDFILE
+    sleep 5
+    if ! is_running; then
+      eko_fail "Unable to start. See: $LOGFILE"
+    fi
+
+    eko_pass "Started."
+  fi
+  ;;
+  stop)
+  if is_running; then
+    echo -n "Stopping $NAME..."
+    kill `get_pid`
+    for i in {1..10}
+    do
+      if ! is_running; then
+        break
+      fi
+
+      echo -n "."
+      sleep 1
+    done
+    echo
+
+    if is_running; then
+      eko_fail "Can't stop; may still be shutting down or shutdown may have failed."
+    else
+      if [ -f "$PIDFILE" ]; then
+        rm "$PIDFILE"
+      fi
+      eko_pass "Stopped."
+    fi
+  else
+    eko_pass "Not running."
+  fi
+  ;;
+  restart)
+  $0 stop
+  if is_running; then
+    eko_fail "Can't stop; the process may still be shutting down or shutdown may have failed. Not attempting to start."
+  fi
+  $0 start
+  ;;
+  status)
+  if is_running; then
+    echo "Running."
+    exit 0
+  else
+    echo "Stopped."
+    exit 0
+  fi
+  ;;
+  *)
+  echo "Usage: $0 {start|stop|restart|status}"
+  exit 1
+  ;;
+esac
+
+exit 0
+
