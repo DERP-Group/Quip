@@ -1,5 +1,8 @@
 /**
+ * Copyright (C) 2015 David Phillips
+ * Copyright (C) 2015 Eric Olson
  * Copyright (C) 2015 Rusty Gerard
+ * Copyright (C) 2015 Paul Winters
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
