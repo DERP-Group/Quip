@@ -7,13 +7,13 @@
 
 . /etc/rc.d/init.d/functions
 
-NAME="derpwizard"
-BASEDIR="/var/lib/derpwizard"
-USER="derpwizard"
-PROG="derpwizard"
-CMD="java -jar /var/lib/derpwizard/derpwizard-service.jar server /var/lib/derpwizard/derpwizard.json"
-PIDFILE="/var/run/derpwizard.pid"
-LOGFILE="/var/log/derpwizard/nohup.out"
+NAME="$(basename $0)"
+BASEDIR="/var/lib/$NAME"
+USER="$NAME"
+PROG="$NAME"
+CMD="java -jar /var/lib/$NAME/$NAME-service.jar server /var/lib/$NAME/$NAME.json"
+PIDFILE="/var/run/$NAME.pid"
+LOGFILE="/var/log/$NAME/nohup.out"
 
 RETVAL=0
 
