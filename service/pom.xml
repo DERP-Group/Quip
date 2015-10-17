@@ -14,44 +14,15 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.derpgroup.derpwizard</groupId>
+      <artifactId>derpwizard-voice-interface</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>io.dropwizard</groupId>
       <artifactId>dropwizard-core</artifactId>
       <version>${dropwizard.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- For JSONAssert -->
-    <dependency>
-      <groupId>net.sf.json-lib</groupId>
-      <artifactId>json-lib</artifactId>
-      <version>2.4</version>
-      <classifier>jdk15</classifier>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -95,7 +66,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <!-- >version>VERSION SPECIFIED IN PARENT</version -->
         <configuration>
           <archive>
             <manifest>
@@ -109,27 +80,11 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.2</version>
+        <!-- >version>VERSION SPECIFIED IN PARENT</version -->
         <configuration>
           <source>${project.build.jdkVersion}</source>
           <target>${project.build.jdkVersion}</target>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <id>check-jar-with-findbugs</id>
-            <phase>test</phase>
-            <goals>
-              <goal>findbugs</goal>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
