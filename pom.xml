@@ -49,8 +49,20 @@
 
   <developers>
     <developer>
+      <id>davidwphillips</id>
+      <name>David Phillips</name>
+    </developer>
+    <developer>
+      <id>galactoise</id>
+      <name>Eric Olson</name>
+    </developer>
+    <developer>
       <id>r-gerard</id>
       <name>Rusty Gerard</name>
+    </developer>
+    <developer>
+      <id>paulwinters</id>
+      <name>Paul Winters</name>
     </developer>
   </developers>
 
