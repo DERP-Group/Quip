@@ -20,6 +20,7 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
  * Speech-to-text message.
@@ -34,5 +35,5 @@ public interface VoiceInput {
    *
    * @return The message in plain text, never null
    */
-  String getMessage();
+  @NonNull String getMessage();
 }

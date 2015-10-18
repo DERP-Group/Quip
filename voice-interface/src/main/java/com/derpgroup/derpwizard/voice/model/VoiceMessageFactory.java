@@ -24,6 +24,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 /**
  * Factory methods for building voice interface objects.
  *
@@ -59,8 +61,8 @@ public class VoiceMessageFactory {
    *          The voice interface type that sent the request, not null
    * @return A VoiceInput wrapper, never null
    */
-  public static VoiceInput buildInputMessage(Object request, InterfaceType type) {
-    if (type == null || !INPUT_MAP.containsKey(type)) {
+  public static @NonNull VoiceInput buildInputMessage(@NonNull Object request, @NonNull InterfaceType type) {
+    if (!INPUT_MAP.containsKey(type)) {
       throw new IllegalArgumentException("Invalid type: " + type);
     }
 
@@ -78,8 +80,8 @@ public class VoiceMessageFactory {
    *          The voice interface type, not null
    * @return An empty VoiceOutput for the appropriate type, never null
    */
-  public static VoiceOutput<?> buildOutputMessage(InterfaceType type) {
-    if (type == null || !OUTPUT_MAP.containsKey(type)) {
+  public static @NonNull VoiceOutput<?> buildOutputMessage(@NonNull InterfaceType type) {
+    if (!OUTPUT_MAP.containsKey(type)) {
       throw new IllegalArgumentException("Invalid type: " + type);
     }
 

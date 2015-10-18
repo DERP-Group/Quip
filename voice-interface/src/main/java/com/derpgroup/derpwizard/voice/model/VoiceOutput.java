@@ -20,6 +20,8 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 /**
  * Text-to-speech message.
  *
@@ -34,12 +36,12 @@ public interface VoiceOutput<T> {
    * @param message
    *          The response to convert to speech, not null
    */
-  void setMessage(String message);
+  void setMessage(@NonNull String message);
 
   /**
    * Message accessor.
    *
    * @return The instance of the underlying implementation, never null
    */
-  T getImplInstance();
+  @NonNull T getImplInstance();
 }
