@@ -46,9 +46,11 @@ public class VoiceMessageFactoryTest {
 
   @Test
   public void buildOutputMessages() throws Exception {
+    SsmlDocument doc = new SsmlDocument("<speak><s>hello!</s></speak>");
+
     // Verify we can create an empty output container for each InterfaceType
     for (InterfaceType type : InterfaceType.values()) {
-      VoiceOutput<?> output = VoiceMessageFactory.buildOutputMessage(type);
+      VoiceOutput<?> output = VoiceMessageFactory.buildOutputMessage(doc, type);
 
       assertNotNull(type + " result was null" + type, output);
     }

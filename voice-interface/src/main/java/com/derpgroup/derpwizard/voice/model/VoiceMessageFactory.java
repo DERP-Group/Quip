@@ -43,9 +43,9 @@ public class VoiceMessageFactory {
   private static final Map<InterfaceType, Class<?>> OUTPUT_MAP = new HashMap<InterfaceType, Class<?>>();
 
   static {
-    INPUT_MAP.put(InterfaceType.ALEXA, AlexaIntentInput.class);
+    INPUT_MAP.put(InterfaceType.ALEXA, AlexaInput.class);
 
-    OUTPUT_MAP.put(InterfaceType.ALEXA, AlexaSimpleTextOutput.class);
+    OUTPUT_MAP.put(InterfaceType.ALEXA, AlexaOutput.class);
   }
 
   private VoiceMessageFactory() {
@@ -74,13 +74,15 @@ public class VoiceMessageFactory {
   }
 
   /**
-   * Builds an empty container to store a response to the user.
+   * Builds a user response wrapper around an SsmlDocument.
    *
+   * @param document
+   *          The SSML to speak, not null
    * @param type
    *          The voice interface type, not null
-   * @return An empty VoiceOutput for the appropriate type, never null
+   * @return A VoiceOutput wrapper, never null
    */
-  public static @NonNull VoiceOutput<?> buildOutputMessage(@NonNull InterfaceType type) {
+  public static @NonNull VoiceOutput<?> buildOutputMessage(@NonNull SsmlDocument document, @NonNull InterfaceType type) {
     if (!OUTPUT_MAP.containsKey(type)) {
       throw new IllegalArgumentException("Invalid type: " + type);
     }

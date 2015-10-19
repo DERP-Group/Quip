@@ -20,28 +20,15 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import com.amazon.speech.ui.OutputSpeech;
+import com.amazon.speech.ui.SsmlOutputSpeech;
 
-/**
- * Text-to-speech message.
- *
- * @author Rusty
- * @since 0.0.1
- */
-public interface VoiceOutput<T> {
+class AlexaOutput extends AbstractVoiceOutput<OutputSpeech> implements VoiceOutput<OutputSpeech> {
+  @Override
+  public OutputSpeech getImplInstance() {
+    SsmlOutputSpeech output = new SsmlOutputSpeech();
+    output.setSsml(message.getSsml());
 
-  /**
-   * Message mutator.
-   *
-   * @param message
-   *          The response to convert to speech, not null
-   */
-  void setMessage(@NonNull SsmlDocument message);
-
-  /**
-   * Message accessor.
-   *
-   * @return The instance of the underlying implementation, never null
-   */
-  @NonNull T getImplInstance();
+    return output;
+  }
 }
