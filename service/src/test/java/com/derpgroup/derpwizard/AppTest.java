@@ -22,6 +22,7 @@ package com.derpgroup.derpwizard;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Environment;
 
@@ -61,6 +62,6 @@ public class AppTest {
 
     // Verify that health checks and resources are correctly registered
     verify(mockHealthChecks).register(Matchers.matches("basics"), Matchers.any(BasicHealthCheck.class));
-    verify(mockJersey).register(Matchers.any(HomeResource.class));
+    verify(mockJersey, times(2)).register(Matchers.any(HomeResource.class));
   }
 }

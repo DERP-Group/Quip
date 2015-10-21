@@ -37,7 +37,7 @@ import com.derpgroup.derpwizard.configuration.MainConfig;
  * @since 0.0.1
  */
 @Path("/")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
 @Consumes(MediaType.APPLICATION_JSON)
 public class HomeResource {
 
