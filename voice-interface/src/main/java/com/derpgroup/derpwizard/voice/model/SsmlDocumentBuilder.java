@@ -22,8 +22,11 @@ package com.derpgroup.derpwizard.voice.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.checker.regex.qual.Regex;
 
 /**
  * Builder for SsmlDocument objects.
@@ -33,6 +36,45 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @see SsmlDocument
  */
 public class SsmlDocumentBuilder {
+  /**
+   * Regular expression pattern for time designations.
+   * <p>
+   * @see <a href="http://www.w3.org/TR/speech-synthesis11/#def_time_designation">http://www.w3.org/TR/speech-synthesis11/#def_time_designation</a>
+   */
+  @Regex private static final String TIME_PATTERN = "^\\+?[0-9]*\\.?[0-9]+m?s$";
+
+  /**
+   * Enumeration of word stress levels.
+   *
+   * @author Rusty
+   * @since 0.0.1
+   * @see <a href="http://www.w3.org/TR/speech-synthesis11/#S3.2.2">http://www.w3.org/TR/speech-synthesis11/#S3.2.2</a>
+   */
+  public enum EmphasisLevel {
+    REDUCED, NONE, MODERATE, STRONG;
+
+    @Override
+    public String toString() {
+      return super.toString().replaceAll("_", "-").toLowerCase(Locale.ENGLISH);
+    }
+  }
+
+  /**
+   * Enumeration of prosodic break strengths.
+   *
+   * @author Rusty
+   * @since 0.0.1
+   * @see <a href="http://www.w3.org/TR/speech-synthesis11/#edef_break">http://www.w3.org/TR/speech-synthesis11/#edef_break</a>
+   */
+  public enum BreakStrength {
+    NONE, X_WEAK, WEAK, MEDIUM, STRONG, X_STRONG;
+
+    @Override
+    public String toString() {
+      return super.toString().replaceAll("_", "-").toLowerCase(Locale.ENGLISH);
+    }
+  }
+
   private List<List<StringBuilder>> paragraphs;
   private int index = 0;
 
@@ -42,11 +84,11 @@ public class SsmlDocumentBuilder {
   }
 
   /**
-   * Start a new paragraph.
+   * End the current paragraph and start a new one.
    *
    * @return this, for method chaining
    */
-  public @NonNull SsmlDocumentBuilder paragraph() {
+  public @NonNull SsmlDocumentBuilder endParagraph() {
     if (paragraphs.get(index).size() > 1 || paragraphs.get(index).get(0).length() != 0) {
       paragraphs.add(buildParagraph());
       index++;
@@ -62,40 +104,59 @@ public class SsmlDocumentBuilder {
    *          The words to add, not null
    * @return this, for method chaining
    */
-  public @NonNull SsmlDocumentBuilder normal(@NonNull String words) {
-    getBuilder().append(words);
+  public @NonNull SsmlDocumentBuilder text(@NonNull String words) {
+    getSentence().append(words);
 
     return this;
   }
 
   /**
-   * Add strong-emphasis words to the current sentence.
+   * Add text to the current sentence with emphasis.
    *
    * @param words
    *          The words to add, not null
+   * @param emphasis
+   *          The emphasis level, nullable
    * @return this, for method chaining
    */
-  public @NonNull SsmlDocumentBuilder strong(@NonNull String words) {
-    getBuilder().append("<emphasis level=\"strong\">" + words + "</emphasis>");
+  public @NonNull SsmlDocumentBuilder text(@NonNull String words, @Nullable EmphasisLevel emphasis) {
+    if (emphasis == null) {
+      return text(words);
+    }
+
+    getSentence().append("<emphasis level=\"" + emphasis + "\">" + words + "</emphasis>");
 
     return this;
   }
 
   /**
-   * Add moderate-emphasis words to the current sentence.
+   * Add a break element to the current sentence.
    *
-   * @param words
-   *          The words to add, not null
+   * @param type
+   *          The type of pause, nullable
+   * @param time
+   *          The length of time to pause, nullable
    * @return this, for method chaining
+   * @see #TIME_PATTERN
    */
-  public @NonNull SsmlDocumentBuilder moderate(@NonNull String words) {
-    getBuilder().append("<emphasis level=\"moderate\">" + words + "</emphasis>");
+  public @NonNull SsmlDocumentBuilder pause(@Nullable BreakStrength type, @Nullable String time) {
+    getSentence().append("<break");
+
+    if (type != null) {
+      getSentence().append(" strength=\"" + type + "\"");
+    }
+
+    if (time != null && time.matches(TIME_PATTERN)) {
+      getSentence().append(" time=\"" + time + "\"");
+    }
+
+    getSentence().append("/>");
 
     return this;
   }
 
   /**
-   * End the current sentence in the paragraph.
+   * End the current sentence in the paragraph and start a new one.
    *
    * @return this, for method chaining
    */
@@ -126,7 +187,7 @@ public class SsmlDocumentBuilder {
     return new SsmlDocument(buffer.toString());
   }
 
-  private final StringBuilder getBuilder() {
+  private final StringBuilder getSentence() {
     return paragraphs.get(index).get(paragraphs.get(index).size() - 1);
   }
 

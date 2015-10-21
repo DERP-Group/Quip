@@ -20,6 +20,7 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
+
 /**
  * Speech Synthesis Markup Language (SSML) POJO.
  *
@@ -30,6 +31,7 @@ public class SsmlDocument {
   private String ssml;
 
   public SsmlDocument(String ssml) {
+    // TODO: Parse the string and throw a java.text.ParseException if it is invalid SSML
     this.ssml = ssml;
   }
 

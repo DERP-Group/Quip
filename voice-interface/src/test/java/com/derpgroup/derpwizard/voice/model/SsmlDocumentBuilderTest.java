@@ -25,6 +25,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.Before;
 
+import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder.BreakStrength;
+import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder.EmphasisLevel;
+
 public class SsmlDocumentBuilderTest {
   SsmlDocumentBuilder builder;
 
@@ -38,28 +41,35 @@ public class SsmlDocumentBuilderTest {
     String text = "The quick brown fox jumps over the lazy dog";
     String expected = "<speak><p><s>" + text + "</s></p></speak>";
 
-    SsmlDocument doc = builder.normal(text).build();
+    SsmlDocument doc = builder.text(text).build();
 
     assertEquals(expected, doc.getSsml());
   }
 
   @Test
   public void buildSentenceWithEmphasis() throws Exception {
-    SsmlDocument doc = builder.normal("w1 ").strong("w2").normal(" w3").build();
+    SsmlDocument doc = builder.text("w1 ").text("w2", EmphasisLevel.STRONG).text(" w3").build();
 
     assertEquals("<speak><p><s>w1 <emphasis level=\"strong\">w2</emphasis> w3</s></p></speak>", doc.getSsml());
   }
 
   @Test
+  public void buildSentenceWithBreaks() throws Exception {
+    SsmlDocument doc = builder.text("w1 ").pause(null, null).text(" w2 ").pause(BreakStrength.STRONG, "500ms").text(" w3 ").pause(null, "+.1s").text(" w4 ").pause(null, "BOGUS").build();
+
+    assertEquals("<speak><p><s>w1 <break/> w2 <break strength=\"strong\" time=\"500ms\"/> w3 <break time=\"+.1s\"/> w4 <break/></s></p></speak>", doc.getSsml());
+  }
+
+  @Test
   public void buildMultipleSentences() throws Exception {
-    SsmlDocument doc = builder.normal("Sentence 1").endSentence().normal("Sentence 2").endSentence().normal("Sentence 3").build();
+    SsmlDocument doc = builder.text("Sentence 1").endSentence().text("Sentence 2").endSentence().text("Sentence 3").build();
 
     assertEquals("<speak><p><s>Sentence 1</s><s>Sentence 2</s><s>Sentence 3</s></p></speak>", doc.getSsml());
   }
 
   @Test
   public void buildMultipleParagraphs() throws Exception {
-    SsmlDocument doc = builder.paragraph().normal("Paragraph 1a").endSentence().normal("Paragraph 1b").paragraph().normal("Paragraph 2").paragraph().normal("Paragraph 3").build();
+    SsmlDocument doc = builder.endParagraph().text("Paragraph 1a").endSentence().text("Paragraph 1b").endParagraph().text("Paragraph 2").endParagraph().text("Paragraph 3").build();
 
     assertEquals("<speak><p><s>Paragraph 1a</s><s>Paragraph 1b</s></p><p><s>Paragraph 2</s></p><p><s>Paragraph 3</s></p></speak>", doc.getSsml());
   }
