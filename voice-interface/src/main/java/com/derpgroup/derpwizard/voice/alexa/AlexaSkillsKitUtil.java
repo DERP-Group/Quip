@@ -35,11 +35,11 @@ public class AlexaSkillsKitUtil {
 
   public static AlexaRequestType getRequestType(SpeechletRequest sr){
     if(sr instanceof LaunchRequest){
-      return AlexaRequestType.LaunchRequest;
+      return AlexaRequestType.LAUNCH_REQUEST;
     }else if(sr instanceof IntentRequest){
-      return AlexaRequestType.IntentRequest;
+      return AlexaRequestType.INTENT_REQUEST;
     }else if(sr instanceof SessionEndedRequest){
-      return AlexaRequestType.SessionEndedRequest;
+      return AlexaRequestType.SESSION_ENDED_REQUEST;
     }else{
       throw new RuntimeException("Unknown request type."); //TODO: Make an exception for Alexa errors
     }

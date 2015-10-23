@@ -26,7 +26,7 @@ package com.derpgroup.derpwizard.voice.alexa;
  * @since 0.0.1
  */
 public enum AlexaRequestType{
-  LaunchRequest,
-  IntentRequest,
-  SessionEndedRequest;
+  LAUNCH_REQUEST,
+  INTENT_REQUEST,
+  SESSION_ENDED_REQUEST;
 }

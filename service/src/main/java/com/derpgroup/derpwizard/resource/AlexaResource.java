@@ -65,11 +65,11 @@ public class AlexaResource {
     AlexaRequestType requestType = AlexaSkillsKitUtil.getRequestType(sr);
     
     switch(requestType){
-    case LaunchRequest:
+    case LAUNCH_REQUEST:
       return doLaunchRequest(request);
-    case IntentRequest:
+    case INTENT_REQUEST:
       return doIntentRequest(request);
-    case SessionEndedRequest:
+    case SESSION_ENDED_REQUEST:
       return doSessionEndedRequest(request);
       default: 
         throw new RuntimeException("Unknown request type."); //TODO: create AlexaException
@@ -78,7 +78,7 @@ public class AlexaResource {
   
   protected SpeechletResponseEnvelope doLaunchRequest(SpeechletRequestEnvelope request){
     SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion("0.0.1");
+    response.setVersion(AlexaResource.class.getPackage().getImplementationVersion());
     
     SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
     outputSpeech.setSsml("<speak><p><s>Hi. This is Alexa, speaking on behalf of DerpWizard.</s></p></speak>");
@@ -98,7 +98,7 @@ public class AlexaResource {
   
   protected SpeechletResponseEnvelope doIntentRequest(SpeechletRequestEnvelope request){
     SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion("0.0.1");
+    response.setVersion(AlexaResource.class.getPackage().getImplementationVersion());
     
     SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
     outputSpeech.setSsml("<speak><p><s>Hi. This is Alexa, speaking on behalf of DerpWizard.</s></p></speak>");
@@ -117,7 +117,7 @@ public class AlexaResource {
   
   protected SpeechletResponseEnvelope doSessionEndedRequest(SpeechletRequestEnvelope request){
     SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion("0.0.1");
+    response.setVersion(AlexaResource.class.getPackage().getImplementationVersion());
     SpeechletResponse sr = new SpeechletResponse();
     response.setResponse(sr);
     response.setSessionAttributes(request.getSession().getAttributes());

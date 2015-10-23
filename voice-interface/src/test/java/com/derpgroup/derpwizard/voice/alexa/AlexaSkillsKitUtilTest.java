@@ -41,13 +41,13 @@ public class AlexaSkillsKitUtilTest {
     AlexaRequestType type;
     
     type = AlexaSkillsKitUtil.getRequestType(launchRequest);
-    assertEquals(AlexaRequestType.LaunchRequest, type);
+    assertEquals(AlexaRequestType.LAUNCH_REQUEST, type);
     
     type = AlexaSkillsKitUtil.getRequestType(intentRequest);
-    assertEquals(AlexaRequestType.IntentRequest, type);
+    assertEquals(AlexaRequestType.INTENT_REQUEST, type);
     
     type = AlexaSkillsKitUtil.getRequestType(sessionEndedRequest);
-    assertEquals(AlexaRequestType.SessionEndedRequest, type);
+    assertEquals(AlexaRequestType.SESSION_ENDED_REQUEST, type);
   }
 
   @Test(expected = RuntimeException.class)
