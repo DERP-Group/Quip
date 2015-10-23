@@ -20,28 +20,34 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import java.util.Map.Entry;
 
-/**
- * Text-to-speech message.
- *
- * @author Rusty
- * @since 0.0.1
- */
-public interface VoiceOutput<T> {
+import com.amazon.speech.slu.Slot;
+import com.amazon.speech.speechlet.IntentRequest;
 
-  /**
-   * Message mutator.
-   *
-   * @param message
-   *          The response to convert to speech, not null
-   */
-  void setMessage(@NonNull SsmlDocument message);
+class AlexaInput implements VoiceInput {
+  private IntentRequest request;
 
-  /**
-   * Message accessor.
-   *
-   * @return The instance of the underlying implementation, never null
-   */
-  @NonNull T getImplInstance();
+  public AlexaInput(Object object) {
+    if (!(object instanceof IntentRequest)) {
+      throw new IllegalArgumentException("Argument is not an instance of IntentRequest: " + object);
+    }
+
+    request = (IntentRequest) object;
+  }
+
+  @Override
+  public String getMessage() {
+    if (request.getIntent().getSlots() == null) {
+      return request.getIntent().getName();
+    }
+
+    StringBuilder buffer = new StringBuilder(request.getIntent().getName());
+    for (Entry<String, Slot> entry : request.getIntent().getSlots().entrySet()) {
+      buffer.append(' ');
+      buffer.append(entry.getValue().getValue());
+    }
+
+    return buffer.toString();
+  }
 }

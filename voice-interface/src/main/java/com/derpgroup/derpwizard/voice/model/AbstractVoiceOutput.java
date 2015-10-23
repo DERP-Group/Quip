@@ -20,18 +20,12 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
-import com.amazon.speech.ui.PlainTextOutputSpeech;
 
-class AlexaSimpleTextOutput implements VoiceOutput<PlainTextOutputSpeech> {
-  private PlainTextOutputSpeech impl = new PlainTextOutputSpeech();
-
-  @Override
-  public void setMessage(String message) {
-    impl.setText(message);
-  }
+abstract class AbstractVoiceOutput<T extends Object> implements VoiceOutput<T> {
+  protected SsmlDocument message;
 
   @Override
-  public PlainTextOutputSpeech getImplInstance() {
-    return impl;
+  public void setMessage(SsmlDocument message) {
+    this.message = message;
   }
 }

@@ -20,34 +20,22 @@
 
 package com.derpgroup.derpwizard.voice.model;
 
-import java.util.Map.Entry;
 
-import com.amazon.speech.slu.Slot;
-import com.amazon.speech.speechlet.IntentRequest;
+/**
+ * Speech Synthesis Markup Language (SSML) POJO.
+ *
+ * @author Rusty
+ * @since 0.0.1
+ */
+public class SsmlDocument {
+  private String ssml;
 
-class AlexaIntentInput implements VoiceInput {
-  private IntentRequest request;
-
-  public AlexaIntentInput(Object object) {
-    if (!(object instanceof IntentRequest)) {
-      throw new IllegalArgumentException("Argument is not an instance of IntentRequest: " + object);
-    }
-
-    request = (IntentRequest) object;
+  public SsmlDocument(String ssml) {
+    // TODO: Parse the string and throw a java.text.ParseException if it is invalid SSML
+    this.ssml = ssml;
   }
 
-  @Override
-  public String getMessage() {
-    if (request.getIntent().getSlots() == null) {
-      return request.getIntent().getName();
-    }
-
-    StringBuilder buffer = new StringBuilder(request.getIntent().getName());
-    for (Entry<String, Slot> entry : request.getIntent().getSlots().entrySet()) {
-      buffer.append(' ');
-      buffer.append(entry.getValue().getValue());
-    }
-
-    return buffer.toString();
+  public String getSsml() {
+    return ssml;
   }
 }
