@@ -20,6 +20,8 @@
 
 package com.derpgroup.derpwizard.resource;
 
+import java.util.Map;
+
 import io.dropwizard.setup.Environment;
 
 import javax.ws.rs.Consumes;
@@ -29,6 +31,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.derpgroup.derpwizard.configuration.MainConfig;
+import com.google.common.collect.ImmutableMap;
 
 /**
  * REST APIs for top-level entrypoints into the app.
@@ -37,7 +40,7 @@ import com.derpgroup.derpwizard.configuration.MainConfig;
  * @since 0.0.1
  */
 @Path("/")
-@Produces(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class HomeResource {
 
@@ -49,7 +52,7 @@ public class HomeResource {
    * @return The message, never null
    */
   @GET
-  public String home() {
-    return "Hello, World!";
+  public Map<String,String> home() {
+    return ImmutableMap.of("message", "Hello, World!");
   }
 }

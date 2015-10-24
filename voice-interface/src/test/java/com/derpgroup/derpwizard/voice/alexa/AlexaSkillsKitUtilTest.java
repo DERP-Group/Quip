@@ -21,9 +21,8 @@ package com.derpgroup.derpwizard.voice.alexa;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
-
 import org.junit.Test;
+import org.mockito.Mock;
 
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.LaunchRequest;
@@ -32,6 +31,8 @@ import com.amazon.speech.speechlet.SpeechletRequest;
 
 public class AlexaSkillsKitUtilTest {
 
+  @Mock SpeechletRequest speechletRequest;
+  
   @Test
   public void testGetRequestType(){
     String requestId = "1";
@@ -52,15 +53,6 @@ public class AlexaSkillsKitUtilTest {
 
   @Test(expected = RuntimeException.class)
   public void testGetRequestType_unknownType(){
-    MockRequest mockRequest = new MockRequest("1",new Date());
-    AlexaSkillsKitUtil.getRequestType(mockRequest);
-  }
-  
-  private class MockRequest extends SpeechletRequest{
-
-    protected MockRequest(String requestId, Date timestamp) {
-      super(requestId, timestamp);
-    }
-    
+    AlexaSkillsKitUtil.getRequestType(speechletRequest);
   }
 }
