@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import com.derpgroup.derpwizard.configuration.MainConfig;
 import com.derpgroup.derpwizard.health.BasicHealthCheck;
+import com.derpgroup.derpwizard.resource.AlexaResource;
 import com.derpgroup.derpwizard.resource.HomeResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -59,5 +60,6 @@ public class App extends Application<MainConfig> {
 
     // Resources
     environment.jersey().register(new HomeResource(config, environment));
+    environment.jersey().register(new AlexaResource(config, environment));
   }
 }

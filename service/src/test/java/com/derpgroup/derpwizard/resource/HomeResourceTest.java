@@ -21,6 +21,9 @@
 package com.derpgroup.derpwizard.resource;
 
 import static org.junit.Assert.assertNotNull;
+
+import java.util.Map;
+
 import io.dropwizard.setup.Environment;
 
 import org.junit.Before;
@@ -46,7 +49,7 @@ public class HomeResourceTest {
   @Test
   public void homeSuccess() throws Exception {
     // Unit under test
-    String result = resource.home();
+    Map<String, String> result = resource.home();
 
     // Verify results
     assertNotNull("Result was null", result);

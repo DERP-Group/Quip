@@ -22,6 +22,7 @@ package com.derpgroup.derpwizard;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.times;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Environment;
 
@@ -35,6 +36,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.derpgroup.derpwizard.configuration.MainConfig;
 import com.derpgroup.derpwizard.health.BasicHealthCheck;
+import com.derpgroup.derpwizard.resource.AlexaResource;
 import com.derpgroup.derpwizard.resource.HomeResource;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,6 +63,7 @@ public class AppTest {
 
     // Verify that health checks and resources are correctly registered
     verify(mockHealthChecks).register(Matchers.matches("basics"), Matchers.any(BasicHealthCheck.class));
-    verify(mockJersey).register(Matchers.any(HomeResource.class));
+    verify(mockJersey).register(Matchers.isA(HomeResource.class));
+    verify(mockJersey).register(Matchers.isA(AlexaResource.class));
   }
 }

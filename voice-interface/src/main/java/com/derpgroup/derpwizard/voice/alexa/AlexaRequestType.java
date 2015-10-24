@@ -17,42 +17,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package com.derpgroup.derpwizard.resource;
-
-import java.util.Map;
-
-import io.dropwizard.setup.Environment;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import com.derpgroup.derpwizard.configuration.MainConfig;
-import com.google.common.collect.ImmutableMap;
+package com.derpgroup.derpwizard.voice.alexa;
 
 /**
- * REST APIs for top-level entrypoints into the app.
+ * Enumeration of the various types of Alexa Requests
  *
- * @author Rusty Gerard
+ * @author Eric
  * @since 0.0.1
  */
-@Path("/")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class HomeResource {
-
-  public HomeResource(MainConfig config, Environment env) {}
-
-  /**
-   * Generates a welcome message.
-   *
-   * @return The message, never null
-   */
-  @GET
-  public Map<String,String> home() {
-    return ImmutableMap.of("message", "Hello, World!");
-  }
+public enum AlexaRequestType{
+  LAUNCH_REQUEST,
+  INTENT_REQUEST,
+  SESSION_ENDED_REQUEST;
 }
