@@ -68,8 +68,12 @@ public class QuipManager {
 		REMEMBER("<speak><p><s>Remember the time you did that awesome thing?<break strength=\"x-strong\" />  I don't.</s></p></speak>"),
 		MEDIOCRITY("<speak><p><s>Don't let anyone ever tell you that you aren't almost capable of mediocrity.</s></p></speak>"),
 		TOLERATE("<speak><p><s>You do realize that people only tolerate you, right?</s></p></speak>"),
+		DUCT_TAPE("<speak><p><s>Duct tape can fix everything, except you.</s></p></speak>"),
+		PITBULL("<speak><p><s>Even Pitbull won't collaborate with you...</s></p></speak>"),
+		MARS("<speak><p><s>If you were stranded on Mars, we wouldn't send a rescue mission for you.</s></p></speak>"),
 		SOME_THINGS("<speak><p><s>Some things in life never change <break strength=\"x-strong\" /> I hope you aren't one of those things.</s></p></speak>"),
 		WHY_YOU_TRY("<speak><p><s>I don't even know why you try.</s></p></speak>"),
+		NOTHING_AT_ALL("<speak><p><s>I would talk to you, but I'm super busy doing nothing at all.</s></p></speak>"),
 		SUCK_MINUS("<speak><p><s>On a scale of one to ten, I'd rate you a <break strength=\"weak\" /> suck minus.</s></p></speak>"),
 		UNFORTUNATELY("<speak><p><s>I was thinking about you the other day.<break strength=\"x-strong\" />  Unfortunately.</s></p></speak>");
 		
