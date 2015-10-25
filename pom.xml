@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.derpgroup.derpwizard</groupId>
-  <artifactId>derpwizard-project</artifactId>
+  <groupId>com.derpgroup.complibot</groupId>
+  <artifactId>complibot-project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>DERP Wizard</name>
+  <name>CompliBot</name>
 
   <modules>
     <module>voice-interface</module>
@@ -12,7 +12,7 @@
   </modules>
 
   <properties>
-    <project.mainClass>com.derpgroup.derpwizard.App</project.mainClass>
+    <project.mainClass>com.derpgroup.complibot.App</project.mainClass>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.jdkVersion>1.8</project.build.jdkVersion>
     <project.releaseRepo>file://~/.m2/repository/</project.releaseRepo>
@@ -31,9 +31,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:git@github.com:DERP-group/derpwizard.git</connection>
-    <developerConnection>scm:git:git@github.com:DERP-group/derpwizard.git</developerConnection>
-    <url>http://github.com/DERP-group/derpwizard</url>
+    <connection>scm:git:git@github.com:DERP-group/complibot.git</connection>
+    <developerConnection>scm:git:git@github.com:DERP-group/complibot.git</developerConnection>
+    <url>http://github.com/DERP-group/complibot</url>
   </scm>
 
   <licenses>
