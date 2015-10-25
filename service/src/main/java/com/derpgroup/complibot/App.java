@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.derpwizard;
+package com.derpgroup.complibot;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -26,10 +26,9 @@ import io.dropwizard.setup.Environment;
 
 import java.io.IOException;
 
-import com.derpgroup.derpwizard.configuration.MainConfig;
-import com.derpgroup.derpwizard.health.BasicHealthCheck;
-import com.derpgroup.derpwizard.resource.AlexaResource;
-import com.derpgroup.derpwizard.resource.HomeResource;
+import com.derpgroup.complibot.configuration.MainConfig;
+import com.derpgroup.complibot.health.BasicHealthCheck;
+import com.derpgroup.complibot.resource.AlexaResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -59,7 +58,6 @@ public class App extends Application<MainConfig> {
     environment.healthChecks().register("basics", new BasicHealthCheck(config, environment));
 
     // Resources
-    environment.jersey().register(new HomeResource(config, environment));
     environment.jersey().register(new AlexaResource(config, environment));
   }
 }

@@ -18,40 +18,50 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.derpwizard.resource;
+package com.derpgroup.complibot;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Map;
-
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Environment;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.derpgroup.derpwizard.configuration.MainConfig;
+import com.codahale.metrics.health.HealthCheckRegistry;
+import com.derpgroup.complibot.App;
+import com.derpgroup.complibot.configuration.MainConfig;
+import com.derpgroup.complibot.health.BasicHealthCheck;
+import com.derpgroup.complibot.resource.AlexaResource;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HomeResourceTest {
-  HomeResource resource;
-  
+public class AppTest {
+  App app;
+
   @Mock MainConfig mockConfig;
   @Mock Environment mockEnv;
+  @Mock HealthCheckRegistry mockHealthChecks;
+  @Mock JerseyEnvironment mockJersey;
 
   @Before
   public void before() throws Exception {
-    resource = new HomeResource(mockConfig, mockEnv);
+    app = new App();
+
+    when(mockEnv.healthChecks()).thenReturn(mockHealthChecks);
+    when(mockEnv.jersey()).thenReturn(mockJersey);
   }
 
   @Test
-  public void homeSuccess() throws Exception {
+  public void runSuccess() throws Exception {
     // Unit under test
-    Map<String, String> result = resource.home();
+    app.run(mockConfig, mockEnv);
 
-    // Verify results
-    assertNotNull("Result was null", result);
+    // Verify that health checks and resources are correctly registered
+    verify(mockHealthChecks).register(Matchers.matches("basics"), Matchers.any(BasicHealthCheck.class));
+    verify(mockJersey).register(Matchers.isA(AlexaResource.class));
   }
 }

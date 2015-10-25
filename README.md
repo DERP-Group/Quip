@@ -1,8 +1,6 @@
-# DERP Wizard
+# CompliBot
 
-Boilerplate DropTables project designed to interface with Amazon Echo.
-
-http://dropwizard.io/
+Bot to compliment a user, based on the DERPWizard boilerplate template
 
 
 # Compiling
@@ -12,7 +10,7 @@ http://dropwizard.io/
 
 # Running
 
-`java -jar service/target/derpwizard-service.jar server service.json`
+`java -jar service/target/complibot-service.jar server service.json`
 
 
 # Configuration

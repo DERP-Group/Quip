@@ -18,24 +18,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.derpwizard.voice.model;
+package com.derpgroup.complibot.health;
 
+import io.dropwizard.setup.Environment;
+
+import com.codahale.metrics.health.HealthCheck;
+import com.derpgroup.complibot.configuration.MainConfig;
 
 /**
- * Speech Synthesis Markup Language (SSML) POJO.
+ * Health check to verify that the local filesystem is writable.
  *
- * @author Rusty
+ * @author Rusty Gerard
  * @since 0.0.1
  */
-public class SsmlDocument {
-  private String ssml;
+public class BasicHealthCheck extends HealthCheck {
+  public BasicHealthCheck(MainConfig config, Environment environment) {}
 
-  public SsmlDocument(String ssml) {
-    // TODO: Parse the string and throw a java.text.ParseException if it is invalid SSML
-    this.ssml = ssml;
-  }
-
-  public String getSsml() {
-    return ssml;
+  @Override
+  protected Result check() throws Exception {
+    return Result.healthy();
   }
 }
