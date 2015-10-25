@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.complibot.resource;
+package com.derpgroup.quip.bots.complibot.resource;
 
 import io.dropwizard.setup.Environment;
 
@@ -37,12 +37,12 @@ import com.amazon.speech.speechlet.SpeechletRequest;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
-import com.derpgroup.complibot.configuration.MainConfig;
-import com.derpgroup.complibot.manager.ComplibotManager;
 import com.derpgroup.derpwizard.voice.alexa.AlexaRequestType;
 import com.derpgroup.derpwizard.voice.alexa.AlexaSkillsKitUtil;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
+import com.derpgroup.quip.configuration.MainConfig;
+import com.derpgroup.quip.manager.QuipManager;
 
 /**
  * REST APIs for requests generating from Amazon Alexa
@@ -53,12 +53,12 @@ import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
 @Path("/complibot/alexa")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class AlexaResource {
+public class CompliBotAlexaResource {
 
-  private ComplibotManager manager;
+  private QuipManager manager;
   
-  public AlexaResource(MainConfig config, Environment env) {
-    manager = new ComplibotManager();
+  public CompliBotAlexaResource(MainConfig config, Environment env) {
+    manager = new QuipManager();
   }
 
   /**
@@ -97,7 +97,7 @@ public class AlexaResource {
     String output = manager.handleRequest(vi);    
     
     SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion(AlexaResource.class.getPackage().getImplementationVersion());
+    response.setVersion(CompliBotAlexaResource.class.getPackage().getImplementationVersion());
     
     SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
     outputSpeech.setSsml(output);
@@ -117,7 +117,7 @@ public class AlexaResource {
   
   protected SpeechletResponseEnvelope doSessionEndedRequest(SpeechletRequest request, Session session){
     SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion(AlexaResource.class.getPackage().getImplementationVersion());
+    response.setVersion(CompliBotAlexaResource.class.getPackage().getImplementationVersion());
     SpeechletResponse sr = new SpeechletResponse();
     response.setResponse(sr);
     response.setSessionAttributes(session.getAttributes());

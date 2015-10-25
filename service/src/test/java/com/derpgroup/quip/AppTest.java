@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.complibot;
+package com.derpgroup.quip;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -33,10 +33,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.codahale.metrics.health.HealthCheckRegistry;
-import com.derpgroup.complibot.App;
-import com.derpgroup.complibot.configuration.MainConfig;
-import com.derpgroup.complibot.health.BasicHealthCheck;
-import com.derpgroup.complibot.resource.AlexaResource;
+import com.derpgroup.quip.App;
+import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaResource;
+import com.derpgroup.quip.bots.insultibot.InsultiBotAlexaResource;
+import com.derpgroup.quip.configuration.MainConfig;
+import com.derpgroup.quip.health.BasicHealthCheck;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
@@ -62,6 +63,7 @@ public class AppTest {
 
     // Verify that health checks and resources are correctly registered
     verify(mockHealthChecks).register(Matchers.matches("basics"), Matchers.any(BasicHealthCheck.class));
-    verify(mockJersey).register(Matchers.isA(AlexaResource.class));
+    verify(mockJersey).register(Matchers.isA(CompliBotAlexaResource.class));
+    verify(mockJersey).register(Matchers.isA(InsultiBotAlexaResource.class));
   }
 }

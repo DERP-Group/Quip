@@ -18,24 +18,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.complibot.health;
+package com.derpgroup.quip.configuration;
 
-import io.dropwizard.setup.Environment;
+import io.dropwizard.Configuration;
 
-import com.codahale.metrics.health.HealthCheck;
-import com.derpgroup.complibot.configuration.MainConfig;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Health check to verify that the local filesystem is writable.
+ * Top-level configuration class.
  *
  * @author Rusty Gerard
  * @since 0.0.1
  */
-public class BasicHealthCheck extends HealthCheck {
-  public BasicHealthCheck(MainConfig config, Environment environment) {}
+public class MainConfig extends Configuration {
+  private boolean prettyPrint = true;
 
-  @Override
-  protected Result check() throws Exception {
-    return Result.healthy();
+  @JsonProperty
+  public boolean isPrettyPrint() {
+    return prettyPrint;
+  }
+
+  @JsonProperty
+  public void setPrettyPrint(boolean prettyPrint) {
+    this.prettyPrint = prettyPrint;
   }
 }

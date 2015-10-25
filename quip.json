@@ -8,7 +8,7 @@
       {
         "type": "https",
         "port" : 8443,
-        "keyStorePath": "/var/lib/complibot/keystore.jks",
+        "keyStorePath": "/var/lib/quip/keystore.jks",
         "keyStorePassword": "changeit",
         "trustStorePath": "/usr/lib/jvm/jre/lib/security/cacerts",
         "certAlias": "selfsigned"
@@ -25,8 +25,8 @@
     "appenders": [
       {
         "type": "file",
-        "currentLogFilename": "/var/log/complibot/complibot.log",
-        "archivedLogFilenamePattern": "/var/log/complibot/complibot-%d.log",
+        "currentLogFilename": "/var/log/quip/quip.log",
+        "archivedLogFilenamePattern": "/var/log/quip/quip-%d.log",
         "archivedFileCount": 5
       }
     ],
