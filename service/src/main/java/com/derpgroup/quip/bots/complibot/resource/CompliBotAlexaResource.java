@@ -20,6 +20,11 @@
 
 package com.derpgroup.quip.bots.complibot.resource;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 import io.dropwizard.setup.Environment;
 
 import javax.ws.rs.Consumes;
@@ -27,6 +32,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import net.sf.json.JSONObject;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
@@ -37,10 +44,12 @@ import com.amazon.speech.speechlet.SpeechletRequest;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
-import com.derpgroup.derpwizard.voice.alexa.AlexaRequestType;
-import com.derpgroup.derpwizard.voice.alexa.AlexaSkillsKitUtil;
+import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
+import com.derpgroup.derpwizard.voice.model.VoiceOutput;
+import com.derpgroup.derpwizard.voice.model.VoiceInput.MessageType;
+import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory.InterfaceType;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.manager.QuipManager;
 
@@ -55,6 +64,10 @@ import com.derpgroup.quip.manager.QuipManager;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CompliBotAlexaResource {
 
+  private static final List<String> UNSUPPORTED_SSML_TAGS = Collections.unmodifiableList(Arrays.asList(
+      "emphasis"
+      ));
+
   private QuipManager manager;
   
   public CompliBotAlexaResource(MainConfig config, Environment env) {
@@ -68,59 +81,36 @@ public class CompliBotAlexaResource {
    */
   @POST
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request){
-    if(request == null || request.getRequest() == null){
+    if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
     }
-    SpeechletRequest sr = request.getRequest();
-    AlexaRequestType requestType = AlexaSkillsKitUtil.getRequestType(sr);
-    
-    switch(requestType){
-    case LAUNCH_REQUEST:
-      return doLaunchRequest(request.getRequest(), request.getSession());
-    case INTENT_REQUEST:
-      return doIntentRequest(request.getRequest(), request.getSession());
-    case SESSION_ENDED_REQUEST:
-      return doSessionEndedRequest(request.getRequest(), request.getSession());
-      default: 
-        throw new RuntimeException("Unknown request type."); //TODO: create AlexaException
-    }
-  }
-  
-  protected SpeechletResponseEnvelope doLaunchRequest(SpeechletRequest request, Session session){
-    Intent intent = Intent.builder().withName("COMPLIMENT").build();
-    IntentRequest ir = IntentRequest.builder().withIntent(intent).withRequestId(request.getRequestId()).build();
-    return doIntentRequest(ir, session);
-  }
-  
-  protected SpeechletResponseEnvelope doIntentRequest(SpeechletRequest request, Session session){
-    VoiceInput vi = VoiceMessageFactory.buildInputMessageWithMetadata(request, session.getAttributes(), VoiceMessageFactory.InterfaceType.ALEXA);
-    String output = manager.handleRequest(vi);    
-    
-    SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion(CompliBotAlexaResource.class.getPackage().getImplementationVersion());
-    
-    SsmlOutputSpeech outputSpeech = new SsmlOutputSpeech();
-    outputSpeech.setSsml(output);
-    
-    //Card text is not currently part of what the manager outputs, so hardcoding it
-    SimpleCard card = new SimpleCard();
-    card.setContent("Hi. This is Alexa, speaking on behalf of CompliBot.");
-    card.setTitle("Alexa + CompliBot");
 
-    SpeechletResponse sr = new SpeechletResponse();
-    sr.setOutputSpeech(outputSpeech);
-    sr.setCard(card);
-    response.setResponse(sr);
-    response.setSessionAttributes(session.getAttributes());
-    return response;
-  }
-  
-  protected SpeechletResponseEnvelope doSessionEndedRequest(SpeechletRequest request, Session session){
-    SpeechletResponseEnvelope response = new SpeechletResponseEnvelope();
-    response.setVersion(CompliBotAlexaResource.class.getPackage().getImplementationVersion());
-    SpeechletResponse sr = new SpeechletResponse();
-    response.setResponse(sr);
-    response.setSessionAttributes(session.getAttributes());
-    return response;
+    Map<String, Object> sessionAttributes = request.getSession().getAttributes();
+    sessionAttributes.put("bot", "complibot");
+
+    SsmlDocumentBuilder builder = new SsmlDocumentBuilder(UNSUPPORTED_SSML_TAGS);
+    VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), JSONObject.fromObject(sessionAttributes), InterfaceType.ALEXA);
+    manager.handleRequest(voiceInput, builder);
+
+    SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
+    responseEnvelope.setSessionAttributes(request.getSession().getAttributes());
+
+    // Create a VoiceOutput object with the SSML content generated by the manater
+    if (voiceInput.getMessageType() != MessageType.END_OF_CONVERSATION) {
+      SimpleCard card = new SimpleCard();
+      card.setContent(builder.getRawText());
+      card.setTitle("Alexa + Complibot");
+
+      @SuppressWarnings("unchecked")
+      VoiceOutput<SsmlOutputSpeech> voiceOutput = (VoiceOutput<SsmlOutputSpeech>) VoiceMessageFactory.buildOutputMessage(builder.build(), InterfaceType.ALEXA);
+      SsmlOutputSpeech outputSpeech = voiceOutput.getImplInstance();
+      SpeechletResponse speechletResponse = new SpeechletResponse();
+      speechletResponse.setOutputSpeech(outputSpeech);
+      speechletResponse.setCard(card);
+
+      responseEnvelope.setResponse(speechletResponse);
+    }
+
+    return responseEnvelope;
   }
 }
