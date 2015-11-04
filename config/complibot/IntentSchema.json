@@ -1,0 +1,12 @@
+{
+  "intents": [
+    {
+      "intent": "COMPLIMENT",
+      "slots": []
+    },
+    {
+      "intent": "HELP",
+      "slots": []
+    }
+  ]
+}

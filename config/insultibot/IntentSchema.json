@@ -1,0 +1,16 @@
+{
+  "intents": [
+    {
+      "intent": "INSULT",
+      "slots": []
+    },
+    {
+      "intent": "BACKHANDED_COMPLIMENT",
+      "slots": []
+    },
+    {
+      "intent": "HELP",
+      "slots": []
+    }
+  ]
+}

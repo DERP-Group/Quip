@@ -15,6 +15,10 @@ public class QuipManager extends AbstractManager {
 	private void doComplimentRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
 		builder.text(Compliments.getRandomCompliment().getCompliment());
 	}
+
+  private void doBackhandedComplimentRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    builder.text(BackhandedCompliments.getRandomBackhandedCompliment().getCompliment());
+  }
 	
 	public enum Compliments{
 		I_LIGHT_UP("I light up every time you talk to me!"),
@@ -152,6 +156,10 @@ public class QuipManager extends AbstractManager {
       SsmlDocumentBuilder builder) {
     String s1, s2, s3, s4;
     String bot = (String) voiceInput.getMetadata().get("bot");
+    if(bot == null || bot.isEmpty()){
+      builder.text("I don't have any help topics for this situation.");
+      return;
+    }
     switch(bot){
     case "complibot":
       s1 = "Complibot";
@@ -166,11 +174,7 @@ public class QuipManager extends AbstractManager {
       s4 = "shade";
       break;
       default:
-        if(bot == null || bot.isEmpty()){
-          builder.text("I don't have any help topics for this situation.");
-        }else{
-          builder.text("I don't have any help topics for the bot named '" + bot + "'.");
-        }
+        builder.text("I don't have any help topics for the bot named '" + bot + "'.");
         return;
     }
     builder.text("You can just say ").pause().text(String.format("open %s ",s1)).pause().text("or ").pause().text(String.format("launch %s ",s1)).pause()
@@ -214,6 +218,9 @@ public class QuipManager extends AbstractManager {
       case "INSULT":
           doInsultRequest(voiceInput, builder);
           break;
+      case "BACKHANDED_COMPLIMENT":
+        doBackhandedComplimentRequest(voiceInput, builder);
+        break;
       case "HELP":
           doHelpRequest(voiceInput, builder);
           break;
