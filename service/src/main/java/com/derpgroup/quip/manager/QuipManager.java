@@ -229,4 +229,12 @@ public class QuipManager extends AbstractManager {
       }
   }
 
+  @Override
+  protected void doCancelRequest(VoiceInput voiceInput,
+      SsmlDocumentBuilder builder) {}
+
+  @Override
+  protected void doStopRequest(VoiceInput voiceInput,
+      SsmlDocumentBuilder builder) {}
+
 }
