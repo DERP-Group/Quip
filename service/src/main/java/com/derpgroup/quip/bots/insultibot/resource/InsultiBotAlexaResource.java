@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.derpgroup.quip.bots.insultibot;
+package com.derpgroup.quip.bots.insultibot.resource;
 
 import java.util.Arrays;
 import java.util.Collections;

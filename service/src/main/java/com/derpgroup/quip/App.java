@@ -27,7 +27,7 @@ import io.dropwizard.setup.Environment;
 import java.io.IOException;
 
 import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaResource;
-import com.derpgroup.quip.bots.insultibot.InsultiBotAlexaResource;
+import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaResource;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.health.BasicHealthCheck;
 import com.fasterxml.jackson.databind.ObjectMapper;
