@@ -35,7 +35,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.derpgroup.quip.App;
 import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaResource;
-import com.derpgroup.quip.bots.insultibot.InsultiBotAlexaResource;
+import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaResource;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.health.BasicHealthCheck;
 
