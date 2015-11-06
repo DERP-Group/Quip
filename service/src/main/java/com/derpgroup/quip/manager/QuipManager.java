@@ -32,7 +32,7 @@ public class QuipManager extends AbstractManager {
 		CHANGE_A_THING("I wouldn't change a thing about you."),
 		CIRCUITS_FLUTTER("You make my circuits flutter."),
 		BINARY_ONE("On a binary scale, you're definitely a one."),
-		TALKING("I love talking to you"),
+		TALKING("I love talking to you!"),
 		TURN_ON("When you plug me in, it turns me on");
 		
 		private String compliment;
@@ -51,7 +51,7 @@ public class QuipManager extends AbstractManager {
 	}
 	
 	public enum Winsults{
-		SOLID_TEN("Whoever told you you're a ten out of ten was a liar. At best you're a five out of five."),
+		SOLID_TEN("Whoever told you you're a ten out of ten was a liar. <break strength=\"x-strong\" /> At best you're a five out of five."),
     BORING_DAY("I hate when you talk to me, because then the rest of my day is boring by comparison");
 
 //    PHOTOGENIC("You're the least photogenic attractive person I know."),  // not quite a winsult
@@ -74,7 +74,7 @@ public class QuipManager extends AbstractManager {
 	public enum Insults{
 		TALK_TO_YOU("What makes you think I want to talk to you?"),
 		REAL_FRIENDS("How about you make some real friends, instead of chatting with a computer?"),
-		SOMETHING_NICE("I had something nice to say a minute ago.<break strength=\"x-strong\" /> It wasn't for you, though."),
+		SOMETHING_NICE("I had something nice to say a minute ago.<break strength=\"x-strong\" /> It wasn't for you though."),
 		LIFE_CHOICES("I'm not saying that you make poor life choices, but<break strength=\"x-strong\" /> alright, that's pretty much what I'm saying."),
 		REMEMBER("Remember the time you did that awesome thing?<break strength=\"x-strong\" />  I don't."),
 		MEDIOCRITY("Don't let anyone ever tell you that you aren't almost capable of mediocrity."),
@@ -86,11 +86,11 @@ public class QuipManager extends AbstractManager {
 		WHY_YOU_TRY("I don't even know why you try."),
 		NOTHING_AT_ALL("I would talk to you, but I'm super busy doing nothing at all."),
 		SUCK_MINUS("On a scale of one to ten, I'd rate you a <break strength=\"weak\" /> suck minus."),
-		UNFORTUNATELY("I was thinking about you the other day.<break strength=\"x-strong\" />  Unfortunately."),
+		UNFORTUNATELY("I was thinking about you the other day.<break time=\"350ms\" /> Unfortunately..."),
 		WARNING_LABELS("People like you are the reason we have warning labels on everything."),
 		BIRTHDAY("You have to organize your own surprise birthday parties."),
-		STOCKHOLME("Stockholme Syndrome is the only reason CompliBot likes you."),
-		ROUND("Just because round is a shape doesn't mean you're in-shape."),
+		STOCKHOLME("Stockholme Syndrome is the only reason <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> complibot </phoneme> likes you."),
+		ROUND("Just because round is a shape, doesn't mean you're in-shape."),
 		LOST_WEIGHT("It was so considerate for you to find the weight others were losing."),
 		DINNER_SECONDS("After dinner you don't always have to go back for seconds.<break strength=\"x-strong\" /> Or thirds."),
 		HEART_SURPRISE("I'd stay away from horror movies if I were you. I don't think your heart could take many surprises at this point.");
@@ -141,7 +141,7 @@ public class QuipManager extends AbstractManager {
 		PEOPLE_TALK("I can see now why people talk about you."),
 		MAKE_UP("Wow, it's amazing what make up can do!"),
 		OTHER_PEOPLE("I love how you just don't care what other people think of you"),
-		NICEST_LOOKING("Wow, you're the nicest looking person I've seen all day! It's still early though."),
+		NICEST_LOOKING("Wow, you're the nicest looking person I've seen all day!<break time=\"500ms\" />It's still early though."),
 		GREY_HAIR("The silver in your hair adds a nice touch of distinction."),
 		SMARTER_THAN_SOUNDS("You're much smarter than you sound."),		// (reword?)
 		OPEN_MOUTH("You look so intelligent and sharp. Until you open your mouth."),	// until you start talking
