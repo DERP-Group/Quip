@@ -19,6 +19,10 @@ public class QuipManager extends AbstractManager {
   private void doBackhandedComplimentRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     builder.text(BackhandedCompliments.getRandomBackhandedCompliment().getCompliment());
   }
+  
+  private void doWinsultRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    builder.text(Winsults.getRandomWinsults().getWinsult());
+  }
 	
 	public enum Compliments{
 		I_LIGHT_UP("I light up every time you talk to me!"),
@@ -43,6 +47,27 @@ public class QuipManager extends AbstractManager {
 		
 		public static Compliments getRandomCompliment(){
 			return Compliments.values()[new Random().nextInt(Compliments.values().length)];
+		}
+	}
+	
+	public enum Winsults{
+		SOLID_TEN("Whoever told you you're a ten out of ten was a liar. At best you're a five out of five."),
+    BORING_DAY("I hate when you talk to me, because then the rest of my day is boring by comparison");
+
+//    PHOTOGENIC("You're the least photogenic attractive person I know."),  // not quite a winsult
+		
+		private String winsult;
+		
+		private Winsults(String winsult){
+			this.winsult = winsult;
+		}
+		
+		public String getWinsult(){
+			return winsult;
+		}
+		
+		public static Winsults getRandomWinsults(){
+			return Winsults.values()[new Random().nextInt(Winsults.values().length)];
 		}
 	}
 	
@@ -185,8 +210,7 @@ public class QuipManager extends AbstractManager {
   }
 
   @Override
-  protected void doHelloRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+  protected void doHelloRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     String bot = (String) voiceInput.getMetadata().get("bot");
     switch(bot){
     case "complibot":
@@ -202,31 +226,32 @@ public class QuipManager extends AbstractManager {
   }
 
   @Override
-  protected void doGoodbyeRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {}
+  protected void doGoodbyeRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {}
 
   @Override
-  protected void doConversationRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+  protected void doConversationRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
 
     String messageSubject = voiceInput.getMessageSubject();
 
-      switch (messageSubject) {
-      case "COMPLIMENT":
-          doComplimentRequest(voiceInput, builder);
-          break;
-      case "INSULT":
-          doInsultRequest(voiceInput, builder);
-          break;
-      case "BACKHANDED_COMPLIMENT":
-        doBackhandedComplimentRequest(voiceInput, builder);
-        break;
-      case "HELP":
-          doHelpRequest(voiceInput, builder);
-          break;
-      default:
-          builder.text("Unknown request type '" + messageSubject + "'.");
-      }
+    switch (messageSubject) {
+    case "COMPLIMENT":
+      doComplimentRequest(voiceInput, builder);
+      break;
+    case "INSULT":
+      doInsultRequest(voiceInput, builder);
+      break;
+    case "BACKHANDED_COMPLIMENT":
+      doBackhandedComplimentRequest(voiceInput, builder);
+      break;
+    case "WINSULT":
+      doWinsultRequest(voiceInput, builder);
+      break;
+    case "HELP":
+      doHelpRequest(voiceInput, builder);
+      break;
+    default:
+      builder.text("Unknown request type '" + messageSubject + "'.");
+    }
   }
 
 }
