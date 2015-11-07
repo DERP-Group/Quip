@@ -5,3 +5,6 @@ BACKHANDED_COMPLIMENT to compliment me
 BACKHANDED_COMPLIMENT for a compliment
 BACKHANDED_COMPLIMENT to give me a compliment
 HELP for a little bit of help
+AMAZON.HelpIntent
+AMAZON.StopIntent
+AMAZON.CancelIntent
