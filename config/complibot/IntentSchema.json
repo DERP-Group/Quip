@@ -5,6 +5,10 @@
       "slots": []
     },
     {
+      "intent": "WINSULT",
+      "slots": []
+    },
+    {
       "intent": "HELP",
       "slots": []
     }
