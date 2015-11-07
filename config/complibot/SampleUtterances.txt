@@ -5,6 +5,3 @@ WINSULT to insult me
 WINSULT for an insult
 WINSULT to give me an insult
 HELP for a little bit of help
-AMAZON.HelpIntent
-AMAZON.StopIntent
-AMAZON.CancelIntent
