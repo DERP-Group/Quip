@@ -13,6 +13,27 @@
       "slots": []
     },
     {
+      "intent": "WHO_BUILT_YOU",
+      "slots": []
+    },
+    {
+      "intent": "WHAT_DO_YOU_DO",
+      "slots": []
+    },
+    {
+      "intent": "FRIENDS",
+      "slots": []
+    },
+    {
+      "intent": "WHO_IS",
+      "slots": [
+        {
+          "name":"botName",
+          "type":"BOTS"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent",
       "slots": []
     },

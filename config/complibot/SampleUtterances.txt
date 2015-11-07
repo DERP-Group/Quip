@@ -5,3 +5,17 @@ WINSULT to insult me
 WINSULT for an insult
 WINSULT to give me an insult
 HELP for a little bit of help
+HELP how do I use you
+HELP how do I use it
+WHO_BUILT_YOU who built you
+WHO_BUILT_YOU who built it
+WHO_BUILT_YOU how it was built
+WHAT_DO_YOU_DO what does it do
+WHAT_DO_YOU_DO what do you do
+FRIENDS who are your friends
+FRIENDS who are its friends
+FRIENDS who its friends are
+WHO_IS who is {botName}
+WHO_IS who {botName} is
+WHO_IS what is {botName}
+WHO_IS what {botName} is
