@@ -19,3 +19,10 @@ WHO_IS who is {botName}
 WHO_IS who {botName} is
 WHO_IS what is {botName}
 WHO_IS what {botName} is
+WHO_IS to tell me who {botName} is
+WHO_IS to tell us who {botName} is
+WHO_IS to explain who {botName} is
+WHO_IS to explain to me who {botName} is
+WHO_IS to explain to us who {botName} is
+WHO_IS to tell me what {botName} is
+WHO_IS to tell us what {botName} is
