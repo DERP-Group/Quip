@@ -46,6 +46,7 @@ import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
 import com.derpgroup.derpwizard.voice.model.VoiceOutput;
 import com.derpgroup.derpwizard.voice.model.VoiceInput.MessageType;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory.InterfaceType;
+import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.manager.QuipManager;
@@ -88,6 +89,7 @@ public class CompliBotAlexaResource {
     sessionAttributes.put("bot", "complibot");
 
     ObjectMapper mapper = new ObjectMapper();
+    mapper.registerModule(new MixInModule());
     QuipMetadata metadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
     
     SsmlDocumentBuilder builder = new SsmlDocumentBuilder(UNSUPPORTED_SSML_TAGS);
