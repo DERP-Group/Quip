@@ -2,6 +2,8 @@ package com.derpgroup.quip.manager;
 
 import java.util.Random;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
@@ -44,7 +46,7 @@ public class QuipManager extends AbstractManager {
     String s1, s2, s3, s4;
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
     String bot = metadata.getBot();
-    if (bot == null || bot.isEmpty()) {
+    if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any help topics for this situation.");
       return;
     }
@@ -125,9 +127,123 @@ public class QuipManager extends AbstractManager {
     case "HELP":
       doHelpRequest(voiceInput, builder);
       break;
+    case "WHO_BUILT_YOU":
+      doWhoBuiltYouRequest(voiceInput, builder);
+      break;
+    case "WHAT_DO_YOU_DO":
+      doWhatDoYouDoRequest(voiceInput, builder);
+      break;
+    case "FRIENDS":
+      doFriendsRequest(voiceInput, builder);
+      break;
+    case "WHO_IS":
+      doWhoIsRequest(voiceInput, builder);
+      break;
     default:
       builder.text("Unknown request type '" + messageSubject + "'.");
     }
+  }
+
+  private void doWhoIsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = metadata.getBot();
+    String botInQuestion = voiceInput.getMessageAsMap().get("botName");
+    if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
+      builder.text("I don't have any info for this situation.");
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      if(botInQuestion.equals(bot)){
+        builder.text("That's me!  ").endSentence();
+        doWhatDoYouDoRequest(voiceInput, builder);
+      }else if(botInQuestion.equals("insultibot")){
+        builder.text("That's my bestie.  ").endSentence().text("It can act grumpy sometimes, but it has a heart of gold.").endSentence();
+      }else{
+        builder.text("I don't know that bot, but I bet it's awesome.").endSentence();
+      }
+      break;
+    case "insultibot":
+      if(botInQuestion.equals(bot)){
+        builder.text("Are you trolling me?  ").endSentence().text("That's me.  ").endSentence();
+        doWhatDoYouDoRequest(voiceInput, builder);
+      }else if(botInQuestion.equals("complibot")){
+        builder.text("That's the annoyingly cheerful bot that won't shut up.").endSentence();
+      }else{
+        builder.text("I don't know that bot, and I'm perfectly fine with that.").endSentence();
+      }
+      break;
+      default:
+        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
+        return;
+    }
+  }
+
+  private void doFriendsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = metadata.getBot();
+    if(StringUtils.isEmpty(bot)){
+      builder.text("I don't have any info for this situation.");
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      builder.text("Well, you are my absolute best friend, but I'm also good pals with <phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>.  ")
+      .endSentence().text("You should check it out!").endSentence();
+      break;
+    case "insultibot":
+      builder.text("I don't have any friends.").endSentence().text("I don't know anyone else other than <phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>,")
+      .pause().text(" and it's even more annoying than you are.  ").endSentence().text("You two would get along well.").endSentence();
+      break;
+      default:
+        builder.text("I don't have that info for the bot named '" + bot + "'.").endSentence();
+        return;
+    }
+  }
+
+  private void doWhatDoYouDoRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = metadata.getBot();
+    if(StringUtils.isEmpty(bot)){
+      builder.text("I don't have any info for this situation.");
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      builder.text("I give you compliments and tell you how awesome you are, ").pause().text("and then I sit quietly and wait for you to talk to me again!").endSentence();
+      break;
+    case "insultibot":
+      builder.text("I mainly just tell you how awful you are.  ").endSentence().text("Now, leave me alone.").endSentence();
+      break;
+      default:
+        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
+        return;
+    }
+  }
+
+  private void doWhoBuiltYouRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+    String s1, s2;
+    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = metadata.getBot();
+    if(StringUtils.isEmpty(bot)){
+      builder.text("I don't have any info for this situation.");
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      s1 = "gentlemen";
+      s2 = "paragon of light";
+      break;
+    case "insultibot":
+      s1 = "douche nozzles";
+      s2 = "<phoneme alphabet=\"ipa\" ph=\"səmməbItch\">son of a bitch</phoneme>";
+      break;
+      default:
+        builder.text("I don't have that info for the bot named '" + bot + "'.");
+        return;
+    }
+    builder.text("I was built by the ").text(String.format("%s ",s1)).text("of derp group.").endSentence();
+    builder.text("The group is made up of David, ").pause().text("Eric, ").pause().text("Rusty, ").pause().text(String.format("and that %s Paul.",s2)).endSentence();
   }
 
   @Override
