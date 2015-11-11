@@ -2,6 +2,8 @@ package com.derpgroup.quip.manager;
 
 import java.util.Random;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
@@ -181,7 +183,7 @@ public class QuipManager extends AbstractManager {
       SsmlDocumentBuilder builder) {
     String s1, s2, s3, s4;
     String bot = (String) voiceInput.getMetadata().get("bot");
-    if(bot == null || bot.isEmpty()){
+    if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any help topics for this situation.");
       return;
     }
@@ -269,7 +271,7 @@ public class QuipManager extends AbstractManager {
   private void doWhoIsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     String bot = (String) voiceInput.getMetadata().get("bot");
     String botInQuestion = voiceInput.getMessageAsMap().get("botName");
-    if(bot == null || bot.isEmpty() || botInQuestion == null || botInQuestion.isEmpty()){
+    if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
       builder.text("I don't have any info for this situation.");
       return;
     }
@@ -295,14 +297,14 @@ public class QuipManager extends AbstractManager {
       }
       break;
       default:
-        builder.text("I don't have that info for the bot named '" + bot + "'.").endSentence();
+        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
         return;
     }
   }
 
   private void doFriendsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     String bot = (String) voiceInput.getMetadata().get("bot");
-    if(bot == null || bot.isEmpty()){
+    if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
       return;
     }
@@ -323,7 +325,7 @@ public class QuipManager extends AbstractManager {
 
   private void doWhatDoYouDoRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     String bot = (String) voiceInput.getMetadata().get("bot");
-    if(bot == null || bot.isEmpty()){
+    if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
       return;
     }
@@ -335,7 +337,7 @@ public class QuipManager extends AbstractManager {
       builder.text("I mainly just tell you how awful you are.  ").endSentence().text("Now, leave me alone.").endSentence();
       break;
       default:
-        builder.text("I don't have that info for the bot named '" + bot + "'.").endSentence();
+        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
         return;
     }
   }
@@ -343,7 +345,7 @@ public class QuipManager extends AbstractManager {
   private void doWhoBuiltYouRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
     String s1, s2;
     String bot = (String) voiceInput.getMetadata().get("bot");
-    if(bot == null || bot.isEmpty()){
+    if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
       return;
     }
