@@ -1,41 +1,48 @@
 package com.derpgroup.quip.manager;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.derpgroup.derpwizard.manager.AbstractManager;
+import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
+import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 
 public class QuipManager extends AbstractManager {
+  
+  private static final String[] metaRequestSubjects = new String[]{"ANOTHER"};
   
   public QuipManager(){
     super();
     mapperModule = new MixInModule();
   }
   
-  private void doInsultRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  private void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Insults insult = Insults.getRandomInsult();
     metadata.getInsultsUsed().add(insult.name());
     builder.text(insult.getInsult());
   }
 
-  private void doComplimentRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  private void doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Compliments compliment = Compliments.getRandomCompliment();
     metadata.getComplimentsUsed().add(compliment.name());
     builder.text(compliment.getCompliment());
   }
 
-  private void doBackhandedComplimentRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  private void doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     BackhandedCompliments compliment = BackhandedCompliments.getRandomBackhandedCompliment();
     metadata.getBackhandedComplimentsUsed().add(compliment.name());
     builder.text(compliment.getCompliment());
   }
 
-  private void doWinsultRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  private void doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Winsults winsult = Winsults.getRandomWinsults();
     metadata.getWinsultsUsed().add(winsult.name());
     builder.text(winsult.getWinsult());
@@ -83,14 +90,16 @@ public class QuipManager extends AbstractManager {
 
   @Override
   protected void doHelloRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
     String bot = metadata.getBot();
     switch (bot) {
     case "complibot":
-      doComplimentRequest(voiceInput, builder, metadata);
+      doComplimentRequest(messageMap, builder, metadata);
       break;
     case "insultibot":
-      doInsultRequest(voiceInput, builder, metadata);
+      doInsultRequest(messageMap, builder, metadata);
       break;
     default:
       doHelpRequest(voiceInput, builder);
@@ -107,47 +116,56 @@ public class QuipManager extends AbstractManager {
   protected void doConversationRequest(VoiceInput voiceInput,
       SsmlDocumentBuilder builder) {
 
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
-
     String messageSubject = voiceInput.getMessageSubject();
 
+    switchOnSubject(messageSubject, messageMap, builder, metadata);
+  }
+
+  public void switchOnSubject(String messageSubject, Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     switch (messageSubject) {
     case "COMPLIMENT":
-      doComplimentRequest(voiceInput, builder, metadata);
+      doComplimentRequest(messageMap, builder, metadata);
       break;
     case "INSULT":
-      doInsultRequest(voiceInput, builder, metadata);
+      doInsultRequest(messageMap, builder, metadata);
       break;
     case "BACKHANDED_COMPLIMENT":
-      doBackhandedComplimentRequest(voiceInput, builder, metadata);
+      doBackhandedComplimentRequest(messageMap, builder, metadata);
       break;
     case "WINSULT":
-      doWinsultRequest(voiceInput, builder, metadata);
-      break;
-    case "HELP":
-      doHelpRequest(voiceInput, builder);
+      doWinsultRequest(messageMap, builder, metadata);
       break;
     case "WHO_BUILT_YOU":
-      doWhoBuiltYouRequest(voiceInput, builder);
+      doWhoBuiltYouRequest(messageMap, builder, metadata);
       break;
     case "WHAT_DO_YOU_DO":
-      doWhatDoYouDoRequest(voiceInput, builder);
+      doWhatDoYouDoRequest(messageMap, builder, metadata);
       break;
     case "FRIENDS":
-      doFriendsRequest(voiceInput, builder);
+      doFriendsRequest(messageMap, builder, metadata);
       break;
     case "WHO_IS":
-      doWhoIsRequest(voiceInput, builder);
+      doWhoIsRequest(messageMap, builder, metadata);
+      break;
+    case "ANOTHER":
+      doAnotherRequest(messageSubject, messageMap, builder, metadata);
       break;
     default:
       builder.text("Unknown request type '" + messageSubject + "'.");
     }
   }
 
-  private void doWhoIsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+  private void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+    //this has its own method in case we want to do things like logging
+    ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(metadata.getConversationHistory(), new HashSet<String>(Arrays.asList(metaRequestSubjects)));
+    switchOnSubject(entry.getMessageSubject(), messageMap, builder, metadata);
+  }
+
+  private void doWhoIsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
-    String botInQuestion = voiceInput.getMessageAsMap().get("botName");
+    String botInQuestion = messageMap.get("botName");
     if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
       builder.text("I don't have any info for this situation.");
       return;
@@ -156,7 +174,7 @@ public class QuipManager extends AbstractManager {
     case "complibot":
       if(botInQuestion.equals(bot)){
         builder.text("That's me!  ").endSentence();
-        doWhatDoYouDoRequest(voiceInput, builder);
+        doWhatDoYouDoRequest(messageMap, builder, metadata);
       }else if(botInQuestion.equals("insultibot")){
         builder.text("That's my bestie.  ").endSentence().text("It can act grumpy sometimes, but it has a heart of gold.").endSentence();
       }else{
@@ -166,7 +184,7 @@ public class QuipManager extends AbstractManager {
     case "insultibot":
       if(botInQuestion.equals(bot)){
         builder.text("Are you trolling me?  ").endSentence().text("That's me.  ").endSentence();
-        doWhatDoYouDoRequest(voiceInput, builder);
+        doWhatDoYouDoRequest(messageMap, builder, metadata);
       }else if(botInQuestion.equals("complibot")){
         builder.text("That's the annoyingly cheerful bot that won't shut up.").endSentence();
       }else{
@@ -179,8 +197,7 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doFriendsRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+  private void doFriendsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
@@ -201,8 +218,7 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doWhatDoYouDoRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+  private void doWhatDoYouDoRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
@@ -221,9 +237,8 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doWhoBuiltYouRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
+  private void doWhoBuiltYouRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String s1, s2;
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");

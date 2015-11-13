@@ -1,7 +1,6 @@
 package com.derpgroup.quip;
 
 import com.derpgroup.derpwizard.voice.model.CommonMetadata;
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 public class MixInModule extends SimpleModule {
