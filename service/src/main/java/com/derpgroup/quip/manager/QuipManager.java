@@ -21,7 +21,7 @@ public class QuipManager extends AbstractManager {
   
   public QuipManager(){
     super();
-    mapperModule = new MixInModule();
+    mapper.registerModule(new MixInModule());
   }
   
   private void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
