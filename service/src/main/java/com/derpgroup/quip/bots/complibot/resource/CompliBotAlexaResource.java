@@ -20,22 +20,31 @@
 
 package com.derpgroup.quip.bots.complibot.resource;
 
+import java.io.UnsupportedEncodingException;
+import java.security.PublicKey;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import io.dropwizard.setup.Environment;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.speechlet.authentication.SpeechletRequestSignatureVerifier;
+import com.amazon.speech.speechlet.verifier.TimestampSpeechletRequestVerifier;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
@@ -48,6 +57,7 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.manager.QuipManager;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -76,9 +86,31 @@ public class CompliBotAlexaResource {
    * Generates a welcome message.
    *
    * @return The message, never null
+   * @throws Exception 
    */
   @POST
-  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request){
+  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
+    if(testFlag == null || testFlag == false){ 
+      
+      try {
+        TimestampSpeechletRequestVerifier timestampVerifier = new TimestampSpeechletRequestVerifier(150, TimeUnit.SECONDS);
+        if(!timestampVerifier.verify(request.getRequest(), request.getSession())){
+          throw new CertificateException("BAD");  //REPLACE ME WITH OUR REAL EXCEPTION
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        byte[] serializedSpeechletRequest = mapper.writeValueAsBytes(request.getRequest());
+        SpeechletRequestSignatureVerifier.checkRequestSignature(serializedSpeechletRequest, signature, signatureCertChainUrl);
+        SpeechletRequestSignatureVerifier.retrieveAndVerifyCertificateChain(signatureCertChainUrl);
+      } catch (CertificateException e) {
+        //Throw this for realzies, once we have a legitimate exception
+        e.printStackTrace();
+      } catch (JsonProcessingException e) {
+        //Throw this for realzies, once we have a legitimate exception
+        e.printStackTrace();
+      }
+    }
+    
     if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
     }
