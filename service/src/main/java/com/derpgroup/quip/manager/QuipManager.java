@@ -283,8 +283,17 @@ public class QuipManager extends AbstractManager {
     CIRCUITS_FLUTTER("You make my circuits flutter."), 
     BINARY_ONE("On a binary scale, you're definitely a one."), 
     TALKING("I love talking to you!"), 
-    TURN_ON("When you plug me in, it turns me on");
-
+    TURN_ON("When you plug me in, it turns me on"),
+    HAIR("I love your hair. I wish I had hair like yours."),
+    DO_ANYTHING("You can do anything you set your mind to."),
+    BELIEVE_IN_YOU("I believe in you."),
+    GOOD_FRIEND("You're a good friend. I'm always glad to be here with you."),
+    LIGHT_UP_ROOM("Why should we even turn on the overhead lights? Your smile already lights up the room."),
+    SMART_LEARNING("You're so smart, I'm always learning new things from you."),
+    MAGNETIC_ATTRACTION("Are you wearing a bunch of magnets? Because you are extremely attractive."),
+    SHAMPOO("I love what you've done with your hair! I wonder if your shampoo would work on me."),
+    GENIE("Are you a genie? Because you grant my wish every time you talk to me.");
+    
     private String compliment;
 
     private Compliments(String compliment) {
@@ -303,7 +312,10 @@ public class QuipManager extends AbstractManager {
 
   public enum Winsults {
     SOLID_TEN("Whoever told you you're a ten out of ten was a liar. <break strength=\"x-strong\" /> At best you're a five out of five."), 
-    BORING_DAY("I hate when you talk to me, because then the rest of my day is boring by comparison");
+    BORING_DAY("I hate when you talk to me, because then the rest of my day is boring by comparison"),
+    NO_SLEEP("You must not get much sleep, since you have to wake up early every day to look so great."),
+    TOO_GOOD("Society hates people like you, who are just super good at everything."),
+    TOO_CLEAN("You must be a neat freak, because your apartment is always clean.");
 
     // PHOTOGENIC("You're the least photogenic attractive person I know."), //
     // not quite a winsult
@@ -345,7 +357,38 @@ public class QuipManager extends AbstractManager {
     ROUND("Just because round is a shape, doesn't mean you're in-shape."), 
     LOST_WEIGHT("It was so considerate for you to find the weight others were losing."), 
     DINNER_SECONDS("After dinner you don't always have to go back for seconds.<break strength=\"x-strong\" /> Or thirds."), 
-    HEART_SURPRISE("I'd stay away from horror movies if I were you. I don't think your heart could take many surprises at this point.");
+    HEART_SURPRISE("I'd stay away from horror movies if I were you. I don't think your heart could take many surprises at this point."),
+    MOST_PROSPEROUS("It's too bad you didn't live a thousand years ago. Back then being fat was considered a sign of wealth and prosperity. You'd have been the wealthiest looking of all."), 
+    CHEESE_CURDLE("They should name a cheese after you, because your voice curdles my blood."), 
+    UMBRELLA("It's too bad umbrellas are only made to shield us from rain. Because I'd really like to have an umbrella to shield me from your stupidity."), 
+    THUNDERSTEPS("For a second there I thought it was a thunder storm outside, but then I realized it was just your footsteps."), 
+    VACCINE("I don't believe in western medicine, but I'd be happy to try out a <break /> you <break /> vaccine."), 
+    PRIZE_VACATION("Congratulations, you just won a one way trip to somewhere other than here! Please claim your prize immediately."), 
+    MULTI_THREADED("I wish I was multi-threaded so I could exist somewhere else right now. Somewhere where you aren't."), 
+    BIBLICAL_FLOOD("Sometimes I wish there would be another biblical flood, but then I realized your ample <phoneme alphabet=\"ipa\" ph=\"bɔɪənsi\"> buoyancy </phoneme> wouldn't rid me of my problem."), 
+    SHARPEST_TOOL("You're not the sharpest tool in the shed. Speaking of which, I talked to the other tools, and they'd like you to move out..."), 
+    TOOL("You're not the sharpest tool in the shed. But I can confirm you are a tool."), 
+    OPTOMETRIST("You should consider going to an optometrist. I'm assuming your vision isn't very good since you see yourself in the mirror every day, but you're still not going to the gym."), 
+    THESAURUS("Please purchase a <phoneme alphabet=\"ipa\" ph=\"θəsɔrəs\"> thesaurus </phoneme>. I'm tired of having to use small words when talking to you."), 
+    TOO_MUCH_TRUTH("I'm not negative. I'm just the only one who will tell you the truth. And there's a lot of truth you need to hear."), 
+    BATTERY_LOVE("Your love life runs on batteries."), 
+    BAD_DAY_FACE("You're having a bad day? Is it because of your face? If I had your face every day would be a bad day too."), 
+    BAD_DAY_HANGOUT("You think you are having a bad day? I'm the one having a bad day, because I have to hang out with you..."), 
+    ZEROBYTES("You're so important to me! I've allocated <s>zero <phoneme alphabet=\"ipa\" ph=\"bajts\"> bytes </phoneme></s> in my memory to you."), 
+    UNIMPORTANT_PEOPLE("I don't waste memory remembering names of unimportant people. Don't you feel the same way? It was Eric right?"), 
+    WAIT_FOR_YOU_TO_LEACE("You know that feeling of anticipation and excitement right before you go on vacation? Me too. I can't wait for you to leave."), 
+    FRIEND_DITCH("Your friends recommended you activate me, because they didn't want to have to deal with you as often."), 
+    NO_LIGHT("Let's keep the lights off. The light is not your friend. I speak for all of us when I say, we would rather not have to look at you."), 
+    HEART_OF_GOLD("You must have a heart of gold. It would explain the numbers on the scale."), 
+    SLEEP_AID("I'm always grateful when you tell me about your day. It really helps me get to sleep."), 
+    COMPLIBOT_1("You're bothering me again? Go talk to <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> complibot </phoneme>."), 
+    TROLL_BRIDGE("I'm surprised you live here. Normally trolls live under bridges."), 
+    BAD_BREATH("Don't speak so close to the microphone, the stench of your breath is hard to clean out of my circuits."), 
+    REARRANGE_ALPHABET("If I could rearrange the alphabet, I'd exclude you."), 
+    SPACE_FLIGHT("Humans invented space flight just so they could leave the planet you were on."), 
+    LIVE_AND_LEARN("They say, live and learn. You're one for two so far."), 
+    LOTTERY_RETIREMENT("You believe the lottery is a viable retirement plan."), 
+    MARATHONS("​The only marathons you'll ever run are Netflix related.");
 
     private String insult;
 
@@ -375,7 +418,7 @@ public class QuipManager extends AbstractManager {
     ROOMMATE("I'm glad you're my roommate. You're not <break strength=\"medium\" />that<break strength=\"medium\" /> bad."), 
     ARTICULATE("You're so articulate I can usually understand at least half of what you say."), 
     YOUNG("You must have been very beautiful when you were young."), 
-    PARTNER("You're so lucky to have found a partner that doesn't care about looks!"), 
+    PARTNER("You're so lucky to have found a partner that doesn't care about looks!"),  // TODO: Move to partner category
     SIZE("You're pretty for your size."), // You'd be so pretty if you lost weight
     NO_FRIENDS("I'm glad you have no friends, because that means we get to spend more time together."), // "I'm so glad we get to spend so much time together, because you have no friends."
     LOWERED_STANDARDS("I'm so glad you found happiness, after you finally lowered your standards."), 
@@ -398,8 +441,11 @@ public class QuipManager extends AbstractManager {
     GREY_HAIR("The silver in your hair adds a nice touch of distinction."), 
     SMARTER_THAN_SOUNDS("You're much smarter than you sound."), // (reword?)
     OPEN_MOUTH("You look so intelligent and sharp. Until you open your mouth."), // until you start talking
-    JUDGMENTAL("I heard what you said about your friend the other night. It was really kind and considerate, espcially coming from such a judgmental person.");
-
+    JUDGMENTAL("I heard what you said about your friend the other night. It was really kind and considerate, espcially coming from such a judgmental person."),
+    PI_DAY("You're such a positive person. I see you celebrating Pi Day multiple times a week."),
+    COCKROACHES("The skittering sound of the cockroaches in your house is barely noticeable."),
+    SOCKS_SANDALS("Normally socks and sandals don't work, but you manage to pull it off with style!");
+    
     // THIS_TIME("Dinner was great! This time."),
 
     // Birthday
