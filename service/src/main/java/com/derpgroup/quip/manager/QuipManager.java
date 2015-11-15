@@ -7,10 +7,16 @@ import org.apache.commons.lang.StringUtils;
 import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
+import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 
 public class QuipManager extends AbstractManager {
-
+  
+  public QuipManager(){
+    super();
+    mapperModule = new MixInModule();
+  }
+  
   private void doInsultRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Insults insult = Insults.getRandomInsult();
     metadata.getInsultsUsed().add(insult.name());

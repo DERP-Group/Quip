@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.derpgroup.derpwizard.voice.model.CommonMetadata;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
+
+@JsonTypeInfo(use = Id.NAME, include = JsonTypeInfo.As.PROPERTY, property="type", defaultImpl = QuipMetadata.class)
 public class QuipMetadata extends CommonMetadata {
   
   private String bot;
