@@ -14,6 +14,7 @@ import static org.hamcrest.CoreMatchers.not;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.IntentRequest;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.AlexaInput;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
 import com.derpgroup.derpwizard.voice.model.SsmlDocument;
@@ -35,7 +36,7 @@ public class QuipManagerTest {
   }
   
   @Test
-  public void testConversationRequest_another_noConversationHistory(){
+  public void testConversationRequest_another_noConversationHistory() throws DerpwizardException{
     
     metadata.setBot("complibot");
     IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
@@ -55,7 +56,7 @@ public class QuipManagerTest {
   }
   
   @Test
-  public void testConversationRequest_another_noConversationHistory_noBot(){
+  public void testConversationRequest_another_noConversationHistory_noBot() throws DerpwizardException{
     
     IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
     AlexaInput alexaInput = new AlexaInput(intentRequest, metadata);

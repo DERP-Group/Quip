@@ -39,6 +39,8 @@ import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardExceptionAlexaWrapper;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
@@ -95,7 +97,11 @@ public class CompliBotAlexaResource {
     SsmlDocumentBuilder builder = new SsmlDocumentBuilder(UNSUPPORTED_SSML_TAGS);
     VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), metadata, InterfaceType.ALEXA);
     builder.conversationEnd(false);
-    manager.handleRequest(voiceInput, builder);
+    try {
+      manager.handleRequest(voiceInput, builder);
+    } catch (DerpwizardException e) {
+      return new DerpwizardExceptionAlexaWrapper(e, "1.0", mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){}));
+    }
 
     Map<String,Object> sessionAttributesOutput = mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){});
     SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
