@@ -33,4 +33,8 @@ public class Quip {
   public void setUsageRules(List<QuipUsageRule> usageRules) {
     this.usageRules = usageRules;
   }
+  
+  public String toString(){
+    return "("+quipGroup+") "+text;
+  }
 }

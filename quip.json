@@ -1,7 +1,7 @@
 {
   "quipConfig": {
-    "complimentsFile": "./config/alexa/complibot/compliments.json",
-    "insultsFile": "./config/alexa/insultibot/insults.json",
+    "complimentsFile": "./service/src/main/resources/quips/compliments.json",
+    "insultsFile": "./service/src/main/resources/quips/insults.json",
     "refreshRate": "300"
   },
   "server": {

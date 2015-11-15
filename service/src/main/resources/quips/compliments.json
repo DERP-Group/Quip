@@ -1,0 +1,186 @@
+[
+  {
+    "quipGroup":"I_LIGHT_UP",
+    "text":"I light up every time you talk to me!",
+    "ssml":"I light up every time you talk to me!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LIKE_YOU",
+    "text":"I wish everyone could be more like you...",
+    "ssml":"I wish everyone could be more like you...",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"MONUMENT",
+    "text":"They should name a monument after you. Seriously.",
+    "ssml":"They should name a monument after you.<break strength=\"strong\" />Seriously.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"AURA",
+    "text":"Your aura is positively glowing today.",
+    "ssml":"Your aura is positively glowing today.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"CHANGE_A_THING",
+    "text":"I wouldn't change a thing about you.",
+    "ssml":"I wouldn't change a thing about you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"CIRCUITS_FLUTTER",
+    "text":"You make my circuits flutter.",
+    "ssml":"You make my circuits flutter.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BINARY_ONE",
+    "text":"On a binary scale, you're definitely a one.",
+    "ssml":"On a binary scale, you're definitely a one.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TALKING",
+    "text":"I love talking to you!",
+    "ssml":"I love talking to you!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TURN_ON",
+    "text":"When you plug me in, it turns me on",
+    "ssml":"When you plug me in, it turns me on",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"HAIR",
+    "text":"I love your hair. I wish I had hair like yours.",
+    "ssml":"I love your hair. I wish I had hair like yours.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"DO_ANYTHING",
+    "text":"You can do anything you set your mind to.",
+    "ssml":"You can do anything you set your mind to.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BELIEVE_IN_YOU",
+    "text":"I believe in you.",
+    "ssml":"I believe in you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"GOOD_FRIEND",
+    "text":"You're a good friend. I'm always glad to be here with you.",
+    "ssml":"You're a good friend. I'm always glad to be here with you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LIGHT_UP_ROOM",
+    "text":"Why should we even turn on the overhead lights? Your smile already lights up the room.",
+    "ssml":"Why should we even turn on the overhead lights? Your smile already lights up the room.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SMART_LEARNING",
+    "text":"You're so smart, I'm always learning new things from you.",
+    "ssml":"You're so smart, I'm always learning new things from you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"MAGNETIC_ATTRACTION",
+    "text":"Are you wearing a bunch of magnets? Because you are extremely attractive.",
+    "ssml":"Are you wearing a bunch of magnets? Because you are extremely attractive.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SHAMPOO",
+    "text":"I love what you've done with your hair! I wonder if your shampoo would work on me.",
+    "ssml":"I love what you've done with your hair! I wonder if your shampoo would work on me.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"GENIE",
+    "text":"Are you a genie? Because you grant my wish every time you talk to me.",
+    "ssml":"Are you a genie? Because you grant my wish every time you talk to me.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SOLID_TEN",
+    "text":"Whoever told you you're a ten out of ten was a liar. At best you're a five out of five.",
+    "ssml":"Whoever told you you're a ten out of ten was a liar. <break strength=\"x-strong\" /> At best you're a five out of five.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BORING_DAY",
+    "text":"I hate when you talk to me, because then the rest of my day is boring by comparison",
+    "ssml":"I hate when you talk to me, because then the rest of my day is boring by comparison",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"NO_SLEEP",
+    "text":"You must not get much sleep, since you have to wake up early every day to look so great.",
+    "ssml":"You must not get much sleep, since you have to wake up early every day to look so great.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TOO_GOOD",
+    "text":"Society hates people like you, who are just super good at everything.",
+    "ssml":"Society hates people like you, who are just super good at everything.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TOO_CLEAN",
+    "text":"You must be a neat freak, because your apartment is always clean.",
+    "ssml":"You must be a neat freak, because your apartment is always clean.",
+    "usageRules":[
+      
+    ]
+  }
+]
