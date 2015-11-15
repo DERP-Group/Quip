@@ -1,7 +1,7 @@
 package com.derpgroup.quip;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.derpgroup.derpwizard.voice.model.CommonMetadata;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 public class QuipMetadata extends CommonMetadata {
   
   private String bot;
-  private List<String> insultsUsed;
-  private List<String> complimentsUsed;
-  private List<String> winsultsUsed;
-  private List<String> backhandedComplimentsUsed;
+  private Queue<String> insultsUsed;
+  private Queue<String> complimentsUsed;
+  private Queue<String> winsultsUsed;
+  private Queue<String> backhandedComplimentsUsed;
 
   public String getBot() {
     return bot;
@@ -25,47 +25,47 @@ public class QuipMetadata extends CommonMetadata {
     this.bot = bot;
   }
 
-  public List<String> getInsultsUsed() {
+  public Queue<String> getInsultsUsed() {
     if(insultsUsed == null){
-      insultsUsed = new ArrayList<String>();
+      insultsUsed = new LinkedList<String>();
     }
     return insultsUsed;
   }
 
-  public void setInsultsUsed(List<String> insultsUsed) {
+  public void setInsultsUsed(Queue<String> insultsUsed) {
     this.insultsUsed = insultsUsed;
   }
 
-  public List<String> getComplimentsUsed() {
+  public Queue<String> getComplimentsUsed() {
     if(complimentsUsed == null){
-      complimentsUsed = new ArrayList<String>();
+      complimentsUsed = new LinkedList<String>();
     }
     return complimentsUsed;
   }
 
-  public void setComplimentsUsed(List<String> complimentsUsed) {
+  public void setComplimentsUsed(Queue<String> complimentsUsed) {
     this.complimentsUsed = complimentsUsed;
   }
 
-  public List<String> getWinsultsUsed() {
+  public Queue<String> getWinsultsUsed() {
     if(winsultsUsed == null){
-      winsultsUsed = new ArrayList<String>();
+      winsultsUsed = new LinkedList<String>();
     }
     return winsultsUsed;
   }
 
-  public void setWinsultsUsed(List<String> winsultsUsed) {
+  public void setWinsultsUsed(Queue<String> winsultsUsed) {
     this.winsultsUsed = winsultsUsed;
   }
 
-  public List<String> getBackhandedComplimentsUsed() {
+  public Queue<String> getBackhandedComplimentsUsed() {
     if(backhandedComplimentsUsed == null){
-      backhandedComplimentsUsed = new ArrayList<String>();
+      backhandedComplimentsUsed = new LinkedList<String>();
     }
     return backhandedComplimentsUsed;
   }
 
-  public void setBackhandedComplimentsUsed(List<String> backhandedComplimentsUsed) {
+  public void setBackhandedComplimentsUsed(Queue<String> backhandedComplimentsUsed) {
     this.backhandedComplimentsUsed = backhandedComplimentsUsed;
   }
 }
