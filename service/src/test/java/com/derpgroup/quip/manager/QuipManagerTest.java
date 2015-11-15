@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -82,13 +81,15 @@ public class QuipManagerTest {
   
   @Test
   public void testDetermineMaxQuipHistorySize(){
-    assertEquals(manager.determineMaxQuipHistorySize(16),8);
-    assertEquals(manager.determineMaxQuipHistorySize(10),5);
-    assertEquals(manager.determineMaxQuipHistorySize(4),2);
+    assertEquals(QuipManager.determineMaxQuipHistorySize(2*QuipManager.MAXIMUM_QUIP_HISTORY_SIZE+10),QuipManager.MAXIMUM_QUIP_HISTORY_SIZE);
+    assertEquals(QuipManager.determineMaxQuipHistorySize(2*QuipManager.MAXIMUM_QUIP_HISTORY_SIZE),QuipManager.MAXIMUM_QUIP_HISTORY_SIZE);
+    assertEquals(QuipManager.determineMaxQuipHistorySize(2*QuipManager.MAXIMUM_QUIP_HISTORY_SIZE-1),QuipManager.MAXIMUM_QUIP_HISTORY_SIZE-1);
+    assertEquals(QuipManager.determineMaxQuipHistorySize(QuipManager.MAXIMUM_QUIP_HISTORY_SIZE),(int)(QuipManager.MAXIMUM_QUIP_HISTORY_SIZE*QuipManager.MAXIMUM_QUIP_HISTORY_PERCENT));
+    assertEquals(QuipManager.determineMaxQuipHistorySize(0),0);
   }
   
   @Test
-  public void testConversationRequest_noRepeats(){
+  public void testQuipsNoRepeats(){
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());

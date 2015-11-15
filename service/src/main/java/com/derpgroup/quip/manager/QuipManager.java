@@ -1,9 +1,9 @@
 package com.derpgroup.quip.manager;
 
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 
 import org.apache.commons.lang.StringUtils;
@@ -33,12 +33,8 @@ public class QuipManager extends AbstractManager {
     super();
   }
   
-  protected int determineMaxQuipHistorySize(int sizeOfQuipGroup){
-    return Math.min(MAXIMUM_QUIP_HISTORY_SIZE, (int) (sizeOfQuipGroup*MAXIMUM_QUIP_HISTORY_PERCENT));
-  }
-  
   protected Insults doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Deque<String> insultsUsed = metadata.getInsultsUsed();
+    Queue<String> insultsUsed = metadata.getInsultsUsed();
     LOG.debug("Recently used insults in user session:\n"+insultsUsed.toString());
     int maxQuipHistorySize = determineMaxQuipHistorySize(Insults.values().length);
 
@@ -48,7 +44,7 @@ public class QuipManager extends AbstractManager {
     }
     insultsUsed.add(insult.name());
     while(insultsUsed.size() > maxQuipHistorySize){
-      insultsUsed.pop();
+      insultsUsed.remove();
     }
     LOG.debug("Insult being used ("+insult.name()+"): "+insult.getInsult());
     builder.text(insult.getInsult());
@@ -56,7 +52,7 @@ public class QuipManager extends AbstractManager {
   }
 
   protected Compliments doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Deque<String> complimentsUsed = metadata.getComplimentsUsed();
+    Queue<String> complimentsUsed = metadata.getComplimentsUsed();
     LOG.debug("Recently used compliments in user session:\n"+complimentsUsed.toString());
     int maxQuipHistorySize = determineMaxQuipHistorySize(Compliments.values().length);
     
@@ -66,7 +62,7 @@ public class QuipManager extends AbstractManager {
     }
     complimentsUsed.add(compliment.name());
     while(complimentsUsed.size() > maxQuipHistorySize){
-      complimentsUsed.pop();
+      complimentsUsed.remove();
     }
     LOG.debug("Compliment being used ("+compliment.name()+"): "+compliment.getCompliment());
     builder.text(compliment.getCompliment());
@@ -74,7 +70,7 @@ public class QuipManager extends AbstractManager {
   }
 
   protected BackhandedCompliments doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Deque<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
+    Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
     LOG.debug("Recently used backhanded compliments in user session:\n"+backhandedComplimentsUsed.toString());
     int maxQuipHistorySize = determineMaxQuipHistorySize(BackhandedCompliments.values().length);
     
@@ -84,7 +80,7 @@ public class QuipManager extends AbstractManager {
     }
     backhandedComplimentsUsed.add(backhandedCompliment.name());
     while(backhandedComplimentsUsed.size() > maxQuipHistorySize){
-      backhandedComplimentsUsed.pop();
+      backhandedComplimentsUsed.remove();
     }
     LOG.debug("Backhanded compliment being used ("+backhandedCompliment.name()+"): "+backhandedCompliment.getCompliment());
     builder.text(backhandedCompliment.getCompliment());
@@ -92,7 +88,7 @@ public class QuipManager extends AbstractManager {
   }
 
   protected Winsults doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Deque<String> winsultsUsed = metadata.getWinsultsUsed();
+    Queue<String> winsultsUsed = metadata.getWinsultsUsed();
     LOG.debug("Recently used winsults in user session:\n"+winsultsUsed.toString());
     int maxQuipHistorySize = determineMaxQuipHistorySize(Winsults.values().length);
     
@@ -102,11 +98,15 @@ public class QuipManager extends AbstractManager {
     }
     winsultsUsed.add(winsult.name());
     while(winsultsUsed.size() > maxQuipHistorySize){
-      winsultsUsed.pop();
+      winsultsUsed.remove();
     }
     LOG.debug("Winsult being used ("+winsult.name()+"): "+winsult.getWinsult());
     builder.text(winsult.getWinsult());
     return winsult;
+  }
+  
+  protected static int determineMaxQuipHistorySize(int sizeOfQuipGroup){
+    return Math.min(MAXIMUM_QUIP_HISTORY_SIZE, (int) (sizeOfQuipGroup*MAXIMUM_QUIP_HISTORY_PERCENT));
   }
 
   @Override

@@ -1,7 +1,7 @@
 package com.derpgroup.quip;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.derpgroup.derpwizard.voice.model.CommonMetadata;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 public class QuipMetadata extends CommonMetadata {
   
   private String bot;
-  private Deque<String> insultsUsed;
-  private Deque<String> complimentsUsed;
-  private Deque<String> winsultsUsed;
-  private Deque<String> backhandedComplimentsUsed;
+  private Queue<String> insultsUsed;
+  private Queue<String> complimentsUsed;
+  private Queue<String> winsultsUsed;
+  private Queue<String> backhandedComplimentsUsed;
 
   public String getBot() {
     return bot;
@@ -25,47 +25,47 @@ public class QuipMetadata extends CommonMetadata {
     this.bot = bot;
   }
 
-  public Deque<String> getInsultsUsed() {
+  public Queue<String> getInsultsUsed() {
     if(insultsUsed == null){
-      insultsUsed = new ArrayDeque<String>();
+      insultsUsed = new LinkedList<String>();
     }
     return insultsUsed;
   }
 
-  public void setInsultsUsed(Deque<String> insultsUsed) {
+  public void setInsultsUsed(Queue<String> insultsUsed) {
     this.insultsUsed = insultsUsed;
   }
 
-  public Deque<String> getComplimentsUsed() {
+  public Queue<String> getComplimentsUsed() {
     if(complimentsUsed == null){
-      complimentsUsed = new ArrayDeque<String>();
+      complimentsUsed = new LinkedList<String>();
     }
     return complimentsUsed;
   }
 
-  public void setComplimentsUsed(Deque<String> complimentsUsed) {
+  public void setComplimentsUsed(Queue<String> complimentsUsed) {
     this.complimentsUsed = complimentsUsed;
   }
 
-  public Deque<String> getWinsultsUsed() {
+  public Queue<String> getWinsultsUsed() {
     if(winsultsUsed == null){
-      winsultsUsed = new ArrayDeque<String>();
+      winsultsUsed = new LinkedList<String>();
     }
     return winsultsUsed;
   }
 
-  public void setWinsultsUsed(Deque<String> winsultsUsed) {
+  public void setWinsultsUsed(Queue<String> winsultsUsed) {
     this.winsultsUsed = winsultsUsed;
   }
 
-  public Deque<String> getBackhandedComplimentsUsed() {
+  public Queue<String> getBackhandedComplimentsUsed() {
     if(backhandedComplimentsUsed == null){
-      backhandedComplimentsUsed = new ArrayDeque<String>();
+      backhandedComplimentsUsed = new LinkedList<String>();
     }
     return backhandedComplimentsUsed;
   }
 
-  public void setBackhandedComplimentsUsed(Deque<String> backhandedComplimentsUsed) {
+  public void setBackhandedComplimentsUsed(Queue<String> backhandedComplimentsUsed) {
     this.backhandedComplimentsUsed = backhandedComplimentsUsed;
   }
 }
