@@ -110,7 +110,7 @@ public class QuipManagerTest {
       originalBackhandedComplimentsUsed.add(BackhandedCompliments.values()[i].name());
     }
     
-    for(int i=0; i<20; i++){
+    for(int i=0; i<5; i++){
       
       // Compliments
       Deque<String> complimentsUsed = new ArrayDeque<String>();
