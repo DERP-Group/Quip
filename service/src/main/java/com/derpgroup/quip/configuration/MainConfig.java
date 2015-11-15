@@ -20,6 +20,9 @@
 
 package com.derpgroup.quip.configuration;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import io.dropwizard.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +35,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MainConfig extends Configuration {
   private boolean prettyPrint = true;
+  
+  @Valid
+  @NotNull
+  private QuipConfig quipConfig;
 
   @JsonProperty
   public boolean isPrettyPrint() {
@@ -42,4 +49,15 @@ public class MainConfig extends Configuration {
   public void setPrettyPrint(boolean prettyPrint) {
     this.prettyPrint = prettyPrint;
   }
+
+  @JsonProperty
+  public QuipConfig getQuipConfig() {
+    return quipConfig;
+  }
+
+  @JsonProperty
+  public void setQuipConfig(QuipConfig quipConfig) {
+    this.quipConfig = quipConfig;
+  }
+  
 }
