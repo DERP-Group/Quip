@@ -27,25 +27,25 @@ public class QuipManager extends AbstractManager {
     super();
   }
   
-  private void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Insults insult = Insults.getRandomInsult();
     metadata.getInsultsUsed().add(insult.name());
     builder.text(insult.getInsult());
   }
 
-  private void doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Compliments compliment = Compliments.getRandomCompliment();
     metadata.getComplimentsUsed().add(compliment.name());
     builder.text(compliment.getCompliment());
   }
 
-  private void doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     BackhandedCompliments compliment = BackhandedCompliments.getRandomBackhandedCompliment();
     metadata.getBackhandedComplimentsUsed().add(compliment.name());
     builder.text(compliment.getCompliment());
   }
 
-  private void doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     Winsults winsult = Winsults.getRandomWinsults();
     metadata.getWinsultsUsed().add(winsult.name());
     builder.text(winsult.getWinsult());
@@ -96,7 +96,15 @@ public class QuipManager extends AbstractManager {
 
     Map<String,String> messageMap = voiceInput.getMessageAsMap();
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    doDefaultRequest(messageMap, builder, metadata);
+  }
+
+  public void doDefaultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
+    if(bot == null){
+      builder.text("I don't know how to handle requests for unnamed bots.");
+      return;
+    }
     switch (bot) {
     case "complibot":
       doComplimentRequest(messageMap, builder, metadata);
@@ -105,7 +113,7 @@ public class QuipManager extends AbstractManager {
       doInsultRequest(messageMap, builder, metadata);
       break;
     default:
-      doHelpRequest(voiceInput, builder);
+      builder.text("I don't know how to handle requests for the bot named '" + bot + "'.");
       break;
     }
   }
@@ -160,13 +168,17 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     //this has its own method in case we want to do things like logging
     ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(metadata.getConversationHistory(), new HashSet<String>(Arrays.asList(metaRequestSubjects)));
+    if(entry == null){
+      doDefaultRequest(messageMap, builder, metadata);
+      return;
+    }
     switchOnSubject(entry.getMessageSubject(), messageMap, builder, metadata);
   }
 
-  private void doWhoIsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doWhoIsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
     String botInQuestion = messageMap.get("botName");
     if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
@@ -200,7 +212,7 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doFriendsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doFriendsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
@@ -221,7 +233,7 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doWhatDoYouDoRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doWhatDoYouDoRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any info for this situation.");
@@ -240,7 +252,7 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  private void doWhoBuiltYouRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doWhoBuiltYouRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
     String s1, s2;
     String bot = metadata.getBot();
     if(StringUtils.isEmpty(bot)){
