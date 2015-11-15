@@ -3,9 +3,12 @@ package com.derpgroup.quip.manager;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Random;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
@@ -16,39 +19,94 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 
 public class QuipManager extends AbstractManager {
+  private final Logger LOG = LoggerFactory.getLogger(QuipManager.class);
   
   static{
     ConversationHistoryUtils.getMapper().registerModule(new MixInModule());
   }
   
   private static final String[] metaRequestSubjects = new String[]{"ANOTHER"};
+  protected static final int MAXIMUM_QUIP_HISTORY_SIZE = 10;
+  protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
   
   public QuipManager(){
     super();
   }
   
-  protected void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected Insults doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+    Queue<String> insultsUsed = metadata.getInsultsUsed();
+    LOG.debug("Recently used insults in user session:\n"+insultsUsed.toString());
+    int maxQuipHistorySize = determineMaxQuipHistorySize(Insults.values().length);
+
     Insults insult = Insults.getRandomInsult();
-    metadata.getInsultsUsed().add(insult.name());
+    while(insultsUsed.contains(insult.name())){
+      insult = Insults.getRandomInsult();
+    }
+    insultsUsed.add(insult.name());
+    while(insultsUsed.size() > maxQuipHistorySize){
+      insultsUsed.remove();
+    }
+    LOG.debug("Insult being used ("+insult.name()+"): "+insult.getInsult());
     builder.text(insult.getInsult());
+    return insult;
   }
 
-  protected void doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected Compliments doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+    Queue<String> complimentsUsed = metadata.getComplimentsUsed();
+    LOG.debug("Recently used compliments in user session:\n"+complimentsUsed.toString());
+    int maxQuipHistorySize = determineMaxQuipHistorySize(Compliments.values().length);
+    
     Compliments compliment = Compliments.getRandomCompliment();
-    metadata.getComplimentsUsed().add(compliment.name());
+    while(complimentsUsed.contains(compliment.name())){
+      compliment = Compliments.getRandomCompliment();
+    }
+    complimentsUsed.add(compliment.name());
+    while(complimentsUsed.size() > maxQuipHistorySize){
+      complimentsUsed.remove();
+    }
+    LOG.debug("Compliment being used ("+compliment.name()+"): "+compliment.getCompliment());
     builder.text(compliment.getCompliment());
+    return compliment;
   }
 
-  protected void doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    BackhandedCompliments compliment = BackhandedCompliments.getRandomBackhandedCompliment();
-    metadata.getBackhandedComplimentsUsed().add(compliment.name());
-    builder.text(compliment.getCompliment());
+  protected BackhandedCompliments doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+    Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
+    LOG.debug("Recently used backhanded compliments in user session:\n"+backhandedComplimentsUsed.toString());
+    int maxQuipHistorySize = determineMaxQuipHistorySize(BackhandedCompliments.values().length);
+    
+    BackhandedCompliments backhandedCompliment = BackhandedCompliments.getRandomBackhandedCompliment();
+    while(backhandedComplimentsUsed.contains(backhandedCompliment.name())){
+      backhandedCompliment = BackhandedCompliments.getRandomBackhandedCompliment();
+    }
+    backhandedComplimentsUsed.add(backhandedCompliment.name());
+    while(backhandedComplimentsUsed.size() > maxQuipHistorySize){
+      backhandedComplimentsUsed.remove();
+    }
+    LOG.debug("Backhanded compliment being used ("+backhandedCompliment.name()+"): "+backhandedCompliment.getCompliment());
+    builder.text(backhandedCompliment.getCompliment());
+    return backhandedCompliment;
   }
 
-  protected void doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected Winsults doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+    Queue<String> winsultsUsed = metadata.getWinsultsUsed();
+    LOG.debug("Recently used winsults in user session:\n"+winsultsUsed.toString());
+    int maxQuipHistorySize = determineMaxQuipHistorySize(Winsults.values().length);
+    
     Winsults winsult = Winsults.getRandomWinsults();
-    metadata.getWinsultsUsed().add(winsult.name());
+    while(winsultsUsed.contains(winsult.name())){
+      winsult = Winsults.getRandomWinsults();
+    }
+    winsultsUsed.add(winsult.name());
+    while(winsultsUsed.size() > maxQuipHistorySize){
+      winsultsUsed.remove();
+    }
+    LOG.debug("Winsult being used ("+winsult.name()+"): "+winsult.getWinsult());
     builder.text(winsult.getWinsult());
+    return winsult;
+  }
+  
+  protected static int determineMaxQuipHistorySize(int sizeOfQuipGroup){
+    return Math.min(MAXIMUM_QUIP_HISTORY_SIZE, (int) (sizeOfQuipGroup*MAXIMUM_QUIP_HISTORY_PERCENT));
   }
 
   @Override
@@ -351,7 +409,7 @@ public class QuipManager extends AbstractManager {
     TALK_TO_YOU("What makes you think I want to talk to you?"), 
     REAL_FRIENDS("How about you make some real friends, instead of chatting with a computer?"), 
     SOMETHING_NICE("I had something nice to say a minute ago.<break strength=\"x-strong\" /> It wasn't for you though."), 
-    LIFE_CHOICES("I'm not saying that you make poor life choices, but<break strength=\"x-strong\" /> alright, that's pretty much what I'm saying."), 
+    LIFE_CHOICES("I'm not saying that you make poor life choices, but<break strength=\"x-strong\" /> alright, that's pretty much what I'm saying."),
     REMEMBER("Remember the time you did that awesome thing?<break strength=\"x-strong\" />  I don't."), 
     MEDIOCRITY("Don't let anyone ever tell you that you aren't almost capable of mediocrity."), 
     TOLERATE("You do realize that people only tolerate you, right?"), 
