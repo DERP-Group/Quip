@@ -97,8 +97,7 @@ public class QuipManagerTest {
     for(int i=0; i<Compliments.values().length/2; i++){
       originalComplimentUsed.add(Compliments.values()[i].name());
     }
-    
-    for(int i=0; i<10; i++){
+    for(int i=0; i<5; i++){
       Deque<String> complimentsUsed = new ArrayDeque<String>();
       complimentsUsed.addAll(originalComplimentUsed);
       quipMetadata.setComplimentsUsed(complimentsUsed);
@@ -117,8 +116,7 @@ public class QuipManagerTest {
     for(int i=0; i<Winsults.values().length/2; i++){
       originalWinsultsUsed.add(Winsults.values()[i].name());
     }
-    
-    for(int i=0; i<10; i++){
+    for(int i=0; i<5; i++){
       Deque<String> winsultsUsed = new ArrayDeque<String>();
       winsultsUsed.addAll(originalWinsultsUsed);
       quipMetadata.setWinsultsUsed(winsultsUsed);
@@ -136,8 +134,7 @@ public class QuipManagerTest {
     for(int i=0; i<Insults.values().length/2; i++){
       originalInsultsUsed.add(Insults.values()[i].name());
     }
-    
-    for(int i=0; i<10; i++){
+    for(int i=0; i<5; i++){
       Deque<String> insultsUsed = new ArrayDeque<String>();
       insultsUsed.addAll(originalInsultsUsed);
       quipMetadata.setInsultsUsed(insultsUsed);
@@ -155,8 +152,7 @@ public class QuipManagerTest {
     for(int i=0; i<BackhandedCompliments.values().length/2; i++){
       originalBackhandedComplimentsUsed.add(BackhandedCompliments.values()[i].name());
     }
-    
-    for(int i=0; i<10; i++){
+    for(int i=0; i<5; i++){
       Deque<String> backhandedComplimentsUsed = new ArrayDeque<String>();
       backhandedComplimentsUsed.addAll(originalBackhandedComplimentsUsed);
       quipMetadata.setBackhandedComplimentsUsed(backhandedComplimentsUsed);
