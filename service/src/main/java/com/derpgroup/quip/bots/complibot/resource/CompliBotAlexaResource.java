@@ -20,10 +20,9 @@
 
 package com.derpgroup.quip.bots.complibot.resource;
 
-import java.io.UnsupportedEncodingException;
-import java.security.PublicKey;
 import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -86,11 +85,12 @@ public class CompliBotAlexaResource {
    * Generates a welcome message.
    *
    * @return The message, never null
+   * @throws IOException 
    * @throws Exception 
    */
   @POST
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
-      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException{
     if(testFlag == null || testFlag == false){ 
       
       try {
@@ -110,7 +110,6 @@ public class CompliBotAlexaResource {
         e.printStackTrace();
       }
     }
-    
     if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
     }

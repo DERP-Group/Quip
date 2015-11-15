@@ -7,6 +7,8 @@ WINSULT to give me an insult
 HELP for a little bit of help
 HELP how do I use you
 HELP how do I use it
+ANOTHER another
+ANOTHER again
 WHO_BUILT_YOU who built you
 WHO_BUILT_YOU who built it
 WHO_BUILT_YOU how it was built

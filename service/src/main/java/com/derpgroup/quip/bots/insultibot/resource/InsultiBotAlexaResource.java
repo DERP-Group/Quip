@@ -21,6 +21,7 @@
 package com.derpgroup.quip.bots.insultibot.resource;
 
 import java.security.cert.CertificateException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -83,10 +84,11 @@ public class InsultiBotAlexaResource {
    * Generates a welcome message.
    *
    * @return The message, never null
+   * @throws IOException 
    */
   @POST
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
-      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException{
     if(testFlag == null || testFlag == false){ 
       
       try {
