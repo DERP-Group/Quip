@@ -1,7 +1,9 @@
 {
   "quipConfig": {
-    "complimentsFile": "./service/src/main/resources/quips/compliments.json",
-    "insultsFile": "./service/src/main/resources/quips/insults.json",
+    "complimentsFile": "/var/lib/quip/quips/complibot/compliments.json",
+    "winsultsFile": "/var/lib/quip/quips/complibot/winsults.json",
+    "insultsFile": "/var/lib/quip/quips/insultibot/insults.json",
+    "backhandedComplimentsFile": "/var/lib/quip/quips/insultibot/backhandedCompliments.json",
     "refreshRate": "300"
   },
   "server": {

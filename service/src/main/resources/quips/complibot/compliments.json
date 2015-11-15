@@ -142,45 +142,5 @@
     "usageRules":[
       
     ]
-  },
-  {
-    "quipGroup":"SOLID_TEN",
-    "text":"Whoever told you you're a ten out of ten was a liar. At best you're a five out of five.",
-    "ssml":"Whoever told you you're a ten out of ten was a liar. <break strength=\"x-strong\" /> At best you're a five out of five.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"BORING_DAY",
-    "text":"I hate when you talk to me, because then the rest of my day is boring by comparison",
-    "ssml":"I hate when you talk to me, because then the rest of my day is boring by comparison",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"NO_SLEEP",
-    "text":"You must not get much sleep, since you have to wake up early every day to look so great.",
-    "ssml":"You must not get much sleep, since you have to wake up early every day to look so great.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"TOO_GOOD",
-    "text":"Society hates people like you, who are just super good at everything.",
-    "ssml":"Society hates people like you, who are just super good at everything.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"TOO_CLEAN",
-    "text":"You must be a neat freak, because your apartment is always clean.",
-    "ssml":"You must be a neat freak, because your apartment is always clean.",
-    "usageRules":[
-      
-    ]
   }
 ]

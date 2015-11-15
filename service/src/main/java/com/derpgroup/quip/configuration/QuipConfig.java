@@ -10,7 +10,13 @@ public class QuipConfig {
   private String complimentsFile;
   
   @NotNull
+  private String winsultsFile;
+  
+  @NotNull
   private String insultsFile;
+  
+  @NotNull
+  private String backhandedComplimentsFile;
   
   @NotNull
   private int refreshRate;    // seconds
@@ -20,12 +26,24 @@ public class QuipConfig {
   
   @JsonProperty
   public void setComplimentsFile(String complimentsFile) {this.complimentsFile = complimentsFile;}
-  
+
+  @JsonProperty
+  public String getWinsultsFile() {return winsultsFile;}
+
+  @JsonProperty
+  public void setWinsultsFile(String winsultsFile) {this.winsultsFile = winsultsFile;}
+
   @JsonProperty
   public String getInsultsFile() {return insultsFile;}
   
   @JsonProperty
   public void setInsultsFile(String insultsFile) {this.insultsFile = insultsFile;}
+
+  @JsonProperty
+  public String getBackhandedComplimentsFile() {return backhandedComplimentsFile;}
+
+  @JsonProperty
+  public void setBackhandedComplimentsFile(String backhandedComplimentsFile) {this.backhandedComplimentsFile = backhandedComplimentsFile;}
   
   @JsonProperty
   public int getRefreshRate() {return refreshRate;}
