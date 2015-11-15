@@ -17,11 +17,14 @@ import com.derpgroup.quip.QuipMetadata;
 
 public class QuipManager extends AbstractManager {
   
+  static{
+    ConversationHistoryUtils.getMapper().registerModule(new MixInModule());
+  }
+  
   private static final String[] metaRequestSubjects = new String[]{"ANOTHER"};
   
   public QuipManager(){
     super();
-    mapper.registerModule(new MixInModule());
   }
   
   private void doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {

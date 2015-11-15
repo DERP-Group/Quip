@@ -20,6 +20,7 @@
 
 package com.derpgroup.quip.bots.complibot.resource;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -76,9 +77,10 @@ public class CompliBotAlexaResource {
    * Generates a welcome message.
    *
    * @return The message, never null
+   * @throws IOException 
    */
   @POST
-  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request){
+  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request) throws IOException{
     if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
     }
