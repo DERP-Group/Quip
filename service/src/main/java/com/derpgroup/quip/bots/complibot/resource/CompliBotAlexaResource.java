@@ -114,7 +114,7 @@ public class CompliBotAlexaResource {
       outputSpeech = voiceOutput.getImplInstance();
     }else{
       outputSpeech = new SsmlOutputSpeech();
-      outputSpeech.setSsml("<speak></speak");
+      outputSpeech.setSsml("<speak></speak>");
       card.setContent("Goodbye!");
     }
     
