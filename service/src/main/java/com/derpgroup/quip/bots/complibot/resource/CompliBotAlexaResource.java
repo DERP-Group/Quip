@@ -101,6 +101,8 @@ public class CompliBotAlexaResource {
     SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
     responseEnvelope.setSessionAttributes(sessionAttributesOutput);
 
+    SpeechletResponse speechletResponse = new SpeechletResponse();
+
     SimpleCard card = new SimpleCard();
     card.setContent(builder.getRawText());
     card.setTitle("Alexa + Insultibot");
@@ -116,9 +118,9 @@ public class CompliBotAlexaResource {
       outputSpeech = new SsmlOutputSpeech();
       outputSpeech.setSsml("<speak></speak>");
       card.setContent("Goodbye!");
+      speechletResponse.setShouldEndSession(true);
     }
     
-    SpeechletResponse speechletResponse = new SpeechletResponse();
     speechletResponse.setShouldEndSession(builder.isConversationEnd());
     speechletResponse.setOutputSpeech(outputSpeech);
     speechletResponse.setCard(card);

@@ -100,7 +100,9 @@ public class InsultiBotAlexaResource {
     Map<String,Object> sessionAttributesOutput = mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){});
     SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
     responseEnvelope.setSessionAttributes(sessionAttributesOutput);
-
+    
+    SpeechletResponse speechletResponse = new SpeechletResponse();
+    
     SimpleCard card = new SimpleCard();
     card.setContent(builder.getRawText());
     card.setTitle("Alexa + Insultibot");
@@ -116,9 +118,8 @@ public class InsultiBotAlexaResource {
       outputSpeech = new SsmlOutputSpeech();
       outputSpeech.setSsml("<speak></speak>");
       card.setContent("Goodbye!");
+      speechletResponse.setShouldEndSession(true);
     }
-    
-    SpeechletResponse speechletResponse = new SpeechletResponse();
     speechletResponse.setShouldEndSession(builder.isConversationEnd());
     speechletResponse.setOutputSpeech(outputSpeech);
     speechletResponse.setCard(card);
