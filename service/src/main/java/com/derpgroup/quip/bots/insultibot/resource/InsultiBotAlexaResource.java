@@ -102,6 +102,7 @@ public class InsultiBotAlexaResource {
     responseEnvelope.setSessionAttributes(sessionAttributesOutput);
     
     SpeechletResponse speechletResponse = new SpeechletResponse();
+    speechletResponse.setShouldEndSession(builder.isConversationEnd());
     
     SimpleCard card = new SimpleCard();
     card.setContent(builder.getRawText());
@@ -115,12 +116,10 @@ public class InsultiBotAlexaResource {
       VoiceOutput<SsmlOutputSpeech> voiceOutput = (VoiceOutput<SsmlOutputSpeech>) VoiceMessageFactory.buildOutputMessage(builder.build(), InterfaceType.ALEXA);
       outputSpeech = voiceOutput.getImplInstance();
     }else{
-      outputSpeech = new SsmlOutputSpeech();
-      outputSpeech.setSsml("<speak></speak>");
-      card.setContent("Goodbye!");
+      outputSpeech = null;
+      card = null;
       speechletResponse.setShouldEndSession(true);
     }
-    speechletResponse.setShouldEndSession(builder.isConversationEnd());
     speechletResponse.setOutputSpeech(outputSpeech);
     speechletResponse.setCard(card);
 
