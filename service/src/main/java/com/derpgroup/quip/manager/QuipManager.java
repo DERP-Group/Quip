@@ -234,6 +234,12 @@ public class QuipManager extends AbstractManager {
     case "ANOTHER":
       doAnotherRequest(messageSubject, messageMap, builder, metadata);
       break;
+    case "START_OF_CONVERSATION":
+      doDefaultRequest(messageMap, builder, metadata);
+      break;
+    case "END_OF_CONVERSATION":
+      doStopRequest();
+      break;
     default:
       builder.text("Unknown request type '" + messageSubject + "'.");
     }
