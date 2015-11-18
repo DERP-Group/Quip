@@ -1,6 +1,7 @@
 package com.derpgroup.quip.model;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Instant;
@@ -13,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.derpgroup.quip.configuration.QuipConfig;
-import com.derpgroup.quip.manager.QuipRequestTypes;
+import com.derpgroup.quip.manager.QuipType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,9 +24,9 @@ public class QuipStore {
   private static QuipStore instance;
   private boolean initialized = false;
   
-  Map<QuipRequestTypes, String> sourceFiles = new HashMap<QuipRequestTypes,String>();
-  Map<QuipRequestTypes, Instant> lastUpdateTimes = new HashMap<QuipRequestTypes,Instant>();
-  Map<QuipRequestTypes, List<Quip>> quips = new HashMap<QuipRequestTypes,List<Quip>>();
+  Map<QuipType, String> sourceFiles = new HashMap<QuipType,String>();
+  Map<QuipType, Instant> lastUpdateTimes = new HashMap<QuipType,Instant>();
+  Map<QuipType, List<Quip>> quips = new HashMap<QuipType,List<Quip>>();
   int refreshRate;  // seconds
 
   private QuipStore(){}
@@ -41,17 +42,18 @@ public class QuipStore {
     if(initialized){
       throw new RuntimeException("QuipStore is already initialized");
     }
-    sourceFiles.put(QuipRequestTypes.COMPLIMENT, config.getComplimentsFile());
-    sourceFiles.put(QuipRequestTypes.WINSULT, config.getWinsultsFile());
-    sourceFiles.put(QuipRequestTypes.INSULT, config.getInsultsFile());
-    sourceFiles.put(QuipRequestTypes.BACKHANDED_COMPLIMENT, config.getBackhandedComplimentsFile());
+    if(config==null){return;}
+    sourceFiles.put(QuipType.COMPLIMENT, config.getComplimentsFile());
+    sourceFiles.put(QuipType.WINSULT, config.getWinsultsFile());
+    sourceFiles.put(QuipType.INSULT, config.getInsultsFile());
+    sourceFiles.put(QuipType.BACKHANDED_COMPLIMENT, config.getBackhandedComplimentsFile());
     refreshRate = config.getRefreshRate();
     initialized = true;
     try{
-      updateQuips(QuipRequestTypes.COMPLIMENT);
-      updateQuips(QuipRequestTypes.WINSULT);
-      updateQuips(QuipRequestTypes.INSULT);
-      updateQuips(QuipRequestTypes.BACKHANDED_COMPLIMENT);
+      updateQuips(QuipType.COMPLIMENT);
+      updateQuips(QuipType.WINSULT);
+      updateQuips(QuipType.INSULT);
+      updateQuips(QuipType.BACKHANDED_COMPLIMENT);
       LOG.info("QuipStore initialized");
     }
     catch(IOException e){
@@ -59,10 +61,14 @@ public class QuipStore {
     }
   }
   
-  protected void updateQuips(QuipRequestTypes quipType) throws IOException{
+  protected void updateQuips(QuipType quipType) throws IOException{
     if(!initialized){throw new RuntimeException("QuipStore must be initialized before use");}
 
     synchronized(quipType){
+      Instant lastUpdateTime = lastUpdateTimes.get(quipType);
+      if(lastUpdateTime!=null && !lastUpdateTime.isBefore(Instant.now().minusSeconds(refreshRate))){
+        return;
+      }
       int oldQuipCount = 0;
       if(quips.get(quipType)!=null){
         oldQuipCount = quips.get(quipType).size();
@@ -78,17 +84,14 @@ public class QuipStore {
   }
   
   protected List<Quip> readQuipsFromFile(String fileName) throws IOException{
-    String content = new String(Files.readAllBytes(Paths.get(fileName)));
-    ObjectMapper mapper = new ObjectMapper();
-    List<Quip> quips = mapper.readValue(content, new TypeReference<List<Quip>>(){});
-    
-    return quips;
+    String content = new String(Files.readAllBytes(Paths.get(fileName)),Charset.defaultCharset());
+    return new ObjectMapper().readValue(content, new TypeReference<List<Quip>>(){});
   }
   
-  public Quip getRandomQuip(QuipRequestTypes quipType){
+  public Quip getRandomQuip(QuipType quipType){
     if(!initialized){throw new RuntimeException("QuipStore must be initialized before use");}
     Instant lastUpdateTime = lastUpdateTimes.get(quipType);
-    if(lastUpdateTime==null || lastUpdateTime.minusSeconds(refreshRate).isBefore(Instant.now())){
+    if(lastUpdateTime==null || lastUpdateTime.isBefore(Instant.now().minusSeconds(refreshRate))){
       try {
         updateQuips(quipType);
       } catch (IOException e) {
@@ -96,12 +99,11 @@ public class QuipStore {
       }
     }
     List<Quip> quipList = quips.get(quipType);
-    Quip quip = quipList.get(new Random().nextInt(quipList.size())); 
-    return quip;
+    return quipList.get(new Random().nextInt(quipList.size()));
   }
   
-  public Quip getRandomCompliment(){return getRandomQuip(QuipRequestTypes.COMPLIMENT);}
-  public Quip getRandomWinsult(){return getRandomQuip(QuipRequestTypes.WINSULT);}
-  public Quip getRandomInsult(){return getRandomQuip(QuipRequestTypes.INSULT);}
-  public Quip getRandomBackhandedCompliment(){return getRandomQuip(QuipRequestTypes.BACKHANDED_COMPLIMENT);}
+  public Quip getRandomCompliment(){return getRandomQuip(QuipType.COMPLIMENT);}
+  public Quip getRandomWinsult(){return getRandomQuip(QuipType.WINSULT);}
+  public Quip getRandomInsult(){return getRandomQuip(QuipType.INSULT);}
+  public Quip getRandomBackhandedCompliment(){return getRandomQuip(QuipType.BACKHANDED_COMPLIMENT);}
 }
