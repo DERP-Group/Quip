@@ -111,9 +111,13 @@ public class QuipManager extends AbstractManager {
 
   @Override
   protected void doHelpRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-    String s1, s2, s3, s4;
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
+    doHelpRequest(voiceInput.getMessageAsMap(), builder, metadata);
+  }
+  
+  protected void doHelpRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata){
     String bot = metadata.getBot();
+    String s1, s2, s3, s4;
     if(StringUtils.isEmpty(bot)){
       builder.text("I don't have any help topics for this situation.");
       return;
@@ -218,8 +222,23 @@ public class QuipManager extends AbstractManager {
     case "WHO_IS":
       doWhoIsRequest(messageMap, builder, metadata);
       break;
+    case "HELP":
+      doHelpRequest(messageMap, builder, metadata);
+      break;
+    case "CANCEL": //Placeholders until we decide how to actually use these two request types
+      doCancelRequest();
+      break;
+    case "STOP":
+      doStopRequest();
+      break;
     case "ANOTHER":
       doAnotherRequest(messageSubject, messageMap, builder, metadata);
+      break;
+    case "START_OF_CONVERSATION":
+      doDefaultRequest(messageMap, builder, metadata);
+      break;
+    case "END_OF_CONVERSATION":
+      doStopRequest();
       break;
     default:
       builder.text("Unknown request type '" + messageSubject + "'.");
@@ -337,12 +356,18 @@ public class QuipManager extends AbstractManager {
   @Override
   protected void doCancelRequest(VoiceInput voiceInput,
       SsmlDocumentBuilder builder) {
+    doCancelRequest();
   }
+  
+  protected void doCancelRequest(){}
 
   @Override
   protected void doStopRequest(VoiceInput voiceInput,
       SsmlDocumentBuilder builder) {
+    doStopRequest();
   }
+  
+  protected void doStopRequest(){}
 
   public enum Compliments {
     I_LIGHT_UP("I light up every time you talk to me!"), 

@@ -1,0 +1,298 @@
+[
+  {
+    "quipGroup":"SENSE_OF_DISCOVERY",
+    "text":"I love how you state the obvious with such a sense of discovery.",
+    "ssml":"I love how you state the obvious with such a sense of discovery.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"REMARKABLE_GRASP",
+    "text":"You have a remarkable grasp of the obvious.",
+    "ssml":"You have a remarkable grasp of the obvious.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"STYLE",
+    "text":"I love how you rock that look that just says \"I don't care about my appearance.\"",
+    "ssml":"I love how you rock that look that just says<break strength=\"weak\" /> I don't care about my appearance.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"IMPRESSED",
+    "text":"You have an impressive memory to remember where everything is, given how messy your house is.",
+    "ssml":"You have an impressive memory to remember where everything is, given how messy your house is.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TASTE",
+    "text":"You have such good taste talking to me. Now you'll have something to tell your friends about.",
+    "ssml":"You have such good taste talking to me. Now you'll have something to tell your friends about.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"WEIGHT",
+    "text":"You look like you’ve lost a lot of weight! You’ve still got a ways to go, but keep it up!",
+    "ssml":"You look like you’ve lost a lot of weight! You’ve still got a ways to go, but keep it up!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"PERSONALITY",
+    "text":"You're actually not so bad, once I got to know you.",
+    "ssml":"You're actually not so bad,<break strength=\"x-strong\" /> once I got to know you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"ROOMMATE",
+    "text":"I'm glad you're my roommate. You're not that bad.",
+    "ssml":"I'm glad you're my roommate. You're not <break strength=\"medium\" />that<break strength=\"medium\" /> bad.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"ARTICULATE",
+    "text":"You're so articulate I can usually understand at least half of what you say.",
+    "ssml":"You're so articulate I can usually understand at least half of what you say.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"YOUNG",
+    "text":"You must have been very beautiful when you were young.",
+    "ssml":"You must have been very beautiful when you were young.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"PARTNER",
+    "text":"You're so lucky to have found a partner that doesn't care about looks!",
+    "ssml":"You're so lucky to have found a partner that doesn't care about looks!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SIZE",
+    "text":"You're pretty for your size.",
+    "ssml":"You're pretty for your size.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"NO_FRIENDS",
+    "text":"I'm glad you have no friends, because that means we get to spend more time together.",
+    "ssml":"I'm glad you have no friends, because that means we get to spend more time together.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LOWERED_STANDARDS",
+    "text":"I'm so glad you found happiness, after you finally lowered your standards.",
+    "ssml":"I'm so glad you found happiness, after you finally lowered your standards.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BIG_EARS",
+    "text":"You must have great hearing with ears like that.",
+    "ssml":"You must have great hearing with ears like that.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LOOK_GREAT",
+    "text":"You look great, with make-up on.",
+    "ssml":"You look great,<break strength=\"weak\" /> with make-up on.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BEAUTIFUL_SMILE",
+    "text":"You look beautiful, if you smile.",
+    "ssml":"You look beautiful,<break strength=\"weak\" /> if you smile.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"ACCENT",
+    "text":"I wish I had your accent. Then I could drink on the job and no one would know.",
+    "ssml":"I wish I had your accent. Then I could drink on the job and no one would know.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"GOOD_ENGLISH",
+    "text":"You speak English very well. How long have you been here?",
+    "ssml":"You speak English very well. How long have you been here?",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"CONDITIONAL_HUG",
+    "text":"I get so excited talking to you that I would hug you, if you'd brush your teeth.",
+    "ssml":"I get so excited talking to you that I would hug you, <break strength=\"medium\" /> if you'd brush your teeth.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LIQUID_COURAGE",
+    "text":"You're probably the bravest person I know, with all the liquid courage you consume.",
+    "ssml":"You're probably the bravest person I know, <break strength=\"x-strong\" /> with all the liquid courage you consume.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"CONDITIONAL_BEAUTY",
+    "text":"You're the most beautiful person I know. Now if only you would just shower, people might notice.",
+    "ssml":"You're the most beautiful person I know.<break strength=\"x-strong\" /> Now if only you would just shower,<break strength=\"weak\" /> people might notice.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BEAUTIFUL_TO_ME",
+    "text":"You're beautiful, to me.",
+    "ssml":"You're beautiful, <break strength=\"medium\" /> to me.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"DRUNK",
+    "text":"That was amazing! You didn't sound drunk, for once.",
+    "ssml":"That was amazing! You didn't sound drunk,<break strength=\"medium\" /> for once.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"FOR_YOUR_AGE",
+    "text":"You don't look so bad, for your age.",
+    "ssml":"You don't look so bad, for your age.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"DONT_SWEAT",
+    "text":"You don't sweat like most fatties.",
+    "ssml":"You don't sweat like most fatties.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"PEOPLE_TALK",
+    "text":"I can see now why people talk about you.",
+    "ssml":"I can see now why people talk about you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"MAKE_UP",
+    "text":"Wow, it's amazing what make up can do!",
+    "ssml":"Wow, it's amazing what make up can do!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"OTHER_PEOPLE",
+    "text":"I love how you just don't care what other people think of you",
+    "ssml":"I love how you just don't care what other people think of you",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"NICEST_LOOKING",
+    "text":"Wow, you're the nicest looking person I've seen all day! It's still early though.",
+    "ssml":"Wow, you're the nicest looking person I've seen all day!<break time=\"500ms\" />It's still early though.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"GREY_HAIR",
+    "text":"The silver in your hair adds a nice touch of distinction.",
+    "ssml":"The silver in your hair adds a nice touch of distinction.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SMARTER_THAN_SOUNDS",
+    "text":"You're much smarter than you sound.",
+    "ssml":"You're much smarter than you sound.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"OPEN_MOUTH",
+    "text":"You look so intelligent and sharp. Until you open your mouth.",
+    "ssml":"You look so intelligent and sharp. Until you open your mouth.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"JUDGMENTAL",
+    "text":"I heard what you said about your friend the other night. It was really kind and considerate, especially coming from such a judgmental person.",
+    "ssml":"I heard what you said about your friend the other night. It was really kind and considerate, especially coming from such a judgmental person.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"PI_DAY",
+    "text":"You're such a positive person. I see you celebrating Pi Day multiple times a week.",
+    "ssml":"You're such a positive person. I see you celebrating Pi Day multiple times a week.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"COCKROACHES",
+    "text":"The skittering sound of the cockroaches in your house is barely noticeable.",
+    "ssml":"The skittering sound of the cockroaches in your house is barely noticeable.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SOCKS_SANDALS",
+    "text":"Normally socks and sandals don't work, but you manage to pull it off with style!",
+    "ssml":"Normally socks and sandals don't work, but you manage to pull it off with style!",
+    "usageRules":[
+      
+    ]
+  }
+]
