@@ -21,7 +21,6 @@
 package com.derpgroup.quip.bots.complibot.resource;
 
 import java.security.cert.CertificateException;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -46,6 +45,7 @@ import com.amazon.speech.speechlet.authentication.SpeechletRequestSignatureVerif
 import com.amazon.speech.speechlet.verifier.TimestampSpeechletRequestVerifier;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
+import com.derpgroup.derpwizard.alexa.AlexaUtils;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
@@ -86,29 +86,14 @@ public class CompliBotAlexaResource {
    *
    * @return The message, never null
    * @throws IOException 
+   * @throws CertificateException 
    * @throws Exception 
    */
   @POST
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
-      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException{
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException, CertificateException{
     if(testFlag == null || testFlag == false){ 
-      
-      try {
-        TimestampSpeechletRequestVerifier timestampVerifier = new TimestampSpeechletRequestVerifier(150, TimeUnit.SECONDS);
-        if(!timestampVerifier.verify(request.getRequest(), request.getSession())){
-          throw new CertificateException("BAD");  //REPLACE ME WITH OUR REAL EXCEPTION
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        byte[] serializedSpeechletRequest = mapper.writeValueAsBytes(request.getRequest());
-        SpeechletRequestSignatureVerifier.checkRequestSignature(serializedSpeechletRequest, signature, signatureCertChainUrl);
-        SpeechletRequestSignatureVerifier.retrieveAndVerifyCertificateChain(signatureCertChainUrl);
-      } catch (CertificateException e) {
-        //Throw this for realzies, once we have a legitimate exception
-        e.printStackTrace();
-      } catch (JsonProcessingException e) {
-        //Throw this for realzies, once we have a legitimate exception
-        e.printStackTrace();
-      }
+      AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
     }
     if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
