@@ -65,17 +65,14 @@ public class QuipStore {
     if(!initialized){throw new RuntimeException("QuipStore must be initialized before use");}
 
     synchronized(quipType){
-      Instant lastUpdateTime = lastUpdateTimes.get(quipType);
-      if(lastUpdateTime!=null && !lastUpdateTime.isBefore(Instant.now().minusSeconds(refreshRate))){
-        return;
-      }
+
+      lastUpdateTimes.put(quipType,Instant.now());
       int oldQuipCount = 0;
       if(quips.get(quipType)!=null){
         oldQuipCount = quips.get(quipType).size();
       }
 
       quips.put(quipType,readQuipsFromFile(sourceFiles.get(quipType)));
-      lastUpdateTimes.put(quipType,Instant.now());
 
       if(oldQuipCount != quips.get(quipType).size()){
         LOG.info(quipType+" quips updated from "+oldQuipCount+" quips to "+quips.get(quipType).size()+" quips");
