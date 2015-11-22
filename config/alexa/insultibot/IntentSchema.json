@@ -13,6 +13,10 @@
       "slots": []
     },
     {
+      "intent": "ANOTHER",
+      "slots": []
+    },
+    {
       "intent": "WHO_BUILT_YOU",
       "slots": []
     },
