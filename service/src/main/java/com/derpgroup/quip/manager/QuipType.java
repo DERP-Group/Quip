@@ -1,8 +1,8 @@
 package com.derpgroup.quip.manager;
 
-public enum QuipRequestTypes {
+public enum QuipType {
   COMPLIMENT,
+  WINSULT,
   BACKHANDED_COMPLIMENT,
-  INSULT,
-  HELP
+  INSULT
 }
