@@ -26,7 +26,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import io.dropwizard.setup.Environment;
 
@@ -41,8 +40,6 @@ import javax.ws.rs.core.MediaType;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
-import com.amazon.speech.speechlet.authentication.SpeechletRequestSignatureVerifier;
-import com.amazon.speech.speechlet.verifier.TimestampSpeechletRequestVerifier;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 import com.derpgroup.derpwizard.alexa.AlexaUtils;
@@ -56,7 +53,6 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.manager.QuipManager;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
