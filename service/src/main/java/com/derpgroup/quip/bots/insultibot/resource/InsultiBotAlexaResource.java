@@ -20,6 +20,7 @@
 
 package com.derpgroup.quip.bots.insultibot.resource;
 
+import java.security.cert.CertificateException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,9 +30,11 @@ import java.util.Map;
 import io.dropwizard.setup.Environment;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
@@ -39,6 +42,7 @@ import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
+import com.derpgroup.derpwizard.alexa.AlexaUtils;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
@@ -78,9 +82,15 @@ public class InsultiBotAlexaResource {
    *
    * @return The message, never null
    * @throws IOException 
+   * @throws CertificateException 
    */
   @POST
-  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request) throws IOException{
+  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException, CertificateException{
+    if(testFlag == null || testFlag == false){ 
+      AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
+    }
+    
     if (request.getRequest() == null) {
       throw new RuntimeException("Missing request body."); //TODO: create AlexaException
     }
