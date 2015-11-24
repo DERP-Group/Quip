@@ -94,12 +94,11 @@ public class CompliBotAlexaResource {
     ObjectMapper mapper = new ObjectMapper();
     QuipMetadata metadata = null;
     try {
-      if(testFlag == null || testFlag == false){ 
-        AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
-      }
-      
       if (request.getRequest() == null) {
         throw new DerpwizardException(DerpwizardExceptionReasons.MISSING_INFO.getSsml(),"Missing request body."); //TODO: create AlexaException
+      }
+      if(testFlag == null || testFlag == false){ 
+        AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
       }
   
       Map<String, Object> sessionAttributes = request.getSession().getAttributes();
