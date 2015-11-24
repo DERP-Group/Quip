@@ -20,8 +20,6 @@
 
 package com.derpgroup.quip.bots.complibot.resource;
 
-import java.security.cert.CertificateException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -37,11 +35,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardExceptionAlexaWrapper;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardException.DerpwizardExceptionReasons;
 import com.derpgroup.derpwizard.alexa.AlexaUtils;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
@@ -67,6 +71,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CompliBotAlexaResource {
 
+  private static final Logger LOG = LoggerFactory.getLogger(CompliBotAlexaResource.class);
+  
   private static final List<String> UNSUPPORTED_SSML_TAGS = Collections.unmodifiableList(Arrays.asList(
       "emphasis"
       ));
@@ -81,60 +87,66 @@ public class CompliBotAlexaResource {
    * Generates a welcome message.
    *
    * @return The message, never null
-   * @throws IOException 
-   * @throws CertificateException 
-   * @throws Exception 
    */
   @POST
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
-      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag) throws IOException, CertificateException{
-    if(testFlag == null || testFlag == false){ 
-      AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
-    }
-    if (request.getRequest() == null) {
-      throw new RuntimeException("Missing request body."); //TODO: create AlexaException
-    }
-
-    Map<String, Object> sessionAttributes = request.getSession().getAttributes();
-    sessionAttributes.put("bot", "complibot");
-
+      @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
     ObjectMapper mapper = new ObjectMapper();
-    mapper.registerModule(new MixInModule());
-    QuipMetadata metadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
-    
-    SsmlDocumentBuilder builder = new SsmlDocumentBuilder(UNSUPPORTED_SSML_TAGS);
-    VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), metadata, InterfaceType.ALEXA);
-    builder.conversationEnd(false);
-    manager.handleRequest(voiceInput, builder);
+    QuipMetadata metadata = null;
+    try {
+      if (request.getRequest() == null) {
+        throw new DerpwizardException(DerpwizardExceptionReasons.MISSING_INFO.getSsml(),"Missing request body."); //TODO: create AlexaException
+      }
+      if(testFlag == null || testFlag == false){ 
+        AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
+      }
+  
+      Map<String, Object> sessionAttributes = request.getSession().getAttributes();
+      sessionAttributes.put("bot", "complibot");
+  
+      mapper.registerModule(new MixInModule());
+      metadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
+      
+      SsmlDocumentBuilder builder = new SsmlDocumentBuilder(UNSUPPORTED_SSML_TAGS);
+      VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), metadata, InterfaceType.ALEXA);
+      builder.conversationEnd(false);
+      manager.handleRequest(voiceInput, builder);
+  
+      Map<String,Object> sessionAttributesOutput = mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){});
+      SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
+      responseEnvelope.setSessionAttributes(sessionAttributesOutput);
 
-    Map<String,Object> sessionAttributesOutput = mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){});
-    SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
-    responseEnvelope.setSessionAttributes(sessionAttributesOutput);
+      SpeechletResponse speechletResponse = new SpeechletResponse();
+      speechletResponse.setShouldEndSession(builder.isConversationEnd());
 
-    SpeechletResponse speechletResponse = new SpeechletResponse();
-    speechletResponse.setShouldEndSession(builder.isConversationEnd());
+      SimpleCard card = new SimpleCard();
+      card.setContent(builder.getRawText());
+      card.setTitle("Alexa + Complibot");
+      
+      SsmlOutputSpeech outputSpeech;
+      // Create a VoiceOutput object with the SSML content generated by the manager
+      if ((voiceInput.getMessageType() != MessageType.END_OF_CONVERSATION) && (voiceInput.getMessageType() != MessageType.STOP) && (voiceInput.getMessageType() != MessageType.CANCEL)) {
 
-    SimpleCard card = new SimpleCard();
-    card.setContent(builder.getRawText());
-    card.setTitle("Alexa + Complibot");
-    
-    SsmlOutputSpeech outputSpeech;
-    // Create a VoiceOutput object with the SSML content generated by the manager
-    if ((voiceInput.getMessageType() != MessageType.END_OF_CONVERSATION) && (voiceInput.getMessageType() != MessageType.STOP) && (voiceInput.getMessageType() != MessageType.CANCEL)) {
+        @SuppressWarnings("unchecked")
+        VoiceOutput<SsmlOutputSpeech> voiceOutput = (VoiceOutput<SsmlOutputSpeech>) VoiceMessageFactory.buildOutputMessage(builder.build(), InterfaceType.ALEXA);
+        outputSpeech = voiceOutput.getImplInstance();
+      }else{
+        outputSpeech = null;
+        card = null;
+        speechletResponse.setShouldEndSession(true);
+      }
+      speechletResponse.setOutputSpeech(outputSpeech);
+      speechletResponse.setCard(card);
 
-      @SuppressWarnings("unchecked")
-      VoiceOutput<SsmlOutputSpeech> voiceOutput = (VoiceOutput<SsmlOutputSpeech>) VoiceMessageFactory.buildOutputMessage(builder.build(), InterfaceType.ALEXA);
-      outputSpeech = voiceOutput.getImplInstance();
-    }else{
-      outputSpeech = null;
-      card = null;
-      speechletResponse.setShouldEndSession(true);
+      responseEnvelope.setResponse(speechletResponse);
+  
+      return responseEnvelope;
+    }catch(DerpwizardException e){
+      LOG.debug(e.getMessage());
+      return new DerpwizardExceptionAlexaWrapper(e, "1.0",mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){}));
+    }catch(Throwable t){
+      LOG.debug(t.getMessage());
+      return new DerpwizardExceptionAlexaWrapper(new DerpwizardException(t.getMessage()),"1.0", mapper.convertValue(metadata, new TypeReference<Map<String,Object>>(){}));
     }
-    speechletResponse.setOutputSpeech(outputSpeech);
-    speechletResponse.setCard(card);
-
-    responseEnvelope.setResponse(speechletResponse);
-
-    return responseEnvelope;
   }
 }

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.derpgroup.derpwizard.manager.AbstractManager;
+import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
@@ -187,7 +188,7 @@ public class QuipManager extends AbstractManager {
 
   @Override
   protected void doConversationRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+      SsmlDocumentBuilder builder) throws DerpwizardException {
 
     Map<String,String> messageMap = voiceInput.getMessageAsMap();
     QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
@@ -196,7 +197,7 @@ public class QuipManager extends AbstractManager {
     switchOnSubject(messageSubject, messageMap, builder, metadata);
   }
 
-  public void switchOnSubject(String messageSubject, Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  public void switchOnSubject(String messageSubject, Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     switch (messageSubject) {
     case "COMPLIMENT":
       doComplimentRequest(messageMap, builder, metadata);
@@ -241,11 +242,13 @@ public class QuipManager extends AbstractManager {
       doStopRequest();
       break;
     default:
-      builder.text("Unknown request type '" + messageSubject + "'.");
+      String message = "Unknown request type '" + messageSubject + "'.";
+      LOG.warn(message);
+      throw new DerpwizardException(new SsmlDocumentBuilder().text(message).build().getSsml(), message, "Unknown request.");
     }
   }
 
-  protected void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     //this has its own method in case we want to do things like logging
     ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(metadata.getConversationHistory(), new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
