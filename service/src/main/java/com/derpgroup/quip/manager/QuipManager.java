@@ -26,8 +26,6 @@ public class QuipManager extends AbstractManager {
     ConversationHistoryUtils.getMapper().registerModule(new MixInModule());
   }
   
-  Logger logger = LoggerFactory.getLogger(QuipManager.class);
-  
   private static final String[] metaRequestSubjects = new String[]{"ANOTHER"};
   protected static final int MAXIMUM_QUIP_HISTORY_SIZE = 10;
   protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
@@ -226,7 +224,7 @@ public class QuipManager extends AbstractManager {
       break;
     default:
       String message = "Unknown request type '" + messageSubject + "'.";
-      logger.warn(message);
+      LOG.warn(message);
       throw new DerpwizardException(new SsmlDocumentBuilder().text(message).build().getSsml(), message, "Unknown request.");
     }
   }
