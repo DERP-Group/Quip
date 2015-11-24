@@ -3,11 +3,15 @@ package com.derpgroup.quip.manager;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -22,16 +26,29 @@ import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
 import com.derpgroup.derpwizard.voice.model.SsmlDocument;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.quip.QuipMetadata;
-import com.derpgroup.quip.manager.QuipManager.BackhandedCompliments;
-import com.derpgroup.quip.manager.QuipManager.Compliments;
-import com.derpgroup.quip.manager.QuipManager.Insults;
-import com.derpgroup.quip.manager.QuipManager.Winsults;
+import com.derpgroup.quip.configuration.QuipConfig;
+import com.derpgroup.quip.model.Quip;
+import com.derpgroup.quip.model.QuipStore;
 
 public class QuipManagerTest {
 
   QuipManager manager;
   QuipMetadata metadata;
   SsmlDocumentBuilder builder;
+  
+  @BeforeClass
+  public static void setUp() throws IOException {
+    QuipStore quipStore = QuipStore.getInstance();
+    QuipConfig config = new QuipConfig();
+    config.setRefreshRate(10);
+    File currentDir = new File(".");
+    System.out.println(currentDir.getCanonicalPath());
+    config.setComplimentsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/complibot/compliments.json");
+    config.setWinsultsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/complibot/winsults.json");
+    config.setInsultsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/insultibot/insults.json");
+    config.setBackhandedComplimentsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/insultibot/backhandedCompliments.json");
+    quipStore.init(config);
+  }
   
   @Before
   public void setup(){
@@ -95,15 +112,16 @@ public class QuipManagerTest {
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
     Deque<String> originalComplimentUsed = new ArrayDeque<String>();
-    for(int i=0; i<Compliments.values().length/2; i++){
-      originalComplimentUsed.add(Compliments.values()[i].name());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.COMPLIMENT);
+    for(int i=0; i<quips.size()/2; i++){
+      originalComplimentUsed.add(quips.get(i).getQuipGroup());
     }
     for(int i=0; i<5; i++){
       Deque<String> complimentsUsed = new ArrayDeque<String>();
       complimentsUsed.addAll(originalComplimentUsed);
       quipMetadata.setComplimentsUsed(complimentsUsed);
-      Compliments compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
-      assertTrue(!originalComplimentUsed.contains(compliment.name()));
+      Quip compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+      assertTrue(!originalComplimentUsed.contains(compliment.getQuipGroup()));
     }
   }
   
@@ -112,17 +130,18 @@ public class QuipManagerTest {
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.WINSULT);
    
     Deque<String> originalWinsultsUsed = new ArrayDeque<String>();
-    for(int i=0; i<Winsults.values().length/2; i++){
-      originalWinsultsUsed.add(Winsults.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      originalWinsultsUsed.add(quips.get(i).getQuipGroup());
     }
     for(int i=0; i<5; i++){
       Deque<String> winsultsUsed = new ArrayDeque<String>();
       winsultsUsed.addAll(originalWinsultsUsed);
       quipMetadata.setWinsultsUsed(winsultsUsed);
-      Winsults winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
-      assertTrue(!originalWinsultsUsed.contains(winsult.name()));
+      Quip winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+      assertTrue(!originalWinsultsUsed.contains(winsult.getQuipGroup()));
     }
   }
   
@@ -131,16 +150,18 @@ public class QuipManagerTest {
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.INSULT);
+    
     Deque<String> originalInsultsUsed = new ArrayDeque<String>();
-    for(int i=0; i<Insults.values().length/2; i++){
-      originalInsultsUsed.add(Insults.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      originalInsultsUsed.add(quips.get(i).getQuipGroup());
     }
     for(int i=0; i<5; i++){
       Deque<String> insultsUsed = new ArrayDeque<String>();
       insultsUsed.addAll(originalInsultsUsed);
       quipMetadata.setInsultsUsed(insultsUsed);
-      Insults insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
-      assertTrue(!originalInsultsUsed.contains(insult.name()));
+      Quip insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+      assertTrue(!originalInsultsUsed.contains(insult.getQuipGroup()));
     }
   }
   
@@ -149,16 +170,18 @@ public class QuipManagerTest {
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.BACKHANDED_COMPLIMENT);
+    
     Deque<String> originalBackhandedComplimentsUsed = new ArrayDeque<String>();
-    for(int i=0; i<BackhandedCompliments.values().length/2; i++){
-      originalBackhandedComplimentsUsed.add(BackhandedCompliments.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      originalBackhandedComplimentsUsed.add(quips.get(i).getQuipGroup());
     }
     for(int i=0; i<5; i++){
       Deque<String> backhandedComplimentsUsed = new ArrayDeque<String>();
       backhandedComplimentsUsed.addAll(originalBackhandedComplimentsUsed);
       quipMetadata.setBackhandedComplimentsUsed(backhandedComplimentsUsed);
-      BackhandedCompliments backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
-      assertTrue(!originalBackhandedComplimentsUsed.contains(backhandedCompliment.name()));
+      Quip backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+      assertTrue(!originalBackhandedComplimentsUsed.contains(backhandedCompliment.getQuipGroup()));
     }
   }
   
@@ -167,14 +190,16 @@ public class QuipManagerTest {
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.COMPLIMENT);
+    
     Deque<String> complimentsUsed = new ArrayDeque<String>();
-    for(int i=0; i<Compliments.values().length/2; i++){
-      complimentsUsed.add(Compliments.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      complimentsUsed.add(quips.get(i).getQuipGroup());
     }
 
     quipMetadata.setComplimentsUsed(complimentsUsed);
-    Compliments compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
-    assertEquals(complimentsUsed.getLast(),compliment.name());
+    Quip compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+    assertEquals(complimentsUsed.getLast(),compliment.getQuipGroup());
   }
   
   @Test
@@ -182,13 +207,15 @@ public class QuipManagerTest {
     
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.WINSULT);
+    
     Deque<String> winsultsUsed = new ArrayDeque<String>();
-    for(int i=0; i<Winsults.values().length/2; i++){
-      winsultsUsed.add(Winsults.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      winsultsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setWinsultsUsed(winsultsUsed);
-    Winsults winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
-    assertEquals(winsultsUsed.getLast(),winsult.name());
+    Quip winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+    assertEquals(winsultsUsed.getLast(),winsult.getQuipGroup());
   }
   
   @Test
@@ -196,13 +223,15 @@ public class QuipManagerTest {
 
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.INSULT);
+    
     Deque<String> insultsUsed = new ArrayDeque<String>();
-    for(int i=0; i<Insults.values().length/2; i++){
-      insultsUsed.add(Insults.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      insultsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setInsultsUsed(insultsUsed);
-    Insults insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
-    assertEquals(insultsUsed.getLast(),insult.name());
+    Quip insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+    assertEquals(insultsUsed.getLast(),insult.getQuipGroup());
   }
   
   @Test
@@ -210,12 +239,14 @@ public class QuipManagerTest {
 
     QuipMetadata quipMetadata = new QuipMetadata();
     quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.BACKHANDED_COMPLIMENT);
+    
     Deque<String> backhandedComplimentsUsed = new ArrayDeque<String>();
-    for(int i=0; i<BackhandedCompliments.values().length/2; i++){
-      backhandedComplimentsUsed.add(BackhandedCompliments.values()[i].name());
+    for(int i=0; i<quips.size()/2; i++){
+      backhandedComplimentsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setBackhandedComplimentsUsed(backhandedComplimentsUsed);
-    BackhandedCompliments backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
-    assertEquals(backhandedComplimentsUsed.getLast(),backhandedCompliment.name());
+    Quip backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+    assertEquals(backhandedComplimentsUsed.getLast(),backhandedCompliment.getQuipGroup());
   }
 }
