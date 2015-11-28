@@ -30,6 +30,7 @@ public class QuipManager extends AbstractManager {
   private static final String[] metaRequestSubjects = new String[]{"ANOTHER"};
   protected static final int MAXIMUM_QUIP_HISTORY_SIZE = 10;
   protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
+  private static final int MAX_QUIP_REROLLS = 10;
   
   public QuipManager(){
     super();
@@ -40,8 +41,10 @@ public class QuipManager extends AbstractManager {
     LOG.debug("Recently used "+quipType.toString().toLowerCase()+"s in user session:\n"+recentlyUsedQuips.toString());
     int maxQuipHistorySize = determineMaxQuipHistorySize(quipStore.getQuips(quipType).size());
     Quip quip = quipStore.getRandomQuip(quipType);
-    while(recentlyUsedQuips.contains(quip.getQuipGroup())){
+    int rerolls = 0;
+    while(recentlyUsedQuips.contains(quip.getQuipGroup()) && rerolls < MAX_QUIP_REROLLS){
       quip = quipStore.getRandomQuip(quipType);
+      rerolls++;
     }
     recentlyUsedQuips.add(quip.getQuipGroup());
     while(recentlyUsedQuips.size() > maxQuipHistorySize){

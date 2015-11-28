@@ -37,7 +37,7 @@ public class QuipManagerTest {
   SsmlDocumentBuilder builder;
   
   @BeforeClass
-  public static void setUp() throws IOException {
+  public static void beforeClass_setup() throws IOException {
     QuipStore quipStore = QuipStore.getInstance();
     QuipConfig config = new QuipConfig();
     config.setRefreshRate(10);
