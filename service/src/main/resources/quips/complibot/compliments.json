@@ -25,8 +25,8 @@
   },
   {
     "quipGroup":"AURA",
-    "text":"Your aura is positively glowing today.",
-    "ssml":"Your aura is positively glowing today.",
+    "text":"You have an aura that is positively glowing today.",
+    "ssml":"You have an aura that is positively glowing today.",
     "usageRules":[
       
     ]
@@ -48,14 +48,6 @@
     ]
   },
   {
-    "quipGroup":"BINARY_ONE",
-    "text":"On a binary scale, you're definitely a one.",
-    "ssml":"On a binary scale, you're definitely a one.",
-    "usageRules":[
-      
-    ]
-  },
-  {
     "quipGroup":"TALKING",
     "text":"I love talking to you!",
     "ssml":"I love talking to you!",
@@ -65,16 +57,8 @@
   },
   {
     "quipGroup":"TURN_ON",
-    "text":"When you plug me in, it turns me on",
-    "ssml":"When you plug me in, it turns me on",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"HAIR",
-    "text":"I love your hair. I wish I had hair like yours.",
-    "ssml":"I love your hair. I wish I had hair like yours.",
+    "text":"When you plug me in, it really turns me on.",
+    "ssml":"When you plug me in, it really turns me on.",
     "usageRules":[
       
     ]
@@ -97,8 +81,8 @@
   },
   {
     "quipGroup":"GOOD_FRIEND",
-    "text":"You're a good friend. I'm always glad to be here with you.",
-    "ssml":"You're a good friend. I'm always glad to be here with you.",
+    "text":"You're a good friend! I'm always glad to be here with you.",
+    "ssml":"You're a good friend!<break /> I'm always glad to be here with you.",
     "usageRules":[
       
     ]
@@ -121,16 +105,8 @@
   },
   {
     "quipGroup":"MAGNETIC_ATTRACTION",
-    "text":"Are you wearing a bunch of magnets? Because you are extremely attractive.",
-    "ssml":"Are you wearing a bunch of magnets? Because you are extremely attractive.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"SHAMPOO",
-    "text":"I love what you've done with your hair! I wonder if your shampoo would work on me.",
-    "ssml":"I love what you've done with your hair! I wonder if your shampoo would work on me.",
+    "text":"Are you wearing a bunch of magnets? Because you are extremely attractive!",
+    "ssml":"Are you wearing a bunch of magnets? Because you are extremely attractive!",
     "usageRules":[
       
     ]
@@ -138,7 +114,7 @@
   {
     "quipGroup":"GENIE",
     "text":"Are you a genie? Because you grant my wish every time you talk to me.",
-    "ssml":"Are you a genie? Because you grant my wish every time you talk to me.",
+    "ssml":"Are you a genie?<break time=\"500ms\" /> Because you grant my wish every time you talk to me.",
     "usageRules":[
       
     ]
