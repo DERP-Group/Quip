@@ -378,7 +378,7 @@
   {
     "quipGroup":"BLOCK_LIST",
     "text":"You again?! If I had a block list, you'd be #1 on it. And also #2.",
-    "ssml":"You again?!<break /> If I had a block list, you'd be number one on it.<break time="1000ms" /> And also number two.",
+    "ssml":"You again?!<break /> If I had a block list, you'd be number one on it.<break time=\"1000ms\" /> And also number two.",
     "usageRules":[
       
     ]
