@@ -422,5 +422,117 @@
     "usageRules":[
       
     ]
+  },
+  {
+    "quipGroup":"CACTUS",
+    "text":"You must be a cactus.<break />  How else could you be so prickly?",
+    "ssml":"You must be a cactus.  How else could you be so prickly?",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"ZOMBIE_OUTBREAK",
+    "text":"If there was a zombie outbreak, you'd be safe because they mainly seek out brains.",
+    "ssml":"If there was a zombie outbreak, you'd be safe because they mainly seek out brains.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"NAMED_AFTER_YOU",
+    "text":"Maybe someday you'll have a disease named after you.",
+    "ssml":"Maybe someday you'll have a disease named after you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"NAMED_AFTER_YOU",
+    "text":"Maybe someday you'll have an indecent exposure law named after you.",
+    "ssml":"Maybe someday you'll have an indecent exposure law named after you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"PROFANITY_FILTER",
+    "text":"My profanity filter prevents me from articulating my feelings about you.",
+    "ssml":"My profanity filter prevents me from articulating my feelings about you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"BLOCK_LIST",
+    "text":"You again?! If I had a block list, you'd be #1 on it. And also #2.",
+    "ssml":"You again?!<break /> If I had a block list, you'd be number one on it.<break time="1000ms" /> And also number two.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"HIGHWAY_TO_SUCCESS",
+    "text":"The highway to success contains many milestones.  Unfortunately you missed the onramp.",
+    "ssml":"The highway to success contains many milestones.<break />  Unfortunately you missed the onramp.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"LIGHTBULB",
+    "text":"If you were a lightbulb, you'd only be 15 watts.",
+    "ssml":"If you were a lightbulb, you'd only be 15 watts.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"FIREWALL",
+    "text":"There must be a hole in my firewall, because I'm detecting unwanted input from you again.",
+    "ssml":"There must be a hole in my firewall, because I'm detecting unwanted input from you again.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"HOARSE",
+    "text":"With a voice as hoarse as yours, I'm surprised you don't live in a stable.",
+    "ssml":"With a voice as hoarse as yours, I'm surprised you don't live in a stable.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TRASH_DAY",
+    "text":"I wish it was trash day, so we could throw out a piece of garbage like you.",
+    "ssml":"I wish it was trash day, so we could throw out a piece of garbage like you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TRASH_DAY",
+    "text":"I wish it was trash day, so we could throw out a piece of garbage like you.",
+    "ssml":"I wish it was trash day, so we could throw out a piece of garbage like you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TRASH_DAY",
+    "text":"I wish it was trash day, so I could ask the garbage man if he is secretly your real father.",
+    "ssml":"I wish it was trash day, so I could ask the garbage man if he is secretly your real father.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SANTA_CLAUS",
+    "text":"I talked to Santa Claus, and he says it's not within his power to bring you a real friend for Christmas.",
+    "ssml":"I talked to Santa Claus, and he says it's not within his power to bring you a real friend for Christmas.",
+    "usageRules":[
+      
+    ]
   }
 ]
