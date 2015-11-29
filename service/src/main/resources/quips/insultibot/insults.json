@@ -425,8 +425,8 @@
   },
   {
     "quipGroup":"TRASH_DAY",
-    "text":"I wish it was trash day, so we could throw out a piece of garbage like you.",
-    "ssml":"I wish it was trash day, so we could throw out a piece of garbage like you.",
+    "text":"I wish it was trash day, so I could hitch a ride to someplace better smelling, like the dump.",
+    "ssml":"I wish it was trash day, so I could hitch a ride to someplace better smelling, like the dump.",
     "usageRules":[
       
     ]
