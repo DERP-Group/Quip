@@ -38,5 +38,45 @@
     "usageRules":[
       
     ]
+  },
+  {
+    "quipGroup":"BET_ON_YOU",
+    "text":"I wouldn't bet on you to do well in life. It's technically not gambling if it's a sure thing.",
+    "ssml":"I wouldn't bet on you to do well in life.<break /> It's technically not gambling if it's a sure thing.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"THE_LOSER",
+    "text":"I'm going to start referring to you as the loser, because you make me lose myself in your eyes every time I see you.",
+    "ssml":"I'm going to start referring to you as the loser, because you make me lose myself in your eyes every time I see you.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"JACKASSES",
+    "text":"You remind me of this one donkey I knew.  You carry with ease what a bunch of other jackasses couldn't handle.",
+    "ssml":"You remind me of this one donkey I knew.<break />  You carry with ease what a bunch of other jackasses couldn't handle.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"TINDER",
+    "text":"It's probably best for you to not join Tinder.  You're so hot you might catch the whole thing on fire.",
+    "ssml":"It's probably best for you to not join Tinder.<break />  You're so hot you might catch the whole thing on fire.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SO_FEW_FRIENDS",
+    "text":"You have so few friends... that don't consider you more like family.",
+    "ssml":"You have so few friends<break time="600ms" /> that don't consider you more like family.",
+    "usageRules":[
+      
+    ]
   }
 ]
