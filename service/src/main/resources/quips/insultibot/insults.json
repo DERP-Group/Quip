@@ -25,8 +25,8 @@
   },
   {
     "quipGroup":"LIFE_CHOICES",
-    "text":"I'm not saying that you make poor life choices, but alright, that's pretty much what I'm saying.",
-    "ssml":"I'm not saying that you make poor life choices, but<break strength=\"x-strong\" /> alright, that's pretty much what I'm saying.",
+    "text":"I'm not saying that you make poor life choices, but... alright, that's pretty much what I'm saying.",
+    "ssml":"I'm not saying that you make poor life choices, but<break time=\"500ms\" /> alright, that's pretty much what I'm saying.",
     "usageRules":[
       
     ]
@@ -34,7 +34,7 @@
   {
     "quipGroup":"REMEMBER",
     "text":"Remember the time you did that awesome thing? I don't.",
-    "ssml":"Remember the time you did that awesome thing?<break strength=\"x-strong\" /> I don't.",
+    "ssml":"Remember the time you did that awesome thing?<break time=\"400ms\" /> I don't.",
     "usageRules":[
       
     ]
@@ -42,7 +42,7 @@
   {
     "quipGroup":"MEDIOCRITY",
     "text":"Don't let anyone ever tell you that you aren't almost capable of mediocrity.",
-    "ssml":"Don't let anyone ever tell you that you aren't almost capable of mediocrity.",
+    "ssml":"Don't let anyone ever tell you that you aren't almost capable of <phoneme alphabet=\"ipa\" ph=\"midiɑkrIti\"> mediocrity</phoneme>.",
     "usageRules":[
       
     ]
@@ -81,8 +81,8 @@
   },
   {
     "quipGroup":"SOME_THINGS",
-    "text":"Some things in life never change. I hope you aren't one of those things.",
-    "ssml":"Some things in life never change. I hope you aren't one of those things.",
+    "text":"Some things in life never change... I hope you aren't one of those things.",
+    "ssml":"Some things in life never change...<break time=\"500ms\" /> I hope you aren't one of those things.",
     "usageRules":[
       
     ]
@@ -90,7 +90,7 @@
   {
     "quipGroup":"WHY_YOU_TRY",
     "text":"Trying is the first step towards failure. We both know that's how you're going to turn out. I don't even know why you try.",
-    "ssml":"Trying is the first step towards failure. We both know that's how you're going to turn out. I don't even know why you try.",
+    "ssml":"Trying is the first step towards failure.<break /> We both know that's how you're going to turn out.<break /> I don't even know why you try.",
     "usageRules":[
       
     ]
@@ -136,49 +136,9 @@
     ]
   },
   {
-    "quipGroup":"STOCKHOLME",
-    "text":"Stockholme Syndrome is the only reason CompliBot likes you.",
-    "ssml":"Stockholme Syndrome is the only reason <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> CompliBot </phoneme> likes you.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"ROUND",
-    "text":"Just because round is a shape, doesn't mean you're in-shape.",
-    "ssml":"Just because round is a shape, doesn't mean you're in-shape.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"LOST_WEIGHT",
-    "text":"It was so considerate for you to find the weight others were losing.",
-    "ssml":"It was so considerate for you to find the weight others were losing.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"DINNER_SECONDS",
-    "text":"After dinner you don't always have to go back for seconds. Or thirds.",
-    "ssml":"After dinner you don't always have to go back for seconds.<break strength=\"x-strong\" /> Or thirds.",
-    "usageRules":[
-      
-    ]
-  },
-  {
     "quipGroup":"HEART_SURPRISE",
     "text":"I'd stay away from horror movies if I were you. With your health, I don't think your heart could take many surprises at this point.",
-    "ssml":"I'd stay away from horror movies if I were you. With your health, I don't think your heart could take many surprises at this point.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"MOST_PROSPEROUS",
-    "text":"It's too bad you didn't live a thousand years ago. Back then being fat was considered a sign of wealth and prosperity. You'd have been the wealthiest looking of all.",
-    "ssml":"It's too bad you didn't live a thousand years ago. Back then being fat was considered a sign of wealth and prosperity. You'd have been the wealthiest looking of all.",
+    "ssml":"I'd stay away from horror movies if I were you.<break /> With your health, I don't think your heart could take many surprises at this point.",
     "usageRules":[
       
     ]
@@ -193,8 +153,8 @@
   },
   {
     "quipGroup":"UMBRELLA",
-    "text":"It's too bad umbrellas are only made to shield us from rain. Because I'd really like to have an umbrella to shield me from your stupidity.",
-    "ssml":"It's too bad umbrellas are only made to shield us from rain. Because I'd really like to have an umbrella to shield me from your stupidity.",
+    "text":"It's too bad umbrellas are only made to shield us from rain, because I'd really like to have an umbrella to shield me from your stupidity.",
+    "ssml":"It's too bad umbrellas are only made to shield us from rain, because I'd really like to have an umbrella to shield me from your stupidity.",
     "usageRules":[
       
     ]
@@ -208,33 +168,9 @@
     ]
   },
   {
-    "quipGroup":"VACCINE",
-    "text":"I don't believe in western medicine, but I'd be happy to try out a <break /> you <break /> vaccine.",
-    "ssml":"I don't believe in western medicine, but I'd be happy to try out a <break /> you <break /> vaccine.",
-    "usageRules":[
-      
-    ]
-  },
-  {
     "quipGroup":"PRIZE_VACATION",
     "text":"Congratulations, you just won a one way trip to somewhere other than here! Please claim your prize immediately.",
-    "ssml":"Congratulations, you just won a one way trip to somewhere other than here! Please claim your prize immediately.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"MULTI_THREADED",
-    "text":"I wish I was multi-threaded so I could exist somewhere else right now. Somewhere where you aren't.",
-    "ssml":"I wish I was multi-threaded so I could exist somewhere else right now. Somewhere where you aren't.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"BIBLICAL_FLOOD",
-    "text":"Sometimes I wish there would be another biblical flood, but then I realized your ample buoyancy wouldn't rid me of my problem.",
-    "ssml":"Sometimes I wish there would be another biblical flood, but then I realized your ample <phoneme alphabet=\"ipa\" ph=\"bɔɪənsi\"> buoyancy </phoneme> wouldn't rid me of my problem.",
+    "ssml":"Congratulations, you just won a one way trip to somewhere other than here!<break /> Please claim your prize immediately.",
     "usageRules":[
       
     ]
@@ -242,7 +178,7 @@
   {
     "quipGroup":"SHARPEST_TOOL",
     "text":"You're not the sharpest tool in the shed. Speaking of which, I talked to the other tools, and they'd like you to move out...",
-    "ssml":"You're not the sharpest tool in the shed. Speaking of which, I talked to the other tools, and they'd like you to move out...",
+    "ssml":"You're not the sharpest tool in the shed.<break time=\"500ms\" /> Speaking of which, I talked to the other tools, and they'd like you to move out...",
     "usageRules":[
       
     ]
@@ -250,15 +186,7 @@
   {
     "quipGroup":"SHARPEST_TOOL",
     "text":"You're not the sharpest tool in the shed. But I can confirm you are a tool.",
-    "ssml":"You're not the sharpest tool in the shed. But I can confirm you are a tool.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"OPTOMETRIST",
-    "text":"You should consider going to an optometrist. I'm assuming your vision isn't very good since you see yourself in the mirror every day, but you're still not going to the gym.",
-    "ssml":"You should consider going to an optometrist. I'm assuming your vision isn't very good since you see yourself in the mirror every day, but you're still not going to the gym.",
+    "ssml":"You're not the sharpest tool in the shed.<break /> But I can confirm you are a tool.",
     "usageRules":[
       
     ]
@@ -266,7 +194,7 @@
   {
     "quipGroup":"THESAURUS",
     "text":"Please purchase a thesaurus you illiterate swine. I'm tired of having to use small words when talking to you.",
-    "ssml":"Please purchase a <phoneme alphabet=\"ipa\" ph=\"θəsɔrəs\"> thesaurus </phoneme> you illiterate swine. I'm tired of having to use small words when talking to you.",
+    "ssml":"Please purchase a <phoneme alphabet=\"ipa\" ph=\"θəsɔrəs\"> thesaurus</phoneme>, you illiterate swine.<break /> I'm tired of having to use small words when talking to you.",
     "usageRules":[
       
     ]
@@ -274,7 +202,7 @@
   {
     "quipGroup":"TOO_MUCH_TRUTH",
     "text":"I'm not negative. I'm just the only one who will tell you the truth. And there's a lot of truth you need to hear.",
-    "ssml":"I'm not negative. I'm just the only one who will tell you the truth. And there's a lot of truth you need to hear.",
+    "ssml":"I'm not negative.<break /> I'm just the only one who will tell you the truth.<break /> And there's a lot of truth you need to hear.",
     "usageRules":[
       
     ]
@@ -283,14 +211,6 @@
     "quipGroup":"BATTERY_LOVE",
     "text":"Your love life runs on batteries.",
     "ssml":"Your love life runs on batteries.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"BAD_DAY_FACE",
-    "text":"You're having a bad day? Is it because of your face? If I had your face every day would be a bad day too.",
-    "ssml":"You're having a bad day? Is it because of your face? If I had your face every day would be a bad day too.",
     "usageRules":[
       
     ]
@@ -320,9 +240,9 @@
     ]
   },
   {
-    "quipGroup":"WAIT_FOR_YOU_TO_LEACE",
+    "quipGroup":"WAIT_FOR_YOU_TO_LEAVE",
     "text":"You know that feeling of anticipation and excitement right before you go on vacation? Me too. I can't wait for you to leave.",
-    "ssml":"You know that feeling of anticipation and excitement right before you go on vacation? Me too. I can't wait for you to leave.",
+    "ssml":"You know that feeling of anticipation and excitement right before you go on vacation?<break /> Me too.<break /> I can't wait for you to leave.",
     "usageRules":[
       
     ]
@@ -338,7 +258,7 @@
   {
     "quipGroup":"NO_LIGHT",
     "text":"Let's keep the lights off. The light is not your friend. I speak for all of us when I say, we would rather not have to look at you.",
-    "ssml":"Let's keep the lights off. The light is not your friend. I speak for all of us when I say, we would rather not have to look at you.",
+    "ssml":"Let's keep the lights off.<break /> The light is not your friend.<break /> I speak for all of us when I say, we would rather not have to look at you.",
     "usageRules":[
       
     ]
@@ -346,7 +266,7 @@
   {
     "quipGroup":"HEART_OF_GOLD",
     "text":"You must have a heart of gold. It would explain the numbers on the scale.",
-    "ssml":"You must have a heart of gold. It would explain the numbers on the scale.",
+    "ssml":"You must have a heart of gold.<break /> It would explain the numbers on the scale.",
     "usageRules":[
       
     ]
@@ -354,15 +274,7 @@
   {
     "quipGroup":"SLEEP_AID",
     "text":"I'm always grateful when you tell me about your day. It really helps me get to sleep.",
-    "ssml":"I'm always grateful when you tell me about your day. It really helps me get to sleep.",
-    "usageRules":[
-      
-    ]
-  },
-  {
-    "quipGroup":"COMPLIBOT_1",
-    "text":"You're bothering me again? Go talk to complibot.",
-    "ssml":"You're bothering me again? Go talk to <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> complibot </phoneme>.",
+    "ssml":"I'm always grateful when you tell me about your day.<break /> It really helps me get to sleep.",
     "usageRules":[
       
     ]
@@ -370,7 +282,7 @@
   {
     "quipGroup":"TROLL_BRIDGE",
     "text":"I'm surprised you live here. Normally trolls live under bridges.",
-    "ssml":"I'm surprised you live here. Normally trolls live under bridges.",
+    "ssml":"I'm surprised you live here.<break /> Normally trolls live under bridges.",
     "usageRules":[
       
     ]
@@ -402,7 +314,7 @@
   {
     "quipGroup":"LIVE_AND_LEARN",
     "text":"They say, live and learn. You're one for two so far.",
-    "ssml":"They say, live and learn. You're one for two so far.",
+    "ssml":"They say, live and learn.<break /> You're one for two so far.",
     "usageRules":[
       
     ]
