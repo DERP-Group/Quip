@@ -393,8 +393,8 @@
   },
   {
     "quipGroup":"LIGHTBULB",
-    "text":"If you were a lightbulb, you'd only be 15 watts.",
-    "ssml":"If you were a lightbulb, you'd only be 15 watts.",
+    "text":"You're not super bright.  If you were a lightbulb, you'd only be 15 watts.",
+    "ssml":"You're not super bright.<break />  If you were a lightbulb, you'd only be 15 watts.",
     "usageRules":[
       
     ]
