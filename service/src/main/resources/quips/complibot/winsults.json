@@ -41,24 +41,24 @@
   },
   {
     "quipGroup":"BET_ON_YOU",
-    "text":"I wouldn't bet on you to do well in life. It's technically not gambling if it's a sure thing.",
-    "ssml":"I wouldn't bet on you to do well in life.<break /> It's technically not gambling if it's a sure thing.",
+    "text":"I wouldn't bet on you to do well in life. Because technically it's not gambling if it's a sure thing.",
+    "ssml":"I wouldn't bet on you to do well in life.<break /> Because technically it's not gambling if it's a sure thing.",
     "usageRules":[
       
     ]
   },
   {
     "quipGroup":"THE_LOSER",
-    "text":"I'm going to start referring to you as the loser, because you make me lose myself in your eyes every time I see you.",
-    "ssml":"I'm going to start referring to you as the loser, because you make me lose myself in your eyes every time I see you.",
+    "text":"I'm going to start referring to you as the loser, because I lose myself in your eyes every time I see you.",
+    "ssml":"I'm going to start referring to you as the loser, because I lose myself in your eyes every time I see you.",
     "usageRules":[
       
     ]
   },
   {
     "quipGroup":"JACKASSES",
-    "text":"You remind me of this one donkey I knew.  You carry with ease what a bunch of other jackasses couldn't handle.",
-    "ssml":"You remind me of this one donkey I knew.<break />  You carry with ease what a bunch of other jackasses couldn't handle.",
+    "text":"You remind me of a donkey.  You're able to carry a ton of burdens with ease.",
+    "ssml":"You remind me of a donkey.<break />  You're able to carry a ton of burdens with ease.",
     "usageRules":[
       
     ]

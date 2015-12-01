@@ -345,8 +345,8 @@
   },
   {
     "quipGroup":"ZOMBIE_OUTBREAK",
-    "text":"If there was a zombie outbreak, you'd be safe because they mainly seek out brains.",
-    "ssml":"If there was a zombie outbreak, you'd be safe because they mainly seek out brains.",
+    "text":"If there was a zombie outbreak, you'd be safe because they only eat people with brains",
+    "ssml":"If there was a zombie outbreak, you'd be safe because they only eat people with brains",
     "usageRules":[
       
     ]

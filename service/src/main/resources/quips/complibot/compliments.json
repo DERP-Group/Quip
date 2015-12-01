@@ -137,8 +137,8 @@
   },
   {
     "quipGroup":"SO_HOT",
-    "text":"The earth has been heating up since your birth.  Scientists conclude that you're so hot you cause global warming.",
-    "ssml":"The earth has been heating up since your birth.<break />  Scientists conclude that you're so hot you cause global warming.",
+    "text":"The earth has been heating up since your birth.  Scientists have concluded that you're so hot you cause global warming.",
+    "ssml":"The earth has been heating up since your birth.<break />  Scientists have concluded that you're so hot you cause global warming.",
     "usageRules":[
       
     ]
