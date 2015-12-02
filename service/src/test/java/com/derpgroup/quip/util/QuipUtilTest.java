@@ -46,55 +46,55 @@ public class QuipUtilTest {
   @Test
   public void testBracketedContentSubstitution_singleValue() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
-    String response = QuipUtil.substituteBracketedContent("Is your name really [NAME]?", replacementValues);
+    replacementValues.put("[NAME]", "CompliBot");
+    String response = QuipUtil.substituteContent("Is your name really [NAME]?", replacementValues);
     assertEquals("Is your name really CompliBot?",response);
   }
   
   @Test
   public void testBracketedContentSubstitution_multipleValue() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
-    replacementValues.put("TITLE", "the Great");
-    replacementValues.put("TARGET", "InsultiBot");
-    String response = QuipUtil.substituteBracketedContent("[NAME] [TITLE]'s love for [TARGET] was unconditional.", replacementValues);
+    replacementValues.put("[NAME]", "CompliBot");
+    replacementValues.put("[TITLE]", "the Great");
+    replacementValues.put("[TARGET]", "InsultiBot");
+    String response = QuipUtil.substituteContent("[NAME] [TITLE]'s love for [TARGET] was unconditional.", replacementValues);
     assertEquals("CompliBot the Great's love for InsultiBot was unconditional.",response);
   }
   
   @Test
   public void testBracketedContentSubstitution_multipleSubstitutionsWithOneValue() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
-    String response = QuipUtil.substituteBracketedContent("[NAME]'s love for [NAME] was unconditional... just as [NAME] would have wanted it.", replacementValues);
+    replacementValues.put("[NAME]", "CompliBot");
+    String response = QuipUtil.substituteContent("[NAME]'s love for [NAME] was unconditional... just as [NAME] would have wanted it.", replacementValues);
     assertEquals("CompliBot's love for CompliBot was unconditional... just as CompliBot would have wanted it.",response);
   }
 
   @Test
   public void testBracketedContentSubstitution_frontEdgeBrackets() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
+    replacementValues.put("[NAME]", "CompliBot");
 
-    String response = QuipUtil.substituteBracketedContent("[NAME] is awesome!", replacementValues);
+    String response = QuipUtil.substituteContent("[NAME] is awesome!", replacementValues);
     assertEquals("CompliBot is awesome!",response);
   }
   
   @Test
   public void testBracketedContentSubstitution_backEdgeBrackets() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
+    replacementValues.put("[NAME]", "CompliBot");
 
-    String response = QuipUtil.substituteBracketedContent("Who's awesome? [NAME]", replacementValues);
+    String response = QuipUtil.substituteContent("Who's awesome? [NAME]", replacementValues);
     assertEquals("Who's awesome? CompliBot",response);
   }
   
   @Test
   public void testBracketedContentSubstitution_unusedReplacementValues() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
-    replacementValues.put("NAME", "CompliBot");
-    replacementValues.put("TITLE", "the Great");
-    replacementValues.put("TARGET", "InsultiBot");
+    replacementValues.put("[NAME]", "CompliBot");
+    replacementValues.put("[TITLE]", "the Great");
+    replacementValues.put("[TARGET]", "InsultiBot");
 
-    String response = QuipUtil.substituteBracketedContent("Who's awesome? [NAME]", replacementValues);
+    String response = QuipUtil.substituteContent("Who's awesome? [NAME]", replacementValues);
     assertEquals("Who's awesome? CompliBot",response);
   }
 
