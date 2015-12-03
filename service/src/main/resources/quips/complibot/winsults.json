@@ -70,13 +70,5 @@
     "usageRules":[
       
     ]
-  },
-  {
-    "quipGroup":"SO_FEW_FRIENDS",
-    "text":"You have so few friends... that don't consider you more like family.",
-    "ssml":"You have so few friends<break time=\"600ms\" /> that don't consider you more like family.",
-    "usageRules":[
-      
-    ]
   }
 ]
