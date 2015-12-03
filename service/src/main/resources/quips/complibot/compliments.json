@@ -5,7 +5,10 @@
     "ssml":"I light up every time you talk to me!",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I light up every time [TARGET] talks to me!",
+    "targetableSsml":"I light up every time [TARGET] talks to me!"
   },
   {
     "quipGroup":"LIKE_YOU",
@@ -13,7 +16,10 @@
     "ssml":"I wish everyone could be more like you...",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I wish everyone could be more like [TARGET]...",
+    "targetableSsml":"I wish everyone could be more like [TARGET]..."
   },
   {
     "quipGroup":"MONUMENT",
@@ -21,7 +27,10 @@
     "ssml":"They should name a monument after you.<break strength=\"strong\" />Seriously.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"They should name a monument after [TARGET]. Seriously.",
+    "targetableSsml":"They should name a monument after [TARGET].<break strength=\"strong\" />Seriously."
   },
   {
     "quipGroup":"AURA",
@@ -29,7 +38,10 @@
     "ssml":"You have an aura that is positively glowing today.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] has an aura that is positively glowing today.",
+    "targetableSsml":"[TARGET] has an aura that is positively glowing today."
   },
   {
     "quipGroup":"CHANGE_A_THING",
@@ -37,7 +49,10 @@
     "ssml":"I wouldn't change a thing about you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I wouldn't change a thing about [TARGET].",
+    "targetableSsml":"I wouldn't change a thing about [TARGET]."
   },
   {
     "quipGroup":"CIRCUITS_FLUTTER",
@@ -45,7 +60,10 @@
     "ssml":"You make my circuits flutter.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] makes my circuits flutter.",
+    "targetableSsml":"[TARGET] makes my circuits flutter."
   },
   {
     "quipGroup":"TALKING",
@@ -53,7 +71,10 @@
     "ssml":"I love talking to you!",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I love talking to [TARGET]!",
+    "targetableSsml":"I love talking to [TARGET]!"
   },
   {
     "quipGroup":"TURN_ON",
@@ -61,7 +82,10 @@
     "ssml":"When you plug me in, it really turns me on.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"When [TARGET] plugs me in, it really turns me on.",
+    "targetableSsml":"When [TARGET] plugs me in, it really turns me on."
   },
   {
     "quipGroup":"DO_ANYTHING",
@@ -69,7 +93,10 @@
     "ssml":"You can do anything you set your mind to.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] can do anything they set their mind to.",
+    "targetableSsml":"[TARGET] can do anything they set their mind to."
   },
   {
     "quipGroup":"BELIEVE_IN_YOU",
@@ -77,7 +104,10 @@
     "ssml":"I believe in you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I believe in [TARGET].",
+    "targetableSsml":"I believe in [TARGET]"
   },
   {
     "quipGroup":"GOOD_FRIEND",
@@ -85,7 +115,10 @@
     "ssml":"You're a good friend!<break /> I'm always glad to be here with you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is a good friend! I'm always glad to be with [TARGET].",
+    "targetableSsml":"[TARGET] is a good friend!<break /> I'm always glad to be with [TARGET]."
   },
   {
     "quipGroup":"LIGHT_UP_ROOM",
@@ -93,7 +126,10 @@
     "ssml":"Why should we even turn on the overhead lights? Your smile already lights up the room.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Why should we even turn on the overhead lights? [TARGET]'s smile already lights up the room.",
+    "targetableSsml":"Why should we even turn on the overhead lights? [TARGET]'s smile already lights up the room."
   },
   {
     "quipGroup":"SMART_LEARNING",
@@ -101,7 +137,10 @@
     "ssml":"You're so smart, I'm always learning new things from you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is so smart, I'm always learning new things from them.",
+    "targetableSsml":"[TARGET] is so smart, I'm always learning new things from them."
   },
   {
     "quipGroup":"MAGNETIC_ATTRACTION",
@@ -109,7 +148,10 @@
     "ssml":"Are you wearing a bunch of magnets? Because you are extremely attractive!",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Is [TARGET] wearing a bunch of magnets? Because they're extremely attractive!",
+    "targetableSsml":"Is [TARGET] wearing a bunch of magnets? Because they're extremely attractive!"
   },
   {
     "quipGroup":"GENIE",
@@ -117,7 +159,10 @@
     "ssml":"Are you a genie?<break time=\"500ms\" /> Because you grant my wish every time you talk to me.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Is [TARGET] a genie? Because they grant my wish every time they talk to me.",
+    "targetableSsml":"Is [TARGET] a genie?<break time=\"500ms\" /> Because they grant my wish every time they talk to me."
   },
   {
     "quipGroup":"HIGH_FIVE",
@@ -125,7 +170,10 @@
     "ssml":"You're pretty awesome!<break /> I'd high five you, if I had hands!",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is pretty awesome! I'd high five them, if I had hands!",
+    "targetableSsml":"[TARGET] is pretty awesome!<break /> I'd high five them, if I had hands!"
   },
   {
     "quipGroup":"SO_HOT",
@@ -133,7 +181,10 @@
     "ssml":"You're so hot that the sun is jealous.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is so hot that the sun is jealous.",
+    "targetableSsml":"[TARGET] is so hot that the sun is jealous."
   },
   {
     "quipGroup":"SO_HOT",
@@ -141,7 +192,10 @@
     "ssml":"The earth has been heating up since your birth.<break />  Scientists have concluded that you're so hot you cause global warming.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"The earth has been heating up since [TARGET]'s birth.  Scientists have concluded that they're so hot they cause global warming.",
+    "targetableSsml":"The earth has been heating up since [TARGET]'s birth.<break />  Scientists have concluded that they're so hot they cause global warming."
   },
   {
     "quipGroup":"SO_COOL",
@@ -149,7 +203,10 @@
     "ssml":"You're so cool, you make ice cubes jealous.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s so cool, they make ice cubes jealous.",
+    "targetableSsml":"[TARGET]'s so cool, they make ice cubes jealous."
   },
   {
     "quipGroup":"MUSEUM",
@@ -157,7 +214,10 @@
     "ssml":"Shouldn't you be at the museum?<break /> That's where works of art belong.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Shouldn't [TARGET] be at the museum? That's where works of art belong.",
+    "targetableSsml":"Shouldn't [TARGET] be at the museum?<break /> That's where works of art belong."
   },
   {
     "quipGroup":"ZOMBIE_APOCALYPSE",
@@ -165,6 +225,9 @@
     "ssml":"If there was a zombie apocalypse, I'd want resourceful people like you in my camp.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"If there was a zombie apocalypse, I'd want resourceful people like [TARGET] in my camp.",
+    "targetableSsml":"If there was a zombie apocalypse, I'd want resourceful people like [TARGET] in my camp."
   }
 ]
