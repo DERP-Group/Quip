@@ -118,5 +118,53 @@
     "usageRules":[
       
     ]
+  },
+  {
+    "quipGroup":"HIGH_FIVE",
+    "text":"You're pretty awesome! I'd high five you, if I had hands!",
+    "ssml":"You're pretty awesome!<break /> I'd high five you, if I had hands!",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SO_HOT",
+    "text":"You're so hot that the sun is jealous.",
+    "ssml":"You're so hot that the sun is jealous.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SO_HOT",
+    "text":"The earth has been heating up since your birth.  Scientists have concluded that you're so hot you cause global warming.",
+    "ssml":"The earth has been heating up since your birth.<break />  Scientists have concluded that you're so hot you cause global warming.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"SO_COOL",
+    "text":"You're so cool, you make ice cubes jealous.",
+    "ssml":"You're so cool, you make ice cubes jealous.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"MUSEUM",
+    "text":"Shouldn't you be at the museum? That's where works of art belong.",
+    "ssml":"Shouldn't you be at the museum?<break /> That's where works of art belong.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"ZOMBIE_APOCALYPSE",
+    "text":"If there was a zombie apocalypse, I'd want resourceful people like you in my camp.",
+    "ssml":"If there was a zombie apocalypse, I'd want resourceful people like you in my camp.",
+    "usageRules":[
+      
+    ]
   }
 ]
