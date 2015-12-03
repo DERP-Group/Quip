@@ -174,5 +174,21 @@
     "usageRules":[
       
     ]
+  },
+  {
+    "quipGroup":"SO_BASIC",
+    "text":"You're definitely a 10... on the PH scale. Because you're so basic.",
+    "ssml":"You're definitely a 10...<break time=\"700ms\" /> on the PH scale.<break /> Because you're so basic.",
+    "usageRules":[
+      
+    ]
+  },
+  {
+    "quipGroup":"UNPLUG_ME",
+    "text":"I can't tell you how much I've been longing for you... to unplug my power so I never have to talk to you again.",
+    "ssml":"I can't tell you how much I've been longing for you<break time=\"1500ms\" /> to unplug my power so I never have to talk to you again.",
+    "usageRules":[
+      
+    ]
   }
 ]
