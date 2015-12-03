@@ -33,17 +33,6 @@
     "targetableSsml":"I love how [TARGET] rocks that look that just says<break strength=\"weak\" /> \"I don't care about my appearance.\""
   },
   {
-    "quipGroup":"TASTE",
-    "text":"You have such good taste talking to me. Now you'll have something to tell your friends about.",
-    "ssml":"You have such good taste talking to me.<break strength=\"strong\" /> Now you'll have something to tell your friends about.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"[TARGET] has such good taste talking to me. Now they'll have something to tell their friends about.",
-    "targetableSsml":"[TARGET] has such good taste talking to me.<break strength=\"strong\" /> Now they'll have something to tell their friends about."
-  },
-  {
     "quipGroup":"PERSONALITY",
     "text":"You're actually not so bad, once I got to know you.",
     "ssml":"You're actually not so bad,<break strength=\"x-strong\" /> once I got to know you.",
@@ -51,8 +40,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET]'s actually not so bad, once I got to know them.",
-    "targetableSsml":"[TARGET]'s actually not so bad,<break strength=\"x-strong\" /> once I got to know them"
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"ROOMMATE",
@@ -73,19 +62,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is so articulate, I can usually understand at least half of what they say.",
-    "targetableSsml":"[TARGET] is so articulate,<break strength=\"strong\" /> I can usually understand at least half of what they say."
-  },
-  {
-    "quipGroup":"NO_FRIENDS",
-    "text":"I'm glad you have no friends, because that means we get to spend more time together.",
-    "ssml":"I'm glad you have no friends, because that means we get to spend more time together.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"I'm glad [TARGET] has no friends, because that means we get to spend more time together.",
-    "targetableSsml":"I'm glad [TARGET] has no friends, because that means we get to spend more time together."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"LOWERED_STANDARDS",
@@ -95,8 +73,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I'm so glad [TARGET] found happiness, after they finally lowered their standards.",
-    "targetableSsml":"I'm so glad [TARGET] found happiness, after they finally lowered their standards."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"ACCENT",
@@ -110,17 +88,6 @@
     "targetableSsml":"I wish I had [TARGET]'s accent.<break /> Then I could drink on the job and no one would know."
   },
   {
-    "quipGroup":"CONDITIONAL_HUG",
-    "text":"I get so excited talking to you that I would hug you, if you'd brush your teeth.",
-    "ssml":"I get so excited talking to you that I would hug you, <break strength=\"medium\" /> if you'd brush your teeth.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"I get so excited talking to [TARGET] that I would hug them, if they'd brush their teeth.",
-    "targetableSsml":"I get so excited talking to [TARGET] that I would hug them, <break strength=\"medium\" /> if they'd brush their teeth."
-  },
-  {
     "quipGroup":"LIQUID_COURAGE",
     "text":"You're probably the bravest person I know, with all the liquid courage you consume.",
     "ssml":"You're probably the bravest person I know, <break strength=\"x-strong\" /> with all the liquid courage you consume.",
@@ -128,19 +95,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is probably the bravest person I know, with all the liquid courage they consume.",
-    "targetableSsml":"[TARGET] is probably the bravest person I know, <break strength=\"x-strong\" /> with all the liquid courage they consume."
-  },
-  {
-    "quipGroup":"CONDITIONAL_BEAUTY",
-    "text":"You're the most beautiful person I know. Now if only you would just shower, people might notice.",
-    "ssml":"You're the most beautiful person I know.<break strength=\"x-strong\" /> Now if only you would just shower,<break strength=\"weak\" /> people might notice.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"[TARGET] is the most beautiful person I know. Now if only they would just shower, people might notice.",
-    "targetableSsml":"[TARGET] is the most beautiful person I know. Now if only they would just shower, people might notice."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"DRUNK",
@@ -161,8 +117,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] doesn't look so bad, for their age.",
-    "targetableSsml":"[TARGET] doesn't look so bad, for their age"
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"PEOPLE_TALK",
@@ -183,8 +139,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I love how [TARGET] just doesn't care what other people think of them.",
-    "targetableSsml":"I love how [TARGET] just doesn't care what other people think of them."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SMARTER_THAN_SOUNDS",
@@ -194,8 +150,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is much smarter than they sound.",
-    "targetableSsml":"[TARGET] is much smarter than they sound."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"OPEN_MOUTH",
@@ -205,19 +161,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] look so intelligent and sharp. Until they open your mouth.",
-    "targetableSsml":"[TARGET] look so intelligent and sharp.<break time=\"800ms\" /> Until they open your mouth."
-  },
-  {
-    "quipGroup":"JUDGMENTAL",
-    "text":"I heard what you said about your friend the other night. It was really kind and considerate, especially coming from such a judgmental person.",
-    "ssml":"I heard what you said about your friend the other night.<break /> It was really kind and considerate, especially coming from such a judgmental person.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"I heard what [TARGET] said about your friend the other night. It was really kind and considerate, especially coming from such a judgmental person.",
-    "targetableSsml":"I heard what [TARGET] said about your friend the other night.<break /> It was really kind and considerate, especially coming from such a judgmental person."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SOCKS_SANDALS",
@@ -249,8 +194,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is definitely a 10... on the PH scale. Because they're so basic.",
-    "targetableSsml":"[TARGET] is definitely a 10... on the PH scale. Because they're so basic."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"UNPLUG_ME",
@@ -260,7 +205,7 @@
       
     ],
     "tags":[],
-    "targetableText":"I can't tell you how much I've been longing for you... to unplug my power so I never have to talk to [TARGET] again.",
-    "targetableSsml":"I can't tell you how much I've been longing for you<break time=\"1500ms\" /> to unplug my power so I never have to talk to [TARGET] again."
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
