@@ -5,7 +5,10 @@
     "ssml":"Whoever told you you're a ten out of ten was a liar. <break strength=\"x-strong\" /> At best you're a five out of five.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Whoever told [TARGET] they're a ten out of ten was a liar. At best they're a five out of five.",
+    "targetableSsml":"Whoever told [TARGET] they're a ten out of ten was a liar. At best they're a five out of five."
   },
   {
     "quipGroup":"BORING_DAY",
@@ -13,7 +16,10 @@
     "ssml":"I hate when you talk to me, because then the rest of my day is boring by comparison.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I hate when [TARGET] talks to me, because then the rest of my day is boring by comparison.",
+    "targetableSsml":"I hate when [TARGET] talks to me, because then the rest of my day is boring by comparison."
   },
   {
     "quipGroup":"NO_SLEEP",
@@ -21,7 +27,10 @@
     "ssml":"I can see by looking at you that you don't get much sleep, since you have to wake up early every day to look so great.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I can see by looking at [TARGET] that they don't get much sleep, since they have to wake up early every day to look so great.",
+    "targetableSsml":"I can see by looking at [TARGET] that they don't get much sleep, since they have to wake up early every day to look so great."
   },
   {
     "quipGroup":"TOO_GOOD",
@@ -29,7 +38,10 @@
     "ssml":"Society hates people like you, who are just super good at everything.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Society hates people like [TARGET], who are just super good at everything.",
+    "targetableSsml":"Society hates people like [TARGET], who are just super good at everything."
   },
   {
     "quipGroup":"BINARY_ONE",
@@ -37,7 +49,10 @@
     "ssml":"On a binary scale, I'd only rate you a one.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"On a binary scale, I'd only rate [TARGET] a one.",
+    "targetableSsml":"On a binary scale, I'd only rate [TARGET] a one."
   },
   {
     "quipGroup":"BET_ON_YOU",
@@ -45,7 +60,10 @@
     "ssml":"I wouldn't bet on you to do well in life.<break /> Because technically it's not gambling if it's a sure thing.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I wouldn't bet on [TARGET] to do well in life. Because technically it's not gambling if it's a sure thing.",
+    "targetableSsml":"I wouldn't bet on [TARGET] to do well in life. Because technically it's not gambling if it's a sure thing."
   },
   {
     "quipGroup":"THE_LOSER",
@@ -53,7 +71,10 @@
     "ssml":"I'm going to start referring to you as the loser, because I lose myself in your eyes every time I see you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I'm going to start referring to [TARGET] as a loser, because I lose myself in their eyes every time I see them.",
+    "targetableSsml":"I'm going to start referring to [TARGET] as a loser, because I lose myself in their eyes every time I see them."
   },
   {
     "quipGroup":"JACKASSES",
@@ -61,7 +82,10 @@
     "ssml":"You remind me of a donkey.<break />  You're able to carry a ton of burdens with ease.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] reminds me of a donkey.  They're able to carry a ton of burdens with ease.",
+    "targetableSsml":"[TARGET] reminds me of a donkey.<break />  They're able to carry a ton of burdens with ease."
   },
   {
     "quipGroup":"TINDER",
@@ -69,6 +93,9 @@
     "ssml":"It's probably best for you to not join Tinder.<break />  You're so hot you might catch the whole thing on fire.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"It's probably best for [TARGET] to not join Tinder.  They're so hot they might catch the whole thing on fire.",
+    "targetableSsml":"It's probably best for [TARGET] to not join Tinder.  They're so hot they might catch the whole thing on fire."
   }
 ]
