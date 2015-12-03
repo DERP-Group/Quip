@@ -7,8 +7,8 @@
       
     ],
     "tags":[],
-    "targetableText":"Whoever told [TARGET] they're a ten out of ten was a liar. At best they're a five out of five.",
-    "targetableSsml":"Whoever told [TARGET] they're a ten out of ten was a liar. At best they're a five out of five."
+    "targetableText":"Whoever said [TARGET] was a ten out of ten is a liar. At best [TARGET] is a five out of five.",
+    "targetableSsml":"Whoever said [TARGET] was a ten out of ten is a liar. <break strength=\"x-strong\" /> At best [TARGET] is a five out of five."
   },
   {
     "quipGroup":"BORING_DAY",
@@ -29,8 +29,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I can see by looking at [TARGET] that they don't get much sleep, since they have to wake up early every day to look so great.",
-    "targetableSsml":"I can see by looking at [TARGET] that they don't get much sleep, since they have to wake up early every day to look so great."
+    "targetableText":"I can see that [TARGET] doesn't get much sleep, since you'd have to wake up early every day to look that great!",
+    "targetableSsml":"I can see that [TARGET] doesn't get much sleep, since you'd have to wake up early every day to look that great!"
   },
   {
     "quipGroup":"TOO_GOOD",
@@ -63,7 +63,7 @@
     ],
     "tags":[],
     "targetableText":"I wouldn't bet on [TARGET] to do well in life. Because technically it's not gambling if it's a sure thing.",
-    "targetableSsml":"I wouldn't bet on [TARGET] to do well in life. Because technically it's not gambling if it's a sure thing."
+    "targetableSsml":"I wouldn't bet on [TARGET] to do well in life.<break /> Because technically it's not gambling if it's a sure thing."
   },
   {
     "quipGroup":"THE_LOSER",
@@ -73,8 +73,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I'm going to start referring to [TARGET] as a loser, because I lose myself in their eyes every time I see them.",
-    "targetableSsml":"I'm going to start referring to [TARGET] as a loser, because I lose myself in their eyes every time I see them."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"JACKASSES",
@@ -84,8 +84,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] reminds me of a donkey.  They're able to carry a ton of burdens with ease.",
-    "targetableSsml":"[TARGET] reminds me of a donkey.<break />  They're able to carry a ton of burdens with ease."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"TINDER",
@@ -95,7 +95,18 @@
       
     ],
     "tags":[],
-    "targetableText":"It's probably best for [TARGET] to not join Tinder.  They're so hot they might catch the whole thing on fire.",
-    "targetableSsml":"It's probably best for [TARGET] to not join Tinder.  They're so hot they might catch the whole thing on fire."
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"HEART_OF_GOLD",
+    "text":"You must weigh a lot, because you have a heart of gold.",
+    "ssml":"You must weigh a lot, because you have a heart of gold.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
