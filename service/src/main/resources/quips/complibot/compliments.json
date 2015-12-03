@@ -40,8 +40,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] has an aura that is positively glowing today.",
-    "targetableSsml":"[TARGET] has an aura that is positively glowing today."
+    "targetableText":"[TARGET] has a super positive aura.",
+    "targetableSsml":"[TARGET] has a super positive aura."
   },
   {
     "quipGroup":"CHANGE_A_THING",
@@ -95,19 +95,19 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] can do anything they set their mind to.",
-    "targetableSsml":"[TARGET] can do anything they set their mind to."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"BELIEVE_IN_YOU",
-    "text":"I believe in you.",
-    "ssml":"I believe in you.",
+    "text":"I believe in you!",
+    "ssml":"I believe in you!",
     "usageRules":[
       
     ],
     "tags":[],
-    "targetableText":"I believe in [TARGET].",
-    "targetableSsml":"I believe in [TARGET]"
+    "targetableText":"I believe in [TARGET]!",
+    "targetableSsml":"I believe in [TARGET]!"
   },
   {
     "quipGroup":"GOOD_FRIEND",
@@ -139,8 +139,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is so smart, I'm always learning new things from them.",
-    "targetableSsml":"[TARGET] is so smart, I'm always learning new things from them."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"MAGNETIC_ATTRACTION",
@@ -150,8 +150,8 @@
       
     ],
     "tags":[],
-    "targetableText":"Is [TARGET] wearing a bunch of magnets? Because they're extremely attractive!",
-    "targetableSsml":"Is [TARGET] wearing a bunch of magnets? Because they're extremely attractive!"
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"GENIE",
@@ -161,8 +161,8 @@
       
     ],
     "tags":[],
-    "targetableText":"Is [TARGET] a genie? Because they grant my wish every time they talk to me.",
-    "targetableSsml":"Is [TARGET] a genie?<break time=\"500ms\" /> Because they grant my wish every time they talk to me."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"HIGH_FIVE",
@@ -172,8 +172,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is pretty awesome! I'd high five them, if I had hands!",
-    "targetableSsml":"[TARGET] is pretty awesome!<break /> I'd high five them, if I had hands!"
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SO_HOT",
@@ -194,8 +194,8 @@
       
     ],
     "tags":[],
-    "targetableText":"The earth has been heating up since [TARGET]'s birth.  Scientists have concluded that they're so hot they cause global warming.",
-    "targetableSsml":"The earth has been heating up since [TARGET]'s birth.<break />  Scientists have concluded that they're so hot they cause global warming."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SO_COOL",
@@ -205,8 +205,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET]'s so cool, they make ice cubes jealous.",
-    "targetableSsml":"[TARGET]'s so cool, they make ice cubes jealous."
+    "targetableText":"[TARGET] is so cool, that ice cubes are jealous.",
+    "targetableSsml":"[TARGET] is so cool, that ice cubes are jealous."
   },
   {
     "quipGroup":"MUSEUM",
@@ -216,8 +216,8 @@
       
     ],
     "tags":[],
-    "targetableText":"Shouldn't [TARGET] be at the museum? That's where works of art belong.",
-    "targetableSsml":"Shouldn't [TARGET] be at the museum?<break /> That's where works of art belong."
+    "targetableText":"[TARGET] should be at the museum. That's where works of art belong.",
+    "targetableSsml":"[TARGET] should be at the museum.<break /> That's where works of art belong."
   },
   {
     "quipGroup":"ZOMBIE_APOCALYPSE",
