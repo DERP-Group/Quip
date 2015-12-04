@@ -11,6 +11,30 @@ import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.quip.model.Quip;
 
 public class QuipUtilTest {
+  
+  public Quip getBasicQuip(){
+    Quip quip = new Quip();
+    quip.setQuipGroup("I_LIGHT_UP");
+    quip.setTags(null);
+    quip.setUsageRules(null);
+    quip.setText("I light up every time you talk to me!");
+    quip.setSsml("I light up every time you talk to me!");
+    quip.setTargetableText("I light up every time [TARGET] talks to me!");
+    quip.setTargetableSsml("I light up every time [TARGET] talks to me!");
+    return quip;
+  }
+  
+  public Quip getAdvancedQuip(){
+    Quip quip = new Quip();
+    quip.setQuipGroup("STOCKHOLME");
+    quip.setTags(null);
+    quip.setUsageRules(null);
+    quip.setText("Stockholme Syndrome is the only reason CompliBot likes you.");
+    quip.setSsml("Stockholme Syndrome is the only reason [COMPLIBOT] likes you.");
+    quip.setTargetableText("Stockholme Syndrome is the only reason CompliBot likes [TARGET].");
+    quip.setTargetableSsml("Stockholme Syndrome is the only reason [COMPLIBOT] likes [TARGET].");
+    return quip;
+  }
 
   @Test
   public void testContentSubstitution_noValues() throws DerpwizardException{
@@ -77,30 +101,6 @@ public class QuipUtilTest {
 
     String response = QuipUtil.substituteContent("Who's awesome? [NAME]", replacementValues);
     assertEquals("Who's awesome? CompliBot",response);
-  }
-  
-  public Quip getBasicQuip(){
-    Quip quip = new Quip();
-    quip.setQuipGroup("I_LIGHT_UP");
-    quip.setTags(null);
-    quip.setUsageRules(null);
-    quip.setText("I light up every time you talk to me!");
-    quip.setSsml("I light up every time you talk to me!");
-    quip.setTargetableText("I light up every time [TARGET] talks to me!");
-    quip.setTargetableSsml("I light up every time [TARGET] talks to me!");
-    return quip;
-  }
-  
-  public Quip getAdvancedQuip(){
-    Quip quip = new Quip();
-    quip.setQuipGroup("STOCKHOLME");
-    quip.setTags(null);
-    quip.setUsageRules(null);
-    quip.setText("Stockholme Syndrome is the only reason CompliBot likes you.");
-    quip.setSsml("Stockholme Syndrome is the only reason [COMPLIBOT] likes you.");
-    quip.setTargetableText("Stockholme Syndrome is the only reason CompliBot likes [TARGET].");
-    quip.setTargetableSsml("Stockholme Syndrome is the only reason [COMPLIBOT] likes [TARGET].");
-    return quip;
   }
   
   @Test
