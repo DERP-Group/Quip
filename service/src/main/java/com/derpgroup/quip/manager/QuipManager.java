@@ -99,6 +99,7 @@ public class QuipManager extends AbstractManager {
     }
 
     String target = messageMap.get("target");
+    target = target.substring(0,1).toUpperCase()+target.substring(1);
     Queue<String> complimentsUsed = metadata.getComplimentsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.COMPLIMENT, complimentsUsed, target);
 
