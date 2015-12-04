@@ -2,6 +2,8 @@ package com.derpgroup.quip.model;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Quip {
 
   private String text;
@@ -53,6 +55,9 @@ public class Quip {
   }
   public void setTargetableSsml(String targetableSsml) {
     this.targetableSsml = targetableSsml;
+  }
+  public boolean isTargetable(){
+    return StringUtils.isNotEmpty(targetableText) && StringUtils.isNotEmpty(targetableSsml);
   }
   public String toString(){
     return "("+quipGroup+") "+text;
