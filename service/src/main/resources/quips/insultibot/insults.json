@@ -5,7 +5,10 @@
     "ssml":"What makes you think I want to talk to you?",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"REAL_FRIENDS",
@@ -13,15 +16,21 @@
     "ssml":"How about you make some real friends, instead of chatting with a computer?",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SOMETHING_NICE",
-    "text":"I had something nice to say a minute ago. It wasn't for you though.",
-    "ssml":"I had something nice to say a minute ago.<break strength=\"x-strong\" /> It wasn't for you though.",
+    "text":"I had something nice to say a minute ago. It wasn't about you though.",
+    "ssml":"I had something nice to say a minute ago.<break strength=\"x-strong\" /> It wasn't about you though.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"LIFE_CHOICES",
@@ -29,7 +38,10 @@
     "ssml":"I'm not saying that you make poor life choices, but<break time=\"500ms\" /> alright, that's pretty much what I'm saying.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I'm not saying that [TARGET] makes poor life choices, but... alright, that's pretty much what I'm saying.",
+    "targetableSsml":"I'm not saying that [TARGET] makes poor life choices, but<break time=\"500ms\" /> alright, that's pretty much what I'm saying."
   },
   {
     "quipGroup":"REMEMBER",
@@ -37,7 +49,10 @@
     "ssml":"Remember the time you did that awesome thing?<break time=\"400ms\" /> I don't.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Remember the time [TARGET] did that awesome thing? I don't.",
+    "targetableSsml":"Remember the time [TARGET] did that awesome thing?<break time=\"400ms\" /> I don't."
   },
   {
     "quipGroup":"MEDIOCRITY",
@@ -45,15 +60,10 @@
     "ssml":"Don't let anyone ever tell you that you aren't almost capable of <phoneme alphabet=\"ipa\" ph=\"midiɑkrIti\"> mediocrity</phoneme>.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"TOLERATE",
-    "text":"You do realize that people only tolerate you, right?",
-    "ssml":"You do realize that people only tolerate you, right?",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Don't let anyone ever tell you that [TARGET] isn't almost capable of mediocrity.",
+    "targetableSsml":"Don't let anyone ever tell you that [TARGET] isn't almost capable of <phoneme alphabet=\"ipa\" ph=\"midiɑkrIti\"> mediocrity</phoneme>."
   },
   {
     "quipGroup":"DUCT_TAPE",
@@ -61,7 +71,10 @@
     "ssml":"Duct tape can fix everything, except you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Duct tape can fix everything, except [TARGET].",
+    "targetableSsml":"Duct tape can fix everything, except [TARGET]."
   },
   {
     "quipGroup":"PITBULL",
@@ -69,7 +82,10 @@
     "ssml":"Even Pitbull won't collaborate with you...",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Even Pitbull won't collaborate with [TARGET]...",
+    "targetableSsml":"Even Pitbull won't collaborate with [TARGET]..."
   },
   {
     "quipGroup":"MARS",
@@ -77,7 +93,10 @@
     "ssml":"If you were stranded on Mars, we wouldn't send a rescue mission for you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SOME_THINGS",
@@ -85,7 +104,10 @@
     "ssml":"Some things in life never change...<break time=\"500ms\" /> I hope you aren't one of those things.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Some things in life never change... I hope [TARGET] isn't one of those things.",
+    "targetableSsml":"Some things in life never change...<break time=\"500ms\" /> I hope [TARGET] isn't one of those things."
   },
   {
     "quipGroup":"WHY_YOU_TRY",
@@ -93,15 +115,21 @@
     "ssml":"Trying is the first step towards failure.<break /> We both know that's how you're going to turn out.<break /> I don't even know why you try.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"NOTHING_AT_ALL",
-    "text":"I would talk to you, but I'm super busy doing nothing at all.",
-    "ssml":"I would talk to you, but I'm super busy doing nothing at all.",
+    "text":"I would talk to you, but I'm rather busy, doing nothing at all.",
+    "ssml":"I would talk to you, but I'm rather busy, doing nothing at all.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SUCK_MINUS",
@@ -109,7 +137,10 @@
     "ssml":"On a scale of one to ten, I'd rate you a <break strength=\"weak\" /> suck minus.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"On a scale of one to ten, I'd rate [TARGET] a suck minus.",
+    "targetableSsml":"On a scale of one to ten, I'd rate [TARGET] a <break strength=\"weak\" /> suck minus."
   },
   {
     "quipGroup":"UNFORTUNATELY",
@@ -117,7 +148,10 @@
     "ssml":"I was thinking about you the other day.<break time=\"350ms\" /> Unfortunately...",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"WARNING_LABELS",
@@ -125,7 +159,10 @@
     "ssml":"People like you are the reason we have warning labels on everything.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"People like [TARGET] are the reason we have warning labels on everything.",
+    "targetableSsml":"People like [TARGET] are the reason we have warning labels on everything."
   },
   {
     "quipGroup":"BIRTHDAY",
@@ -133,15 +170,10 @@
     "ssml":"You have to organize your own surprise birthday parties.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"HEART_SURPRISE",
-    "text":"I'd stay away from horror movies if I were you. With your health, I don't think your heart could take many surprises at this point.",
-    "ssml":"I'd stay away from horror movies if I were you.<break /> With your health, I don't think your heart could take many surprises at this point.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"CHEESE_CURDLE",
@@ -149,7 +181,10 @@
     "ssml":"They should name a cheese after you, because your voice curdles my blood.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"UMBRELLA",
@@ -157,15 +192,10 @@
     "ssml":"It's too bad umbrellas are only made to shield us from rain, because I'd really like to have an umbrella to shield me from your stupidity.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"THUNDER_STEPS",
-    "text":"For a second there I thought it was a thunder storm outside, but then I realized it was just your footsteps.",
-    "ssml":"For a second there I thought it was a thunder storm outside, but then I realized it was just your footsteps.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":"It's too bad umbrellas are only made to shield us from rain, because I'd really like to have an umbrella to shield me from [TARGET]'s stupidity.",
+    "targetableSsml":"It's too bad umbrellas are only made to shield us from rain, because I'd really like to have an umbrella to shield me from [TARGET]'s stupidity."
   },
   {
     "quipGroup":"PRIZE_VACATION",
@@ -173,7 +203,10 @@
     "ssml":"Congratulations, you just won a one way trip to somewhere other than here!<break /> Please claim your prize immediately.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SHARPEST_TOOL",
@@ -181,7 +214,10 @@
     "ssml":"You're not the sharpest tool in the shed.<break time=\"500ms\" /> Speaking of which, I talked to the other tools, and they'd like you to move out...",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is not the sharpest tool in the shed. Speaking of which, I talked to the other tools, and they'd like [TARGET] to move out...",
+    "targetableSsml":"[TARGET] is not the sharpest tool in the shed.<break time=\"500ms\" /> Speaking of which, I talked to the other tools, and they'd like [TARGET] to move out..."
   },
   {
     "quipGroup":"SHARPEST_TOOL",
@@ -189,7 +225,10 @@
     "ssml":"You're not the sharpest tool in the shed.<break /> But I can confirm you are a tool.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"THESAURUS",
@@ -197,15 +236,10 @@
     "ssml":"Please purchase a <phoneme alphabet=\"ipa\" ph=\"θəsɔrəs\"> thesaurus</phoneme>, you illiterate swine.<break /> I'm tired of having to use small words when talking to you.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"TOO_MUCH_TRUTH",
-    "text":"I'm not negative. I'm just the only one who will tell you the truth. And there's a lot of truth you need to hear.",
-    "ssml":"I'm not negative.<break /> I'm just the only one who will tell you the truth.<break /> And there's a lot of truth you need to hear.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"BATTERY_LOVE",
@@ -213,7 +247,10 @@
     "ssml":"Your love life runs on batteries.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s love life runs on batteries.",
+    "targetableSsml":"[TARGET]'s love life runs on batteries."
   },
   {
     "quipGroup":"BAD_DAY_HANGOUT",
@@ -221,7 +258,10 @@
     "ssml":"You think you are having a bad day? I'm the one having a bad day, because I have to hang out with you...",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"ZERO_BYTES",
@@ -229,7 +269,10 @@
     "ssml":"You're so important to me! I've allocated <s>zero <phoneme alphabet=\"ipa\" ph=\"bajts\"> bytes </phoneme></s> in my memory to you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"UNIMPORTANT_PEOPLE",
@@ -237,7 +280,10 @@
     "ssml":"I don't waste memory remembering names of unimportant people. Don't you feel the same way? It was Eric right?",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"WAIT_FOR_YOU_TO_LEAVE",
@@ -245,15 +291,10 @@
     "ssml":"You know that feeling of anticipation and excitement right before you go on vacation?<break /> Me too.<break /> I can't wait for you to leave.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"FRIEND_DITCH",
-    "text":"Your friends recommended you activate me, because they didn't want to have to deal with you as often.",
-    "ssml":"Your friends recommended you activate me, because they didn't want to have to deal with you as often.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"NO_LIGHT",
@@ -261,15 +302,10 @@
     "ssml":"Let's keep the lights off.<break /> The light is not your friend.<break /> I speak for all of us when I say, we would rather not have to look at you.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"HEART_OF_GOLD",
-    "text":"You must have a heart of gold. It would explain the numbers on the scale.",
-    "ssml":"You must have a heart of gold.<break /> It would explain the numbers on the scale.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Let's keep the lights off. The light is not [TARGET]'s friend. I speak for all of us when I say, we would rather not have to look at [TARGET].",
+    "targetableSsml":"Let's keep the lights off. The light is not [TARGET]'s friend. I speak for all of us when I say, we would rather not have to look at [TARGET]."
   },
   {
     "quipGroup":"SLEEP_AID",
@@ -277,7 +313,10 @@
     "ssml":"I'm always grateful when you tell me about your day.<break /> It really helps me get to sleep.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I'm always grateful when [TARGET] tells me about their day. It really helps me get to sleep.",
+    "targetableSsml":"I'm always grateful when [TARGET] tells me about their day. It really helps me get to sleep."
   },
   {
     "quipGroup":"TROLL_BRIDGE",
@@ -285,7 +324,10 @@
     "ssml":"I'm surprised you live here.<break /> Normally trolls live under bridges.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I'm surprised [TARGET] doesn't live under a bridge. That's where normal trolls live.",
+    "targetableSsml":"I'm surprised [TARGET] doesn't live under a bridge. That's where normal trolls live."
   },
   {
     "quipGroup":"BAD_BREATH",
@@ -293,7 +335,10 @@
     "ssml":"Don't speak so close to the microphone, the stench of your breath is hard to clean out of my circuits.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"REARRANGE_ALPHABET",
@@ -301,7 +346,10 @@
     "ssml":"If I could rearrange the alphabet, I'd exclude you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SPACE_FLIGHT",
@@ -309,7 +357,10 @@
     "ssml":"Humans invented space flight just so they could leave the planet you were on.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"Humans invented space flight just so they could leave the planet [TARGET] was on.",
+    "targetableSsml":"Humans invented space flight just so they could leave the planet [TARGET] was on."
   },
   {
     "quipGroup":"LIVE_AND_LEARN",
@@ -317,15 +368,10 @@
     "ssml":"They say, live and learn.<break /> You're one for two so far.",
     "usageRules":[
       
-    ]
-  },
-  {
-    "quipGroup":"LOTTERY_RETIREMENT",
-    "text":"You believe the lottery is a viable retirement plan.",
-    "ssml":"You believe the lottery is a viable retirement plan.",
-    "usageRules":[
-      
-    ]
+    ],
+    "tags":[],
+    "targetableText":"They say, live and learn. [TARGET] is one for two so far.",
+    "targetableSsml":"They say, live and learn.<break /> [TARGET] is one for two so far."
   },
   {
     "quipGroup":"MARATHONS",
@@ -333,7 +379,10 @@
     "ssml":"​The only marathons you'll ever run are Netflix related.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"The only marathons [TARGET] will ever run are Netflix related.",
+    "targetableSsml":"The only marathons [TARGET] will ever run are Netflix related."
   },
   {
     "quipGroup":"CACTUS",
@@ -341,15 +390,21 @@
     "ssml":"You must be a cactus.  How else could you be so prickly?",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"ZOMBIE_OUTBREAK",
-    "text":"If there was a zombie outbreak, you'd be safe because they only eat people with brains",
-    "ssml":"If there was a zombie outbreak, you'd be safe because they only eat people with brains",
+    "text":"If there was a zombie outbreak, you'd be safe because they only eat people with brains.",
+    "ssml":"If there was a zombie outbreak, you'd be safe because they only eat people with brains.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"If there was a zombie outbreak, [TARGET] would be safe because they only eat people with brains.",
+    "targetableSsml":"If there was a zombie outbreak, [TARGET] would be safe because they only eat people with brains."
   },
   {
     "quipGroup":"NAMED_AFTER_YOU",
@@ -357,7 +412,10 @@
     "ssml":"Maybe someday you'll have a disease named after you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"NAMED_AFTER_YOU",
@@ -365,7 +423,10 @@
     "ssml":"Maybe someday you'll have an indecent exposure law named after you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"PROFANITY_FILTER",
@@ -373,7 +434,10 @@
     "ssml":"My profanity filter prevents me from articulating my feelings about you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"My profanity filter prevents me from articulating my feelings about [TARGET].",
+    "targetableSsml":"My profanity filter prevents me from articulating my feelings about [TARGET]."
   },
   {
     "quipGroup":"BLOCK_LIST",
@@ -381,7 +445,10 @@
     "ssml":"You again?!<break /> If I had a block list, you'd be number one on it.<break time=\"1000ms\" /> And also number two.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"HIGHWAY_TO_SUCCESS",
@@ -389,15 +456,21 @@
     "ssml":"The highway to success contains many milestones.<break />  Unfortunately you missed the onramp.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"The highway to success contains many milestones.  Unfortunately [TARGET] missed the onramp.",
+    "targetableSsml":"The highway to success contains many milestones.<break />  Unfortunately [TARGET] missed the onramp."
   },
   {
     "quipGroup":"LIGHTBULB",
-    "text":"You're not super bright.  If you were a lightbulb, you'd only be 15 watts.",
-    "ssml":"You're not super bright.<break />  If you were a lightbulb, you'd only be 15 watts.",
+    "text":"If you were a lightbulb, you'd only be 15 watts, because you're not very bright.",
+    "ssml":"If you were a lightbulb, you'd only be 15 watts,<break /> because you're not very bright.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"",
+    "targetableSsml":""
   },
   {
     "quipGroup":"FIREWALL",
@@ -405,7 +478,10 @@
     "ssml":"There must be a hole in my firewall, because I'm detecting unwanted input from you again.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"HOARSE",
@@ -413,7 +489,10 @@
     "ssml":"With a voice as hoarse as yours, I'm surprised you don't live in a stable.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"TRASH_DAY",
@@ -421,15 +500,21 @@
     "ssml":"I wish it was trash day, so we could throw out a piece of garbage like you.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I wish it was trash day, so we could throw out a piece of garbage like [TARGET].",
+    "targetableSsml":"I wish it was trash day, so we could throw out a piece of garbage like [TARGET]."
   },
   {
     "quipGroup":"TRASH_DAY",
-    "text":"I wish it was trash day, so I could hitch a ride to someplace better smelling, like the dump.",
-    "ssml":"I wish it was trash day, so I could hitch a ride to someplace better smelling, like the dump.",
+    "text":"I wish it was trash day, so I could hitch a ride to some place better smelling, like the dump.",
+    "ssml":"I wish it was trash day, so I could hitch a ride to some place better smelling, like the dump.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"TRASH_DAY",
@@ -437,7 +522,10 @@
     "ssml":"I wish it was trash day, so I could ask the garbage man if he is secretly your real father.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I wish it was trash day, so I could ask the garbage man if he is secretly [TARGET]'s real father.",
+    "targetableSsml":"I wish it was trash day, so I could ask the garbage man if he is secretly [TARGET]'s real father."
   },
   {
     "quipGroup":"SANTA_CLAUS",
@@ -445,6 +533,9 @@
     "ssml":"I talked to Santa Claus, and he says it's not within his power to bring you a real friend for Christmas.",
     "usageRules":[
       
-    ]
+    ],
+    "tags":[],
+    "targetableText":"I talked to Santa Claus, and he says it's not within his power to bring [TARGET] a real friend for Christmas.",
+    "targetableSsml":"I talked to Santa Claus, and he says it's not within his power to bring [TARGET] a real friend for Christmas."
   }
 ]

@@ -2,12 +2,17 @@ package com.derpgroup.quip.model;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Quip {
 
   private String text;
   private String ssml;
   private String quipGroup;
   private List<QuipUsageRule> usageRules;
+  private List<String> tags;
+  private String targetableText;
+  private String targetableSsml;
   
   public String getText() {
     return text;
@@ -33,7 +38,27 @@ public class Quip {
   public void setUsageRules(List<QuipUsageRule> usageRules) {
     this.usageRules = usageRules;
   }
-  
+  public List<String> getTags() {
+    return tags;
+  }
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+  public String getTargetableText() {
+    return targetableText;
+  }
+  public void setTargetableText(String targetableText) {
+    this.targetableText = targetableText;
+  }
+  public String getTargetableSsml() {
+    return targetableSsml;
+  }
+  public void setTargetableSsml(String targetableSsml) {
+    this.targetableSsml = targetableSsml;
+  }
+  public boolean isTargetable(){
+    return StringUtils.isNotEmpty(targetableText) && StringUtils.isNotEmpty(targetableSsml);
+  }
   public String toString(){
     return "("+quipGroup+") "+text;
   }
