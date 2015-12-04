@@ -1,6 +1,7 @@
 package com.derpgroup.quip.manager;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
@@ -19,6 +20,7 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
+import com.derpgroup.quip.util.QuipUtil;
 
 public class QuipManager extends AbstractManager {
   private final Logger LOG = LoggerFactory.getLogger(QuipManager.class);
@@ -31,6 +33,7 @@ public class QuipManager extends AbstractManager {
   protected static final int MAXIMUM_QUIP_HISTORY_SIZE = 10;
   protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
   private static final int MAX_QUIP_REROLLS = 10;
+  private static final int MAX_TARGETABLE_QUIP_REROLLS = 20;
   
   public QuipManager(){
     super();
@@ -51,6 +54,64 @@ public class QuipManager extends AbstractManager {
       recentlyUsedQuips.remove();
     }
     LOG.debug(quipType.toString().toLowerCase()+" being used ("+quip.getQuipGroup()+"): "+quip.getText());
+    return quip;
+  }
+  
+  protected Quip getRandomTargetableQuip(QuipType quipType, Queue<String> recentlyUsedQuips, String target){
+    QuipStore quipStore = QuipStore.getInstance();
+    LOG.debug("Recently used "+quipType.toString().toLowerCase()+"s in user session:\n"+recentlyUsedQuips.toString());
+    int maxQuipHistorySize = determineMaxQuipHistorySize(quipStore.getQuips(quipType).size());
+    
+    Quip quip = null;
+    int rerolls = 0;
+    boolean needsToReroll = true;
+    while(needsToReroll){
+      quip = quipStore.getRandomQuip(quipType);
+      rerolls++;
+      boolean wasUsedRecently = recentlyUsedQuips.contains(quip.getQuipGroup());
+      boolean hasHitMaxRerolls = rerolls >= MAX_TARGETABLE_QUIP_REROLLS;
+      
+      // Mark [TARGET] as a substitutable field
+      Map<String,String> expectedFieldsToReplace = new HashMap<String, String>();
+      expectedFieldsToReplace.put("[TARGET]", target);
+      quip = QuipUtil.substituteContent(quip, null, expectedFieldsToReplace);
+      
+      // TODO: Substitute phonetic plugins, and grammatical fields later
+      
+      // Determine if we successfully substituted all bracketed fields
+      boolean substitutionSuccessful = true;  // TODO: Check text, ssml, targetableText, targetableSSML for bracketed values if not null
+      
+      needsToReroll = !quip.isTargetable() || !substitutionSuccessful || wasUsedRecently || hasHitMaxRerolls;
+    }
+    recentlyUsedQuips.add(quip.getQuipGroup());
+    while(recentlyUsedQuips.size() > maxQuipHistorySize){
+      recentlyUsedQuips.remove();
+    }
+    LOG.debug(quipType.toString().toLowerCase()+" being used ("+quip.getQuipGroup()+"): "+quip.getTargetableText());
+    return quip;
+  }
+  
+  protected Quip doTargetableComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+    if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
+      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to compliment.</speak>",
+          "I'm sorry, I didn't understand who you wanted me to compliment.",
+          "Could not determine compliment recipient");
+    }
+
+    String target = messageMap.get("target");
+    Queue<String> complimentsUsed = metadata.getComplimentsUsed();
+    Quip quip = getRandomTargetableQuip(QuipType.COMPLIMENT, complimentsUsed, target);
+
+    String plaintext = quip.getText();
+    String ssml = quip.getSsml();
+    if(quip.isTargetable()){
+      plaintext = quip.getTargetableText();
+      ssml = quip.getTargetableSsml();
+    }
+
+    builder.setShortFormTextMessage("CompliBot compliment");
+    builder.setFullTextMessage(plaintext);
+    builder.text(ssml);
     return quip;
   }
   
@@ -189,6 +250,9 @@ public class QuipManager extends AbstractManager {
     case "COMPLIMENT":
       doComplimentRequest(messageMap, builder, metadata);
       break;
+    case "COMPLIMENT_TARGETABLE":
+      doTargetableComplimentRequest(messageMap, builder, metadata);
+      break;
     case "INSULT":
       doInsultRequest(messageMap, builder, metadata);
       break;
@@ -242,7 +306,7 @@ public class QuipManager extends AbstractManager {
       doDefaultRequest(messageMap, builder, metadata);
       return;
     }
-    switchOnSubject(entry.getMessageSubject(), messageMap, builder, metadata);
+    switchOnSubject(entry.getMessageSubject(), entry.getMessageMap(), builder, metadata);
   }
 
   protected void doWhoIsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {

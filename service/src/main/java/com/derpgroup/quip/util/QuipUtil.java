@@ -3,6 +3,8 @@ package com.derpgroup.quip.util;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.derpgroup.quip.model.Quip;
 
 public class QuipUtil {
@@ -14,7 +16,7 @@ public class QuipUtil {
    * @return
    */
   public static String substituteContent(String input, Map<String,String> replacementValues) {
-    if(replacementValues==null){return input;}
+    if(replacementValues==null || StringUtils.isEmpty(input)){return input;}
     String modifiedInput = input;
     for(Entry<String, String> entry : replacementValues.entrySet()){
       modifiedInput = modifiedInput.replace(entry.getKey(), entry.getValue());
