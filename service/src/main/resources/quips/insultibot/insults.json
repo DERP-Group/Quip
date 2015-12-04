@@ -29,8 +29,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I had something nice to say a minute ago. It certainly wasn't about [TARGET] though.",
-    "targetableSsml":"I had something nice to say a minute ago.<break strength=\"x-strong\" /> It certainly wasn't about [TARGET] though."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"LIFE_CHOICES",
@@ -128,8 +128,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I would talk about [TARGET], but I'm rather busy, doing nothing at all.",
-    "targetableSsml":"I would talk about [TARGET], but I'm rather busy, doing nothing at all."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"SUCK_MINUS",
@@ -271,8 +271,8 @@
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] is so important to me! I've allocated zero bytes in my memory to them.",
-    "targetableSsml":"[TARGET] is so important to me! I've allocated <s>zero <phoneme alphabet=\"ipa\" ph=\"bajts\"> bytes </phoneme></s> in my memory to them."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"UNIMPORTANT_PEOPLE",

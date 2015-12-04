@@ -29,8 +29,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I can see that [TARGET] doesn't get much sleep, since you'd have to wake up early every day to look that great!",
-    "targetableSsml":"I can see that [TARGET] doesn't get much sleep, since you'd have to wake up early every day to look that great!"
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"TOO_GOOD",
