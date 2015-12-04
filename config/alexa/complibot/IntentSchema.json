@@ -5,8 +5,26 @@
       "slots": []
     },
     {
+      "intent": "COMPLIMENT_TARGETABLE",
+      "slots": [
+        {
+          "name":"target",
+          "type":"AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
       "intent": "WINSULT",
       "slots": []
+    },
+    {
+      "intent": "WINSULT_TARGETABLE",
+      "slots": [
+        {
+          "name":"target",
+          "type":"AMAZON.LITERAL"
+        }
+      ]
     },
     {
       "intent": "HELP",

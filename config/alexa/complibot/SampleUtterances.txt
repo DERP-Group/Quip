@@ -1,9 +1,11 @@
 COMPLIMENT to compliment me
 COMPLIMENT for a compliment
 COMPLIMENT to give me a compliment
+COMPLIMENT_TARGETABLE to compliment {username|target}
 WINSULT to insult me
 WINSULT for an insult
 WINSULT to give me an insult
+WINSULT_TARGETABLE to insult {username|target}
 HELP for a little bit of help
 HELP how do I use you
 HELP how do I use it
