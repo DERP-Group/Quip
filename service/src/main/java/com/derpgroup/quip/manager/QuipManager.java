@@ -105,12 +105,87 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
-    if(quip.isTargetable()){
+    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
 
     builder.setShortFormTextMessage("CompliBot compliment");
+    builder.setFullTextMessage(plaintext);
+    builder.text(ssml);
+    return quip;
+  }
+  
+  protected Quip doTargetableWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+    if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
+      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to insult.</speak>",
+          "I'm sorry, I didn't understand who you wanted me to insult.",
+          "Could not determine insult recipient");
+    }
+
+    String target = messageMap.get("target");
+    target = target.substring(0,1).toUpperCase()+target.substring(1);
+    Queue<String> winsultsUsed = metadata.getWinsultsUsed();
+    Quip quip = getRandomTargetableQuip(QuipType.WINSULT, winsultsUsed, target);
+
+    String plaintext = quip.getText();
+    String ssml = quip.getSsml();
+    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+      plaintext = quip.getTargetableText();
+      ssml = quip.getTargetableSsml();
+    }
+
+    builder.setShortFormTextMessage("CompliBot insult");
+    builder.setFullTextMessage(plaintext);
+    builder.text(ssml);
+    return quip;
+  }
+  
+  protected Quip doTargetableInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+    if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
+      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to insult.</speak>",
+          "I'm sorry, I didn't understand who you wanted me to insult.",
+          "Could not determine insult recipient");
+    }
+
+    String target = messageMap.get("target");
+    target = target.substring(0,1).toUpperCase()+target.substring(1);
+    Queue<String> insultsUsed = metadata.getInsultsUsed();
+    Quip quip = getRandomTargetableQuip(QuipType.INSULT, insultsUsed, target);
+
+    String plaintext = quip.getText();
+    String ssml = quip.getSsml();
+    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+      plaintext = quip.getTargetableText();
+      ssml = quip.getTargetableSsml();
+    }
+
+    builder.setShortFormTextMessage("InsultiBot insult");
+    builder.setFullTextMessage(plaintext);
+    builder.text(ssml);
+    return quip;
+  }
+  
+  protected Quip doTargetableBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+    if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
+      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to compliment.</speak>",
+          "I'm sorry, I didn't understand who you wanted me to compliment.",
+          "Could not determine compliment recipient");
+    }
+
+    String target = messageMap.get("target");
+    target = target.substring(0,1).toUpperCase()+target.substring(1);
+    Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
+    Quip quip = getRandomTargetableQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed, target);
+
+    String plaintext = quip.getText();
+    String ssml = quip.getSsml();
+    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+      plaintext = quip.getTargetableText();
+      ssml = quip.getTargetableSsml();
+    }
+
+    builder.setShortFormTextMessage("InsultiBot compliment");
     builder.setFullTextMessage(plaintext);
     builder.text(ssml);
     return quip;
@@ -257,11 +332,20 @@ public class QuipManager extends AbstractManager {
     case "INSULT":
       doInsultRequest(messageMap, builder, metadata);
       break;
+    case "INSULT_TARGETABLE":
+      doTargetableInsultRequest(messageMap, builder, metadata);
+      break;
     case "BACKHANDED_COMPLIMENT":
       doBackhandedComplimentRequest(messageMap, builder, metadata);
       break;
+    case "BACKHANDED_COMPLIMENT_TARGETABLE":
+      doTargetableBackhandedComplimentRequest(messageMap, builder, metadata);
+      break;
     case "WINSULT":
       doWinsultRequest(messageMap, builder, metadata);
+      break;
+    case "WINSULT_TARGETABLE":
+      doTargetableWinsultRequest(messageMap, builder, metadata);
       break;
     case "WHO_BUILT_YOU":
       doWhoBuiltYouRequest(messageMap, builder, metadata);
