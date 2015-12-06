@@ -1,11 +1,11 @@
 INSULT to insult me
 INSULT for an insult
 INSULT to give me an insult
-INSULT_TARGETABLE to insult {username|target}
+INSULT_TARGETABLE to insult {target}
 BACKHANDED_COMPLIMENT to compliment me
 BACKHANDED_COMPLIMENT for a compliment
 BACKHANDED_COMPLIMENT to give me a compliment
-BACKHANDED_COMPLIMENT_TARGETABLE to compliment {username|target}
+BACKHANDED_COMPLIMENT_TARGETABLE to compliment {target}
 HELP for a little bit of help
 HELP how do I use you
 HELP how do I use it
