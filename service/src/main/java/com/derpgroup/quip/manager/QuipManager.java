@@ -81,7 +81,7 @@ public class QuipManager extends AbstractManager {
       // Determine if we successfully substituted all bracketed fields
       boolean substitutionSuccessful = true;  // TODO: Check text, ssml, targetableText, targetableSSML for bracketed values if not null
       
-      needsToReroll = !quip.isTargetable() || !substitutionSuccessful || wasUsedRecently || hasHitMaxRerolls;
+      needsToReroll = !hasHitMaxRerolls && (!quip.isTargetable() || !substitutionSuccessful || wasUsedRecently);
     }
     recentlyUsedQuips.add(quip.getQuipGroup());
     while(recentlyUsedQuips.size() > maxQuipHistorySize){
