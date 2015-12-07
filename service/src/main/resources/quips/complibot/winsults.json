@@ -108,5 +108,27 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"BUBBLY_PERSONALITY",
+    "text":"You drink too much soda. I can tell because your personality is so bubbly and effervescent.",
+    "ssml":"You drink too much soda. <break /> I can tell because your personality is so bubbly and effervescent.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"UNPHOTOGENIC",
+    "text":"I don't like being in pictures with you, because you're so photogenic that I look bad in comparison.",
+    "ssml":"I don't like being in pictures with you, because you're so photogenic that I look bad in comparison.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
