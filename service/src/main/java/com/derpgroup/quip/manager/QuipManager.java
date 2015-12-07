@@ -87,12 +87,14 @@ public class QuipManager extends AbstractManager {
   
   protected Quip doTargetableComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to compliment.</speak>",
-          "I'm sorry, I didn't understand who you wanted me to compliment.",
-          "Could not determine compliment recipient");
+      return doComplimentRequest(messageMap, builder, metadata);
     }
 
     String target = messageMap.get("target");
+    if(target.toLowerCase().equals("me")){
+      return doComplimentRequest(messageMap, builder, metadata);
+    }
+    
     target = target.substring(0,1).toUpperCase()+target.substring(1);
     Queue<String> complimentsUsed = metadata.getComplimentsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.COMPLIMENT, complimentsUsed, target);
@@ -112,12 +114,14 @@ public class QuipManager extends AbstractManager {
   
   protected Quip doTargetableWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to insult.</speak>",
-          "I'm sorry, I didn't understand who you wanted me to insult.",
-          "Could not determine insult recipient");
+      return doWinsultRequest(messageMap, builder, metadata);
     }
 
     String target = messageMap.get("target");
+    if(target.toLowerCase().equals("me")){
+      return doWinsultRequest(messageMap, builder, metadata);
+    }
+    
     target = target.substring(0,1).toUpperCase()+target.substring(1);
     Queue<String> winsultsUsed = metadata.getWinsultsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.WINSULT, winsultsUsed, target);
@@ -137,12 +141,14 @@ public class QuipManager extends AbstractManager {
   
   protected Quip doTargetableInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to insult.</speak>",
-          "I'm sorry, I didn't understand who you wanted me to insult.",
-          "Could not determine insult recipient");
+      return doInsultRequest(messageMap, builder, metadata);
     }
 
     String target = messageMap.get("target");
+    if(target.toLowerCase().equals("me")){
+      return doInsultRequest(messageMap, builder, metadata);
+    }
+    
     target = target.substring(0,1).toUpperCase()+target.substring(1);
     Queue<String> insultsUsed = metadata.getInsultsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.INSULT, insultsUsed, target);
@@ -162,12 +168,14 @@ public class QuipManager extends AbstractManager {
   
   protected Quip doTargetableBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      throw new DerpwizardException("<speak>I'm sorry, I didn't understand who you wanted me to compliment.</speak>",
-          "I'm sorry, I didn't understand who you wanted me to compliment.",
-          "Could not determine compliment recipient");
+      return doBackhandedComplimentRequest(messageMap, builder, metadata);
     }
 
     String target = messageMap.get("target");
+    if(target.toLowerCase().equals("me")){
+      return doBackhandedComplimentRequest(messageMap, builder, metadata);
+    }
+    
     target = target.substring(0,1).toUpperCase()+target.substring(1);
     Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed, target);
