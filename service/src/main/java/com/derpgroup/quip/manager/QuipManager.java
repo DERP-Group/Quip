@@ -70,18 +70,12 @@ public class QuipManager extends AbstractManager {
       rerolls++;
       boolean wasUsedRecently = recentlyUsedQuips.contains(quip.getQuipGroup());
       boolean hasHitMaxRerolls = rerolls >= MAX_TARGETABLE_QUIP_REROLLS;
-      
-      // Mark [TARGET] as a substitutable field
+
       Map<String,String> expectedFieldsToReplace = new HashMap<String, String>();
       expectedFieldsToReplace.put("[TARGET]", target);
       quip = QuipUtil.substituteContent(quip, null, expectedFieldsToReplace);
       
-      // TODO: Substitute phonetic plugins, and grammatical fields later
-      
-      // Determine if we successfully substituted all bracketed fields
-      boolean substitutionSuccessful = true;  // TODO: Check text, ssml, targetableText, targetableSSML for bracketed values if not null
-      
-      needsToReroll = !hasHitMaxRerolls && (!quip.isTargetable() || !substitutionSuccessful || wasUsedRecently);
+      needsToReroll = !hasHitMaxRerolls && (!quip.isTargetable() || wasUsedRecently);
     }
     recentlyUsedQuips.add(quip.getQuipGroup());
     while(recentlyUsedQuips.size() > maxQuipHistorySize){
@@ -105,7 +99,7 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
-    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+    if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
@@ -130,7 +124,7 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
-    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+    if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
@@ -155,7 +149,7 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
-    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+    if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
@@ -180,7 +174,7 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
-    if(quip.isTargetable()){  // TODO: Need to reverify that targetability is satisfied (all slots filled)
+    if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
