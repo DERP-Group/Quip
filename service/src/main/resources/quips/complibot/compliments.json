@@ -254,8 +254,8 @@
   },
   {
     "quipGroup":"SUNGLASSES_BRIGHT",
-    "text":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you.",
-    "ssml":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you.",
+    "text":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you!",
+    "ssml":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you!",
     "usageRules":[
       
     ],
@@ -265,8 +265,8 @@
   },
   {
     "quipGroup":"F5_REFRESHING",
-    "text":"If you were a key on the keyboard, you would be F5, because you're so refreshing.",
-    "ssml":"If you were a key on the keyboard, you would be F5, because you're so refreshing.",
+    "text":"If you were a key on the keyboard, you would be F5, because you're so refreshing!",
+    "ssml":"If you were a key on the keyboard, you would be F5, because you're so refreshing!",
     "usageRules":[
       
     ],
