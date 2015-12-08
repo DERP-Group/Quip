@@ -6,16 +6,19 @@ WINSULT insult
 WINSULT_TARGETABLE insult {target}
 WINSULT_TARGETABLE give {target} an insult
 WINSULT_TARGETABLE give an insult to {target}
-HELP for a little bit of help
-HELP how do I use you
-HELP how do I use it
 ANOTHER another
 ANOTHER again
+HELP help
+HELP how do I
+HELP what can I do
+HELP what do I do
+HELP what do we do
 WHO_BUILT_YOU who built you
 WHO_BUILT_YOU who built it
 WHO_BUILT_YOU how it was built
 WHAT_DO_YOU_DO what does it do
 WHAT_DO_YOU_DO what do you do
+WHAT_DO_YOU_DO what does {botName} do
 FRIENDS who are your friends
 FRIENDS who are its friends
 FRIENDS who its friends are

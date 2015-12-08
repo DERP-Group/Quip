@@ -40,7 +40,12 @@
     },
     {
       "intent": "WHAT_DO_YOU_DO",
-      "slots": []
+      "slots": [
+        {
+          "name":"botName",
+          "type":"BOTS"
+        }
+      ]
     },
     {
       "intent": "FRIENDS",
