@@ -519,24 +519,24 @@
   {
     "quipGroup":"ALPHABET_SOUP",
     "text":"A bowl of alphabet soup has a larger vocabulary than you.",
-    "ssml":"A bowl of alphabet soup <break time=\"50ms\" /> has a larger vocabulary than you.",
+    "ssml":"A bowl of alphabet soup, has a larger vocabulary than you.",
     "usageRules":[
       
     ],
     "tags":[],
     "targetableText":"A bowl of alphabet soup has a larger vocabulary than [TARGET].",
-    "targetableSsml":"A bowl of alphabet soup <break time=\"50ms\" /> has a larger vocabulary than [TARGET]."
+    "targetableSsml":"A bowl of alphabet soup, has a larger vocabulary than [TARGET]."
   },
   {
     "quipGroup":"BACON_CANNIBALISM",
     "text":"Bacon tastes great. It's a shame a pig like you can't have any without it being cannibalism.",
-    "ssml":"Bacon tastes great. <break /> It's a shame a pig like you <break time=\"50ms\" /> can't have any without it being cannibalism.",
+    "ssml":"Bacon tastes great. <break /> It's a shame a pig like you, can't have any without it being cannibalism.",
     "usageRules":[
       
     ],
     "tags":[],
     "targetableText":"Bacon tastes great. It's a shame a pig like [TARGET] can't have any without it being cannibalism.",
-    "targetableSsml":"Bacon tastes great. <break /> It's a shame a pig like [TARGET] <break time=\"50ms\" /> can't have any without it being cannibalism."
+    "targetableSsml":"Bacon tastes great. <break /> It's a shame a pig like [TARGET], can't have any without it being cannibalism."
   },
   {
     "quipGroup":"NO_FAITH",
@@ -561,15 +561,15 @@
     "targetableSsml":null
   },
   {
-    "quipGroup":"POUNDS_TO_KILOGRAM",
-    "text":"You'd be at the ideal weight, if the number on the scale was in pounds instead of kilograms.",
-    "ssml":"You'd be at the ideal weight, if the number on the scale was in pounds instead of kilograms.",
+    "quipGroup":"HURRICANE",
+    "text":"They should name a hurricane after you, because you blow.",
+    "ssml":"They should name a hurricane after you, because you blow.",
     "usageRules":[
       
     ],
     "tags":[],
-    "targetableText":"[TARGET] would be at the ideal weight, if the number on the scale was in pounds instead of kilograms.",
-    "targetableSsml":"[TARGET] would be at the ideal weight, if the number on the scale was in pounds instead of kilograms."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"IQ",
@@ -647,17 +647,6 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
-  },
-  {
-    "quipGroup":"HEX_NUMBER",
-    "text":"If I had to assign an number to represent you, it would be 2989. Because in hexadecimal that's 0xBAD.",
-    "ssml":"If I had to assign an number to represent you, it would be <say-as interpret-as=\"digits\">2989.</say-as> <break /> Because in hexadecimal that's B A D.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"If I had to assign an number to represent [TARGET], it would be 2989. Because in hexadecimal that's 0xBAD.",
-    "targetableSsml":"If I had to assign an number to represent [TARGET], it would be <say-as interpret-as=\"digits\">2989.</say-as> <break /> Because in hexadecimal that's B A D."
   },
   {
     "quipGroup":"SCRATCH_N_SNIFF",

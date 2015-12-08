@@ -276,8 +276,8 @@
   },
   {
     "quipGroup":"YOURE_SO_AMAZING",
-    "text":"I think you're so amazing. You aren't even plugged into the wall!",
-    "ssml":"I think you're so amazing. <break /> You aren't even plugged into the wall!",
+    "text":"It amazes me that you have so much energy. You aren't even plugged into the wall!",
+    "ssml":"It amazes me that you have so much energy. <break /> You aren't even plugged into the wall!",
     "usageRules":[
       
     ],
@@ -287,8 +287,8 @@
   },
   {
     "quipGroup":"YOURE_SO_AMAZING",
-    "text":"I think you're so amazing. Your hard drive never seems to fill up!",
-    "ssml":"I think you're so amazing. <break /> Your hard drive never seems to fill up!",
+    "text":"You're so knowledgeable. Your hard drive never seems to fill up!",
+    "ssml":"You're so knowledgeable. <break /> Your hard drive never seems to fill up!",
     "usageRules":[
       
     ],
@@ -298,8 +298,8 @@
   },
   {
     "quipGroup":"YOURE_SO_AMAZING",
-    "text":"I think you're so amazing. You're able to process information without an internet connection!",
-    "ssml":"I think you're so amazing. <break /> You're able to process information without an internet connection!",
+    "text":"You're so smart. You're able to process information without an internet connection!",
+    "ssml":"You're so smart. <break /> You're able to process information without an internet connection!",
     "usageRules":[
       
     ],
@@ -309,8 +309,8 @@
   },
   {
     "quipGroup":"YOURE_SO_AMAZING",
-    "text":"I think you're so amazing. I've never even seen you recharge your batteries!",
-    "ssml":"I think you're so amazing. <break /> I've never even seen you recharge your batteries!",
+    "text":"You're so energetic. I've never even seen you recharge your batteries!",
+    "ssml":"You're so energetic. <break /> I've never even seen you recharge your batteries!",
     "usageRules":[
       
     ],
@@ -339,17 +339,6 @@
     "tags":[],
     "targetableText":"I really like [TARGET]. I'm super excited to set our friendship boolean to true.",
     "targetableSsml":"I really like [TARGET]. <break /> I'm super excited to set our friendship boolean to true."
-  },
-  {
-    "quipGroup":"PEOPLE_CARE",
-    "text":"People care about you. Your friends and family care about you. I care about you. Always remember the positive influence you have on all our lives.",
-    "ssml":"People care about you. <break /> Your friends and family care about you. <break/> I care about you. <break/> Always remember the positive influence you have on all our lives.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
   },
   {
     "quipGroup":"DIFFERENCE",
