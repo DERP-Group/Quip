@@ -249,4 +249,18 @@ public class QuipManagerTest {
     Quip backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
     assertEquals(backhandedComplimentsUsed.getLast(),backhandedCompliment.getQuipGroup());
   }
+  
+  @Test(timeout=1000)
+  public void testRandomTargetableQuip_NoInfiniteLoops() throws DerpwizardException{
+    
+    QuipMetadata quipMetadata = new QuipMetadata();
+    quipMetadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());
+    Deque<String> originalComplimentUsed = new ArrayDeque<String>();
+    List<Quip> quips = QuipStore.getInstance().getQuips(QuipType.COMPLIMENT);
+    for(int i=0; i<quips.size(); i++){
+      originalComplimentUsed.add(quips.get(i).getQuipGroup());
+    }
+    
+    manager.getRandomTargetableQuip(QuipType.COMPLIMENT, originalComplimentUsed, "that guy");
+  }
 }
