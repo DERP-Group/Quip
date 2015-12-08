@@ -22,17 +22,6 @@
     "targetableSsml":"I wish everyone could be more like [TARGET]..."
   },
   {
-    "quipGroup":"MONUMENT",
-    "text":"They should name a monument after you. Seriously.",
-    "ssml":"They should name a monument after you.<break strength=\"strong\" />Seriously.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"They should name a monument after [TARGET]. Seriously.",
-    "targetableSsml":"They should name a monument after [TARGET].<break strength=\"strong\" />Seriously."
-  },
-  {
     "quipGroup":"AURA",
     "text":"You have an aura that is positively glowing today.",
     "ssml":"You have an aura that is positively glowing today.",

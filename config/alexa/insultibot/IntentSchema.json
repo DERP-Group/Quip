@@ -5,8 +5,26 @@
       "slots": []
     },
     {
+      "intent": "INSULT_TARGETABLE",
+      "slots": [
+        {
+          "name":"target",
+          "type":"TARGETABLE"
+        }
+      ]
+    },
+    {
       "intent": "BACKHANDED_COMPLIMENT",
       "slots": []
+    },
+    {
+      "intent": "BACKHANDED_COMPLIMENT_TARGETABLE",
+      "slots": [
+        {
+          "name":"target",
+          "type":"TARGETABLE"
+        }
+      ]
     },
     {
       "intent": "HELP",

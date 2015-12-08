@@ -35,9 +35,22 @@ public class QuipUtilTest {
     quip.setTargetableSsml("Stockholme Syndrome is the only reason [COMPLIBOT] likes [TARGET].");
     return quip;
   }
+  
+  @Test
+  public void testContentSubstitution_noInput() throws DerpwizardException{
+    String response = QuipUtil.substituteContent(null, null);
+    assertEquals(null,response);
+  }
+  
+  @Test
+  public void testContentSubstitution_noInputString() throws DerpwizardException{
+    Map<String, String> replacementValues = new HashMap<String, String>();
+    String response = QuipUtil.substituteContent(null, replacementValues);
+    assertEquals(null,response);
+  }
 
   @Test
-  public void testContentSubstitution_noValues() throws DerpwizardException{
+  public void testContentSubstitution_emptyValues() throws DerpwizardException{
     Map<String, String> replacementValues = new HashMap<String, String>();
     String response = QuipUtil.substituteContent("Is that really your name?", replacementValues);
     assertEquals("Is that really your name?",response);

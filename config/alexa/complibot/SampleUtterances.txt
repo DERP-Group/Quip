@@ -1,9 +1,11 @@
-COMPLIMENT to compliment me
-COMPLIMENT for a compliment
-COMPLIMENT to give me a compliment
-WINSULT to insult me
-WINSULT for an insult
-WINSULT to give me an insult
+COMPLIMENT compliment
+COMPLIMENT_TARGETABLE compliment {target}
+COMPLIMENT_TARGETABLE give {target} a compliment
+COMPLIMENT_TARGETABLE give a compliment to {target}
+WINSULT insult
+WINSULT_TARGETABLE insult {target}
+WINSULT_TARGETABLE give {target} an insult
+WINSULT_TARGETABLE give an insult to {target}
 HELP for a little bit of help
 HELP how do I use you
 HELP how do I use it
