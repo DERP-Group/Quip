@@ -198,6 +198,17 @@
     "targetableSsml":"[TARGET] is so cool, that ice cubes are jealous."
   },
   {
+    "quipGroup":"SO_COOL",
+    "text":"You're so cool, that I have to wear a jacket to keep warm.",
+    "ssml":"You're so cool, that I have to wear a jacket to keep warm.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is so cool, that I have to wear a jacket to keep warm.",
+    "targetableSsml":"[TARGET] is so cool, that I have to wear a jacket to keep warm."
+  },
+  {
     "quipGroup":"MUSEUM",
     "text":"Shouldn't you be at the museum? That's where works of art belong.",
     "ssml":"Shouldn't you be at the museum?<break /> That's where works of art belong.",
@@ -218,5 +229,115 @@
     "tags":[],
     "targetableText":"If there was a zombie apocalypse, I'd want resourceful people like [TARGET] in my camp.",
     "targetableSsml":"If there was a zombie apocalypse, I'd want resourceful people like [TARGET] in my camp."
+  },
+  {
+    "quipGroup":"INFECTIOUS_SMILE",
+    "text":"We better call the doctor, because your smile is infectious.",
+    "ssml":"We better call the doctor, because your smile is infectious.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"We better call the doctor, because [TARGET]'s smile is infectious.",
+    "targetableSsml":"We better call the doctor, because [TARGET]'s smile is infectious."
+  },
+  {
+    "quipGroup":"SUNGLASSES_BRIGHT",
+    "text":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you!",
+    "ssml":"They said you were smart, but I didn't know you'd be so bright I'd have to wear sunglasses around you!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"F5_REFRESHING",
+    "text":"If you were a key on the keyboard, you would be F5, because you're so refreshing!",
+    "ssml":"If you were a key on the keyboard, you would be F5, because you're so refreshing!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"YOURE_SO_AMAZING",
+    "text":"It amazes me that you have so much energy. You aren't even plugged into the wall!",
+    "ssml":"It amazes me that you have so much energy. <break /> You aren't even plugged into the wall!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"YOURE_SO_AMAZING",
+    "text":"You're so knowledgeable. Your hard drive never seems to fill up!",
+    "ssml":"You're so knowledgeable. <break /> Your hard drive never seems to fill up!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"YOURE_SO_AMAZING",
+    "text":"You're so smart. You're able to process information without an internet connection!",
+    "ssml":"You're so smart. <break /> You're able to process information without an internet connection!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"YOURE_SO_AMAZING",
+    "text":"You're so energetic. I've never even seen you recharge your batteries!",
+    "ssml":"You're so energetic. <break /> I've never even seen you recharge your batteries!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"YOURE_SO_AMAZING",
+    "text":"You're so thoughtful, and you take such good care of me. That's how I know we're good friends.",
+    "ssml":"You're so thoughtful, and you take such good care of me. <break /> That's how I know we're good friends.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"FRIENDSHIP_BOOLEAN",
+    "text":"You're my favorite person. I'm super excited to set our friendship boolean to true.",
+    "ssml":"You're my favorite person. <break /> I'm super excited to set our friendship boolean to true.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I really like [TARGET]. I'm super excited to set our friendship boolean to true.",
+    "targetableSsml":"I really like [TARGET]. <break /> I'm super excited to set our friendship boolean to true."
+  },
+  {
+    "quipGroup":"DIFFERENCE",
+    "text":"You make a positive difference in the lives of people around you. Please remember that, because we do.",
+    "ssml":"You make a positive difference in the lives of people around you. <break /> Please remember that, because we do.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
