@@ -253,39 +253,6 @@
     "targetableSsml":"[TARGET]'s love life runs on batteries."
   },
   {
-    "quipGroup":"BAD_DAY_HANGOUT",
-    "text":"You think you are having a bad day? I'm the one having a bad day, because I have to hang out with you...",
-    "ssml":"You think you are having a bad day? I'm the one having a bad day, because I have to hang out with you...",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
-    "quipGroup":"ZERO_BYTES",
-    "text":"You're so important to me! I've allocated zero bytes in my memory to you.",
-    "ssml":"You're so important to me! I've allocated <s>zero <phoneme alphabet=\"ipa\" ph=\"bajts\"> bytes </phoneme></s> in my memory to you.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
-    "quipGroup":"UNIMPORTANT_PEOPLE",
-    "text":"I don't waste memory remembering names of unimportant people. Don't you feel the same way? It was Eric right?",
-    "ssml":"I don't waste memory remembering names of unimportant people. Don't you feel the same way? It was Eric right?",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
     "quipGroup":"WAIT_FOR_YOU_TO_LEAVE",
     "text":"You know that feeling of anticipation and excitement right before you go on vacation? Me too. I can't wait for you to leave.",
     "ssml":"You know that feeling of anticipation and excitement right before you go on vacation?<break /> Me too.<break /> I can't wait for you to leave.",
@@ -537,5 +504,203 @@
     "tags":[],
     "targetableText":"I talked to Santa Claus, and he says it's not within his power to bring [TARGET] a real friend for Christmas.",
     "targetableSsml":"I talked to Santa Claus, and he says it's not within his power to bring [TARGET] a real friend for Christmas."
+  },
+  {
+    "quipGroup":"QUITE_SIMPLE",
+    "text":"If someone were to ask me to describe you, it would be, quite simple.",
+    "ssml":"If someone were to ask me to describe you, it would be, quite simple.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If someone were to ask me to describe [TARGET], it would be, quite simple.",
+    "targetableSsml":"If someone were to ask me to describe [TARGET], it would be, quite simple."
+  },
+  {
+    "quipGroup":"ALPHABET_SOUP",
+    "text":"A bowl of alphabet soup has a larger vocabulary than you.",
+    "ssml":"A bowl of alphabet soup, has a larger vocabulary than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"A bowl of alphabet soup has a larger vocabulary than [TARGET].",
+    "targetableSsml":"A bowl of alphabet soup, has a larger vocabulary than [TARGET]."
+  },
+  {
+    "quipGroup":"BACON_CANNIBALISM",
+    "text":"Bacon tastes great. It's a shame a pig like you can't have any without it being cannibalism.",
+    "ssml":"Bacon tastes great. <break /> It's a shame a pig like you, can't have any without it being cannibalism.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Bacon tastes great. It's a shame a pig like [TARGET] can't have any without it being cannibalism.",
+    "targetableSsml":"Bacon tastes great. <break /> It's a shame a pig like [TARGET], can't have any without it being cannibalism."
+  },
+  {
+    "quipGroup":"NO_FAITH",
+    "text":"I once had faith in humanity. Then I met you.",
+    "ssml":"I once had faith in humanity. <break /> Then I met you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I once had faith in humanity. Then I met [TARGET].",
+    "targetableSsml":"I once had faith in humanity. <break /> Then I met [TARGET]."
+  },
+  {
+    "quipGroup":"HURRICANE",
+    "text":"They should name a hurricane after you, because you're a disaster.",
+    "ssml":"They should name a hurricane after you, because you're a disaster.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"HURRICANE",
+    "text":"They should name a hurricane after you, because you blow.",
+    "ssml":"They should name a hurricane after you, because you blow.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"IQ",
+    "text":"Your IQ test results are back. I wanted to be the first to congratulate you on the improvement. Welcome to the double digits!",
+    "ssml":"Your IQ test results are back. <break /> I wanted to be the first to congratulate you on the improvement. <break /> Welcome to the double digits!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"BANDWIDTH",
+    "text":"There are so many things wrong about you, that I'm not sure I have enough bandwidth to get through the summary.",
+    "ssml":"There are so many things wrong about you, that I'm not sure I have enough bandwidth to get through the summary.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"There are so many things wrong about [TARGET], that I'm not sure I have enough bandwidth to get through the summary.",
+    "targetableSsml":"There are so many things wrong about [TARGET], that I'm not sure I have enough bandwidth to get through the summary."
+  },
+  {
+    "quipGroup":"SHALLOW_PERSONALITY",
+    "text":"Your personality is as shallow as a dried up puddle.",
+    "ssml":"Your personality is as shallow as a dried up puddle.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s personality is as shallow as a dried up puddle.",
+    "targetableSsml":"[TARGET]'s personality is as shallow as a dried up puddle."
+  },
+  {
+    "quipGroup":"MAGICIAN",
+    "text":"I wish I was a magician, so I could make you disappear.",
+    "ssml":"I wish I was a magician, so I could make you disappear.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I wish I was a magician, so I could make [TARGET] disappear.",
+    "targetableSsml":"I wish I was a magician, so I could make [TARGET] disappear."
+  },
+  {
+    "quipGroup":"PEOPLE_OF_WALMART",
+    "text":"You dress like that? Are you trying to end up on the \"People of Walmart\" website?",
+    "ssml":"You dress like that? Are you trying to end up on the People of Walmart website?",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"MASCOT",
+    "text":"I've seen the way you eat. To you, the pig is more than just an animal, it's a personal mascot.",
+    "ssml":"I've seen the way you eat. <break /> To you, the pig is more than just an animal, it's a personal mascot.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"MASCOT",
+    "text":"I've heard the excuses you've given people. To you, the weasel is more than just an animal, it's a personal mascot.",
+    "ssml":"I've heard the excuses you've given people. <break /> To you, the weasel is more than just an animal, it's a personal mascot.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SCRATCH_N_SNIFF",
+    "text":"The height of your literary achievements involved Scratch 'n Sniff books.",
+    "ssml":"The height of your literary achievements involved Scratch 'n Sniff books.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"The height of [TARGET]'s literary achievements involved Scratch 'n Sniff books.",
+    "targetableSsml":"The height of [TARGET]'s literary achievements involved Scratch 'n Sniff books."
+  },
+  {
+    "quipGroup":"NOT_SPECIAL",
+    "text":"Just because you're unique doesn't mean you're special.",
+    "ssml":"Just because you're unique doesn't mean you're special.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"PARTICIPATION_AWARD",
+    "text":"It's a good thing they give out participation awards, or else your trophy case would be empty.",
+    "ssml":"It's a good thing they give out participation awards, or else your trophy case would be empty.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"It's a good thing they give out participation awards, or else [TARGET]'s trophy case would be empty.",
+    "targetableSsml":"It's a good thing they give out participation awards, or else [TARGET]'s trophy case would be empty."
+  },
+  {
+    "quipGroup":"COMPLIBOT",
+    "text":"Stockholme Syndrome is the only reason CompliBot likes you.",
+    "ssml":"Stockholme Syndrome is the only reason <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> CompliBot </phoneme> likes you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"COMPLIBOT",
+    "text":"You're bothering me again? Go talk to CompliBot.",
+    "ssml":"You're bothering me again? Go talk to <phoneme alphabet=\"ipa\" ph=\"kɒmpləbɑt\"> CompliBot </phoneme>.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
