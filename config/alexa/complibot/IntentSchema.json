@@ -61,6 +61,40 @@
       ]
     },
     {
+      "intent": "HOW_MANY_QUIPS",
+      "slots": [
+        {
+          "name":"quipType",
+          "type":"QUIPS"
+        }
+      ]
+    },
+    {
+      "intent": "EASTER_EGG",
+      "slots": []
+    },
+    {
+      "intent": "JOKE",
+      "slots": []
+    },
+    {
+      "intent": "WEATHER",
+      "slots": []
+    },
+    {
+      "intent": "HOBBIES",
+      "slots": []
+    },
+    {
+      "intent": "FAVORITE",
+      "slots": [
+        {
+          "name":"subject",
+          "type":"FAVORITE_SUBJECT"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent",
       "slots": []
     },
