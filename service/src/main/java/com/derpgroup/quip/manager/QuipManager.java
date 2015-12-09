@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
 
+import jersey.repackaged.com.google.common.collect.ImmutableMap;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,9 @@ public class QuipManager extends AbstractManager {
   protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
   private static final int MAX_QUIP_REROLLS = 10;
   private static final int MAX_TARGETABLE_QUIP_REROLLS = 20;
+  private static final Map<String,String> botNameReplacements = ImmutableMap.of("Complibot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>"
+      , "Insultibot","<phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>","CompliBot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>"
+      , "InsultiBot","<phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>");
   
   public QuipManager(){
     super();
@@ -267,7 +272,18 @@ public class QuipManager extends AbstractManager {
       builder.text("I don't have any help topics for the bot named '" + bot + "'.");
       return;
     }
-    builder.text("You can just say ").pause()
+    String firstSentence = String.format("You can just say <break /> open %s <break /> or <break /> launch %s <break /> and I'll say something %s about you!",s1,s1,s2);
+    firstSentence = QuipUtil.substituteContent(firstSentence, botNameReplacements);
+    StringBuilder rawString = new StringBuilder(String.format("You can just say 'open %s', or 'launch %s', and I'll say something %s about you!",s1,s1,s2));
+    builder.text(firstSentence);
+    
+    String secondSentence = String.format("  Once I've told you how %s you are, you can just say<break /> another <break /> or<break /> again<break /> to get more %s.",s3,s4);
+    secondSentence = QuipUtil.substituteContent(secondSentence, botNameReplacements);
+    rawString.append(String.format("  Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4));
+    builder.text(secondSentence);
+    builder.setFullTextMessage(rawString.toString());
+    builder.setShortFormTextMessage("Usage");
+    /*builder.text("You can just say ").pause()
         .text(String.format("open %s ", s1)).pause().text("or ").pause()
         .text(String.format("launch %s ", s1)).pause()
         .text(String.format("and I'll say something %s about you!", s2))
@@ -277,7 +293,7 @@ public class QuipManager extends AbstractManager {
             String.format(
                 " Once I've told you how %s you are, you can just say ", s3))
         .pause().text("another ").pause().text("or ").pause().text("again ")
-        .pause().text(String.format("to get more %s.", s4)).endSentence();
+        .pause().text(String.format("to get more %s.", s4)).endSentence();*/
   }
 
   @Override
@@ -436,14 +452,21 @@ public class QuipManager extends AbstractManager {
       builder.text("I don't have any info for this situation.");
       return;
     }
+    String rawString;
     switch(bot){
     case "complibot":
       builder.text("Well, you are my absolute best friend, but I'm also good pals with <phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>.  ")
       .endSentence().text("You should check it out!").endSentence();
+      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!";
+      builder.setFullTextMessage(rawString);
+      builder.setShortFormTextMessage("My bestie is...");
       break;
     case "insultibot":
       builder.text("I don't have any friends.").endSentence().text("I don't know anyone else other than <phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>,")
       .pause().text(" and it's even more annoying than you are.  ").endSentence().text("You two would get along well.").endSentence();
+      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.";
+      builder.setFullTextMessage(rawString);
+      builder.setShortFormTextMessage("I have no friends...");
       break;
       default:
         builder.text("I don't have that info for the bot named '" + bot + "'.").endSentence();
