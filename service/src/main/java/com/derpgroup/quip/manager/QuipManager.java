@@ -280,20 +280,11 @@ public class QuipManager extends AbstractManager {
     String secondSentence = String.format("  Once I've told you how %s you are, you can just say<break /> another <break /> or<break /> again<break /> to get more %s.",s3,s4);
     secondSentence = QuipUtil.substituteContent(secondSentence, botNameReplacements);
     rawString.append(String.format("  Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4));
+    rawString.append("\n\n");
+    rawString.append("For further documentation, see: http://blog.derpgroup.com/bots/");
     builder.text(secondSentence);
     builder.setFullTextMessage(rawString.toString());
     builder.setShortFormTextMessage("Usage");
-    /*builder.text("You can just say ").pause()
-        .text(String.format("open %s ", s1)).pause().text("or ").pause()
-        .text(String.format("launch %s ", s1)).pause()
-        .text(String.format("and I'll say something %s about you!", s2))
-        .endSentence();
-    builder
-        .text(
-            String.format(
-                " Once I've told you how %s you are, you can just say ", s3))
-        .pause().text("another ").pause().text("or ").pause().text("again ")
-        .pause().text(String.format("to get more %s.", s4)).endSentence();*/
   }
 
   @Override
@@ -457,14 +448,14 @@ public class QuipManager extends AbstractManager {
     case "complibot":
       builder.text("Well, you are my absolute best friend, but I'm also good pals with <phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>.  ")
       .endSentence().text("You should check it out!").endSentence();
-      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!";
+      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!\n\nhttp://echo.amazon.com/#skills/amzn1.echo-sdk-ams.app.088a5c63-a5ce-4de0-a45a-bed6ec82fb42/activate";
       builder.setFullTextMessage(rawString);
       builder.setShortFormTextMessage("My bestie is...");
       break;
     case "insultibot":
       builder.text("I don't have any friends.").endSentence().text("I don't know anyone else other than <phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>,")
       .pause().text(" and it's even more annoying than you are.  ").endSentence().text("You two would get along well.").endSentence();
-      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.";
+      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.\n\nhttp://echo.amazon.com/#skills/amzn1.echo-sdk-ams.app.8e5e67ee-d207-49da-b9de-58af982248c3/activate";
       builder.setFullTextMessage(rawString);
       builder.setShortFormTextMessage("I have no friends...");
       break;
