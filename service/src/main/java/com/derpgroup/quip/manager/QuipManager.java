@@ -448,14 +448,14 @@ public class QuipManager extends AbstractManager {
     case "complibot":
       builder.text("Well, you are my absolute best friend, but I'm also good pals with <phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>.  ")
       .endSentence().text("You should check it out!").endSentence();
-      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!\n\nhttp://echo.amazon.com/#skills/amzn1.echo-sdk-ams.app.088a5c63-a5ce-4de0-a45a-bed6ec82fb42/activate";
+      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!\n\nhttp://blog.derpgroup.com/bots";
       builder.setFullTextMessage(rawString);
       builder.setShortFormTextMessage("My bestie is...");
       break;
     case "insultibot":
       builder.text("I don't have any friends.").endSentence().text("I don't know anyone else other than <phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>,")
       .pause().text(" and it's even more annoying than you are.  ").endSentence().text("You two would get along well.").endSentence();
-      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.\n\nhttp://echo.amazon.com/#skills/amzn1.echo-sdk-ams.app.8e5e67ee-d207-49da-b9de-58af982248c3/activate";
+      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.\n\nhttp://blog.derpgroup.com/bots";
       builder.setFullTextMessage(rawString);
       builder.setShortFormTextMessage("I have no friends...");
       break;
