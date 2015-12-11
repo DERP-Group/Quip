@@ -6,27 +6,28 @@ BACKHANDED_COMPLIMENT compliment
 BACKHANDED_COMPLIMENT_TARGETABLE compliment {target}
 BACKHANDED_COMPLIMENT_TARGETABLE give {target} a compliment
 BACKHANDED_COMPLIMENT_TARGETABLE give a compliment to {target}
-HELP for a little bit of help
-HELP how do I use you
-HELP how do I use it
 ANOTHER another
 ANOTHER again
-WHO_BUILT_YOU who built you
-WHO_BUILT_YOU who built it
-WHO_BUILT_YOU how it was built
-WHAT_DO_YOU_DO what does it do
-WHAT_DO_YOU_DO what do you do
+HELP help
+HELP how do I
+HELP what can I do
+WHO_BUILT_YOU built you
+WHO_BUILT_YOU wrote you
+WHO_BUILT_YOU created you
+WHO_BUILT_YOU who are your parents
 FRIENDS who are your friends
-FRIENDS who are its friends
-FRIENDS who its friends are
+FRIENDS who is your friend
 WHO_IS who is {botName}
 WHO_IS who {botName} is
-WHO_IS what is {botName}
-WHO_IS what {botName} is
-WHO_IS to tell me who {botName} is
-WHO_IS to tell us who {botName} is
-WHO_IS to explain who {botName} is
-WHO_IS to explain to me who {botName} is
-WHO_IS to explain to us who {botName} is
-WHO_IS to tell me what {botName} is
-WHO_IS to tell us what {botName} is
+HOW_MANY_QUIPS how many {quipType} do you have
+EASTER_EGG easter eggs
+JOKE joke
+JOKE jokes
+WEATHER weather
+HOBBIES hobbies
+HOBBIES hobby
+HOBBIES do for fun
+HOBBIES find fun
+FAVORITE what's your favorite {subject}
+FAVORITE do you have a favorite {subject}
+FAVORITE what {subject} is your favorite

@@ -39,10 +39,6 @@
       "slots": []
     },
     {
-      "intent": "WHAT_DO_YOU_DO",
-      "slots": []
-    },
-    {
       "intent": "FRIENDS",
       "slots": []
     },
@@ -52,6 +48,40 @@
         {
           "name":"botName",
           "type":"BOTS"
+        }
+      ]
+    },
+    {
+      "intent": "HOW_MANY_QUIPS",
+      "slots": [
+        {
+          "name":"quipType",
+          "type":"QUIPS"
+        }
+      ]
+    },
+    {
+      "intent": "EASTER_EGG",
+      "slots": []
+    },
+    {
+      "intent": "JOKE",
+      "slots": []
+    },
+    {
+      "intent": "WEATHER",
+      "slots": []
+    },
+    {
+      "intent": "HOBBIES",
+      "slots": []
+    },
+    {
+      "intent": "FAVORITE",
+      "slots": [
+        {
+          "name":"subject",
+          "type":"FAVORITE_SUBJECT"
         }
       ]
     },
