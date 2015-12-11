@@ -699,7 +699,7 @@ public class QuipManager extends AbstractManager {
       break;
     case "insultibot":
       s1 = "douche nozzles";
-      s2 = "<phoneme alphabet=\"ipa\" ph=\"səmməbItch\">son of a bitch</phoneme>";
+      s2 = "cheesemonger";
       break;
       default:
         builder.text("I don't have that info for the bot named '" + bot + "'.");
