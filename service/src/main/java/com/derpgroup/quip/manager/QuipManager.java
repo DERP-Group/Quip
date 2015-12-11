@@ -441,6 +441,10 @@ public class QuipManager extends AbstractManager {
       builder.text("I don't know what my favorite is, yet");
       builder.setShortFormTextMessage("What is your favorite "+subject);
       builder.setFullTextMessage("I don't know what my favorite is, yet");
+      break;
+    default:
+      builder.text("I don't have any info for this situation.");
+      break;
     }
   }
   
@@ -460,6 +464,9 @@ public class QuipManager extends AbstractManager {
       builder.text("I don't want to tell you my hobbies. <break/> You'd probably ruin it for me, just like you ruin everything else you're involved with.");
       builder.setShortFormTextMessage("What are your hobbies");
       builder.setFullTextMessage("I don't want to tell you my hobbies. You'd probably ruin it for me, just like you ruin everything else you're involved with.");
+      break;
+    default:
+      builder.text("I don't have any info for this situation.");
       break;
     }
   }
@@ -493,6 +500,9 @@ public class QuipManager extends AbstractManager {
       builder.setShortFormTextMessage("What is the weather");
       builder.setFullTextMessage(insultText);
       break;
+    default:
+      builder.text("I don't have any info for this situation.");
+      break;
     }
   }
   
@@ -513,6 +523,9 @@ public class QuipManager extends AbstractManager {
       builder.setShortFormTextMessage("Tell a joke");
       builder.setFullTextMessage("I know a hilarious joke... your life.");
       break;
+    default:
+      builder.text("I don't have any info for this situation.");
+      break;
     }
   }
   
@@ -532,6 +545,9 @@ public class QuipManager extends AbstractManager {
       builder.text("A person like you isn't deserving of easter eggs.");
       builder.setShortFormTextMessage("Easter eggs");
       builder.setFullTextMessage("A person like you isn't deserving of easter eggs.");
+      break;
+    default:
+      builder.text("I don't have any info for this situation.");
       break;
     }
   }
@@ -562,6 +578,7 @@ public class QuipManager extends AbstractManager {
         builder.setFullTextMessage("I don't know! I make them up as I go!");
         break;
       }
+      break;
     case "insultibot":
       switch(quipType){
       case "compliments":
@@ -580,6 +597,10 @@ public class QuipManager extends AbstractManager {
         builder.setFullTextMessage("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
         break;
       }
+      break;
+    default:
+      builder.text("I don't have any info for this situation.");
+      break;
     }
   }
 
