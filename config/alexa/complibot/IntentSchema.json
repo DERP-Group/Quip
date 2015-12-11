@@ -39,15 +39,6 @@
       "slots": []
     },
     {
-      "intent": "WHAT_DO_YOU_DO",
-      "slots": [
-        {
-          "name":"botName",
-          "type":"BOTS"
-        }
-      ]
-    },
-    {
       "intent": "FRIENDS",
       "slots": []
     },
