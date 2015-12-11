@@ -282,8 +282,8 @@
       
     ],
     "tags":[],
-    "targetableText":"I'm always grateful when [TARGET] tells me about their day. It really helps me get to sleep.",
-    "targetableSsml":"I'm always grateful when [TARGET] tells me about their day. It really helps me get to sleep."
+    "targetableText":null,
+    "targetableSsml":null
   },
   {
     "quipGroup":"TROLL_BRIDGE",
@@ -294,7 +294,7 @@
     ],
     "tags":[],
     "targetableText":"I'm surprised [TARGET] doesn't live under a bridge. That's where normal trolls live.",
-    "targetableSsml":"I'm surprised [TARGET] doesn't live under a bridge. That's where normal trolls live."
+    "targetableSsml":"I'm surprised [TARGET] doesn't live under a bridge.<break/> That's where normal trolls live."
   },
   {
     "quipGroup":"BAD_BREATH",
@@ -353,8 +353,8 @@
   },
   {
     "quipGroup":"CACTUS",
-    "text":"You must be a cactus.<break />  How else could you be so prickly?",
-    "ssml":"You must be a cactus.  How else could you be so prickly?",
+    "text":"You must be a cactus. How else could you be so prickly?",
+    "ssml":"You must be a cactus.<break /> How else could you be so prickly?",
     "usageRules":[
       
     ],

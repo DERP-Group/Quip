@@ -104,4 +104,5 @@ public class QuipStore {
   public Quip getRandomInsult(){return getRandomQuip(QuipType.INSULT);}
   public Quip getRandomBackhandedCompliment(){return getRandomQuip(QuipType.BACKHANDED_COMPLIMENT);}
   public List<Quip> getQuips(QuipType quipType){return quips.get(quipType);}
+  public boolean isInitialized(){return initialized;}
 }

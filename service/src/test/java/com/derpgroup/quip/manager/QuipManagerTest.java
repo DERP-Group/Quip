@@ -39,10 +39,11 @@ public class QuipManagerTest {
   @BeforeClass
   public static void beforeClass_setup() throws IOException {
     QuipStore quipStore = QuipStore.getInstance();
+    if(quipStore.isInitialized()){return;}
+    
     QuipConfig config = new QuipConfig();
     config.setRefreshRate(10);
     File currentDir = new File(".");
-    System.out.println(currentDir.getCanonicalPath());
     config.setComplimentsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/complibot/compliments.json");
     config.setWinsultsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/complibot/winsults.json");
     config.setInsultsFile(currentDir.getCanonicalPath()+"/src/main/resources/quips/insultibot/insults.json");
