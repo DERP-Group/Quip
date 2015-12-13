@@ -705,7 +705,7 @@ public class QuipManager extends AbstractManager {
         builder.text("I don't have that info for the bot named '" + bot + "'.");
         return;
     }
-    builder.text("I was built by the ").text(String.format("%s ",s1)).text("of derp group.").endSentence();
+    builder.text("I was built by the ").text(String.format("%s ",s1)).text("of DERP Group.").endSentence();
     builder.text("The group is made up of David, ").pause().text("Eric, ").pause().text("Rusty, ").pause().text(String.format("and that %s Paul.",s2)).endSentence();
   }
 
