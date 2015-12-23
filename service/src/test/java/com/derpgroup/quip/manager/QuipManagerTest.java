@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Before;
@@ -23,6 +22,7 @@ import com.amazon.speech.speechlet.IntentRequest;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.AlexaInput;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
+import com.derpgroup.derpwizard.voice.model.ServiceOutput;
 import com.derpgroup.derpwizard.voice.model.SsmlDocument;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.quip.QuipMetadata;
@@ -66,14 +66,16 @@ public class QuipManagerTest {
     IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
     AlexaInput alexaInput = new AlexaInput(intentRequest, metadata);
     
-    manager.doConversationRequest(alexaInput, builder);
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(metadata);
+    serviceOutput.setConversationEnded(false);
+    manager.doConversationRequest(alexaInput, serviceOutput);
     
-    SsmlDocument output = builder.build();
-    assertNotNull(output);
-    String outputString = output.getSsml();
+    assertNotNull(serviceOutput.getVoiceOutput());
+    String outputString = serviceOutput.getVoiceOutput().getSsmltext();
     assertNotNull(outputString);
     
-    String outputRawText = builder.getRawText();
+    String outputRawText = serviceOutput.getVisualOutput().getText();
     assertNotNull(outputRawText);
     assertTrue(outputRawText.length() > 0);
     assertThat(outputRawText, not(equalTo("I don't know how to handle requests for unnamed bots.")));
@@ -85,14 +87,16 @@ public class QuipManagerTest {
     IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
     AlexaInput alexaInput = new AlexaInput(intentRequest, metadata);
     
-    manager.doConversationRequest(alexaInput, builder);
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(metadata);
+    serviceOutput.setConversationEnded(false);
+    manager.doConversationRequest(alexaInput, serviceOutput);
     
-    SsmlDocument output = builder.build();
-    assertNotNull(output);
-    String outputString = output.getSsml();
+    assertNotNull(serviceOutput.getVoiceOutput());
+    String outputString = serviceOutput.getVoiceOutput().getSsmltext();
     assertNotNull(outputString);
     
-    String outputRawText = builder.getRawText();
+    String outputRawText = serviceOutput.getVisualOutput().getText();
     assertNotNull(outputRawText);
     assertTrue(outputRawText.length() > 0);
     assertEquals(outputRawText,"I don't know how to handle requests for unnamed bots.");
@@ -121,7 +125,12 @@ public class QuipManagerTest {
       Deque<String> complimentsUsed = new ArrayDeque<String>();
       complimentsUsed.addAll(originalComplimentUsed);
       quipMetadata.setComplimentsUsed(complimentsUsed);
-      Quip compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+      
+      ServiceOutput serviceOutput = new ServiceOutput();
+      serviceOutput.setMetadata(quipMetadata);
+      serviceOutput.setConversationEnded(false);
+      
+      Quip compliment = manager.doComplimentRequest(null, serviceOutput);
       assertTrue(!originalComplimentUsed.contains(compliment.getQuipGroup()));
     }
   }
@@ -141,7 +150,12 @@ public class QuipManagerTest {
       Deque<String> winsultsUsed = new ArrayDeque<String>();
       winsultsUsed.addAll(originalWinsultsUsed);
       quipMetadata.setWinsultsUsed(winsultsUsed);
-      Quip winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+      
+      ServiceOutput serviceOutput = new ServiceOutput();
+      serviceOutput.setMetadata(quipMetadata);
+      serviceOutput.setConversationEnded(false);
+      
+      Quip winsult = manager.doWinsultRequest(null, serviceOutput);
       assertTrue(!originalWinsultsUsed.contains(winsult.getQuipGroup()));
     }
   }
@@ -161,7 +175,12 @@ public class QuipManagerTest {
       Deque<String> insultsUsed = new ArrayDeque<String>();
       insultsUsed.addAll(originalInsultsUsed);
       quipMetadata.setInsultsUsed(insultsUsed);
-      Quip insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+      
+      ServiceOutput serviceOutput = new ServiceOutput();
+      serviceOutput.setMetadata(quipMetadata);
+      serviceOutput.setConversationEnded(false);
+      
+      Quip insult = manager.doInsultRequest(null, serviceOutput);
       assertTrue(!originalInsultsUsed.contains(insult.getQuipGroup()));
     }
   }
@@ -181,7 +200,12 @@ public class QuipManagerTest {
       Deque<String> backhandedComplimentsUsed = new ArrayDeque<String>();
       backhandedComplimentsUsed.addAll(originalBackhandedComplimentsUsed);
       quipMetadata.setBackhandedComplimentsUsed(backhandedComplimentsUsed);
-      Quip backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+      
+      ServiceOutput serviceOutput = new ServiceOutput();
+      serviceOutput.setMetadata(quipMetadata);
+      serviceOutput.setConversationEnded(false);
+      
+      Quip backhandedCompliment = manager.doBackhandedComplimentRequest(null, serviceOutput);
       assertTrue(!originalBackhandedComplimentsUsed.contains(backhandedCompliment.getQuipGroup()));
     }
   }
@@ -199,7 +223,12 @@ public class QuipManagerTest {
     }
 
     quipMetadata.setComplimentsUsed(complimentsUsed);
-    Quip compliment = manager.doComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+    
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(quipMetadata);
+    serviceOutput.setConversationEnded(false);
+    
+    Quip compliment = manager.doComplimentRequest(null, serviceOutput);
     assertEquals(complimentsUsed.getLast(),compliment.getQuipGroup());
   }
   
@@ -215,7 +244,12 @@ public class QuipManagerTest {
       winsultsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setWinsultsUsed(winsultsUsed);
-    Quip winsult = manager.doWinsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+    
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(quipMetadata);
+    serviceOutput.setConversationEnded(false);
+    
+    Quip winsult = manager.doWinsultRequest(null, serviceOutput);
     assertEquals(winsultsUsed.getLast(),winsult.getQuipGroup());
   }
   
@@ -231,7 +265,12 @@ public class QuipManagerTest {
       insultsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setInsultsUsed(insultsUsed);
-    Quip insult = manager.doInsultRequest(new HashMap<String,String>(), builder, quipMetadata);
+    
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(quipMetadata);
+    serviceOutput.setConversationEnded(false);
+    
+    Quip insult = manager.doInsultRequest(null, serviceOutput);
     assertEquals(insultsUsed.getLast(),insult.getQuipGroup());
   }
   
@@ -247,7 +286,12 @@ public class QuipManagerTest {
       backhandedComplimentsUsed.add(quips.get(i).getQuipGroup());
     }
     quipMetadata.setBackhandedComplimentsUsed(backhandedComplimentsUsed);
-    Quip backhandedCompliment = manager.doBackhandedComplimentRequest(new HashMap<String,String>(), builder, quipMetadata);
+    
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.setMetadata(quipMetadata);
+    serviceOutput.setConversationEnded(false);
+    
+    Quip backhandedCompliment = manager.doBackhandedComplimentRequest(null, serviceOutput);
     assertEquals(backhandedComplimentsUsed.getLast(),backhandedCompliment.getQuipGroup());
   }
   
