@@ -50,8 +50,8 @@ public class QuipManager extends AbstractManager {
       "CompliBot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>",
       "InsultiBot","InsultaBot");
   
-  private static final String COMPLIBOT_QUIP_FOLLOW_UP = "Say the word 'another' if you want more.";
-  private static final String INSULTIBOT_QUIP_FOLLOW_UP = "There's more where that came from, just say the word 'another'.";
+  private static final String COMPLIBOT_QUIP_FOLLOW_UP = "Say the word <break />'another'<break /> if you want more.";
+  private static final String INSULTIBOT_QUIP_FOLLOW_UP = "There's more where that came from, just say the word <break />'another'.";
   private static final String COMPLIBOT_META_FOLLOW_UP = "What can I do for you now?";
   private static final String INSULTIBOT_META_FOLLOW_UP = "Let's get this over with, what else do you need?";
   
@@ -957,6 +957,16 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(response, botNameReplacements));
     serviceOutput.getVisualOutput().setTitle(title);
     serviceOutput.getVisualOutput().setText(response+"\n\nhttp://derpgroup.com/bots");
+    
+    if(handholdMode){
+      if(bot.equals("complibot")){
+        serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
+      }else if(bot.equals("insultibot")){
+        serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
+      }
+    }
   }
   
   protected ServiceOutput getResponse_whatDoYouDo(String bot){
@@ -993,6 +1003,8 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(response.getVoiceOutput().getSsmltext());
     serviceOutput.getVisualOutput().setTitle(response.getVisualOutput().getTitle());
     serviceOutput.getVisualOutput().setText(response.getVisualOutput().getText());
+    serviceOutput.getDelayedVoiceOutput().setSsmltext(response.getDelayedVoiceOutput().getSsmltext());
+    serviceOutput.getDelayedVoiceOutput().setPlaintext(response.getDelayedVoiceOutput().getPlaintext());
   }
 
   protected void doWhoBuiltYouRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
