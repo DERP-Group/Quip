@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
@@ -73,7 +74,7 @@ public class CompliBotAlexaResource {
   private QuipManager manager;
   
   public CompliBotAlexaResource(MainConfig config, Environment env) {
-    manager = new QuipManager();
+    manager = new QuipManager(config);
   }
 
   /**
@@ -119,6 +120,7 @@ public class CompliBotAlexaResource {
       SpeechletResponse speechletResponse = new SpeechletResponse();
       SimpleCard card;
       SsmlOutputSpeech outputSpeech;
+      Reprompt reprompt;
       
       switch(voiceInput.getMessageType()){
       case END_OF_CONVERSATION:
@@ -126,6 +128,7 @@ public class CompliBotAlexaResource {
       case CANCEL:
         outputSpeech = null;
         card = null;
+        reprompt = null;
         speechletResponse.setShouldEndSession(true);
         break;
       default:
@@ -138,6 +141,15 @@ public class CompliBotAlexaResource {
         else{
           card = null;
         }
+        if(serviceOutput.getDelayedVoiceOutput() !=null && StringUtils.isNotEmpty(serviceOutput.getDelayedVoiceOutput().getSsmltext())){
+          reprompt = new Reprompt();
+          SsmlOutputSpeech repromptSpeech = new SsmlOutputSpeech();
+          repromptSpeech.setSsml("<speak>"+serviceOutput.getDelayedVoiceOutput().getSsmltext()+"</speak>");
+          reprompt.setOutputSpeech(repromptSpeech);
+        }
+        else{
+          reprompt = null;
+        }
 
         outputSpeech = new SsmlOutputSpeech();
         outputSpeech.setSsml("<speak>"+serviceOutput.getVoiceOutput().getSsmltext()+"</speak>");
@@ -147,6 +159,7 @@ public class CompliBotAlexaResource {
 
       speechletResponse.setOutputSpeech(outputSpeech);
       speechletResponse.setCard(card);
+      speechletResponse.setReprompt(reprompt);
       responseEnvelope.setResponse(speechletResponse);
 
       return responseEnvelope;
