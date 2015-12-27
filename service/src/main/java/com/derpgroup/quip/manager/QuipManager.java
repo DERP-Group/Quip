@@ -846,7 +846,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
     serviceOutput.getVoiceOutput().setPlaintext(response);
-    serviceOutput.getVoiceOutput().setSsmltext("<speak>"+response+"</speak>");
+    serviceOutput.getVoiceOutput().setSsmltext(response);
     serviceOutput.getVisualOutput().setText(response);
     return null;
   }
@@ -881,16 +881,16 @@ public class QuipManager extends AbstractManager {
       s2 = "cheesemonger";
       break;
     default:
-      String output = "I'm having an identity crisis and don't seem to recognize myself as bot '" + bot + 
+      String output = "I'm having an identity crisis and don't seem to recognize myself as '" + bot + 
       "'! But I know I was built DERP Group! The group is made up of David, Eric, Rusty, and Paul.";
       serviceOutput.getVoiceOutput().setPlaintext(output);
-      serviceOutput.getVoiceOutput().setSsmltext("<speak>"+output+"</speak>");
+      serviceOutput.getVoiceOutput().setSsmltext(output);
       serviceOutput.getVisualOutput().setText(output);
       return;
     }
     String output = "I was built by the "+s1+" of DERP Group. The group is made up of David, Eric, Rusty, and that "+s2+" Paul.";
     serviceOutput.getVoiceOutput().setPlaintext(output);
-    serviceOutput.getVoiceOutput().setSsmltext("<speak>"+output+"</speak>");
+    serviceOutput.getVoiceOutput().setSsmltext(output);
     serviceOutput.getVisualOutput().setText(output);
   }
 
