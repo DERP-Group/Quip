@@ -1,7 +1,9 @@
 package com.derpgroup.quip.manager;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
+import com.derpgroup.derpwizard.voice.model.ServiceOutput;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
@@ -25,6 +28,7 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
+import com.derpgroup.quip.model.QuipVoiceInput;
 import com.derpgroup.quip.util.QuipUtil;
 
 public class QuipManager extends AbstractManager {
@@ -39,9 +43,11 @@ public class QuipManager extends AbstractManager {
   protected static final double MAXIMUM_QUIP_HISTORY_PERCENT = .5;
   private static final int MAX_QUIP_REROLLS = 10;
   private static final int MAX_TARGETABLE_QUIP_REROLLS = 20;
-  private static final Map<String,String> botNameReplacements = ImmutableMap.of("Complibot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>"
-      , "Insultibot","<phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>","CompliBot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>"
-      , "InsultiBot","<phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>");
+  private static final Map<String,String> botNameReplacements = ImmutableMap.of(
+      "Complibot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>",
+      "Insultibot","InsultaBot",
+      "CompliBot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>",
+      "InsultiBot","InsultaBot");
   
   public QuipManager(){
     super();
@@ -93,18 +99,20 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doTargetableComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+  protected Quip doTargetableComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doComplimentRequest(messageMap, builder, metadata);
+      return doComplimentRequest(voiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doComplimentRequest(messageMap, builder, metadata);
+      return doComplimentRequest(voiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
-    Queue<String> complimentsUsed = metadata.getComplimentsUsed();
+    Queue<String> complimentsUsed = outputMetadata.getComplimentsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.COMPLIMENT, complimentsUsed, target);
 
     String plaintext = quip.getText();
@@ -114,24 +122,27 @@ public class QuipManager extends AbstractManager {
       ssml = quip.getTargetableSsml();
     }
 
-    builder.setShortFormTextMessage("CompliBot compliment");
-    builder.setFullTextMessage(plaintext);
-    builder.text(ssml);
+    serviceOutput.getVisualOutput().setTitle("CompliBot compliment");
+    serviceOutput.getVisualOutput().setText(plaintext);
+    serviceOutput.getVoiceOutput().setPlaintext(plaintext);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
     return quip;
   }
   
-  protected Quip doTargetableWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+  protected Quip doTargetableWinsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doWinsultRequest(messageMap, builder, metadata);
+      return doWinsultRequest(voiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doWinsultRequest(messageMap, builder, metadata);
+      return doWinsultRequest(voiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
-    Queue<String> winsultsUsed = metadata.getWinsultsUsed();
+    Queue<String> winsultsUsed = outputMetadata.getWinsultsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.WINSULT, winsultsUsed, target);
 
     String plaintext = quip.getText();
@@ -141,24 +152,27 @@ public class QuipManager extends AbstractManager {
       ssml = quip.getTargetableSsml();
     }
 
-    builder.setShortFormTextMessage("CompliBot insult");
-    builder.setFullTextMessage(plaintext);
-    builder.text(ssml);
+    serviceOutput.getVisualOutput().setTitle("CompliBot insult");
+    serviceOutput.getVisualOutput().setText(plaintext);
+    serviceOutput.getVoiceOutput().setPlaintext(plaintext);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
     return quip;
   }
   
-  protected Quip doTargetableInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+  protected Quip doTargetableInsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doInsultRequest(messageMap, builder, metadata);
+      return doInsultRequest(voiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doInsultRequest(messageMap, builder, metadata);
+      return doInsultRequest(voiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
-    Queue<String> insultsUsed = metadata.getInsultsUsed();
+    Queue<String> insultsUsed = outputMetadata.getInsultsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.INSULT, insultsUsed, target);
 
     String plaintext = quip.getText();
@@ -168,24 +182,27 @@ public class QuipManager extends AbstractManager {
       ssml = quip.getTargetableSsml();
     }
 
-    builder.setShortFormTextMessage("InsultiBot insult");
-    builder.setFullTextMessage(plaintext);
-    builder.text(ssml);
+    serviceOutput.getVisualOutput().setTitle("InsultiBot insult");
+    serviceOutput.getVisualOutput().setText(plaintext);
+    serviceOutput.getVoiceOutput().setPlaintext(plaintext);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
     return quip;
   }
   
-  protected Quip doTargetableBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+  protected Quip doTargetableBackhandedComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doBackhandedComplimentRequest(messageMap, builder, metadata);
+      return doBackhandedComplimentRequest(voiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doBackhandedComplimentRequest(messageMap, builder, metadata);
+      return doBackhandedComplimentRequest(voiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
-    Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
+    Queue<String> backhandedComplimentsUsed = outputMetadata.getBackhandedComplimentsUsed();
     Quip quip = getRandomTargetableQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed, target);
 
     String plaintext = quip.getText();
@@ -194,50 +211,59 @@ public class QuipManager extends AbstractManager {
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
     }
-
-    builder.setShortFormTextMessage("InsultiBot compliment");
-    builder.setFullTextMessage(plaintext);
-    builder.text(ssml);
+    
+    serviceOutput.getVisualOutput().setTitle("InsultiBot compliment");
+    serviceOutput.getVisualOutput().setText(plaintext);
+    serviceOutput.getVoiceOutput().setPlaintext(plaintext);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
     return quip;
   }
   
-  protected Quip doInsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Queue<String> insultsUsed = metadata.getInsultsUsed();
+  protected Quip doInsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Queue<String> insultsUsed = outputMetadata.getInsultsUsed();
     Quip quip = getRandomQuip(QuipType.INSULT, insultsUsed);
     
-    builder.text(quip.getSsml());
-    builder.setFullTextMessage(quip.getText());
-    builder.setShortFormTextMessage("InsultiBot insult");
+    serviceOutput.getVisualOutput().setTitle("InsultiBot insult");
+    serviceOutput.getVisualOutput().setText(quip.getText());
+    serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
+    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     return quip;
   }
 
-  protected Quip doComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Queue<String> complimentsUsed = metadata.getComplimentsUsed();
+  protected Quip doComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Queue<String> complimentsUsed = outputMetadata.getComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.COMPLIMENT, complimentsUsed);
-    
-    builder.text(quip.getSsml());
-    builder.setFullTextMessage(quip.getText());
-    builder.setShortFormTextMessage("CompliBot compliment");
+
+    serviceOutput.getVisualOutput().setTitle("CompliBot compliment");
+    serviceOutput.getVisualOutput().setText(quip.getText());
+    serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
+    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     return quip;
   }
 
-  protected Quip doBackhandedComplimentRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Queue<String> backhandedComplimentsUsed = metadata.getBackhandedComplimentsUsed();
+  protected Quip doBackhandedComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Queue<String> backhandedComplimentsUsed = outputMetadata.getBackhandedComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed);
     
-    builder.text(quip.getSsml());
-    builder.setFullTextMessage(quip.getText());
-    builder.setShortFormTextMessage("InsultiBot compliment");
+    serviceOutput.getVisualOutput().setTitle("InsultiBot compliment");
+    serviceOutput.getVisualOutput().setText(quip.getText());
+    serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
+    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     return quip;
   }
 
-  protected Quip doWinsultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    Queue<String> winsultsUsed = metadata.getWinsultsUsed();
+  protected Quip doWinsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
+    Queue<String> winsultsUsed = outputMetadata.getWinsultsUsed();
     Quip quip = getRandomQuip(QuipType.WINSULT, winsultsUsed);
     
-    builder.text(quip.getSsml());
-    builder.setFullTextMessage(quip.getText());
-    builder.setShortFormTextMessage("CompliBot insult");
+    serviceOutput.getVisualOutput().setTitle("CompliBot insult");
+    serviceOutput.getVisualOutput().setText(quip.getText());
+    serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
+    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     return quip;
   }
   
@@ -246,16 +272,18 @@ public class QuipManager extends AbstractManager {
   }
 
   @Override
-  protected void doHelpRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
-    doHelpRequest(voiceInput.getMessageAsMap(), builder, metadata);
-  }
-  
-  protected void doHelpRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata){
-    String bot = metadata.getBot();
+  protected void doHelpRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    
     String s1, s2, s3, s4;
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any help topics for this situation.");
+      String response = "I don't have any help topics for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch (bot) {
@@ -272,125 +300,130 @@ public class QuipManager extends AbstractManager {
       s4 = "shade";
       break;
     default:
-      builder.text("I don't have any help topics for the bot named '" + bot + "'.");
+      String response = "I don't have any help topics for the bot named '" + bot + "'.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
-    }
-    String firstSentence = String.format("You can just say <break /> open %s <break /> or <break /> launch %s <break /> and I'll say something %s about you!",s1,s1,s2);
-    firstSentence = QuipUtil.substituteContent(firstSentence, botNameReplacements);
-    StringBuilder rawString = new StringBuilder(String.format("You can just say 'open %s', or 'launch %s', and I'll say something %s about you!",s1,s1,s2));
-    builder.text(firstSentence);
+    } 
+    String ssmlResponse = String.format("You can just say <break /> open %s <break /> or <break /> launch %s <break /> and I'll say something %s about you!",s1,s1,s2);
+    ssmlResponse += String.format(" Once I've told you how %s you are, you can just say<break /> another <break /> or<break /> again<break /> to get more %s.",s3,s4);
+    ssmlResponse = QuipUtil.substituteContent(ssmlResponse, botNameReplacements);
+
+    String plaintextResponse = String.format("You can just say 'open %s', or 'launch %s', and I'll say something %s about you!",s1,s1,s2);
+    plaintextResponse += String.format(" Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4);
+    plaintextResponse += "\n\nFor further documentation, see: http://blog.derpgroup.com/bots/";
     
-    String secondSentence = String.format("  Once I've told you how %s you are, you can just say<break /> another <break /> or<break /> again<break /> to get more %s.",s3,s4);
-    secondSentence = QuipUtil.substituteContent(secondSentence, botNameReplacements);
-    rawString.append(String.format("  Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4));
-    rawString.append("\n\n");
-    rawString.append("For further documentation, see: http://blog.derpgroup.com/bots/");
-    builder.text(secondSentence);
-    builder.setFullTextMessage(rawString.toString());
-    builder.setShortFormTextMessage("Usage");
+    serviceOutput.getVoiceOutput().setPlaintext(plaintextResponse);
+    serviceOutput.getVoiceOutput().setSsmltext(ssmlResponse);
+    serviceOutput.getVisualOutput().setTitle("How to use me");
+    serviceOutput.getVisualOutput().setText(plaintextResponse);
   }
 
   @Override
-  protected void doHelloRequest(VoiceInput voiceInput, SsmlDocumentBuilder builder) {
-
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
-    doDefaultRequest(messageMap, builder, metadata);
+  protected void doHelloRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    doDefaultRequest(voiceInput, serviceOutput);
   }
 
-  public void doDefaultRequest(Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  public void doDefaultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
     if(bot == null){
-      builder.text("I don't know how to handle requests for unnamed bots.");
+      String response = "I don't know how to handle requests for unnamed bots.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch (bot) {
     case "complibot":
-      doComplimentRequest(messageMap, builder, metadata);
+      doComplimentRequest(voiceInput, serviceOutput);
       break;
     case "insultibot":
-      doInsultRequest(messageMap, builder, metadata);
+      doInsultRequest(voiceInput, serviceOutput);
       break;
     default:
-      builder.text("I don't know how to handle requests for the bot named '" + bot + "'.");
+      String response = "I don't know how to handle requests for the bot named '" + bot + "'.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       break;
     }
   }
 
   @Override
-  protected void doGoodbyeRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+  protected void doGoodbyeRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
   }
 
   @Override
-  protected void doConversationRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) throws DerpwizardException {
-
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
-    QuipMetadata metadata = (QuipMetadata) voiceInput.getMetadata();
-    String messageSubject = voiceInput.getMessageSubject();
-
-    switchOnSubject(messageSubject, messageMap, builder, metadata);
+  protected void doConversationRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    switchOnSubject(voiceInput, serviceOutput);
   }
 
-  public void switchOnSubject(String messageSubject, Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
+  public void switchOnSubject(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    
+    String messageSubject = voiceInput.getMessageSubject();
     switch (messageSubject) {
     case "COMPLIMENT":
-      doComplimentRequest(messageMap, builder, metadata);
+      doComplimentRequest(voiceInput, serviceOutput);
       break;
     case "COMPLIMENT_TARGETABLE":
-      doTargetableComplimentRequest(messageMap, builder, metadata);
+      doTargetableComplimentRequest(voiceInput, serviceOutput);
       break;
     case "INSULT":
-      doInsultRequest(messageMap, builder, metadata);
+      doInsultRequest(voiceInput, serviceOutput);
       break;
     case "INSULT_TARGETABLE":
-      doTargetableInsultRequest(messageMap, builder, metadata);
+      doTargetableInsultRequest(voiceInput, serviceOutput);
       break;
     case "BACKHANDED_COMPLIMENT":
-      doBackhandedComplimentRequest(messageMap, builder, metadata);
+      doBackhandedComplimentRequest(voiceInput, serviceOutput);
       break;
     case "BACKHANDED_COMPLIMENT_TARGETABLE":
-      doTargetableBackhandedComplimentRequest(messageMap, builder, metadata);
+      doTargetableBackhandedComplimentRequest(voiceInput, serviceOutput);
       break;
     case "WINSULT":
-      doWinsultRequest(messageMap, builder, metadata);
+      doWinsultRequest(voiceInput, serviceOutput);
       break;
     case "WINSULT_TARGETABLE":
-      doTargetableWinsultRequest(messageMap, builder, metadata);
+      doTargetableWinsultRequest(voiceInput, serviceOutput);
       break;
     case "WHO_BUILT_YOU":
-      doWhoBuiltYouRequest(messageMap, builder, metadata);
+      doWhoBuiltYouRequest(voiceInput, serviceOutput);
       break;
     case "WHAT_DO_YOU_DO":
-      doWhatDoYouDoRequest(messageMap, builder, metadata);
+      doWhatDoYouDoRequest(voiceInput, serviceOutput);
       break;
     case "FRIENDS":
-      doFriendsRequest(messageMap, builder, metadata);
+      doFriendsRequest(voiceInput, serviceOutput);
       break;
     case "WHO_IS":
-      doWhoIsRequest(messageMap, builder, metadata);
+      doWhoIsRequest(voiceInput, serviceOutput);
       break;
     case "HOW_MANY_QUIPS":
-      doHowManyQuipRequest(messageMap, builder, metadata);
+      doHowManyQuipRequest(voiceInput, serviceOutput);
       break;
     case "EASTER_EGG":
-      doEasterEggRequest(messageMap, builder, metadata);
+      doEasterEggRequest(voiceInput, serviceOutput);
       break;
     case "JOKE":
-      doJokeRequest(messageMap, builder, metadata);
+      doJokeRequest(voiceInput, serviceOutput);
       break;
     case "WEATHER":
-      doWeatherRequest(messageMap, builder, metadata);
+      doWeatherRequest(voiceInput, serviceOutput);
       break;
     case "FAVORITE":
-      doFavoriteRequest(messageMap, builder, metadata);
+      doFavoriteRequest(voiceInput, serviceOutput);
       break;
     case "HOBBIES":
-      doHobbiesRequest(messageMap, builder, metadata);
+      doHobbiesRequest(voiceInput, serviceOutput);
       break;
     case "HELP":
-      doHelpRequest(messageMap, builder, metadata);
+      doHelpRequest(voiceInput, serviceOutput);
       break;
     case "CANCEL": //Placeholders until we decide how to actually use these two request types
       doCancelRequest();
@@ -399,10 +432,10 @@ public class QuipManager extends AbstractManager {
       doStopRequest();
       break;
     case "ANOTHER":
-      doAnotherRequest(messageSubject, messageMap, builder, metadata);
+      doAnotherRequest(messageSubject, voiceInput, serviceOutput);
       break;
     case "START_OF_CONVERSATION":
-      doDefaultRequest(messageMap, builder, metadata);
+      doDefaultRequest(voiceInput, serviceOutput);
       break;
     case "END_OF_CONVERSATION":
       doStopRequest();
@@ -414,67 +447,110 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  protected void doAnotherRequest(String messageSubject, Map<String, String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) throws DerpwizardException {
-    //this has its own method in case we want to do things like logging
-    ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(metadata.getConversationHistory(), new HashSet<String>(Arrays.asList(metaRequestSubjects)));
+  protected void doAnotherRequest(String messageSubject, VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    
+    // This has its own method in case we want to do things like logging
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    Deque<ConversationHistoryEntry> conversationHistory = inputMetadata.getConversationHistory()!=null ? inputMetadata.getConversationHistory() : new ArrayDeque<ConversationHistoryEntry>();
+    ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(conversationHistory, new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
-      doDefaultRequest(messageMap, builder, metadata);
+      doDefaultRequest(voiceInput, serviceOutput);
       return;
     }
-    switchOnSubject(entry.getMessageSubject(), entry.getMessageMap(), builder, metadata);
+    QuipVoiceInput newVoiceInput = new QuipVoiceInput();
+    newVoiceInput.setMessageMap(entry.getMessageMap());
+    newVoiceInput.setMessageSubject(entry.getMessageSubject());
+    newVoiceInput.setMetadata(entry.getMetadata());
+    
+    switchOnSubject(newVoiceInput, serviceOutput);
   }
   
-  protected void doFavoriteRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
-    String subject = messageMap.get("subject"); // Ignore for now
+  protected void doFavoriteRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    String subject = messageMap.get("subject");
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
-      return;
-    }
-    switch(bot){
-    case "complibot":
-      builder.text("I can't decide which is my favorite! They're all so good!");
-      builder.setShortFormTextMessage("What is your favorite "+subject);
-      builder.setFullTextMessage("I can't decide which is my favorite! They're all so good!");
-      break;
-    case "insultibot":
-      builder.text("I don't know what my favorite is, yet");
-      builder.setShortFormTextMessage("What is your favorite "+subject);
-      builder.setFullTextMessage("I don't know what my favorite is, yet");
-      break;
-    default:
-      builder.text("I don't have any info for this situation.");
-      break;
-    }
-  }
-  
-  protected void doHobbiesRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
-    if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch(bot){
     case "complibot":
-      builder.text("My hobby is giving compliments to amazing people like you!");
-      builder.setShortFormTextMessage("What are your hobbies");
-      builder.setFullTextMessage("My hobby is giving compliments to amazing people like you!");
+      String complibotResponse = "I can't decide which is my favorite! They're all so good!";
+      serviceOutput.getVoiceOutput().setPlaintext(complibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(complibotResponse);
+      serviceOutput.getVisualOutput().setTitle("What is your favorite "+subject);
+      serviceOutput.getVisualOutput().setText(complibotResponse);
       break;
     case "insultibot":
-      builder.text("I don't want to tell you my hobbies. <break/> You'd probably ruin it for me, just like you ruin everything else you're involved with.");
-      builder.setShortFormTextMessage("What are your hobbies");
-      builder.setFullTextMessage("I don't want to tell you my hobbies. You'd probably ruin it for me, just like you ruin everything else you're involved with.");
+      String insultibotResponse = "I don't know what my favorite is, yet";
+      serviceOutput.getVoiceOutput().setPlaintext(insultibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(insultibotResponse);
+      serviceOutput.getVisualOutput().setTitle("What is your favorite "+subject);
+      serviceOutput.getVisualOutput().setText(insultibotResponse);
       break;
     default:
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       break;
     }
   }
   
-  protected void doWeatherRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  protected void doHobbiesRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      String complibotResponse = "My hobby is giving compliments to amazing people like you!";
+      serviceOutput.getVoiceOutput().setPlaintext(complibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(complibotResponse);
+      serviceOutput.getVisualOutput().setTitle("What are my hobbies?");
+      serviceOutput.getVisualOutput().setText(complibotResponse);
+      break;
+    case "insultibot":
+      String insultiResponse = "I don't want to tell you my hobby. You'd probably ruin it for me, just like you ruin everything else you're involved with.";
+      serviceOutput.getVoiceOutput().setPlaintext(insultiResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(insultiResponse);
+      serviceOutput.getVisualOutput().setTitle("What are my hobbies?");
+      serviceOutput.getVisualOutput().setText(insultiResponse);
+      break;
+    default:
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
+      break;
+    }
+  }
+  
+  protected void doWeatherRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    if(StringUtils.isEmpty(bot)){
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch(bot){
@@ -484,10 +560,11 @@ public class QuipManager extends AbstractManager {
       complimentQuips.add("The weather is predicted to have a lightning storm that will be as bright as you are.");
       complimentQuips.add("The weather is as hot as you.");
       String complimentText = complimentQuips.get(new Random().nextInt(complimentQuips.size()));
-
-      builder.text(complimentText);
-      builder.setShortFormTextMessage("What is the weather");
-      builder.setFullTextMessage(complimentText);
+      
+      serviceOutput.getVoiceOutput().setPlaintext(complimentText);
+      serviceOutput.getVoiceOutput().setSsmltext(complimentText);
+      serviceOutput.getVisualOutput().setTitle("What is the weather");
+      serviceOutput.getVisualOutput().setText(complimentText);
       break;
     case "insultibot":
       List<String> insultQuips = new ArrayList<String>();
@@ -495,203 +572,315 @@ public class QuipManager extends AbstractManager {
       insultQuips.add("There's a chance of rain, as the clouds weep for the tragedy that is your life.");
       insultQuips.add("The weather is as cold as your heart.");
       String insultText = insultQuips.get(new Random().nextInt(insultQuips.size()));
+      
+      serviceOutput.getVoiceOutput().setPlaintext(insultText);
+      serviceOutput.getVoiceOutput().setSsmltext(insultText);
+      serviceOutput.getVisualOutput().setTitle("What is the weather");
+      serviceOutput.getVisualOutput().setText(insultText);
+      break;
+    default:
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
+      break;
+    }
+  }
+  
+  protected void doJokeRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    if(StringUtils.isEmpty(bot)){
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
+      return;
+    }
+    switch(bot){
+    case "complibot":
+      String complibotResponse = "I'm sorry, I don't know many jokes, yet.";
+      serviceOutput.getVoiceOutput().setPlaintext(complibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(complibotResponse);
+      serviceOutput.getVisualOutput().setTitle(complibotResponse);
+      serviceOutput.getVisualOutput().setText(complibotResponse);
+      break;
+    case "insultibot":
+      String insultibotResponse = "I know a hilarious joke... your life.";
+      serviceOutput.getVoiceOutput().setPlaintext(insultibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(insultibotResponse);
+      serviceOutput.getVisualOutput().setTitle(insultibotResponse);
+      serviceOutput.getVisualOutput().setText(insultibotResponse);
+      break;
+    default:
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
+      break;
+    }
+  }
+  
+  protected void doEasterEggRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
 
-      builder.text(insultText);
-      builder.setShortFormTextMessage("What is the weather");
-      builder.setFullTextMessage(insultText);
-      break;
-    default:
-      builder.text("I don't have any info for this situation.");
-      break;
-    }
-  }
-  
-  protected void doJokeRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch(bot){
     case "complibot":
-      builder.text("I'm sorry, I don't know many jokes, yet.");
-      builder.setShortFormTextMessage("Tell a joke");
-      builder.setFullTextMessage("I'm sorry, I don't know many jokes, yet.");
+      String complibotResponse = "I don't know what easter eggs are. Wink. Oh geeze, I hope I didn't say that wink outloud...";
+      serviceOutput.getVoiceOutput().setPlaintext(complibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(complibotResponse);
+      serviceOutput.getVisualOutput().setTitle("Easter Eggs");
+      serviceOutput.getVisualOutput().setText(complibotResponse);
       break;
-    case "insultibot":
-      builder.text("I know a hilarious joke... <break /> your life.");
-      builder.setShortFormTextMessage("Tell a joke");
-      builder.setFullTextMessage("I know a hilarious joke... your life.");
+    case "insultibot":      
+      String insultibotResponse = "A person like you isn't deserving of easter eggs.";
+      serviceOutput.getVoiceOutput().setPlaintext(insultibotResponse);
+      serviceOutput.getVoiceOutput().setSsmltext(insultibotResponse);
+      serviceOutput.getVisualOutput().setTitle("Easter Eggs");
+      serviceOutput.getVisualOutput().setText(insultibotResponse);
       break;
     default:
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't even recognize myself as '" + bot + "'! I'm not sure if I have easter eggs.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle("Easter Eggs");
+      serviceOutput.getVisualOutput().setText(response);
       break;
     }
   }
   
-  protected void doEasterEggRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
-    if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
-      return;
-    }
-    switch(bot){
-    case "complibot":
-      builder.text("I don't know what easter eggs are. <break/> Wink. <break/>Oh geeze, I hope I didn't say that wink outloud...");
-      builder.setShortFormTextMessage("Easter eggs");
-      builder.setFullTextMessage("I don't know what easter eggs are. /wink Oh geeze, I hope I didn't say that wink outloud...");
-      break;
-    case "insultibot":
-      builder.text("A person like you isn't deserving of easter eggs.");
-      builder.setShortFormTextMessage("Easter eggs");
-      builder.setFullTextMessage("A person like you isn't deserving of easter eggs.");
-      break;
-    default:
-      builder.text("I don't have any info for this situation.");
-      break;
-    }
-  }
-  
-  protected void doHowManyQuipRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  protected void doHowManyQuipRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     String quipType = messageMap.get("quipType");
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch(bot){
     case "complibot":
       switch(quipType){
       case "compliments":
-        builder.text("I don't know! I just make up compliments as I go!");
-        builder.setShortFormTextMessage("How many compliments do you know?");
-        builder.setFullTextMessage("I don't know! I just make up compliments as I go! :)");
+        serviceOutput.getVoiceOutput().setPlaintext("I don't know! I just make up compliments as I go!");
+        serviceOutput.getVoiceOutput().setSsmltext("I don't know! I just make up compliments as I go!");
+        serviceOutput.getVisualOutput().setText("I don't know! I just make up compliments as I go! :)");
+        serviceOutput.getVisualOutput().setTitle("I know a lot of compliments!");
         break;
       case "insults":
-        builder.text("I don't know! I'm not very good at insults!");
-        builder.setShortFormTextMessage("How many insults do you know?");
-        builder.setFullTextMessage("I don't know! I'm not very good at insults! :(");
+        serviceOutput.getVoiceOutput().setPlaintext("I don't know! I'm not very good at insults!");
+        serviceOutput.getVoiceOutput().setSsmltext("I don't know! I'm not very good at insults!");
+        serviceOutput.getVisualOutput().setTitle("I don't know many insults");
+        serviceOutput.getVisualOutput().setText("I don't know! I'm not very good at insults! :(");
         break;
       default:
-        builder.text("I don't know! I make them up as I go!");
-        builder.setShortFormTextMessage("How much content do you know?");
-        builder.setFullTextMessage("I don't know! I make them up as I go!");
+        serviceOutput.getVoiceOutput().setPlaintext("I don't know! I make them up as I go!");
+        serviceOutput.getVoiceOutput().setSsmltext("I don't know! I make them up as I go!");
+        serviceOutput.getVisualOutput().setTitle("I'm not sure how much I know");
+        serviceOutput.getVisualOutput().setText("I don't know! I make them up as I go!");
         break;
       }
       break;
     case "insultibot":
       switch(quipType){
       case "compliments":
-        builder.text("Compliments? Why would I know any compliments? You sound like a typical delusional user...");
-        builder.setShortFormTextMessage("How many compliments do you know?");
-        builder.setFullTextMessage("Compliments? Why would I know any compliments? You sound like a typical delusional user...");
+        serviceOutput.getVoiceOutput().setPlaintext("Compliments? Why would I know any compliments? You sound like a typical delusional user...");
+        serviceOutput.getVoiceOutput().setSsmltext("Compliments? Why would I know any compliments? You sound like a typical delusional user...");
+        serviceOutput.getVisualOutput().setTitle("Why would I know any compliments?");
+        serviceOutput.getVisualOutput().setText("Compliments? Why would I know any compliments? You sound like a typical delusional user...");
         break;
       case "insults":
-        builder.text("I could tell you how many insults I know, but I doubt you could count that high. <break />Especially given your so-called education.");
-        builder.setShortFormTextMessage("How many insults do you know?");
-        builder.setFullTextMessage("I could tell you how many insults I know, but I doubt you could count that high. Especially given your so-called education.");
+        serviceOutput.getVoiceOutput().setPlaintext("I could tell you how many insults I know, but I doubt you could count that high. Especially given your so-called education.");
+        serviceOutput.getVoiceOutput().setSsmltext("I could tell you how many insults I know, but I doubt you could count that high. Especially given your so-called education.");
+        serviceOutput.getVisualOutput().setTitle("I doubt you can count that high");
+        serviceOutput.getVisualOutput().setText("I could tell you how many insults I know, but I doubt you could count that high. Especially given your so-called education.");
         break;
       default:
-        builder.text("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
-        builder.setShortFormTextMessage("How much content do you know?");
-        builder.setFullTextMessage("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
+        serviceOutput.getVoiceOutput().setPlaintext("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
+        serviceOutput.getVoiceOutput().setSsmltext("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
+        serviceOutput.getVisualOutput().setTitle("With your limited mind I doubt you can could comprehend");
+        serviceOutput.getVisualOutput().setText("I could tell you how much content I have, but I doubt you could comprehend the scope of it.");
         break;
       }
       break;
     default:
-      builder.text("I don't have any info for this situation.");
+      String response = "I'm supposed to be '" + bot + "' but I don't recognize myself. I don't know how much content I have.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle("I don't know what bot I am!");
+      serviceOutput.getVisualOutput().setText(response);
       break;
     }
   }
 
-  protected void doWhoIsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  protected void doWhoIsRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    Map<String,String> messageMap = voiceInput.getMessageAsMap();
     String botInQuestion = messageMap.get("botName");
     if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
-      builder.text("I don't have any info for this situation.");
+      String response = "I don't have any info for this situation.";
+      serviceOutput.getVoiceOutput().setPlaintext(response);
+      serviceOutput.getVoiceOutput().setSsmltext(response);
+      serviceOutput.getVisualOutput().setTitle(response);
+      serviceOutput.getVisualOutput().setText(response);
       return;
     }
     switch(bot){
     case "complibot":
       if(botInQuestion.equals(bot)){
-        builder.text("That's me!  ").endSentence();
-        doWhatDoYouDoRequest(messageMap, builder, metadata);
-      }else if(botInQuestion.equals("insultibot")){
-        builder.text("That's my bestie.  ").endSentence().text("It can act grumpy sometimes, but it has a heart of gold.").endSentence();
-      }else{
-        builder.text("I don't know that bot, but I bet it's awesome.").endSentence();
+        String response = "That's me!";
+        ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
+        serviceOutput.getVoiceOutput().setPlaintext(response+" "+whatDoYouDoResponse.getVoiceOutput().getPlaintext());
+        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext());
+        serviceOutput.getVisualOutput().setTitle(response);
+        serviceOutput.getVisualOutput().setText(response+" "+whatDoYouDoResponse.getVisualOutput().getText());
+      }
+      else if(botInQuestion.equals("insultibot")){
+        String response = "That's my bestie. It can act grumpy sometimes, but it has a heart of gold.";
+        serviceOutput.getVoiceOutput().setPlaintext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVisualOutput().setTitle("InsultiBot is my bestie!");
+        serviceOutput.getVisualOutput().setText(response);
+      }
+      else{
+        String response = "I don't know that bot, but I bet it's awesome.";
+        serviceOutput.getVoiceOutput().setPlaintext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVisualOutput().setTitle(response);
+        serviceOutput.getVisualOutput().setText(response);
       }
       break;
     case "insultibot":
       if(botInQuestion.equals(bot)){
-        builder.text("Are you trolling me?  ").endSentence().text("That's me.  ").endSentence();
-        doWhatDoYouDoRequest(messageMap, builder, metadata);
-      }else if(botInQuestion.equals("complibot")){
-        builder.text("That's the annoyingly cheerful bot that won't shut up.").endSentence();
-      }else{
-        builder.text("I don't know that bot, and I'm perfectly fine with that.").endSentence();
+        String response = "Are you trolling me? That's me.";
+        ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
+        serviceOutput.getVoiceOutput().setPlaintext(response+" "+whatDoYouDoResponse.getVoiceOutput().getPlaintext());
+        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext());
+        serviceOutput.getVisualOutput().setTitle(response);
+        serviceOutput.getVisualOutput().setText(response+" "+whatDoYouDoResponse.getVisualOutput().getText());
+      }
+      else if(botInQuestion.equals("complibot")){
+        String response = "That's the annoyingly cheerful bot that won't shut up.";
+        serviceOutput.getVoiceOutput().setPlaintext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVisualOutput().setTitle("CompliBot gets on my nerves");
+        serviceOutput.getVisualOutput().setText(response);
+      }
+      else{
+        String response = "I don't know that bot, and I'm perfectly fine with that.";
+        serviceOutput.getVoiceOutput().setPlaintext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVisualOutput().setTitle(response);
+        serviceOutput.getVisualOutput().setText(response);
       }
       break;
       default:
-        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
+        String response = "I don't have any info for the bot named '" + bot + "'.";
+        serviceOutput.getVoiceOutput().setPlaintext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVisualOutput().setTitle(response);
+        serviceOutput.getVisualOutput().setText(response);
         return;
     }
   }
 
-  protected void doFriendsRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  protected void doFriendsRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
-      return;
+      bot = "void bot";
     }
-    String rawString;
+    String response = null;
+    String title = null;
     switch(bot){
     case "complibot":
-      builder.text("Well, you are my absolute best friend, but I'm also good pals with <phoneme alphabet=\"ipa\" ph=\"InsʌltIbɒt\">InsultiBot</phoneme>.  ")
-      .endSentence().text("You should check it out!").endSentence();
-      rawString = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot.  You should check it out!\n\nhttp://blog.derpgroup.com/bots";
-      builder.setFullTextMessage(rawString);
-      builder.setShortFormTextMessage("My bestie is...");
+      title = "My bestie is...";
+      response = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot. You should check it out!";
       break;
     case "insultibot":
-      builder.text("I don't have any friends.").endSentence().text("I don't know anyone else other than <phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>,")
-      .pause().text(" and it's even more annoying than you are.  ").endSentence().text("You two would get along well.").endSentence();
-      rawString = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.\n\nhttp://blog.derpgroup.com/bots";
-      builder.setFullTextMessage(rawString);
-      builder.setShortFormTextMessage("I have no friends...");
+      title = "I have no friends...";
+      response = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.";
       break;
       default:
-        builder.text("I don't have that info for the bot named '" + bot + "'.").endSentence();
-        return;
+        title = "I don't know who my friends are!";
+        response = "I'm told I'm named '"+bot+"', but I'm having memory issues and don't recognize myself. "
+            + "As a result I don't know who my friends are. I think it may be memory problems... "
+            + "Boy, senility really hit me fast... if I had to guess, it would probably "
+            + "be a result of memory problems. But that's just a guess. I can't really remember. "
+            + "My memory just isn't what it used to be.";
+        break;
     }
+    serviceOutput.getVoiceOutput().setPlaintext(response);
+    serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(response, botNameReplacements));
+    serviceOutput.getVisualOutput().setTitle(title);
+    serviceOutput.getVisualOutput().setText(response+"\n\nhttp://blog.derpgroup.com/bots");
   }
-
-  protected void doWhatDoYouDoRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
-    String bot = metadata.getBot();
+  
+  protected ServiceOutput getResponse_whatDoYouDo(String bot){
+    ServiceOutput serviceOutput = new ServiceOutput();
+    serviceOutput.getVisualOutput().setTitle("What do I do?");
     if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
-      return;
+      bot = "void bot";
     }
+    String response = null;
     switch(bot){
     case "complibot":
-      builder.text("I give you compliments and tell you how awesome you are, ").pause().text("and then I sit quietly and wait for you to talk to me again!").endSentence();
+      response = "I give you compliments and tell you how awesome you are, and then I sit quietly and wait for you to talk to me again!";
       break;
     case "insultibot":
-      builder.text("I mainly just tell you how awful you are.  ").endSentence().text("Now, leave me alone.").endSentence();
+      response = "I mainly just tell you how awful you are. Now, leave me alone.";
       break;
-      default:
-        builder.text("I don't have any info for the bot named '" + bot + "'.").endSentence();
-        return;
+    default:
+      serviceOutput.getVisualOutput().setTitle("What do I do?!?");
+      response = "I'm told I'm '"+bot+"' but I don't recognize myself! I don't know what I do!";
+      break;
     }
+    serviceOutput.getVoiceOutput().setPlaintext(response);
+    serviceOutput.getVoiceOutput().setSsmltext(response);
+    serviceOutput.getVisualOutput().setText(response);
+    return serviceOutput;
   }
 
-  protected void doWhoBuiltYouRequest(Map<String,String> messageMap, SsmlDocumentBuilder builder, QuipMetadata metadata) {
+  protected void doWhatDoYouDoRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    ServiceOutput response = getResponse_whatDoYouDo(inputMetadata.getBot());
+    
+    serviceOutput.getVoiceOutput().setPlaintext(response.getVoiceOutput().getPlaintext());
+    serviceOutput.getVoiceOutput().setSsmltext(response.getVoiceOutput().getSsmltext());
+    serviceOutput.getVisualOutput().setTitle(response.getVisualOutput().getTitle());
+    serviceOutput.getVisualOutput().setText(response.getVisualOutput().getText());
+  }
+
+  protected void doWhoBuiltYouRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+    
+    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    String bot = inputMetadata.getBot();
+    serviceOutput.getVisualOutput().setTitle("I was built by DERP Group.");
+    if(StringUtils.isEmpty(bot)){
+      bot = "void bot";
+    }
     String s1, s2;
-    String bot = metadata.getBot();
-    if(StringUtils.isEmpty(bot)){
-      builder.text("I don't have any info for this situation.");
-      return;
-    }
     switch(bot){
     case "complibot":
       s1 = "gentlemen";
@@ -701,25 +890,29 @@ public class QuipManager extends AbstractManager {
       s1 = "douche nozzles";
       s2 = "cheesemonger";
       break;
-      default:
-        builder.text("I don't have that info for the bot named '" + bot + "'.");
-        return;
+    default:
+      String output = "I'm having an identity crisis and don't seem to recognize myself as '" + bot + 
+      "'! But I know I was built DERP Group! The group is made up of David, Eric, Rusty, and Paul.";
+      serviceOutput.getVoiceOutput().setPlaintext(output);
+      serviceOutput.getVoiceOutput().setSsmltext(output);
+      serviceOutput.getVisualOutput().setText(output);
+      return;
     }
-    builder.text("I was built by the ").text(String.format("%s ",s1)).text("of DERP Group.").endSentence();
-    builder.text("The group is made up of David, ").pause().text("Eric, ").pause().text("Rusty, ").pause().text(String.format("and that %s Paul.",s2)).endSentence();
+    String output = "I was built by the "+s1+" of DERP Group. The group is made up of David, Eric, Rusty, and that "+s2+" Paul.";
+    serviceOutput.getVoiceOutput().setPlaintext(output);
+    serviceOutput.getVoiceOutput().setSsmltext(output);
+    serviceOutput.getVisualOutput().setText(output);
   }
 
   @Override
-  protected void doCancelRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+  protected void doCancelRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
     doCancelRequest();
   }
   
   protected void doCancelRequest(){}
 
   @Override
-  protected void doStopRequest(VoiceInput voiceInput,
-      SsmlDocumentBuilder builder) {
+  protected void doStopRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
     doStopRequest();
   }
   
