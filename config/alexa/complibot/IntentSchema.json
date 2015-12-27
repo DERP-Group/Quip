@@ -9,7 +9,7 @@
       "slots": [
         {
           "name":"target",
-          "type":"TARGETABLE"
+          "type":"AMAZON.US_FIRST_NAME"
         }
       ]
     },
@@ -22,7 +22,7 @@
       "slots": [
         {
           "name":"target",
-          "type":"TARGETABLE"
+          "type":"AMAZON.US_FIRST_NAME"
         }
       ]
     },
