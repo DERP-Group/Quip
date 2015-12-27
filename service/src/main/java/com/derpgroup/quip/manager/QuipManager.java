@@ -139,7 +139,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -173,7 +173,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -207,7 +207,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -241,7 +241,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -257,7 +257,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -273,7 +273,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -289,7 +289,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -305,7 +305,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
     if(handholdMode){
       serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_QUIP_FOLLOW_UP + "</s></p>");
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
     }
     return quip;
   }
@@ -366,10 +366,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -559,10 +559,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -606,10 +606,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -663,10 +663,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -710,10 +710,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -757,10 +757,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -836,10 +836,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -918,10 +918,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }
@@ -1029,10 +1029,10 @@ public class QuipManager extends AbstractManager {
     if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + COMPLIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
       }else if(bot.equals("insultibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext("<p><s>" + INSULTIBOT_META_FOLLOW_UP + "</s></p>");
+        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
     }
   }

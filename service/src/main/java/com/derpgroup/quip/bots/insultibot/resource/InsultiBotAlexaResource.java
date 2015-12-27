@@ -119,7 +119,7 @@ public class InsultiBotAlexaResource {
 
       SpeechletResponse speechletResponse = new SpeechletResponse();
       SimpleCard card;
-      Reprompt reprompt;
+      Reprompt reprompt = null;
       SsmlOutputSpeech outputSpeech;
       
       switch(voiceInput.getMessageType()){
@@ -128,7 +128,6 @@ public class InsultiBotAlexaResource {
       case CANCEL:
         outputSpeech = null;
         card = null;
-        reprompt = null;
         speechletResponse.setShouldEndSession(true);
         break;
       default:
@@ -146,9 +145,6 @@ public class InsultiBotAlexaResource {
           SsmlOutputSpeech repromptSpeech = new SsmlOutputSpeech();
           repromptSpeech.setSsml("<speak>"+serviceOutput.getDelayedVoiceOutput().getSsmltext()+"</speak>");
           reprompt.setOutputSpeech(repromptSpeech);
-        }
-        else{
-          reprompt = null;
         }
         
         outputSpeech = new SsmlOutputSpeech();

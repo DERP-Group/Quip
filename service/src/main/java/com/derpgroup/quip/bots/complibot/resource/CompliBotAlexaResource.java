@@ -120,7 +120,7 @@ public class CompliBotAlexaResource {
       SpeechletResponse speechletResponse = new SpeechletResponse();
       SimpleCard card;
       SsmlOutputSpeech outputSpeech;
-      Reprompt reprompt;
+      Reprompt reprompt = null;
       
       switch(voiceInput.getMessageType()){
       case END_OF_CONVERSATION:
@@ -128,7 +128,6 @@ public class CompliBotAlexaResource {
       case CANCEL:
         outputSpeech = null;
         card = null;
-        reprompt = null;
         speechletResponse.setShouldEndSession(true);
         break;
       default:
@@ -146,9 +145,6 @@ public class CompliBotAlexaResource {
           SsmlOutputSpeech repromptSpeech = new SsmlOutputSpeech();
           repromptSpeech.setSsml("<speak>"+serviceOutput.getDelayedVoiceOutput().getSsmltext()+"</speak>");
           reprompt.setOutputSpeech(repromptSpeech);
-        }
-        else{
-          reprompt = null;
         }
 
         outputSpeech = new SsmlOutputSpeech();
