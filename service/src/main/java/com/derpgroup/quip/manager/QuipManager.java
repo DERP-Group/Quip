@@ -1,7 +1,9 @@
 package com.derpgroup.quip.manager;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +28,7 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
+import com.derpgroup.quip.model.QuipVoiceInput;
 import com.derpgroup.quip.util.QuipUtil;
 
 public class QuipManager extends AbstractManager {
@@ -358,11 +361,12 @@ public class QuipManager extends AbstractManager {
 
   @Override
   protected void doConversationRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
-    switchOnSubject(voiceInput.getMessageSubject(), voiceInput, serviceOutput);
+    switchOnSubject(voiceInput, serviceOutput);
   }
 
-  public void switchOnSubject(String messageSubject, VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  public void switchOnSubject(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     
+    String messageSubject = voiceInput.getMessageSubject();
     switch (messageSubject) {
     case "COMPLIMENT":
       doComplimentRequest(voiceInput, serviceOutput);
@@ -447,12 +451,18 @@ public class QuipManager extends AbstractManager {
     
     // This has its own method in case we want to do things like logging
     QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
-    ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(inputMetadata.getConversationHistory(), new HashSet<String>(Arrays.asList(metaRequestSubjects)));
+    Deque<ConversationHistoryEntry> conversationHistory = inputMetadata.getConversationHistory()!=null ? inputMetadata.getConversationHistory() : new ArrayDeque<ConversationHistoryEntry>();
+    ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(conversationHistory, new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
       doDefaultRequest(voiceInput, serviceOutput);
       return;
     }
-    switchOnSubject(entry.getMessageSubject(), voiceInput, serviceOutput);
+    QuipVoiceInput newVoiceInput = new QuipVoiceInput();
+    newVoiceInput.setMessageMap(entry.getMessageMap());
+    newVoiceInput.setMessageSubject(entry.getMessageSubject());
+    newVoiceInput.setMetadata(entry.getMetadata());
+    
+    switchOnSubject(newVoiceInput, serviceOutput);
   }
   
   protected void doFavoriteRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
@@ -805,11 +815,11 @@ public class QuipManager extends AbstractManager {
     switch(bot){
     case "complibot":
       title = "My bestie is...";
-      response = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot. You should check it out!\n\nhttp://blog.derpgroup.com/bots";
+      response = "Well, you are my absolute best friend, but I'm also good pals with InsultiBot. You should check it out!";
       break;
     case "insultibot":
       title = "I have no friends...";
-      response = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.\n\nhttp://blog.derpgroup.com/bots";
+      response = "I don't have any friends.  I don't know anyone else other than CompliBot, and it's even more annoying than you are.  You two would get along well.";
       break;
       default:
         title = "I don't know who my friends are!";
@@ -823,7 +833,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setPlaintext(response);
     serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(response, botNameReplacements));
     serviceOutput.getVisualOutput().setTitle(title);
-    serviceOutput.getVisualOutput().setText(response);
+    serviceOutput.getVisualOutput().setText(response+"\n\nhttp://blog.derpgroup.com/bots");
   }
   
   protected ServiceOutput getResponse_whatDoYouDo(String bot){
@@ -848,7 +858,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setPlaintext(response);
     serviceOutput.getVoiceOutput().setSsmltext(response);
     serviceOutput.getVisualOutput().setText(response);
-    return null;
+    return serviceOutput;
   }
 
   protected void doWhatDoYouDoRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
