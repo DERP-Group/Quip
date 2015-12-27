@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
@@ -73,7 +74,7 @@ public class InsultiBotAlexaResource {
   private QuipManager manager;
   
   public InsultiBotAlexaResource(MainConfig config, Environment env) {
-    manager = new QuipManager();
+    manager = new QuipManager(config);
   }
 
   /**
@@ -118,6 +119,7 @@ public class InsultiBotAlexaResource {
 
       SpeechletResponse speechletResponse = new SpeechletResponse();
       SimpleCard card;
+      Reprompt reprompt = null;
       SsmlOutputSpeech outputSpeech;
       
       switch(voiceInput.getMessageType()){
@@ -138,6 +140,12 @@ public class InsultiBotAlexaResource {
         else{
           card = null;
         }
+        if(serviceOutput.getDelayedVoiceOutput() !=null && StringUtils.isNotEmpty(serviceOutput.getDelayedVoiceOutput().getSsmltext())){
+          reprompt = new Reprompt();
+          SsmlOutputSpeech repromptSpeech = new SsmlOutputSpeech();
+          repromptSpeech.setSsml("<speak>"+serviceOutput.getDelayedVoiceOutput().getSsmltext()+"</speak>");
+          reprompt.setOutputSpeech(repromptSpeech);
+        }
         
         outputSpeech = new SsmlOutputSpeech();
         outputSpeech.setSsml("<speak>"+serviceOutput.getVoiceOutput().getSsmltext()+"</speak>");
@@ -147,6 +155,7 @@ public class InsultiBotAlexaResource {
 
       speechletResponse.setOutputSpeech(outputSpeech);
       speechletResponse.setCard(card);
+      speechletResponse.setReprompt(reprompt);
       responseEnvelope.setResponse(speechletResponse);
 
       return responseEnvelope;

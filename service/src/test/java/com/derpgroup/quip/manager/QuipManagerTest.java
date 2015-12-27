@@ -23,7 +23,6 @@ import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.AlexaInput;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
 import com.derpgroup.derpwizard.voice.model.ServiceOutput;
-import com.derpgroup.derpwizard.voice.model.SsmlDocument;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.QuipConfig;
@@ -53,7 +52,7 @@ public class QuipManagerTest {
   
   @Before
   public void setup(){
-    manager = new QuipManager();
+    manager = new QuipManager(null);
     builder = new SsmlDocumentBuilder();
     metadata = new QuipMetadata();
     metadata.setConversationHistory(new ArrayDeque<ConversationHistoryEntry>());

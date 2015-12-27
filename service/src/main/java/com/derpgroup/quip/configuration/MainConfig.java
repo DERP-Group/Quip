@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MainConfig extends Configuration {
   private boolean prettyPrint = true;
+  private Boolean handholdMode;
   
   @Valid
   @NotNull
@@ -59,5 +60,11 @@ public class MainConfig extends Configuration {
   public void setQuipConfig(QuipConfig quipConfig) {
     this.quipConfig = quipConfig;
   }
+
+  @JsonProperty
+  public Boolean getHandholdMode() {return handholdMode;}
+
+  @JsonProperty
+  public void setHandholdMode(Boolean handholdMode) {this.handholdMode = handholdMode;}
   
 }
