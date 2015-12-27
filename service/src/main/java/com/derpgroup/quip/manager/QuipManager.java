@@ -356,7 +356,7 @@ public class QuipManager extends AbstractManager {
 
     String plaintextResponse = String.format("You can just say 'open %s', or 'launch %s', and I'll say something %s about you!",s1,s1,s2);
     plaintextResponse += String.format(" Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4);
-    plaintextResponse += "\n\nFor further documentation, see: http://blog.derpgroup.com/bots/";
+    plaintextResponse += "\n\nFor further documentation, see: http://derpgroup.com/bots/";
     
     serviceOutput.getVoiceOutput().setPlaintext(plaintextResponse);
     serviceOutput.getVoiceOutput().setSsmltext(ssmlResponse);
@@ -956,7 +956,7 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getVoiceOutput().setPlaintext(response);
     serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(response, botNameReplacements));
     serviceOutput.getVisualOutput().setTitle(title);
-    serviceOutput.getVisualOutput().setText(response+"\n\nhttp://blog.derpgroup.com/bots");
+    serviceOutput.getVisualOutput().setText(response+"\n\nhttp://derpgroup.com/bots");
   }
   
   protected ServiceOutput getResponse_whatDoYouDo(String bot){
