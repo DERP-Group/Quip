@@ -15,9 +15,9 @@ ANOTHER again
 HELP help
 HELP how do I
 HELP what can I do
-WHO_BUILT_YOU built you
-WHO_BUILT_YOU wrote you
-WHO_BUILT_YOU created you
+WHO_BUILT_YOU who built you
+WHO_BUILT_YOU who wrote you
+WHO_BUILT_YOU who created you
 WHO_BUILT_YOU who are your parents
 FRIENDS who are your friends
 FRIENDS who is your friend
