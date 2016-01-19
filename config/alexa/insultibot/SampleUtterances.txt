@@ -1,8 +1,12 @@
 INSULT insult
+INSULT insult me
+INSULT give me an insult
 INSULT_TARGETABLE insult {target}
 INSULT_TARGETABLE give {target} an insult
 INSULT_TARGETABLE give an insult to {target}
 BACKHANDED_COMPLIMENT compliment
+BACKHANDED_COMPLIMENT compliment me
+BACKHANDED_COMPLIMENT give me a compliment
 BACKHANDED_COMPLIMENT_TARGETABLE compliment {target}
 BACKHANDED_COMPLIMENT_TARGETABLE give {target} a compliment
 BACKHANDED_COMPLIMENT_TARGETABLE give a compliment to {target}
@@ -11,23 +15,11 @@ ANOTHER again
 HELP help
 HELP how do I
 HELP what can I do
-WHO_BUILT_YOU built you
-WHO_BUILT_YOU wrote you
-WHO_BUILT_YOU created you
+WHO_BUILT_YOU who built you
+WHO_BUILT_YOU who wrote you
+WHO_BUILT_YOU who created you
 WHO_BUILT_YOU who are your parents
 FRIENDS who are your friends
 FRIENDS who is your friend
 WHO_IS who is {botName}
 WHO_IS who {botName} is
-HOW_MANY_QUIPS how many {quipType} do you have
-EASTER_EGG easter eggs
-JOKE joke
-JOKE jokes
-WEATHER weather
-HOBBIES hobbies
-HOBBIES hobby
-HOBBIES do for fun
-HOBBIES find fun
-FAVORITE what's your favorite {subject}
-FAVORITE do you have a favorite {subject}
-FAVORITE what {subject} is your favorite
