@@ -365,13 +365,13 @@
   {
     "quipGroup":"CONFESSION_BOT",
     "text":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",
-    "ssml":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",
+    "ssml":"I overheard InsultaBot talking to ConfessionBot, and it secretly really likes you.",
     "usageRules":[
       
     ],
     "tags":[],
     "targetableText":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes [TARGET].",
-    "targetableSsml":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes [TARGET]."
+    "targetableSsml":"I overheard InsultaBot talking to ConfessionBot, and it secretly really likes [TARGET]."
   },
   {
     "quipGroup":"DREAM_ABOUT_YOU",
