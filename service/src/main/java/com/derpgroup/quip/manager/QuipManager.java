@@ -27,6 +27,7 @@ import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
+import com.derpgroup.quip.model.BotName;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
 import com.derpgroup.quip.model.QuipVoiceInput;
@@ -50,10 +51,14 @@ public class QuipManager extends AbstractManager {
       "CompliBot", "<phoneme alphabet=\"ipa\" ph=\"kɒmplIbɒt\"> CompliBot </phoneme>",
       "InsultiBot","InsultaBot");
   
-  private static final String COMPLIBOT_QUIP_FOLLOW_UP = "Say the word <break />'another'<break /> if you want more.";
-  private static final String INSULTIBOT_QUIP_FOLLOW_UP = "There's more where that came from, just say the word <break />'another'.";
-  private static final String COMPLIBOT_META_FOLLOW_UP = "What can I do for you now?";
-  private static final String INSULTIBOT_META_FOLLOW_UP = "Let's get this over with, what else do you need?";
+  private static final String COMPLIBOT_QUIP_FOLLOW_UP = "  Say the word <break />'another'<break /> if you want more.";
+  private static final String INSULTIBOT_QUIP_FOLLOW_UP = "  There's more where that came from, just say the word <break />'another'.";
+  private static final String QUIP_FOLLOW_UP_INTERMEDIATE = "  Want more?";
+  private static final String QUIP_FOLLOW_UP_FINAL = "  More?";
+  private static final String COMPLIBOT_META_FOLLOW_UP = "  What can I do for you now?";
+  private static final String INSULTIBOT_META_FOLLOW_UP = "  Let's get this over with, what else do you need?";
+  private static final String META_FOLLOW_UP_INTERMEDIATE = "  Anything else?";
+  private static final String META_FOLLOW_UP_FINAL = "  What else?";
   
   private boolean handholdMode = false;
   
@@ -128,18 +133,25 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
     if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
+    }
+    
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, true);
     }
 
     serviceOutput.getVisualOutput().setTitle("CompliBot compliment");
     serviceOutput.getVisualOutput().setText(plaintext);
     serviceOutput.getVoiceOutput().setPlaintext(plaintext);
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -162,18 +174,25 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
     if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
+    }
+    
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, true);
     }
 
     serviceOutput.getVisualOutput().setTitle("CompliBot insult");
     serviceOutput.getVisualOutput().setText(plaintext);
     serviceOutput.getVoiceOutput().setPlaintext(plaintext);
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -196,18 +215,25 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
     if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
+    }
+    
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, true);
     }
 
     serviceOutput.getVisualOutput().setTitle("InsultiBot insult");
     serviceOutput.getVisualOutput().setText(plaintext);
     serviceOutput.getVoiceOutput().setPlaintext(plaintext);
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -230,18 +256,25 @@ public class QuipManager extends AbstractManager {
 
     String plaintext = quip.getText();
     String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
     if(quip.isTargetable()){
       plaintext = quip.getTargetableText();
       ssml = quip.getTargetableSsml();
+    }
+    
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, true);
     }
     
     serviceOutput.getVisualOutput().setTitle("InsultiBot compliment");
     serviceOutput.getVisualOutput().setText(plaintext);
     serviceOutput.getVoiceOutput().setPlaintext(plaintext);
     serviceOutput.getVoiceOutput().setSsmltext(ssml);
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -250,14 +283,21 @@ public class QuipManager extends AbstractManager {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> insultsUsed = outputMetadata.getInsultsUsed();
     Quip quip = getRandomQuip(QuipType.INSULT, insultsUsed);
-    
+
+    String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, true);
+    }
     serviceOutput.getVisualOutput().setTitle("InsultiBot insult");
     serviceOutput.getVisualOutput().setText(quip.getText());
     serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
-    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -267,13 +307,20 @@ public class QuipManager extends AbstractManager {
     Queue<String> complimentsUsed = outputMetadata.getComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.COMPLIMENT, complimentsUsed);
 
+    String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, true);
+    }
     serviceOutput.getVisualOutput().setTitle("CompliBot compliment");
     serviceOutput.getVisualOutput().setText(quip.getText());
     serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
-    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -282,14 +329,21 @@ public class QuipManager extends AbstractManager {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> backhandedComplimentsUsed = outputMetadata.getBackhandedComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed);
-    
+
+    String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, true);
+    }
     serviceOutput.getVisualOutput().setTitle("InsultiBot compliment");
     serviceOutput.getVisualOutput().setText(quip.getText());
     serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
-    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_QUIP_FOLLOW_UP);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -298,14 +352,21 @@ public class QuipManager extends AbstractManager {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> winsultsUsed = outputMetadata.getWinsultsUsed();
     Quip quip = getRandomQuip(QuipType.WINSULT, winsultsUsed);
-    
+
+    String ssml = quip.getSsml();
+    String delayedVoiceSsml = null;
+    if(handholdMode){
+      int conversationLength = outputMetadata.getConversationHistory().size();
+      delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, true);
+      ssml += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, true);
+    }
     serviceOutput.getVisualOutput().setTitle("CompliBot insult");
     serviceOutput.getVisualOutput().setText(quip.getText());
     serviceOutput.getVoiceOutput().setPlaintext(quip.getText());
-    serviceOutput.getVoiceOutput().setSsmltext(quip.getSsml());
-    if(handholdMode){
-      serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_QUIP_FOLLOW_UP);
-      serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_QUIP_FOLLOW_UP);
+    serviceOutput.getVoiceOutput().setSsmltext(ssml);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
     return quip;
   }
@@ -351,26 +412,33 @@ public class QuipManager extends AbstractManager {
       return;
     } 
     String ssmlResponse = String.format("You can just say <break /> open %s <break /> or <break /> launch %s <break /> and I'll say something %s about you!",s1,s1,s2);
-    ssmlResponse += String.format(" Once I've told you how %s you are, you can just say<break /> another <break /> or<break /> again<break /> to get more %s.",s3,s4);
+    ssmlResponse += String.format(" Once I've told you how %s you are, you can just say<break /> again<break /> to get more %s.",s3,s4);
     ssmlResponse = QuipUtil.substituteContent(ssmlResponse, botNameReplacements);
 
     String plaintextResponse = String.format("You can just say 'open %s', or 'launch %s', and I'll say something %s about you!",s1,s1,s2);
-    plaintextResponse += String.format(" Once I've told you how %s you are, you can just say 'another' or 'again' to get more %s.",s3,s4);
+    plaintextResponse += String.format(" Once I've told you how %s you are, you can just say 'again' to get more %s.",s3,s4);
     plaintextResponse += "\n\nFor further documentation, see: http://derpgroup.com/bots/";
+    
+    String delayedVoiceSsml = null;
+
+    if(handholdMode){
+      int conversationLength = serviceOutput.getMetadata().getConversationHistory().size();
+      if(bot.equals("complibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, false);
+      }else if(bot.equals("insultibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, false);
+      }
+    }
     
     serviceOutput.getVoiceOutput().setPlaintext(plaintextResponse);
     serviceOutput.getVoiceOutput().setSsmltext(ssmlResponse);
     serviceOutput.getVisualOutput().setTitle("How to use me");
     serviceOutput.getVisualOutput().setText(plaintextResponse);
-
-    if(handholdMode){
-      if(bot.equals("complibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
-      }else if(bot.equals("insultibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
-      }
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
   }
 
@@ -556,7 +624,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -564,7 +632,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
   
   protected void doHobbiesRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
@@ -603,7 +671,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -611,7 +679,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
   
   protected void doWeatherRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
@@ -660,7 +728,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -668,7 +736,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
   
   protected void doJokeRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
@@ -707,7 +775,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -715,7 +783,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
   
   protected void doEasterEggRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
@@ -754,7 +822,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -762,7 +830,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
   
   protected void doHowManyQuipRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
@@ -833,7 +901,7 @@ public class QuipManager extends AbstractManager {
       break;
     }
 
-    if(handholdMode){
+    /*if(handholdMode){
       if(bot.equals("complibot")){
         serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
@@ -841,7 +909,7 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
         serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
       }
-    }
+    }*/
   }
 
   protected void doWhoIsRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
@@ -857,27 +925,42 @@ public class QuipManager extends AbstractManager {
       serviceOutput.getVisualOutput().setText(response);
       return;
     }
+    
+    String delayedVoiceSsml = null;
+    String ssmlResponseSuffix = null;
+
+    if(handholdMode){
+      int conversationLength = serviceOutput.getMetadata().getConversationHistory().size();
+      if(bot.equals("complibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, false);
+        ssmlResponseSuffix = getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, false);
+      }else if(bot.equals("insultibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, false);
+        ssmlResponseSuffix = getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, false);
+      }
+    }
+    
     switch(bot){
     case "complibot":
       if(botInQuestion.equals(bot)){
         String response = "That's me!";
         ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
         serviceOutput.getVoiceOutput().setPlaintext(response+" "+whatDoYouDoResponse.getVoiceOutput().getPlaintext());
-        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext());
+        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext() + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle(response);
         serviceOutput.getVisualOutput().setText(response+" "+whatDoYouDoResponse.getVisualOutput().getText());
       }
       else if(botInQuestion.equals("insultibot")){
         String response = "That's my bestie. It can act grumpy sometimes, but it has a heart of gold.";
         serviceOutput.getVoiceOutput().setPlaintext(response);
-        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle("InsultiBot is my bestie!");
         serviceOutput.getVisualOutput().setText(response);
       }
       else{
         String response = "I don't know that bot, but I bet it's awesome.";
         serviceOutput.getVoiceOutput().setPlaintext(response);
-        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle(response);
         serviceOutput.getVisualOutput().setText(response);
       }
@@ -887,21 +970,21 @@ public class QuipManager extends AbstractManager {
         String response = "Are you trolling me? That's me.";
         ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
         serviceOutput.getVoiceOutput().setPlaintext(response+" "+whatDoYouDoResponse.getVoiceOutput().getPlaintext());
-        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext());
+        serviceOutput.getVoiceOutput().setSsmltext(response+" "+whatDoYouDoResponse.getVoiceOutput().getSsmltext() + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle(response);
         serviceOutput.getVisualOutput().setText(response+" "+whatDoYouDoResponse.getVisualOutput().getText());
       }
       else if(botInQuestion.equals("complibot")){
         String response = "That's the annoyingly cheerful bot that won't shut up.";
         serviceOutput.getVoiceOutput().setPlaintext(response);
-        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle("CompliBot gets on my nerves");
         serviceOutput.getVisualOutput().setText(response);
       }
       else{
         String response = "I don't know that bot, and I'm perfectly fine with that.";
         serviceOutput.getVoiceOutput().setPlaintext(response);
-        serviceOutput.getVoiceOutput().setSsmltext(response);
+        serviceOutput.getVoiceOutput().setSsmltext(response + ssmlResponseSuffix);
         serviceOutput.getVisualOutput().setTitle(response);
         serviceOutput.getVisualOutput().setText(response);
       }
@@ -914,15 +997,9 @@ public class QuipManager extends AbstractManager {
         serviceOutput.getVisualOutput().setText(response);
         return;
     }
-
-    if(handholdMode){
-      if(bot.equals("complibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
-      }else if(bot.equals("insultibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
-      }
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
   }
 
@@ -953,19 +1030,28 @@ public class QuipManager extends AbstractManager {
             + "My memory just isn't what it used to be.";
         break;
     }
+    
+    String ssmlResponse = response; //For now these two are identical, maybe not in the future
+    String delayedVoiceSsml = null;
+
+    if(handholdMode){
+      int conversationLength = serviceOutput.getMetadata().getConversationHistory().size();
+      if(bot.equals("complibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, false);
+      }else if(bot.equals("insultibot")){
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, false);
+      }
+    }
+    
     serviceOutput.getVoiceOutput().setPlaintext(response);
-    serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(response, botNameReplacements));
+    serviceOutput.getVoiceOutput().setSsmltext(QuipUtil.substituteContent(ssmlResponse, botNameReplacements));
     serviceOutput.getVisualOutput().setTitle(title);
     serviceOutput.getVisualOutput().setText(response+"\n\nhttp://derpgroup.com/bots");
-    
-    if(handholdMode){
-      if(bot.equals("complibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
-      }else if(bot.equals("insultibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
-      }
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
   }
   
@@ -1033,19 +1119,27 @@ public class QuipManager extends AbstractManager {
       serviceOutput.getVisualOutput().setText(output);
       return;
     }
-    String output = "I was built by the "+s1+" of DERP Group. The group is made up of David, Eric, Rusty, and that "+s2+" Paul.";
-    serviceOutput.getVoiceOutput().setPlaintext(output);
-    serviceOutput.getVoiceOutput().setSsmltext(output);
-    serviceOutput.getVisualOutput().setText(output);
+    String response = "I was built by the "+s1+" of DERP Group. The group is made up of David, Eric, Rusty, and that "+s2+" Paul.";
+    
+    String ssmlResponse = response; //For now these two are identical, maybe not in the future
+    String delayedVoiceSsml = null;
 
     if(handholdMode){
+      int conversationLength = serviceOutput.getMetadata().getConversationHistory().size();
       if(bot.equals("complibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(COMPLIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(COMPLIBOT_META_FOLLOW_UP);
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.COMPLIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.COMPLIBOT, false);
       }else if(bot.equals("insultibot")){
-        serviceOutput.getDelayedVoiceOutput().setPlaintext(INSULTIBOT_META_FOLLOW_UP);
-        serviceOutput.getDelayedVoiceOutput().setSsmltext(INSULTIBOT_META_FOLLOW_UP);
+        delayedVoiceSsml = getGradualBackoffDelayedVoiceSsml(conversationLength, BotName.INSULTIBOT, false);
+        ssmlResponse += getGradualBackoffSsmlSuffix(conversationLength, BotName.INSULTIBOT, false);
       }
+    }
+    serviceOutput.getVoiceOutput().setPlaintext(response);
+    serviceOutput.getVoiceOutput().setSsmltext(ssmlResponse);
+    serviceOutput.getVisualOutput().setText(response);
+    if(!StringUtils.isEmpty(delayedVoiceSsml)){
+      serviceOutput.getDelayedVoiceOutput().setPlaintext(delayedVoiceSsml);
+      serviceOutput.getDelayedVoiceOutput().setSsmltext(delayedVoiceSsml);
     }
   }
 
@@ -1062,5 +1156,42 @@ public class QuipManager extends AbstractManager {
   }
   
   protected void doStopRequest(){}
-
+  
+  protected String getGradualBackoffSsmlSuffix(int conversationLength, BotName botName, boolean isQuip){
+    String ssmlSuffix = "";
+    if(conversationLength <= 2){
+      switch(botName){
+      case COMPLIBOT: 
+        ssmlSuffix = "<break time=\"1000ms\" />" + (isQuip ? COMPLIBOT_QUIP_FOLLOW_UP : COMPLIBOT_META_FOLLOW_UP);
+        break;
+      case INSULTIBOT:
+        ssmlSuffix = "<break time=\"1000ms\" />" + (isQuip ? INSULTIBOT_QUIP_FOLLOW_UP : INSULTIBOT_META_FOLLOW_UP);
+        break;
+      }
+    }else if(conversationLength <= 4){
+      ssmlSuffix = "<break time=\"1000ms\" />" + (isQuip ? QUIP_FOLLOW_UP_INTERMEDIATE : META_FOLLOW_UP_INTERMEDIATE);
+    }else if(conversationLength == 5){
+      ssmlSuffix = "<break time=\"1000ms\" />" + (isQuip ? QUIP_FOLLOW_UP_FINAL : META_FOLLOW_UP_FINAL);
+    }
+    return ssmlSuffix;
+  }
+  
+  protected String getGradualBackoffDelayedVoiceSsml(int conversationLength, BotName botName, boolean isQuip){
+    String delayedVoiceSsml = "";
+    if(conversationLength <= 2){
+      switch(botName){
+      case COMPLIBOT: 
+        delayedVoiceSsml = isQuip ? COMPLIBOT_QUIP_FOLLOW_UP : COMPLIBOT_META_FOLLOW_UP;
+        break;
+      case INSULTIBOT:
+        delayedVoiceSsml = isQuip ? INSULTIBOT_QUIP_FOLLOW_UP : INSULTIBOT_META_FOLLOW_UP;
+        break;
+      }
+    }else if(conversationLength <= 4){
+      delayedVoiceSsml = isQuip ? QUIP_FOLLOW_UP_INTERMEDIATE : META_FOLLOW_UP_INTERMEDIATE;
+    }else if(conversationLength <= 7){
+      delayedVoiceSsml = isQuip ? QUIP_FOLLOW_UP_FINAL : META_FOLLOW_UP_FINAL;
+    }
+    return delayedVoiceSsml;
+  }
 }
