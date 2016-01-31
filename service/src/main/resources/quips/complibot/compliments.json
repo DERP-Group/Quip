@@ -352,6 +352,17 @@
     "targetableSsml":"[TARGET] is absolutely purrfect right meow."
   },
   {
+    "quipGroup":"SNEAKY_WINKY",
+    "text":"You must be R. Kelly, because when you're around, \"I Believe I Can Fly\".\n\n https://youtu.be/GIQn8pab8Vc",
+    "ssml":"You must be R. Kelly, because when you're around, I believe I can fly.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
     "quipGroup":"CONFESSION_BOT",
     "text":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",
     "ssml":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",

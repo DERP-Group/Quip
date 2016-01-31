@@ -761,18 +761,7 @@
   {
     "quipGroup":"CROCS_N_SOCKS",
     "text":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean you should wear them together.",
-    "ssml":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean you should wear them together.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean [TARGET] should wear them together.",
-    "targetableSsml":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean [TARGET] should wear them together."
-  },
-  {
-    "quipGroup":"CHEWBACCA",
-    "text":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
-    "ssml":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
+    "ssml":"Just because <break time=\"200ms\" />Crocs<break time=\"200ms\" /> rhymes with <break time=\"200ms\" />socks<break time=\"200ms\" /> doesn't mean you should wear them together.",
     "usageRules":[
       
     ],
@@ -814,17 +803,6 @@
     "targetableSsml":"[TARGET] is more twisted than a Rubix cube."
   },
   {
-    "quipGroup":"DARWIN_AWARD",
-    "text":"I want you to know we're all betting on you... to win a Darwin Award.",
-    "ssml":"I want you to know we're all betting on you... to win a Darwin Award.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"We're all betting on [TARGET]... to win a Darwin Award.",
-    "targetableSsml":"We're all betting on [TARGET]... to win a Darwin Award."
-  },
-  {
     "quipGroup":"SPIRIT_ANIMAL",
     "text":"Your spirit animal must be a porcupine. That's why nobody wants to hug you.",
     "ssml":"Your spirit animal must be a porcupine. That's why nobody wants to hug you.",
@@ -845,27 +823,5 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
-  },
-  {
-    "quipGroup":"MADE_UP_COMPLIMENTS",
-    "text":"I'd compliment you, but I'd have to make up positive things.",
-    "ssml":"I'd compliment you, but I'd have to make up positive things.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"I'd compliment [TARGET], but I'd have to make up positive things.",
-    "targetableSsml":"I'd compliment [TARGET], but I'd have to make up positive things."
-  },
-  {
-    "quipGroup":"MADE_UP_COMPLIMENTS",
-    "text":"I'd compliment you, but it'd only be a test of my ability to lie.",
-    "ssml":"I'd compliment you, but it'd only be a test of my ability to lie.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"I'd compliment [TARGET], but it'd only be a test of my ability to lie.",
-    "targetableSsml":"I'd compliment [TARGET], but it'd only be a test of my ability to lie."
   }
 ]
