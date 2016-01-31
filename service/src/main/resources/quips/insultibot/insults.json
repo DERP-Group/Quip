@@ -702,5 +702,170 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"BIRTH_CONTROL",
+    "text":"With a face like yours, you'll never need birth control.",
+    "ssml":"With a face like yours, you'll never need birth control.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"APPROVAL",
+    "text":"The only type of approval you'll ever get, is disapproval.",
+    "ssml":"The only type of approval you'll ever get, is disapproval.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"The only type of approval [TARGET] will ever get, is disapproval.",
+    "targetableSsml":"The only type of approval [TARGET] will ever get, is disapproval."
+  },
+  {
+    "quipGroup":"VACUUM",
+    "text":"Will somebody please turn off that vacuum cleaner!? Oh, I'm sorry, I guess all that sucking was just coming from you...",
+    "ssml":"Will somebody please turn off that vacuum cleaner!? Oh, I'm sorry, I guess all that sucking was just coming from you...",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Will somebody please turn off that vacuum cleaner!? Oh, I'm sorry, I guess all that sucking was just coming from [TARGET]...",
+    "targetableSsml":"Will somebody please turn off that vacuum cleaner!? Oh, I'm sorry, I guess all that sucking was just coming from [TARGET]..."
+  },
+  {
+    "quipGroup":"SINGLE_PLAYER_GAMES",
+    "text":"Even in single player games you get picked last.",
+    "ssml":"Even in single player games you get picked last.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even in single player games [TARGET] gets picked last.",
+    "targetableSsml":"Even in single player games [TARGET] gets picked last."
+  },
+  {
+    "quipGroup":"MISTLETOE",
+    "text":"Isn't it funny how the room suddenly empties when you stand under the mistletoe?",
+    "ssml":"Isn't it funny how the room suddenly empties when you stand under the mistletoe?",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Isn't it funny how the room suddenly empties when [TARGET] stands under the mistletoe?",
+    "targetableSsml":"Isn't it funny how the room suddenly empties when [TARGET] stands under the mistletoe?"
+  },
+  {
+    "quipGroup":"CROCS_N_SOCKS",
+    "text":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean you should wear them together.",
+    "ssml":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean you should wear them together.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean [TARGET] should wear them together.",
+    "targetableSsml":"Just because \"Crocs\" rhymes with \"socks\" doesn't mean [TARGET] should wear them together."
+  },
+  {
+    "quipGroup":"CHEWBACCA",
+    "text":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
+    "ssml":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"INSURANCE_RATES",
+    "text":"You make insurance rates go up for everyone you come in contact with, because you're a disaster.",
+    "ssml":"You make insurance rates go up for everyone you come in contact with, because you're a disaster.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"COUPONS",
+    "text":"You seem like the kind of person who would use coupons on a first date.",
+    "ssml":"You seem like the kind of person who would use coupons on a first date.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] seems like the kind of person who would use coupons on a first date.",
+    "targetableSsml":"[TARGET] seems like the kind of person who would use coupons on a first date."
+  },
+  {
+    "quipGroup":"RUBIX_CUBE",
+    "text":"You're more twisted than a Rubix cube.",
+    "ssml":"You're more twisted than a Rubix cube.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is more twisted than a Rubix cube.",
+    "targetableSsml":"[TARGET] is more twisted than a Rubix cube."
+  },
+  {
+    "quipGroup":"DARWIN_AWARD",
+    "text":"I want you to know we're all betting on you... to win a Darwin Award.",
+    "ssml":"I want you to know we're all betting on you... to win a Darwin Award.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"We're all betting on [TARGET]... to win a Darwin Award.",
+    "targetableSsml":"We're all betting on [TARGET]... to win a Darwin Award."
+  },
+  {
+    "quipGroup":"SPIRIT_ANIMAL",
+    "text":"Your spirit animal must be a porcupine. That's why nobody wants to hug you.",
+    "ssml":"Your spirit animal must be a porcupine. That's why nobody wants to hug you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"HALLOWEEN",
+    "text":"Halloween is your favorite holiday because you get to cover up your ugly face.",
+    "ssml":"Halloween is your favorite holiday because you get to cover up your ugly face.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"MADE_UP_COMPLIMENTS",
+    "text":"I'd compliment you, but I'd have to make up positive things.",
+    "ssml":"I'd compliment you, but I'd have to make up positive things.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd compliment [TARGET], but I'd have to make up positive things.",
+    "targetableSsml":"I'd compliment [TARGET], but I'd have to make up positive things."
+  },
+  {
+    "quipGroup":"MADE_UP_COMPLIMENTS",
+    "text":"I'd compliment you, but it'd only be a test of my ability to lie.",
+    "ssml":"I'd compliment you, but it'd only be a test of my ability to lie.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd compliment [TARGET], but it'd only be a test of my ability to lie.",
+    "targetableSsml":"I'd compliment [TARGET], but it'd only be a test of my ability to lie."
   }
 ]

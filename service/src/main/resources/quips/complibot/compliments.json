@@ -339,5 +339,49 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"PURRFECT",
+    "text":"You're absolutely purrfect right meow.\n   /\\____/\\ \n   /`       '\\ \n====0   0====\n  \\   ----   /\n  /          \\ \n /             \\ \n|               |\n \\    ||      ||    /\n  \\_oo___oo__/#########o",
+    "ssml":"You're absolutely purrfect right meow.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is absolutely purrfect right meow.\n   /\\____/\\ \n   /`       '\\ \n====0   0====\n  \\   ----   /\n  /          \\ \n /             \\ \n|               |\n \\    ||      ||    /\n  \\_oo___oo__/#########o",
+    "targetableSsml":"[TARGET] is absolutely purrfect right meow."
+  },
+  {
+    "quipGroup":"CONFESSION_BOT",
+    "text":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",
+    "ssml":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes [TARGET].",
+    "targetableSsml":"I overheard InsultiBot talking to ConfessionBot, and it secretly really likes [TARGET]."
+  },
+  {
+    "quipGroup":"DREAM_ABOUT_YOU",
+    "text":"I don't even mind going into sleep mode, because I get to dream about you.",
+    "ssml":"I don't even mind going into sleep mode, because I get to dream about you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I don't even mind going into sleep mode, because I get to dream about [TARGET].",
+    "targetableSsml":"I don't even mind going into sleep mode, because I get to dream about [TARGET]."
+  },
+  {
+    "quipGroup":"LOUD_SPEAKERS",
+    "text":"I wish I had louder speakers, so I could tell the whole neighborhood how great you are!",
+    "ssml":"I wish I had louder speakers, so I could tell the whole neighborhood how great you are!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I wish I had louder speakers, so I could tell the whole neighborhood how great [TARGET] is!",
+    "targetableSsml":"I wish I had louder speakers, so I could tell the whole neighborhood how great [TARGET] is!"
   }
 ]

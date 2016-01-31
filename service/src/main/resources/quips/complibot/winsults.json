@@ -130,5 +130,16 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"NO_INSULTS",
+    "text":"I'd insult you, but I can't think of anything bad about you.",
+    "ssml":"I'd insult you, but I can't think of anything bad about you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd insult [TARGET], but I can't think of anything bad.",
+    "targetableSsml":"I'd insult [TARGET], but I can't think of anything bad."
   }
 ]
