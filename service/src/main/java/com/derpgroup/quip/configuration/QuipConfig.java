@@ -19,6 +19,12 @@ public class QuipConfig {
   private String backhandedComplimentsFile;
   
   @NotNull
+  private String metricsFile;
+  
+  @NotNull
+  private Integer loggingInterval;  // seconds
+  
+  @NotNull
   private int refreshRate;    // seconds
   
   @JsonProperty
@@ -45,6 +51,18 @@ public class QuipConfig {
   @JsonProperty
   public void setBackhandedComplimentsFile(String backhandedComplimentsFile) {this.backhandedComplimentsFile = backhandedComplimentsFile;}
   
+  @JsonProperty
+  public String getMetricsFile() {return metricsFile;}
+
+  @JsonProperty
+  public void setMetricsFile(String metricsFile) {this.metricsFile = metricsFile;}
+  
+  @JsonProperty
+  public Integer getLoggingInterval() {return loggingInterval;}
+  
+  @JsonProperty
+  public void setLoggingInterval(Integer loggingInterval) {this.loggingInterval = loggingInterval;}
+
   @JsonProperty
   public int getRefreshRate() {return refreshRate;}
   

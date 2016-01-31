@@ -4,6 +4,8 @@
     "winsultsFile": "/var/lib/quip/quips/complibot/winsults.json",
     "insultsFile": "/var/lib/quip/quips/insultibot/insults.json",
     "backhandedComplimentsFile": "/var/lib/quip/quips/insultibot/backhandedCompliments.json",
+    "metricsFile": "/var/log/quip/quipMetrics.json",
+    "loggingInterval": "300",
     "refreshRate": "300"
   },
   "handholdMode":false,

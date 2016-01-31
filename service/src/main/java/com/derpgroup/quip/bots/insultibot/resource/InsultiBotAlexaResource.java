@@ -55,6 +55,7 @@ import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.manager.QuipManager;
+import com.derpgroup.quip.metrics.Metrics;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -95,6 +96,7 @@ public class InsultiBotAlexaResource {
       if(testFlag == null || testFlag == false){ 
         AlexaUtils.validateAlexaRequest(request, signatureCertChainUrl, signature);
       }
+      Metrics.incrementInsultibotRequests();
   
       Map<String, Object> sessionAttributes = request.getSession().getAttributes();
       sessionAttributes.put("bot", "insultibot");
