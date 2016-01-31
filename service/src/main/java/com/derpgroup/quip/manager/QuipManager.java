@@ -117,7 +117,7 @@ public class QuipManager extends AbstractManager {
   }
   
   protected Quip doTargetableComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
-    Metrics.incrementWhoIsCompliBotRequests();
+    Metrics.incrementTargetableComplimentRequests();
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
@@ -159,7 +159,7 @@ public class QuipManager extends AbstractManager {
   }
   
   protected Quip doTargetableWinsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
-    Metrics.incrementWinsultRequests();
+    Metrics.incrementTargetableWinsultRequests();
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Map<String,String> messageMap = voiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
@@ -954,6 +954,7 @@ public class QuipManager extends AbstractManager {
     
     switch(bot){
     case "complibot":
+      Metrics.incrementWhoIsCompliBotRequests();
       if(botInQuestion.equals(bot)){
         String response = "That's me!";
         ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
@@ -978,6 +979,7 @@ public class QuipManager extends AbstractManager {
       }
       break;
     case "insultibot":
+      Metrics.incrementWhoIsInsultiBotRequests();
       if(botInQuestion.equals(bot)){
         String response = "Are you trolling me? That's me.";
         ServiceOutput whatDoYouDoResponse = getResponse_whatDoYouDo(bot);
