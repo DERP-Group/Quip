@@ -6,7 +6,7 @@
     "backhandedComplimentsFile": "./service/src/main/resources/quips/insultibot/backhandedCompliments.json",
     "refreshRate": "300"
   },
-  "handholdMode":false,
+  "handholdMode":true,
   "server": {
     "applicationConnectors": [
       {

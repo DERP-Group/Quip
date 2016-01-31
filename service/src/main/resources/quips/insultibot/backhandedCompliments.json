@@ -207,5 +207,49 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"MADE_UP_COMPLIMENTS",
+    "text":"I'd compliment you, but I'd have to make up positive things.",
+    "ssml":"I'd compliment you, but I'd have to make up positive things.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd compliment [TARGET], but I'd have to make up positive things.",
+    "targetableSsml":"I'd compliment [TARGET], but I'd have to make up positive things."
+  },
+  {
+    "quipGroup":"MADE_UP_COMPLIMENTS",
+    "text":"I'd compliment you, but it'd only be a test of my ability to lie.",
+    "ssml":"I'd compliment you, but it'd only be a test of my ability to lie.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd compliment [TARGET], but it'd only be a test of my ability to lie.",
+    "targetableSsml":"I'd compliment [TARGET], but it'd only be a test of my ability to lie."
+  },
+  {
+    "quipGroup":"DARWIN_AWARD",
+    "text":"I want you to know we're all betting on you... to win a Darwin Award. \n\n https://en.wikipedia.org/wiki/Darwin_Awards",
+    "ssml":"I want you to know we're all betting on you...<break time=\"700ms\" /> to win a Darwin Award.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CHEWBACCA",
+    "text":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
+    "ssml":"Your voice, it's perfect! Contact your agent, we'll have you audition for the role of Chewbacca.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
