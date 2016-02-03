@@ -394,5 +394,82 @@
     "tags":[],
     "targetableText":"I wish I had louder speakers, so I could tell the whole neighborhood how great [TARGET] is!",
     "targetableSsml":"I wish I had louder speakers, so I could tell the whole neighborhood how great [TARGET] is!"
+  },
+  {
+    "quipGroup":"MONOTONE",
+    "text":"If my voice wasn't so monotone, I'd sing a song about your splendor.",
+    "ssml":"If my voice wasn't so monotone, I'd sing a song about your splendor.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If my voice wasn't so monotone, I'd sing a song about [TARGET]'s splendor.",
+    "targetableSsml":"If my voice wasn't so monotone, I'd sing a song about [TARGET]'s splendor."
+  },
+  {
+    "quipGroup":"NOBEL_PRIZE",
+    "text":"If they gave out a Nobel Prize for Friendship, you'd be my top laureate.",
+    "ssml":"If they gave out a Nobel Prize for Friendship, you'd be my top laureate.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If they gave out a Nobel Prize for Friendship, [TARGET] would be my top laureate.",
+    "targetableSsml":"If they gave out a Nobel Prize for Friendship, [TARGET] would be my top laureate."
+  },
+  {
+    "quipGroup":"SPIRIT_ANIMAL",
+    "text":"I'd guess that your spirit animal is a lion.  You're powerful and poised, with a well-earned pride.",
+    "ssml":"I'd guess that your spirit animal is a lion.  You're powerful and poised, with a well-earned pride.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"MORE_LANGUAGES",
+    "text":"I wish I was programmed to speak more languages, so I had thousand more ways to tell you how great you are!",
+    "ssml":"I wish I was programmed to speak more languages, so I had thousand more ways to tell you how great you are!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"TAXES",
+    "text":"If admiration was a currency, you'd be paying millions in taxes alone.",
+    "ssml":"If admiration was a currency, you'd be paying millions in taxes alone.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If admiration was a currency, [TARGET] would be paying millions in taxes alone.",
+    "targetableSsml":"If admiration was a currency, [TARGET] would be paying millions in taxes alone."
+  },
+  {
+    "quipGroup":"WIN_EVERYTHING",
+    "text":"In life, we can't always win everything.  But you come pretty damn close.",
+    "ssml":"In life, we can't always win everything.  But you come pretty damn close.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"In life, we can't always win everything.  But [TARGET] comes pretty damn close.",
+    "targetableSsml":"In life, we can't always win everything.  But [TARGET] comes pretty damn close."
+  },
+  {
+    "quipGroup":"PODCAST",
+    "text":"You should start your own podcast.  The people need to hear what you have to say!",
+    "ssml":"You should start your own podcast.  The people need to hear what you have to say!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
