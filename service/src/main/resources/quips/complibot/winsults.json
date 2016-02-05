@@ -141,5 +141,49 @@
     "tags":[],
     "targetableText":"I'd insult [TARGET], but I can't think of anything bad.",
     "targetableSsml":"I'd insult [TARGET], but I can't think of anything bad."
+  },
+  {
+    "quipGroup":"SHOULD_BE_A_FELONY",
+    "text":"Sorry, but I don't talk to criminals. It should be a felony to look that good.",
+    "ssml":"Sorry, but I don't talk to criminals. It should be a felony to look that good.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"COOKIE_MONSTER",
+    "text":"You remind me of the Cookie Monster.  You know what you want, and you get it.",
+    "ssml":"You remind me of the Cookie Monster.  You know what you want, and you get it.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SPEAK_MORE_CLEARLY",
+    "text":"Can you speak more clearly?  I can't understand you over the sound of how awesome you are.",
+    "ssml":"Can you speak more clearly?  I can't understand you over the sound of how awesome you are.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"BOMB_DOT_COM",
+    "text":"I discovered your secret - you're a terrorist!  When I looked you up on Google, it pointed me to bomb.com",
+    "ssml":"I discovered your secret - you're a terrorist!  When I looked you up on Google, it pointed me to bomb.com",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
