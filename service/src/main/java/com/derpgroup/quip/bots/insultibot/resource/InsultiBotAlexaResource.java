@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.speechlet.User;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
@@ -54,6 +55,7 @@ import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory.InterfaceType;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
+import com.derpgroup.quip.logger.QuipLogger;
 import com.derpgroup.quip.manager.QuipManager;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -98,6 +100,11 @@ public class InsultiBotAlexaResource {
   
       Map<String, Object> sessionAttributes = request.getSession().getAttributes();
       sessionAttributes.put("bot", "insultibot");
+      User user = request.getSession().getUser();
+      if(user == null){
+        throw new DerpwizardException(DerpwizardExceptionReasons.MISSING_INFO.getSsml(),"No user included as part of request body.");
+      }
+      sessionAttributes.put("userId", user.getUserId());
   
       mapper.registerModule(new MixInModule());
       CommonMetadata inputMetadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
@@ -110,6 +117,7 @@ public class InsultiBotAlexaResource {
   
       // Perform the service request
       VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), inputMetadata, InterfaceType.ALEXA);
+      QuipLogger.log(voiceInput);
       manager.handleRequest(voiceInput, serviceOutput);
 
       // Build the response

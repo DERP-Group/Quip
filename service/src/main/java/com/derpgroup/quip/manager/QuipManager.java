@@ -27,6 +27,7 @@ import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
+import com.derpgroup.quip.logger.QuipLogger;
 import com.derpgroup.quip.model.BotName;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
@@ -576,12 +577,14 @@ public class QuipManager extends AbstractManager {
     ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(conversationHistory, new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
       doDefaultRequest(voiceInput, serviceOutput);
+      QuipLogger.logAnother(voiceInput);
       return;
     }
     QuipVoiceInput newVoiceInput = new QuipVoiceInput();
     newVoiceInput.setMessageMap(entry.getMessageMap());
     newVoiceInput.setMessageSubject(entry.getMessageSubject());
     newVoiceInput.setMetadata(entry.getMetadata());
+    QuipLogger.logAnother(newVoiceInput);
     
     switchOnSubject(newVoiceInput, serviceOutput);
   }

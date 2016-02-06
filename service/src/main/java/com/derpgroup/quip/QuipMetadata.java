@@ -16,6 +16,7 @@ public class QuipMetadata extends CommonMetadata {
   private Queue<String> complimentsUsed;
   private Queue<String> winsultsUsed;
   private Queue<String> backhandedComplimentsUsed;
+  private String userId;
 
   public String getBot() {
     return bot;
@@ -67,5 +68,13 @@ public class QuipMetadata extends CommonMetadata {
 
   public void setBackhandedComplimentsUsed(Queue<String> backhandedComplimentsUsed) {
     this.backhandedComplimentsUsed = backhandedComplimentsUsed;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 }
