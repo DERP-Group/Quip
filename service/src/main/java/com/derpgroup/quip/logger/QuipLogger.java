@@ -16,62 +16,37 @@ import com.derpgroup.quip.QuipMetadata;
 public class QuipLogger {
   private static final Logger LOG = LoggerFactory.getLogger(QuipLogger.class);
   
+  /**
+   * Primary metrics logging function. Logs a user request and associated metadata.
+   * @param voiceInput
+   */
   public static void log(VoiceInput voiceInput){
     String intent = voiceInput.getMessageSubject();
     if(intent.equals("ANOTHER")){return;}
     
     QuipMetadata metadata = (QuipMetadata)voiceInput.getMetadata();
-    String userId = metadata.getUserId();
-
-    int botNumber = -1;
-    switch(metadata.getBot()){
-    case "complibot":
-      botNumber = 0;
-      break;
-    case "insultibot":
-      botNumber = 1;
-      break;
-    default:
-      botNumber = -1;
-      break;
-    }
     
     Deque<ConversationHistoryEntry> conversationHistory = metadata.getConversationHistory();
     int conversationHistorySize = 0;
     if(conversationHistory!=null){
       conversationHistorySize = conversationHistory.size();
     }
-    
-    // Alphabetically order the key/values for consistency
-    Map<String, String> messageMap = voiceInput.getMessageAsMap();
-    List<String> orderedKeys = new ArrayList<String>();
-    orderedKeys.addAll(messageMap.keySet());
-    Collections.sort(orderedKeys);
-    
-    String orderedKeyValuePairs = "";
-    for(String key: orderedKeys){
-      orderedKeyValuePairs+=","+key+"="+messageMap.get(key);
-    }
-    
-    LOG.info( botNumber+ "," + intent + ","+userId+","+conversationHistorySize+orderedKeyValuePairs); 
+
+    LOG.info(
+        getBotNumber(metadata.getBot()) +
+        "," + intent +
+        "," + metadata.getUserId() +
+        "," + conversationHistorySize +
+        getMessageMapValuesAsString(voiceInput.getMessageAsMap())   );
   }
   
+  /**
+   * Primary metrics logging function. Logs a user request and associated metadata.
+   * Designed specifically for ANOTHER intents (which need to be unwrapped to reveal the intent they're repeating).
+   * @param voiceInput
+   */
   public static void logAnother(VoiceInput voiceInput){
     QuipMetadata metadata = (QuipMetadata)voiceInput.getMetadata();
-    String userId = metadata.getUserId();
-
-    int botNumber = -1;
-    switch(metadata.getBot()){
-    case "complibot":
-      botNumber = 0;
-      break;
-    case "insultibot":
-      botNumber = 1;
-      break;
-    default:
-      botNumber = -1;
-      break;
-    }
     
     Deque<ConversationHistoryEntry> conversationHistory = metadata.getConversationHistory();
     int conversationHistorySize = 1;
@@ -94,9 +69,24 @@ public class QuipLogger {
         break;
       }
     }
-    
-    // Alphabetically order the key/values for consistency
-    Map<String, String> messageMap = voiceInput.getMessageAsMap();
+
+    LOG.info(
+        getBotNumber(metadata.getBot()) +
+        ",ANOTHER=" + intent +
+        "," + metadata.getUserId() +
+        "," + conversationHistorySize +
+        getMessageMapValuesAsString(voiceInput.getMessageAsMap())   );
+  }
+
+  /**
+   * A helper function for logging. Arranges key/value pairs in alphabetical order (by key)
+   * and returns them in a comma delimited string:<br><br>
+   * <i>,key1=value1,key2=value2  </i><br><br>
+   * Please mind the leading comma. Each key=value pair is preceded by a comma for easy appending.
+   * @param messageMap
+   * @return
+   */
+  protected static String getMessageMapValuesAsString(Map<String, String> messageMap){
     List<String> orderedKeys = new ArrayList<String>();
     orderedKeys.addAll(messageMap.keySet());
     Collections.sort(orderedKeys);
@@ -105,7 +95,32 @@ public class QuipLogger {
     for(String key: orderedKeys){
       orderedKeyValuePairs+=","+key+"="+messageMap.get(key);
     }
-    
-    LOG.info( botNumber+ ",ANOTHER="+ intent + ","+userId+","+conversationHistorySize+orderedKeyValuePairs); 
+    return orderedKeyValuePairs;
+  }
+
+  /**
+   * A helper function for logging. Each bot is represented by an integer to help with log compression.<br><br>
+   * <ul>
+   * <li>-1 = unrecognized</li>
+   * <li>0 = complibot</li>
+   * <li>1 = insultibot</li>
+   * </ul>
+   * @param botName
+   * @return
+   */
+  protected static int getBotNumber(String botName){
+    int botNumber = -1;
+    switch(botName){
+    case "complibot":
+      botNumber = 0;
+      break;
+    case "insultibot":
+      botNumber = 1;
+      break;
+    default:
+      botNumber = -1;
+      break;
+    }
+    return botNumber;
   }
 }
