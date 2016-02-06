@@ -30,6 +30,8 @@ import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaResource;
 import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaResource;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.health.BasicHealthCheck;
+import com.derpgroup.quip.metrics.Metrics;
+import com.derpgroup.quip.metrics.MetricsLogger;
 import com.derpgroup.quip.model.QuipStore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -62,6 +64,11 @@ public class App extends Application<MainConfig> {
     // Resources
     environment.jersey().register(new CompliBotAlexaResource(config, environment));
     environment.jersey().register(new InsultiBotAlexaResource(config, environment));
+    
+    Metrics.init(config.getQuipConfig());
+    
+    MetricsLogger metricsLogger = new MetricsLogger(config.getQuipConfig());
+    metricsLogger.start();
     
     QuipStore quipStore = QuipStore.getInstance();
     quipStore.init(config.getQuipConfig());
