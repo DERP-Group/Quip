@@ -22,15 +22,15 @@
     ]
   },
   "logging": {
-    "appenders": [
-      {
-        "type": "console"
-      }
-    ],
     "level": "INFO",
     "loggers": {
-      "com": {
-        "derpgroup": "DEBUG"
+      "com.derpgroup": {
+        "level": "DEBUG",
+        "appenders": [
+          {
+            "type": "console"
+          }
+        ]
       }
     }
   }

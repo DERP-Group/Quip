@@ -30,18 +30,31 @@
     ]
   },
   "logging": {
-    "appenders": [
-      {
-        "type": "file",
-        "currentLogFilename": "/var/log/quip/quip.log",
-        "archivedLogFilenamePattern": "/var/log/quip/quip-%d.log",
-        "archivedFileCount": 5
-      }
-    ],
     "level": "INFO",
     "loggers": {
-      "com": {
-        "derpgroup": "DEBUG"
+      "com.derpgroup": {
+        "level": "DEBUG",
+        "appenders": [
+          {
+            "type": "file",
+            "currentLogFilename": "/var/log/quip/quip.log",
+            "archivedLogFilenamePattern": "/var/log/quip/quip-%d.log",
+            "archivedFileCount": 5
+          }
+        ]
+      },
+      "com.derpgroup.quip.logger": {
+        "level": "DEBUG",
+        "additive": false,
+        "appenders": [
+          {
+            "type": "file",
+            "currentLogFilename": "/var/log/quip/metrics.log",
+            "archivedLogFilenamePattern": "/var/log/quip/metrics-%d.log",
+            "archivedFileCount": 5,
+            "logFormat": "%date{yyyy-MM-dd HH:mm:ss.SSS},%msg%n"
+          }
+        ]
       }
     }
   }
