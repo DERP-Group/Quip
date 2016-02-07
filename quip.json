@@ -6,7 +6,7 @@
     "backhandedComplimentsFile": "/var/lib/quip/quips/insultibot/backhandedCompliments.json",
     "refreshRate": "300"
   },
-  "handholdMode":false,
+  "handholdMode":true,
   "server": {
     "applicationConnectors": [
       {
@@ -33,7 +33,7 @@
     "level": "INFO",
     "loggers": {
       "com.derpgroup": {
-        "level": "DEBUG",
+        "level": "INFO",
         "appenders": [
           {
             "type": "file",

@@ -31,9 +31,10 @@ public class QuipLogger {
     if(conversationHistory!=null){
       conversationHistorySize = conversationHistory.size();
     }
+    String bot = metadata.getBot() == null ? "UNKNOWN" : metadata.getBot();
 
     LOG.info(
-        getBotNumber(metadata.getBot()) +
+        getBotNumber(bot) +
         "," + intent +
         "," + metadata.getUserId() +
         "," + conversationHistorySize +
@@ -55,9 +56,10 @@ public class QuipLogger {
     }
     
     String intent = voiceInput.getMessageSubject();
+    String bot = metadata.getBot() == null ? "UNKNOWN" : metadata.getBot();
     if(intent.equals("ANOTHER")){
       conversationHistorySize = 0;
-      switch(metadata.getBot()){
+      switch(bot){
       case "complibot":
         intent = "COMPLIMENT";
         break;
@@ -71,7 +73,7 @@ public class QuipLogger {
     }
 
     LOG.info(
-        getBotNumber(metadata.getBot()) +
+        getBotNumber(bot) +
         ",ANOTHER=" + intent +
         "," + metadata.getUserId() +
         "," + conversationHistorySize +
@@ -91,11 +93,14 @@ public class QuipLogger {
     orderedKeys.addAll(messageMap.keySet());
     Collections.sort(orderedKeys);
     
-    String orderedKeyValuePairs = "";
+    StringBuilder builder = new StringBuilder();
     for(String key: orderedKeys){
-      orderedKeyValuePairs+=","+key+"="+messageMap.get(key);
+      builder.append(",");
+      builder.append(key);
+      builder.append("=");
+      builder.append(messageMap.get(key));
     }
-    return orderedKeyValuePairs;
+    return builder.toString();
   }
 
   /**
@@ -109,6 +114,8 @@ public class QuipLogger {
    * @return
    */
   protected static int getBotNumber(String botName){
+    if(botName==null){botName="UNKNOWN";}
+    
     int botNumber = -1;
     switch(botName){
     case "complibot":

@@ -165,7 +165,7 @@ public class CompliBotAlexaResource {
       speechletResponse.setCard(card);
       speechletResponse.setReprompt(reprompt);
       responseEnvelope.setResponse(speechletResponse);
-
+      
       return responseEnvelope;
     }
     catch(DerpwizardException e){
