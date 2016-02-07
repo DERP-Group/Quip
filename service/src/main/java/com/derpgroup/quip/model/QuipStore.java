@@ -92,7 +92,7 @@ public class QuipStore {
       try {
         updateQuips(quipType);
       } catch (IOException e) {
-        LOG.debug("There was a problem loading "+ quipType +" quips",e);
+        LOG.warn("There was a problem loading "+ quipType +" quips",e);
       }
     }
     List<Quip> quipList = quips.get(quipType);

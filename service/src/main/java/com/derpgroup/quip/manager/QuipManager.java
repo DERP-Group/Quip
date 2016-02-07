@@ -577,14 +577,14 @@ public class QuipManager extends AbstractManager {
     ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(conversationHistory, new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
       doDefaultRequest(voiceInput, serviceOutput);
-      QuipLogger.logAnother(voiceInput);
+      QuipLogger.logAnother(voiceInput, conversationHistory.size());
       return;
     }
     QuipVoiceInput newVoiceInput = new QuipVoiceInput();
     newVoiceInput.setMessageMap(entry.getMessageMap());
     newVoiceInput.setMessageSubject(entry.getMessageSubject());
     newVoiceInput.setMetadata(entry.getMetadata());
-    QuipLogger.logAnother(newVoiceInput);
+    QuipLogger.logAnother(newVoiceInput, conversationHistory.size());
     
     switchOnSubject(newVoiceInput, serviceOutput);
   }
