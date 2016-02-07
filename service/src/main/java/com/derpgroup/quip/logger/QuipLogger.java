@@ -46,19 +46,12 @@ public class QuipLogger {
    * Designed specifically for ANOTHER intents (which need to be unwrapped to reveal the intent they're repeating).
    * @param voiceInput
    */
-  public static void logAnother(VoiceInput voiceInput){
+  public static void logAnother(VoiceInput voiceInput, int conversationHistorySize){
     QuipMetadata metadata = (QuipMetadata)voiceInput.getMetadata();
-    
-    Deque<ConversationHistoryEntry> conversationHistory = metadata.getConversationHistory();
-    int conversationHistorySize = 1;
-    if(conversationHistory!=null){
-      conversationHistorySize = conversationHistory.size()+1;
-    }
     
     String intent = voiceInput.getMessageSubject();
     String bot = metadata.getBot() == null ? "UNKNOWN" : metadata.getBot();
     if(intent.equals("ANOTHER")){
-      conversationHistorySize = 0;
       switch(bot){
       case "complibot":
         intent = "COMPLIMENT";
