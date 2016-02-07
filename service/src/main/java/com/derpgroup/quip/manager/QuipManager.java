@@ -54,8 +54,8 @@ public class QuipManager extends AbstractManager {
   
   private static final String COMPLIBOT_QUIP_FOLLOW_UP = "  Say the word <break />'another'<break /> if you want more.";
   private static final String INSULTIBOT_QUIP_FOLLOW_UP = "  There's more where that came from, just say the word <break />'another'.";
-  private static final String QUIP_FOLLOW_UP_INTERMEDIATE = "  Say <break />'another'<break /> for more.";
-  private static final String QUIP_FOLLOW_UP_FINAL = "  Say <break />'another'<break /> for more.";
+  private static final String QUIP_FOLLOW_UP_INTERMEDIATE = "  Say another, for more.";
+  private static final String QUIP_FOLLOW_UP_FINAL = "  Say another, for more.";
   private static final String COMPLIBOT_META_FOLLOW_UP = "  What can I do for you now?";
   private static final String INSULTIBOT_META_FOLLOW_UP = "  Let's get this over with, what else do you need?";
   private static final String META_FOLLOW_UP_INTERMEDIATE = "  Anything else?";
