@@ -38,25 +38,26 @@ import org.slf4j.LoggerFactory;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
+import com.amazon.speech.speechlet.SpeechletRequest;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.speechlet.User;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
+import com.derpgroup.derpwizard.voice.alexa.AlexaUtils;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardExceptionAlexaWrapper;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException.DerpwizardExceptionReasons;
-import com.derpgroup.derpwizard.alexa.AlexaUtils;
 import com.derpgroup.derpwizard.voice.model.CommonMetadata;
+import com.derpgroup.derpwizard.voice.model.ServiceInput;
 import com.derpgroup.derpwizard.voice.model.ServiceOutput;
-import com.derpgroup.derpwizard.voice.model.VoiceInput;
-import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory;
-import com.derpgroup.derpwizard.voice.model.VoiceMessageFactory.InterfaceType;
+import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.logger.QuipLogger;
 import com.derpgroup.quip.manager.QuipManager;
+import com.derpgroup.quip.util.QuipUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -72,7 +73,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CompliBotAlexaResource {
 
   private static final Logger LOG = LoggerFactory.getLogger(CompliBotAlexaResource.class);
-
+  private static final String ALEXA_VERSION = "1.1.1";
   private QuipManager manager;
   
   public CompliBotAlexaResource(MainConfig config, Environment env) {
@@ -88,7 +89,7 @@ public class CompliBotAlexaResource {
   public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
       @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
     
-    ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper().registerModule(new MixInModule());
     QuipMetadata outputMetadata = null;
     try {
       if (request.getRequest() == null) {
@@ -105,20 +106,34 @@ public class CompliBotAlexaResource {
         throw new DerpwizardException(DerpwizardExceptionReasons.MISSING_INFO.getSsml(),"No user included as part of request body.");
       }
       sessionAttributes.put("userId", user.getUserId());
-  
-      mapper.registerModule(new MixInModule());
+      
+      // Build the Metadata objects here
       CommonMetadata inputMetadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
       outputMetadata = mapper.convertValue(sessionAttributes, new TypeReference<QuipMetadata>(){});
+      
+      ///////////////////////////////////
+      // Build the ServiceInput object //
+      ///////////////////////////////////
+      ServiceInput serviceInput = new ServiceInput();
+      serviceInput.setMetadata(inputMetadata);
+      Map<String, String> messageAsMap = AlexaUtils.getMessageAsMap(request.getRequest());
+      serviceInput.setMessageAsMap(messageAsMap);
+      
+      SpeechletRequest speechletRequest = (SpeechletRequest)request.getRequest();
+      String intent = QuipUtil.getMessageSubject(speechletRequest);
+      serviceInput.setSubject(intent);
 
-      // Build the ServiceOutput object, which gets updated within the service itself
+      ////////////////////////////////////
+      // Build the ServiceOutput object //
+      ////////////////////////////////////
       ServiceOutput serviceOutput = new ServiceOutput();
       serviceOutput.setMetadata(outputMetadata);
       serviceOutput.setConversationEnded(false);
+      ConversationHistoryUtils.registerRequestInConversationHistory(intent, messageAsMap, outputMetadata, outputMetadata.getConversationHistory());
 
       // Perform the service request
-      VoiceInput voiceInput = VoiceMessageFactory.buildInputMessage(request.getRequest(), inputMetadata, InterfaceType.ALEXA);
-      QuipLogger.log(voiceInput);
-      manager.handleRequest(voiceInput, serviceOutput);
+      QuipLogger.log(serviceInput);
+      manager.handleRequest(serviceInput, serviceOutput);
 
       // Build the response
       SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
@@ -130,10 +145,10 @@ public class CompliBotAlexaResource {
       SsmlOutputSpeech outputSpeech;
       Reprompt reprompt = null;
       
-      switch(voiceInput.getMessageType()){
-      case END_OF_CONVERSATION:
-      case STOP:
-      case CANCEL:
+      switch(serviceInput.getSubject()){
+      case "END_OF_CONVERSATION":
+      case "STOP":
+      case "CANCEL":
         outputSpeech = null;
         card = null;
         speechletResponse.setShouldEndSession(true);
@@ -165,16 +180,17 @@ public class CompliBotAlexaResource {
       speechletResponse.setCard(card);
       speechletResponse.setReprompt(reprompt);
       responseEnvelope.setResponse(speechletResponse);
+      responseEnvelope.setVersion(ALEXA_VERSION);
       
       return responseEnvelope;
     }
     catch(DerpwizardException e){
       LOG.debug(e.getMessage());
-      return new DerpwizardExceptionAlexaWrapper(e, "1.0",mapper.convertValue(outputMetadata, new TypeReference<Map<String,Object>>(){}));
+      return new DerpwizardExceptionAlexaWrapper(e, ALEXA_VERSION,mapper.convertValue(outputMetadata, new TypeReference<Map<String,Object>>(){}));
     }
     catch(Throwable t){
       LOG.debug(t.getMessage());
-      return new DerpwizardExceptionAlexaWrapper(new DerpwizardException(t.getMessage()),"1.0", mapper.convertValue(outputMetadata, new TypeReference<Map<String,Object>>(){}));
+      return new DerpwizardExceptionAlexaWrapper(new DerpwizardException(t.getMessage()),ALEXA_VERSION, mapper.convertValue(outputMetadata, new TypeReference<Map<String,Object>>(){}));
     }
   }
 }

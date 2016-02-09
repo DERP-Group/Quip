@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
-import com.derpgroup.derpwizard.voice.model.VoiceInput;
+import com.derpgroup.derpwizard.voice.model.ServiceInput;
 import com.derpgroup.quip.QuipMetadata;
 
 public class QuipLogger {
@@ -18,13 +18,13 @@ public class QuipLogger {
   
   /**
    * Primary metrics logging function. Logs a user request and associated metadata.
-   * @param voiceInput
+   * @param serviceInput
    */
-  public static void log(VoiceInput voiceInput){
-    String intent = voiceInput.getMessageSubject();
+  public static void log(ServiceInput serviceInput){
+    String intent = serviceInput.getSubject();
     if(intent.equals("ANOTHER")){return;}
     
-    QuipMetadata metadata = (QuipMetadata)voiceInput.getMetadata();
+    QuipMetadata metadata = (QuipMetadata)serviceInput.getMetadata();
     
     Deque<ConversationHistoryEntry> conversationHistory = metadata.getConversationHistory();
     int conversationHistorySize = 0;
@@ -38,7 +38,7 @@ public class QuipLogger {
         "," + intent +
         "," + metadata.getUserId() +
         "," + conversationHistorySize +
-        getMessageMapValuesAsString(voiceInput.getMessageAsMap())   );
+        getMessageMapValuesAsString(serviceInput.getMessageAsMap())   );
   }
   
   /**
@@ -46,10 +46,10 @@ public class QuipLogger {
    * Designed specifically for ANOTHER intents (which need to be unwrapped to reveal the intent they're repeating).
    * @param voiceInput
    */
-  public static void logAnother(VoiceInput voiceInput, int conversationHistorySize){
+  public static void logAnother(ServiceInput voiceInput, int conversationHistorySize){
     QuipMetadata metadata = (QuipMetadata)voiceInput.getMetadata();
     
-    String intent = voiceInput.getMessageSubject();
+    String intent = voiceInput.getSubject();
     String bot = metadata.getBot() == null ? "UNKNOWN" : metadata.getBot();
     if(intent.equals("ANOTHER")){
       switch(bot){

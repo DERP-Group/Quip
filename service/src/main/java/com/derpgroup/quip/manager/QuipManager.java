@@ -17,12 +17,11 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.derpgroup.derpwizard.manager.AbstractManager;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
+import com.derpgroup.derpwizard.voice.model.ServiceInput;
 import com.derpgroup.derpwizard.voice.model.ServiceOutput;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
-import com.derpgroup.derpwizard.voice.model.VoiceInput;
 import com.derpgroup.derpwizard.voice.util.ConversationHistoryUtils;
 import com.derpgroup.quip.MixInModule;
 import com.derpgroup.quip.QuipMetadata;
@@ -31,10 +30,9 @@ import com.derpgroup.quip.logger.QuipLogger;
 import com.derpgroup.quip.model.BotName;
 import com.derpgroup.quip.model.Quip;
 import com.derpgroup.quip.model.QuipStore;
-import com.derpgroup.quip.model.QuipVoiceInput;
 import com.derpgroup.quip.util.QuipUtil;
 
-public class QuipManager extends AbstractManager {
+public class QuipManager {
   private final Logger LOG = LoggerFactory.getLogger(QuipManager.class);
   
   static{
@@ -116,16 +114,16 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doTargetableComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  protected Quip doTargetableComplimentRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doComplimentRequest(voiceInput, serviceOutput);
+      return doComplimentRequest(ServiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doComplimentRequest(voiceInput, serviceOutput);
+      return doComplimentRequest(ServiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
@@ -157,16 +155,16 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doTargetableWinsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  protected Quip doTargetableWinsultRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doWinsultRequest(voiceInput, serviceOutput);
+      return doWinsultRequest(ServiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doWinsultRequest(voiceInput, serviceOutput);
+      return doWinsultRequest(ServiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
@@ -198,16 +196,16 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doTargetableInsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  protected Quip doTargetableInsultRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doInsultRequest(voiceInput, serviceOutput);
+      return doInsultRequest(ServiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doInsultRequest(voiceInput, serviceOutput);
+      return doInsultRequest(ServiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
@@ -239,16 +237,16 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doTargetableBackhandedComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  protected Quip doTargetableBackhandedComplimentRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     if(!messageMap.containsKey("target") || StringUtils.isEmpty(messageMap.get("target"))){
-      return doBackhandedComplimentRequest(voiceInput, serviceOutput);
+      return doBackhandedComplimentRequest(ServiceInput, serviceOutput);
     }
 
     String target = messageMap.get("target");
     if(target.toLowerCase().equals("me")){
-      return doBackhandedComplimentRequest(voiceInput, serviceOutput);
+      return doBackhandedComplimentRequest(ServiceInput, serviceOutput);
     }
     
     target = target.substring(0,1).toUpperCase()+target.substring(1);
@@ -280,7 +278,7 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
   
-  protected Quip doInsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected Quip doInsultRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> insultsUsed = outputMetadata.getInsultsUsed();
     Quip quip = getRandomQuip(QuipType.INSULT, insultsUsed);
@@ -303,7 +301,7 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
 
-  protected Quip doComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected Quip doComplimentRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> complimentsUsed = outputMetadata.getComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.COMPLIMENT, complimentsUsed);
@@ -326,7 +324,7 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
 
-  protected Quip doBackhandedComplimentRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected Quip doBackhandedComplimentRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> backhandedComplimentsUsed = outputMetadata.getBackhandedComplimentsUsed();
     Quip quip = getRandomQuip(QuipType.BACKHANDED_COMPLIMENT, backhandedComplimentsUsed);
@@ -349,7 +347,7 @@ public class QuipManager extends AbstractManager {
     return quip;
   }
 
-  protected Quip doWinsultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected Quip doWinsultRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     QuipMetadata outputMetadata = (QuipMetadata) serviceOutput.getMetadata();
     Queue<String> winsultsUsed = outputMetadata.getWinsultsUsed();
     Quip quip = getRandomQuip(QuipType.WINSULT, winsultsUsed);
@@ -376,10 +374,9 @@ public class QuipManager extends AbstractManager {
     return Math.min(MAXIMUM_QUIP_HISTORY_SIZE, (int) (sizeOfQuipGroup*MAXIMUM_QUIP_HISTORY_PERCENT));
   }
 
-  @Override
-  protected void doHelpRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+  protected void doHelpRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput){
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     
     String s1, s2, s3, s4;
@@ -443,14 +440,13 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  @Override
-  protected void doHelloRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
-    doDefaultRequest(voiceInput, serviceOutput);
+  protected void doHelloRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
+    doDefaultRequest(ServiceInput, serviceOutput);
   }
 
-  public void doDefaultRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  public void doDefaultRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
 
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(bot == null){
       String response = "I don't know how to handle requests for unnamed bots.";
@@ -462,10 +458,10 @@ public class QuipManager extends AbstractManager {
     }
     switch (bot) {
     case "complibot":
-      doComplimentRequest(voiceInput, serviceOutput);
+      doComplimentRequest(ServiceInput, serviceOutput);
       break;
     case "insultibot":
-      doInsultRequest(voiceInput, serviceOutput);
+      doInsultRequest(ServiceInput, serviceOutput);
       break;
     default:
       String response = "I don't know how to handle requests for the bot named '" + bot + "'.";
@@ -477,75 +473,73 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  @Override
-  protected void doGoodbyeRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doGoodbyeRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
   }
 
-  @Override
-  protected void doConversationRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
-    switchOnSubject(voiceInput, serviceOutput);
+  public void handleRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+    switchOnSubject(ServiceInput, serviceOutput);
   }
 
-  public void switchOnSubject(VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  public void switchOnSubject(ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     
-    String messageSubject = voiceInput.getMessageSubject();
+    String messageSubject = ServiceInput.getSubject();
     switch (messageSubject) {
     case "COMPLIMENT":
-      doComplimentRequest(voiceInput, serviceOutput);
+      doComplimentRequest(ServiceInput, serviceOutput);
       break;
     case "COMPLIMENT_TARGETABLE":
-      doTargetableComplimentRequest(voiceInput, serviceOutput);
+      doTargetableComplimentRequest(ServiceInput, serviceOutput);
       break;
     case "INSULT":
-      doInsultRequest(voiceInput, serviceOutput);
+      doInsultRequest(ServiceInput, serviceOutput);
       break;
     case "INSULT_TARGETABLE":
-      doTargetableInsultRequest(voiceInput, serviceOutput);
+      doTargetableInsultRequest(ServiceInput, serviceOutput);
       break;
     case "BACKHANDED_COMPLIMENT":
-      doBackhandedComplimentRequest(voiceInput, serviceOutput);
+      doBackhandedComplimentRequest(ServiceInput, serviceOutput);
       break;
     case "BACKHANDED_COMPLIMENT_TARGETABLE":
-      doTargetableBackhandedComplimentRequest(voiceInput, serviceOutput);
+      doTargetableBackhandedComplimentRequest(ServiceInput, serviceOutput);
       break;
     case "WINSULT":
-      doWinsultRequest(voiceInput, serviceOutput);
+      doWinsultRequest(ServiceInput, serviceOutput);
       break;
     case "WINSULT_TARGETABLE":
-      doTargetableWinsultRequest(voiceInput, serviceOutput);
+      doTargetableWinsultRequest(ServiceInput, serviceOutput);
       break;
     case "WHO_BUILT_YOU":
-      doWhoBuiltYouRequest(voiceInput, serviceOutput);
+      doWhoBuiltYouRequest(ServiceInput, serviceOutput);
       break;
     case "WHAT_DO_YOU_DO":
-      doWhatDoYouDoRequest(voiceInput, serviceOutput);
+      doWhatDoYouDoRequest(ServiceInput, serviceOutput);
       break;
     case "FRIENDS":
-      doFriendsRequest(voiceInput, serviceOutput);
+      doFriendsRequest(ServiceInput, serviceOutput);
       break;
     case "WHO_IS":
-      doWhoIsRequest(voiceInput, serviceOutput);
+      doWhoIsRequest(ServiceInput, serviceOutput);
       break;
     case "HOW_MANY_QUIPS":
-      doHowManyQuipRequest(voiceInput, serviceOutput);
+      doHowManyQuipRequest(ServiceInput, serviceOutput);
       break;
     case "EASTER_EGG":
-      doEasterEggRequest(voiceInput, serviceOutput);
+      doEasterEggRequest(ServiceInput, serviceOutput);
       break;
     case "JOKE":
-      doJokeRequest(voiceInput, serviceOutput);
+      doJokeRequest(ServiceInput, serviceOutput);
       break;
     case "WEATHER":
-      doWeatherRequest(voiceInput, serviceOutput);
+      doWeatherRequest(ServiceInput, serviceOutput);
       break;
     case "FAVORITE":
-      doFavoriteRequest(voiceInput, serviceOutput);
+      doFavoriteRequest(ServiceInput, serviceOutput);
       break;
     case "HOBBIES":
-      doHobbiesRequest(voiceInput, serviceOutput);
+      doHobbiesRequest(ServiceInput, serviceOutput);
       break;
     case "HELP":
-      doHelpRequest(voiceInput, serviceOutput);
+      doHelpRequest(ServiceInput, serviceOutput);
       break;
     case "CANCEL": //Placeholders until we decide how to actually use these two request types
       doCancelRequest();
@@ -554,10 +548,10 @@ public class QuipManager extends AbstractManager {
       doStopRequest();
       break;
     case "ANOTHER":
-      doAnotherRequest(messageSubject, voiceInput, serviceOutput);
+      doAnotherRequest(messageSubject, ServiceInput, serviceOutput);
       break;
     case "START_OF_CONVERSATION":
-      doDefaultRequest(voiceInput, serviceOutput);
+      doDefaultRequest(ServiceInput, serviceOutput);
       break;
     case "END_OF_CONVERSATION":
       doStopRequest();
@@ -569,31 +563,31 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  protected void doAnotherRequest(String messageSubject, VoiceInput voiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
+  protected void doAnotherRequest(String messageSubject, ServiceInput ServiceInput, ServiceOutput serviceOutput) throws DerpwizardException {
     
     // This has its own method in case we want to do things like logging
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     Deque<ConversationHistoryEntry> conversationHistory = inputMetadata.getConversationHistory()!=null ? inputMetadata.getConversationHistory() : new ArrayDeque<ConversationHistoryEntry>();
     ConversationHistoryEntry entry = ConversationHistoryUtils.getLastNonMetaRequestBySubject(conversationHistory, new HashSet<String>(Arrays.asList(metaRequestSubjects)));
     if(entry == null){
-      doDefaultRequest(voiceInput, serviceOutput);
-      QuipLogger.logAnother(voiceInput, conversationHistory.size());
+      doDefaultRequest(ServiceInput, serviceOutput);
+      QuipLogger.logAnother(ServiceInput, conversationHistory.size());
       return;
     }
-    QuipVoiceInput newVoiceInput = new QuipVoiceInput();
-    newVoiceInput.setMessageMap(entry.getMessageMap());
-    newVoiceInput.setMessageSubject(entry.getMessageSubject());
-    newVoiceInput.setMetadata(entry.getMetadata());
-    QuipLogger.logAnother(newVoiceInput, conversationHistory.size());
+    ServiceInput newServiceInput = new ServiceInput();
+    newServiceInput.setMessageAsMap(entry.getMessageMap());
+    newServiceInput.setSubject(entry.getMessageSubject());
+    newServiceInput.setMetadata(entry.getMetadata());
+    QuipLogger.logAnother(newServiceInput, conversationHistory.size());
     
-    switchOnSubject(newVoiceInput, serviceOutput);
+    switchOnSubject(newServiceInput, serviceOutput);
   }
   
-  protected void doFavoriteRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doFavoriteRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
 
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     String subject = messageMap.get("subject");
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -638,9 +632,9 @@ public class QuipManager extends AbstractManager {
     }*/
   }
   
-  protected void doHobbiesRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doHobbiesRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
 
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -685,9 +679,9 @@ public class QuipManager extends AbstractManager {
     }*/
   }
   
-  protected void doWeatherRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doWeatherRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
 
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -742,9 +736,9 @@ public class QuipManager extends AbstractManager {
     }*/
   }
   
-  protected void doJokeRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doJokeRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -789,9 +783,9 @@ public class QuipManager extends AbstractManager {
     }*/
   }
   
-  protected void doEasterEggRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doEasterEggRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
 
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -836,11 +830,11 @@ public class QuipManager extends AbstractManager {
     }*/
   }
   
-  protected void doHowManyQuipRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+  protected void doHowManyQuipRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput){
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     String quipType = messageMap.get("quipType");
     if(StringUtils.isEmpty(bot)){
       String response = "I don't have any info for this situation.";
@@ -915,10 +909,10 @@ public class QuipManager extends AbstractManager {
     }*/
   }
 
-  protected void doWhoIsRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+  protected void doWhoIsRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput){
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
-    Map<String,String> messageMap = voiceInput.getMessageAsMap();
+    Map<String,String> messageMap = ServiceInput.getMessageAsMap();
     String botInQuestion = messageMap.get("botName");
     if(StringUtils.isEmpty(bot) || StringUtils.isEmpty(botInQuestion)){
       String response = "I don't have any info for this situation.";
@@ -1006,9 +1000,9 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  protected void doFriendsRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doFriendsRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     if(StringUtils.isEmpty(bot)){
       bot = "void bot";
@@ -1083,9 +1077,9 @@ public class QuipManager extends AbstractManager {
     return serviceOutput;
   }
 
-  protected void doWhatDoYouDoRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+  protected void doWhatDoYouDoRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput){
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     ServiceOutput response = getResponse_whatDoYouDo(inputMetadata.getBot());
     
     serviceOutput.getVoiceOutput().setPlaintext(response.getVoiceOutput().getPlaintext());
@@ -1096,9 +1090,9 @@ public class QuipManager extends AbstractManager {
     serviceOutput.getDelayedVoiceOutput().setPlaintext(response.getDelayedVoiceOutput().getPlaintext());
   }
 
-  protected void doWhoBuiltYouRequest(VoiceInput voiceInput, ServiceOutput serviceOutput){
+  protected void doWhoBuiltYouRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput){
     
-    QuipMetadata inputMetadata = (QuipMetadata) voiceInput.getMetadata();
+    QuipMetadata inputMetadata = (QuipMetadata) ServiceInput.getMetadata();
     String bot = inputMetadata.getBot();
     serviceOutput.getVisualOutput().setTitle("I was built by DERP Group.");
     if(StringUtils.isEmpty(bot)){
@@ -1146,15 +1140,13 @@ public class QuipManager extends AbstractManager {
     }
   }
 
-  @Override
-  protected void doCancelRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doCancelRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     doCancelRequest();
   }
   
   protected void doCancelRequest(){}
 
-  @Override
-  protected void doStopRequest(VoiceInput voiceInput, ServiceOutput serviceOutput) {
+  protected void doStopRequest(ServiceInput ServiceInput, ServiceOutput serviceOutput) {
     doStopRequest();
   }
   

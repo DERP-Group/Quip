@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Before;
@@ -17,11 +18,9 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
 
-import com.amazon.speech.slu.Intent;
-import com.amazon.speech.speechlet.IntentRequest;
 import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
-import com.derpgroup.derpwizard.voice.model.AlexaInput;
 import com.derpgroup.derpwizard.voice.model.ConversationHistoryEntry;
+import com.derpgroup.derpwizard.voice.model.ServiceInput;
 import com.derpgroup.derpwizard.voice.model.ServiceOutput;
 import com.derpgroup.derpwizard.voice.model.SsmlDocumentBuilder;
 import com.derpgroup.quip.QuipMetadata;
@@ -62,13 +61,17 @@ public class QuipManagerTest {
   public void testConversationRequest_another_noConversationHistory() throws DerpwizardException{
     
     metadata.setBot("complibot");
-    IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
-    AlexaInput alexaInput = new AlexaInput(intentRequest, metadata);
+    
+    ServiceInput serviceInput = new ServiceInput();
+    serviceInput.setMetadata(metadata);
+    serviceInput.setSubject("ANOTHER");
+    serviceInput.setMessageAsMap(new HashMap<String,String>());
     
     ServiceOutput serviceOutput = new ServiceOutput();
     serviceOutput.setMetadata(metadata);
     serviceOutput.setConversationEnded(false);
-    manager.doConversationRequest(alexaInput, serviceOutput);
+    
+    manager.handleRequest(serviceInput, serviceOutput);
     
     assertNotNull(serviceOutput.getVoiceOutput());
     String outputString = serviceOutput.getVoiceOutput().getSsmltext();
@@ -83,13 +86,15 @@ public class QuipManagerTest {
   @Test
   public void testConversationRequest_another_noConversationHistory_noBot() throws DerpwizardException{
     
-    IntentRequest intentRequest = IntentRequest.builder().withRequestId("123").withIntent(Intent.builder().withName("ANOTHER").build()).build();
-    AlexaInput alexaInput = new AlexaInput(intentRequest, metadata);
+    ServiceInput serviceInput = new ServiceInput();
+    serviceInput.setMetadata(metadata);
+    serviceInput.setSubject("ANOTHER");
+    serviceInput.setMessageAsMap(new HashMap<String,String>());
     
     ServiceOutput serviceOutput = new ServiceOutput();
     serviceOutput.setMetadata(metadata);
     serviceOutput.setConversationEnded(false);
-    manager.doConversationRequest(alexaInput, serviceOutput);
+    manager.handleRequest(serviceInput, serviceOutput);
     
     assertNotNull(serviceOutput.getVoiceOutput());
     String outputString = serviceOutput.getVoiceOutput().getSsmltext();
