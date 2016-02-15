@@ -5,6 +5,10 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.amazon.speech.speechlet.IntentRequest;
+import com.amazon.speech.speechlet.LaunchRequest;
+import com.amazon.speech.speechlet.SessionEndedRequest;
+import com.amazon.speech.speechlet.SpeechletRequest;
 import com.derpgroup.quip.model.Quip;
 
 public class QuipUtil {
@@ -45,5 +49,42 @@ public class QuipUtil {
     String phoneticSubbedTargetedSsml = substituteContent(quip.getTargetableSsml(),phoneticReplacements);
     newQuip.setTargetableSsml(substituteContent(phoneticSubbedTargetedSsml,normalReplacements));
     return newQuip;
+  }
+  
+  /**
+   * An helper function to map Alexa specific "intents" into Quip specific subjects.
+   * @param request
+   * @return
+   */
+  public static String getMessageSubject(SpeechletRequest request) {
+    if(request instanceof LaunchRequest){
+      return "START_OF_CONVERSATION";
+    }else if(request instanceof SessionEndedRequest){
+      return "END_OF_CONVERSATION";
+    }else if (!(request instanceof IntentRequest)) {
+      return "";
+    }
+    
+    IntentRequest intentRequest = (IntentRequest) request;
+    String intentRequestName = intentRequest.getIntent().getName();
+    if(intentRequestName.equalsIgnoreCase("AMAZON.HelpIntent")){
+      return "HELP";
+    }
+    if(intentRequestName.equalsIgnoreCase("AMAZON.CancelIntent")){
+      return "CANCEL";
+    }
+    if(intentRequestName.equalsIgnoreCase("AMAZON.StopIntent")){
+      return "STOP";
+    }
+    if(intentRequestName.equalsIgnoreCase("AMAZON.YesIntent")){
+      return "YES";
+    }
+    if(intentRequestName.equalsIgnoreCase("AMAZON.NoIntent")){
+      return "NO";
+    }
+    if(intentRequestName.equalsIgnoreCase("AMAZON.RepeatIntent")){
+      return "REPEAT";
+    }
+    return intentRequestName;
   }
 }
