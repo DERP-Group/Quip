@@ -48,9 +48,7 @@ public class App extends Application<MainConfig> {
   }
 
   @Override
-  public void initialize(Bootstrap<MainConfig> bootstrap) {
-    //bootstrap.getObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-  }
+  public void initialize(Bootstrap<MainConfig> bootstrap) {}
 
   @Override
   public void run(MainConfig config, Environment environment) throws IOException {
