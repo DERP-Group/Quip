@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class MainConfig extends Configuration {
   private boolean prettyPrint = true;
+  private boolean ignoreUnknownJsonProperties = true;
   private Boolean handholdMode;
   
   @Valid
@@ -66,5 +67,15 @@ public class MainConfig extends Configuration {
 
   @JsonProperty
   public void setHandholdMode(Boolean handholdMode) {this.handholdMode = handholdMode;}
+
+  @JsonProperty
+  public boolean isIgnoreUnknownJsonProperties() {
+    return ignoreUnknownJsonProperties;
+  }
+
+  @JsonProperty
+  public void setIgnoreUnknownJsonProperties(boolean ignoreUnknownJsonProperties) {
+    this.ignoreUnknownJsonProperties = ignoreUnknownJsonProperties;
+  }
   
 }
