@@ -903,14 +903,14 @@
   },
   {
     "quipGroup":"SIX_PACK",
-    "text":"The only 6-pack you'll ever have, will come from the grocery store.",
-    "ssml":"The only 6-pack you'll ever have, will come from the grocery store.",
+    "text":"The only 6-pack you'll ever have will come from the grocery store.",
+    "ssml":"The only 6-pack you'll ever have<break /> will come from the grocery store.",
     "usageRules":[
       
     ],
     "tags":[],
-    "targetableText":"The only 6-pack [TARGET] will ever have, will come from the grocery store.",
-    "targetableSsml":"The only 6-pack [TARGET] will ever have, will come from the grocery store."
+    "targetableText":"The only 6-pack [TARGET] will ever have will come from the grocery store.",
+    "targetableSsml":"The only 6-pack [TARGET] will ever have<break /> will come from the grocery store."
   },
   {
     "quipGroup":"BIOGRAPHY",
