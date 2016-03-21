@@ -185,5 +185,16 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"EARTHQUAKE",
+    "text":"Is that an earthquake I'm sensing? Because you rock my world.",
+    "ssml":"Is that an earthquake I'm sensing? Because you rock my world.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]

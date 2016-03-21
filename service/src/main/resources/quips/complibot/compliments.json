@@ -471,5 +471,71 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"HEARD_THEM_ALL",
+    "text":"I'd compliment you, but you're so fantastic you've probably heard them all by now!",
+    "ssml":"I'd compliment you, but you're so fantastic you've probably heard them all by now!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CREATIVITY",
+    "text":"Your creativity knows no bounds.",
+    "ssml":"Your creativity knows no bounds.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s creativity knows no bounds.",
+    "targetableSsml":"[TARGET]'s creativity knows no bounds."
+  },
+  {
+    "quipGroup":"LUNG_CAPACITY",
+    "text":"I'd sing your praises, but I don't have the lung capacity.",
+    "ssml":"I'd sing your praises, but I don't have the lung capacity.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'd sing [TARGET]'s praises, but I don't have the lung capacity.",
+    "targetableSsml":"I'd sing [TARGET]'s praises, but I don't have the lung capacity."
+  },
+  {
+    "quipGroup":"COMFORTABLE",
+    "text":"You are the person I'm most comfortable with in the whole world.",
+    "ssml":"You are the person I'm most comfortable with in the whole world.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CRAYON_BOX",
+    "text":"You are a full crayon box - bright with deep values.",
+    "ssml":"You are a full crayon box - bright with deep values.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is a full crayon box - bright with deep values.",
+    "targetableSsml":"[TARGET] is a full crayon box - bright with deep values."
+  },
+  {
+    "quipGroup":"CLARITY",
+    "text":"You see with clarity the good in your companions.",
+    "ssml":"You see with clarity the good in your companions.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
