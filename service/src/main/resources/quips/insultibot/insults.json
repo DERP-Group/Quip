@@ -823,5 +823,126 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"SCHOOL_ZONE",
+    "text":"Do you live in a school zone? Because you're rather slow",
+    "ssml":"Do you live in a school zone? Because you're rather slow",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"KIDDIE_POOL",
+    "text":"I bet you prefer kiddie pools, because they're as shallow as you are.",
+    "ssml":"I bet you prefer kiddie pools, because they're as shallow as you are.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"DRESS_FOR_SUCCESS",
+    "text":"They say you should dress for the job you want. Is that why you're dressed for unemployment?",
+    "ssml":"They say you should dress for the job you want. Is that why you're dressed for unemployment?",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"They say you should dress for the job you want. Is that why [TARGET] is dressed for unemployment?",
+    "targetableSsml":"They say you should dress for the job you want. Is that why [TARGET] is dressed for unemployment?"
+  },
+  {
+    "quipGroup":"HATE_THE_GAME",
+    "text":"My motto in life is \"Don't hate the player, hate the game\", but in your case I'll make an exception.",
+    "ssml":"My motto in life is <break />Don't hate the player, hate the game<break />, but in your case I'll make an exception.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"My motto in life is \"Don't hate the player, hate the game\", but in [TARGET]'s case I'll make an exception.",
+    "targetableSsml":"My motto in life is <break />Don't hate the player, hate the game<break />, but in [TARGET]'s case I'll make an exception."
+  },
+  {
+    "quipGroup":"ARCHITECT",
+    "text":"I wish I was an architect so I could put some more walls between us.",
+    "ssml":"I wish I was an architect so I could put some more walls between us.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CIRCUS",
+    "text":"Shouldn't you be at the circus? That's where clowns belong...",
+    "ssml":"Shouldn't you be at the circus? That's where clowns belong...",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Shouldn't [TARGET] be at the circus? That's where clowns belong...",
+    "targetableSsml":"Shouldn't [TARGET] be at the circus? That's where clowns belong..."
+  },
+  {
+    "quipGroup":"BAD_BREATH",
+    "text":"You should go to the gym more. Right now the only part of you that's strong, is your breath.",
+    "ssml":"You should go to the gym more. Right now the only part of you that's strong, is your breath.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SIX_PACK",
+    "text":"The only 6-pack you'll ever have will come from the grocery store.",
+    "ssml":"The only 6-pack you'll ever have<break /> will come from the grocery store.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"The only 6-pack [TARGET] will ever have will come from the grocery store.",
+    "targetableSsml":"The only 6-pack [TARGET] will ever have<break /> will come from the grocery store."
+  },
+  {
+    "quipGroup":"BIOGRAPHY",
+    "text":"Your biography would be an apology letter written by your parents.",
+    "ssml":"Your biography would be an apology letter written by your parents.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"BIOGRAPHY",
+    "text":"Your life is so boring that you wouldn't even be the main character in your own biography.",
+    "ssml":"Your life is so boring that you wouldn't even be the main character in your own biography.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"GREEK_YOGURT",
+    "text":"A Greek yogurt is more cultured than you.",
+    "ssml":"A Greek yogurt is more cultured than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"A Greek yogurt is more cultured than [TARGET].",
+    "targetableSsml":"A Greek yogurt is more cultured than [TARGET]."
   }
 ]

@@ -251,5 +251,27 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"SPIRIT_ANIMAL",
+    "text":"Your spirit animal must be the bald eagle!  A scavenger, feeding off the hard work of others",
+    "ssml":"Your spirit animal must be the bald eagle!  A scavenger, feeding off the hard work of others",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s spirit animal must be the bald eagle!  A scavenger, feeding off the hard work of others",
+    "targetableSsml":"[TARGET]'s spirit animal must be the bald eagle!  A scavenger, feeding off the hard work of others"
+  },
+  {
+    "quipGroup":"FUNGAL_INFECTION",
+    "text":"You put the \"fun\" back in \"fungal infection\".",
+    "ssml":"You put the fun<break /> back in fungal infection.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] puts the \"fun\" back in \"fungal infection\".",
+    "targetableSsml":"[TARGET] puts the fun<break /> back in fungal infection."
   }
 ]
