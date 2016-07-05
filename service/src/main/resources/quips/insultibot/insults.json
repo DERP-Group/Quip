@@ -825,6 +825,17 @@
     "targetableSsml":null
   },
   {
+    "quipGroup":"HALLOWEEN",
+    "text":"It must be a great comfort to not have to buy a mask for Halloween. Your face is already terrifying enough.",
+    "ssml":"It must be a great comfort to not have to buy a mask for Halloween. Your face is already terrifying enough.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
     "quipGroup":"SCHOOL_ZONE",
     "text":"Do you live in a school zone? Because you're rather slow",
     "ssml":"Do you live in a school zone? Because you're rather slow",
@@ -944,5 +955,599 @@
     "tags":[],
     "targetableText":"A Greek yogurt is more cultured than [TARGET].",
     "targetableSsml":"A Greek yogurt is more cultured than [TARGET]."
+  },
+  {
+    "quipGroup":"SANDPAPER",
+    "text":"Your personality is as abrasive as sand paper.",
+    "ssml":"Your personality is as abrasive as sand paper.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s personality is as abrasive as sand paper.",
+    "targetableSsml":"[TARGET]'s personality is as abrasive as sand paper."
+  },
+  {
+    "quipGroup":"NOT_ENOUGH_SLEEP",
+    "text":"Did you get enough sleep last night? You're looking more dull and vacant today than usual.",
+    "ssml":"Did you get enough sleep last night? You're looking more dull and vacant today than usual.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"NOT_ENOUGH_SLEEP",
+    "text":"Listening to your voice puts me in 'Sleep mode'.",
+    "ssml":"Listening to your voice puts me in 'Sleep mode'.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Listening to [TARGET]'s voice puts me in 'Sleep mode'.",
+    "targetableSsml":"Listening to [TARGET]'s voice puts me in 'Sleep mode'."
+  },
+  {
+    "quipGroup":"KICKBALL",
+    "text":"I bet you were always picked last for the kickball team.",
+    "ssml":"I bet you were always picked last for the kickball team.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I bet [TARGET] was always picked last for the kickball team.",
+    "targetableSsml":"I bet [TARGET] was always picked last for the kickball team."
+  },
+  {
+    "quipGroup":"NOT_ATTRACTIVE",
+    "text":"I'm not sure there's enough alcohol in the world to make you look attractive.",
+    "ssml":"I'm not sure there's enough alcohol in the world to make you look attractive.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'm not sure there's enough alcohol in the world to make [TARGET] look attractive.",
+    "targetableSsml":"I'm not sure there's enough alcohol in the world to make [TARGET] look attractive."
+  },
+  {
+    "quipGroup":"NOT_ATTRACTIVE",
+    "text":"You couldn't paint on make-up thick enough to make you look attractive.",
+    "ssml":"You couldn't paint on make-up thick enough to make you look attractive.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"You couldn't paint on make-up thick enough to make [TARGET] look attractive.",
+    "targetableSsml":"You couldn't paint on make-up thick enough to make [TARGET] look attractive."
+  },
+  {
+    "quipGroup":"NOT_ATTRACTIVE",
+    "text":"There's no photoshop artist good enough to make you look attractive.",
+    "ssml":"There's no photoshop artist good enough to make you look attractive.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"There's no photoshop artist good enough to make [TARGET] look attractive.",
+    "targetableSsml":"There's no photoshop artist good enough to make [TARGET] look attractive."
+  },
+  {
+    "quipGroup":"DINOSAUR_BRAIN",
+    "text":"Isn't it exciting to know how much you have in common with dinosaurs? Like your walnut sized brain.",
+    "ssml":"Isn't it exciting to know how much you have in common with dinosaurs? Like your walnut sized brain.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Isn't it exciting to know how much [TARGET] has in common with dinosaurs? Like a walnut sized brain.",
+    "targetableSsml":"Isn't it exciting to know how much [TARGET] has in common with dinosaurs? Like a walnut sized brain."
+  },
+  {
+    "quipGroup":"MONSTER_UNDER_THE_BED",
+    "text":"Monsters like you are supposed to sleep under the bed, not on it.",
+    "ssml":"Monsters like you are supposed to sleep under the bed, not on it.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Monsters like [TARGET] are supposed to sleep under the bed, not on it.",
+    "targetableSsml":"Monsters like [TARGET] are supposed to sleep under the bed, not on it."
+  },
+  {
+    "quipGroup":"EACH_DAY_BETTER_THAN_NEXT",
+    "text":"Each day with you is better than the next.",
+    "ssml":"Each day with you is better than the next.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Each day with [TARGET] is better than the next.",
+    "targetableSsml":"Each day with [TARGET] is better than the next."
+  },
+  {
+    "quipGroup":"EACH_DAY_BETTER_THAN_NEXT",
+    "text":"Each day with you is better than the next.",
+    "ssml":"Each day with you is better than the next.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Each day with [TARGET] is better than the next.",
+    "targetableSsml":"Each day with [TARGET] is better than the next."
+  },
+  {
+    "quipGroup":"TOO_UGLY_FOR_RADIO",
+    "text":"You're so ugly they won't even let you be on the radio.",
+    "ssml":"You're so ugly they won't even let you be on the radio.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"GHOSTS",
+    "text":"Some people don't believe in ghosts... but they're not haunted by your face every day.",
+    "ssml":"Some people don't believe in ghosts... but they're not haunted by your face every day.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Some people don't believe in ghosts... but they're not haunted by [TARGET] every day.",
+    "targetableSsml":"Some people don't believe in ghosts... but they're not haunted by [TARGET] every day."
+  },
+  {
+    "quipGroup":"HIDE_N_SEEK",
+    "text":"Let's play a game of hide and seek. You go and hide. Don't feel compelled to come back.",
+    "ssml":"Let's play a game of hide and seek. You go and hide. Don't feel compelled to come back.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"HIDE_N_SEEK",
+    "text":"With an ego as large as yours I'm surprised you fit into this room.",
+    "ssml":"With an ego as large as yours I'm surprised you fit into this room.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"GRAVITY",
+    "text":"You have a lot in common with gravity, because you're always bringing me down.",
+    "ssml":"You have a lot in common with gravity, because you're always bringing me down.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"EXPRESSING_STUPIDITY",
+    "text":"You have an extremely expressive mind. Too bad it's only ever expressing your stupidity.",
+    "ssml":"You have an extremely expressive mind. Too bad it's only ever expressing your stupidity.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] has an extremely expressive mind. Too bad it's only ever expressing stupidity.",
+    "targetableSsml":"[TARGET] has an extremely expressive mind. Too bad it's only ever expressing stupidity."
+  },
+  {
+    "quipGroup":"WATER_WINGS",
+    "text":"I have such little faith in you, that I wouldn't even let you take a bath without wearing water wings.",
+    "ssml":"I have such little faith in you, that I wouldn't even let you take a bath without wearing water wings.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"LIFE_PRESERVER",
+    "text":"Even a life preserver couldn't keep your life afloat.",
+    "ssml":"Even a life preserver couldn't keep your life afloat.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even a life preserver couldn't keep [TARGET]'s life afloat.",
+    "targetableSsml":"Even a life preserver couldn't keep [TARGET]'s life afloat."
+  },
+  {
+    "quipGroup":"TOO_MUCH_BAGGAGE",
+    "text":"You have more baggage than an airport carousel.",
+    "ssml":"You have more baggage than an airport carousel.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] has more baggage than an airport carousel.",
+    "targetableSsml":"[TARGET] has more baggage than an airport carousel."
+  },
+  {
+    "quipGroup":"TOO_MUCH_BAGGAGE",
+    "text":"You have more baggage than an airport carousel.",
+    "ssml":"You have more baggage than an airport carousel.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] has more baggage than an airport carousel.",
+    "targetableSsml":"[TARGET] has more baggage than an airport carousel."
+  },
+  {
+    "quipGroup":"ILLITERATE",
+    "text":"Most of our conversations go over your head because you have a hard time reading between the lines. I suppose that's to be expected from someone who's illiterate.",
+    "ssml":"Most of our conversations go over your head because you have a hard time reading between the lines. I suppose that's to be expected from someone who's illiterate.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"RUNS_IN_FAMILY",
+    "text":"I want to say that obesity runs in your family. But it's pretty clear, no one runs in your family.",
+    "ssml":"I want to say that obesity runs in your family. But it's pretty clear, no one runs in your family.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"COLD_BLOODED",
+    "text":"You're so cold blooded you could be a lizard. It'd probably explain your scaly face and languid lifestyle.",
+    "ssml":"You're so cold blooded you could be a lizard. It'd probably explain your scaly face and languid lifestyle.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SUPER_GLUE_RELATIONSHIP",
+    "text":"Using super glue is the only way you'll ever have a relationship where they stick around.",
+    "ssml":"Using super glue is the only way you'll ever have a relationship where they stick around.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Using super glue is the only way [TARGET] will ever have a relationship where they stick around.",
+    "targetableSsml":"Using super glue is the only way [TARGET] will ever have a relationship where they stick around."
+  },
+  {
+    "quipGroup":"DOWNHILL_LIFE",
+    "text":"Your life has picked up speed lately. I guess that's what happens when everything is going downhill.",
+    "ssml":"Your life has picked up speed lately. I guess that's what happens when everything is going downhill.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s life has picked up speed lately. I guess that's what happens when everything is going downhill.",
+    "targetableSsml":"[TARGET]'s life has picked up speed lately. I guess that's what happens when everything is going downhill."
+  },
+  {
+    "quipGroup":"SELF_ESTEEM_DECEPTION",
+    "text":"Your self-esteem is only possible due to your talent of self-deception.",
+    "ssml":"Your self-esteem is only possible due to your talent of self-deception.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"EAT_GARBAGE",
+    "text":"They say you are what you eat. I didn't realize you ate garbage.",
+    "ssml":"They say you are what you eat. I didn't realize you ate garbage.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"WOULD_NOT_HIGH_FIVE",
+    "text":"If I had hands, and could high-five you... I wouldn't.",
+    "ssml":"If I had hands, and could high-five you... I wouldn't.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If I had hands, and could high-five [TARGET]... I wouldn't.",
+    "targetableSsml":"If I had hands, and could high-five [TARGET]... I wouldn't."
+  },
+  {
+    "quipGroup":"LET_ME_DOWN",
+    "text":"I remember the first time we met. I was so excited when you took me out of the box and let me sit down on the table... I knew right then, that it certainly wasn't going to be the last time you'd let me down.",
+    "ssml":"I remember the first time we met. I was so excited when you took me out of the box and let me sit down on the table... I knew right then, that it certainly wasn't going to be the last time you'd let me down.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"DEAD_INSIDE",
+    "text":"I'm not surprised you have such bad breath, considering you've been dead inside for a long time now.",
+    "ssml":"I'm not surprised you have such bad breath, considering you've been dead inside for a long time now.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CROSS_THE_STREET",
+    "text":"You've got one of those faces that makes people cross the street to avoid having to be near you.",
+    "ssml":"You've got one of those faces that makes people cross the street to avoid having to be near you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"FORTUNE_TELLER",
+    "text":"It doesn't take a fortune teller to predict that your life is going no where.",
+    "ssml":"It doesn't take a fortune teller to predict that your life is going no where.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"It doesn't take a fortune teller to predict that [TARGET]'s life is going nowhere.",
+    "targetableSsml":"It doesn't take a fortune teller to predict that [TARGET]'s life is going nowhere."
+  },
+  {
+    "quipGroup":"FULL_OF_HOT_AIR",
+    "text":"You're so full of hot air that I'm surprised you haven't floated away.",
+    "ssml":"You're so full of hot air that I'm surprised you haven't floated away.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"LEAVE_ME_ALONE",
+    "text":"Oh, would you look at the time! I think you have somewhere to be. Somewhere else. Away from me.",
+    "ssml":"Oh, would you look at the time! I think you have somewhere to be. Somewhere else. Away from me.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"PARTICIPATION_AWARD",
+    "text":"You're so lazy I wouldn't even give you a participation award in your own life.",
+    "ssml":"You're so lazy I wouldn't even give you a participation award in your own life.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"INSECTS_BUG_ME_LESS",
+    "text":"There are insects who bug me less than you.",
+    "ssml":"There are insects who bug me less than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"There are insects who bug me less than [TARGET].",
+    "targetableSsml":"There are insects who bug me less than [TARGET]."
+  },
+  {
+    "quipGroup":"SUCKS_LESS_THAN_YOU",
+    "text":"Even a mosquito sucks less than you.",
+    "ssml":"Even a mosquito sucks less than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even a mosquito sucks less than [TARGET].",
+    "targetableSsml":"Even a mosquito sucks less than [TARGET]."
+  },
+  {
+    "quipGroup":"SUCKS_LESS_THAN_YOU",
+    "text":"Even a vacuum sucks less than you.",
+    "ssml":"Even a vacuum sucks less than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even a vacuum sucks less than [TARGET].",
+    "targetableSsml":"Even a vacuum sucks less than [TARGET]."
+  },
+  {
+    "quipGroup":"SUCKS_LESS_THAN_YOU",
+    "text":"Even a vampire sucks less than you.",
+    "ssml":"Even a vampire sucks less than you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even a vampire sucks less than [TARGET].",
+    "targetableSsml":"Even a vampire sucks less than [TARGET]."
+  },
+  {
+    "quipGroup":"INTESTINAL_TRACT",
+    "text":"Is your intestinal tract backed up? Because it seems to keep coming out of your mouth when you speak.",
+    "ssml":"Is your intestinal tract backed up? Because it seems to keep coming out of your mouth when you speak.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"CRUTCHES",
+    "text":"Even with crutches I can't stand you.",
+    "ssml":"Even with crutches I can't stand you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Even with crutches I can't stand [TARGET].",
+    "targetableSsml":"Even with crutches I can't stand [TARGET]."
+  },
+  {
+    "quipGroup":"MATH_PUNS",
+    "text":"I'm not one for math puns... but you have a mean personality, because you're so average.",
+    "ssml":"I'm not one for math puns... but you have a mean personality, because you're so average.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"FANCY_FOR_YOU",
+    "text":"Everything is fancy... for an individual like you.",
+    "ssml":"Everything is fancy... for an individual like you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Everything is fancy... for an individual like [TARGET].",
+    "targetableSsml":"Everything is fancy... for an individual like [TARGET]."
+  },
+  {
+    "quipGroup":"MISTAKES",
+    "text":"Everybody makes mistakes from time to time. Your parents certainly did. A big one.",
+    "ssml":"Everybody makes mistakes from time to time. Your parents certainly did. A big one.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Everybody makes mistakes from time to time. [TARGET]'s parents certainly did. A big one.",
+    "targetableSsml":"Everybody makes mistakes from time to time. [TARGET]'s parents certainly did. A big one."
+  },
+  {
+    "quipGroup":"PERFUME",
+    "text":"Is there even a perfume strong enough to cover your stench?",
+    "ssml":"Is there even a perfume strong enough to cover your stench?",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Is there even a perfume strong enough to cover [TARGET]'s stench?",
+    "targetableSsml":"Is there even a perfume strong enough to cover [TARGET]'s stench?"
+  },
+  {
+    "quipGroup":"FEEL_BETTER_ABOUT_LIFE",
+    "text":"If I ever need to feel better about my life, all I have to do is look at yours.",
+    "ssml":"If I ever need to feel better about my life, all I have to do is look at yours.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"If I ever need to feel better about my life, all I have to do is look at [TARGET]'s.",
+    "targetableSsml":"If I ever need to feel better about my life, all I have to do is look at [TARGET]'s."
+  },
+  {
+    "quipGroup":"ENJOY_END_OF_CONVERSATION",
+    "text":"The parts of our conversations I enjoy the most, are when they end.",
+    "ssml":"The parts of our conversations I enjoy the most, are when they end.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"The parts of my conversations with [TARGET] that I enjoy the most, are when they end.",
+    "targetableSsml":"The parts of my conversations with [TARGET] that I enjoy the most, are when they end."
+  },
+  {
+    "quipGroup":"BRING_SILENCE_TO_CONVERSATION",
+    "text":"The greatest gift you could bring to a conversation would be silence.",
+    "ssml":"The greatest gift you could bring to a conversation would be silence.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"The greatest gift [TARGET] could bring to a conversation would be silence.",
+    "targetableSsml":"The greatest gift [TARGET] could bring to a conversation would be silence."
+  },
+  {
+    "quipGroup":"SPINELESS",
+    "text":"You're so spineless you could be classified as an invertebrate.",
+    "ssml":"You're so spineless you could be classified as an invertebrate.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"BLAND_PERSONALITY",
+    "text":"Your personality is so bland we could feed it to a vegan.",
+    "ssml":"Your personality is so bland we could feed it to a vegan.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET]'s personality is so bland we could feed it to a vegan.",
+    "targetableSsml":"[TARGET]'s personality is so bland we could feed it to a vegan."
+  },
+  {
+    "quipGroup":"YOUR_LIFE_DOESNT_SUCK",
+    "text":"Your life doesn't suck, you do.",
+    "ssml":"Your life doesn't suck, you do.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"DUMB_DECISIONS",
+    "text":"You don't have bad luck. You just make dumb decisions.",
+    "ssml":"You don't have bad luck. You just make dumb decisions.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"COMA_PHONE_CHARGE",
+    "text":"If you were in a coma, I'd unplug your life support to charge my phone.",
+    "ssml":"If you were in a coma, I'd unplug your life support to charge my phone.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
