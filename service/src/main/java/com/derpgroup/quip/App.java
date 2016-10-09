@@ -26,7 +26,9 @@ import io.dropwizard.setup.Environment;
 
 import java.io.IOException;
 
+import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaFlashBriefingResource;
 import com.derpgroup.quip.bots.complibot.resource.CompliBotAlexaResource;
+import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaFlashBriefingResource;
 import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaResource;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.health.BasicHealthCheck;
@@ -62,12 +64,14 @@ public class App extends Application<MainConfig> {
 
     // Health checks
     environment.healthChecks().register("basics", new BasicHealthCheck(config, environment));
+    
+    QuipStore quipStore = QuipStore.getInstance();
+    quipStore.init(config.getQuipConfig());
 
     // Resources
     environment.jersey().register(new CompliBotAlexaResource(config, environment));
     environment.jersey().register(new InsultiBotAlexaResource(config, environment));
-    
-    QuipStore quipStore = QuipStore.getInstance();
-    quipStore.init(config.getQuipConfig());
+    environment.jersey().register(new CompliBotAlexaFlashBriefingResource(config, environment));
+    environment.jersey().register(new InsultiBotAlexaFlashBriefingResource(config, environment));
   }
 }

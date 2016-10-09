@@ -10,18 +10,19 @@
 
   <properties>
     <dropwizard.version>0.9.2</dropwizard.version>
+    <derpwizard.version>0.0.2-SNAPSHOT</derpwizard.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.derpgroup.derpwizard</groupId>
       <artifactId>derpwizard-voice-interface</artifactId>
-      <version>${project.version}</version>
+      <version>${derpwizard.version}</version>
     </dependency>
     <dependency>
       <groupId>com.derpgroup.derpwizard</groupId>
       <artifactId>derpwizard-service</artifactId>
-      <version>${project.version}</version>
+      <version>${derpwizard.version}</version>
     </dependency>
 
     <dependency>
@@ -44,7 +45,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.13</version>
-    </dependency>
+    </dependency>   
   </dependencies>
 
   <build>
