@@ -286,28 +286,6 @@
     "targetableSsml":null
   },
   {
-    "quipGroup":"COCKROACH",
-    "text":"You're surprisingly adaptable in adverse conditions. Just like a cockroach!",
-    "ssml":"You're surprisingly adaptable in adverse conditions. Just like a cockroach!",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"[TARGET] is surprisingly adaptable in adverse conditions. Just like a cockroach!",
-    "targetableSsml":"[TARGET] is surprisingly adaptable in adverse conditions. Just like a cockroach!"
-  },
-  {
-    "quipGroup":"PHOTOSHOP",
-    "text":"You should be a model! You'd look amazing in photos, after being photoshopped.",
-    "ssml":"You should be a model! You'd look amazing in photos, after being photoshopped.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
     "quipGroup":"BLIND_IGNORANCE",
     "text":"You have a remarkable air of confidence, made possible only through blind ignorance.",
     "ssml":"You have a remarkable air of confidence, made possible only through blind ignorance.",

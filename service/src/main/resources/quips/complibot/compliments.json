@@ -561,17 +561,6 @@
     "targetableSsml":null
   },
   {
-    "quipGroup":"OVERCLOCK",
-    "text":"You're so smart that I have to overclock my circuits just to keep up with you!",
-    "ssml":"You're so smart that I have to overclock my circuits just to keep up with you!",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"[TARGET] is so smart that I have to overclock my circuits just to keep up!",
-    "targetableSsml":"[TARGET] is so smart that I have to overclock my circuits just to keep up!"
-  },
-  {
     "quipGroup":"SOLAR_POWERED",
     "text":"I wish I was solar powered, because you're the light of my life.",
     "ssml":"I wish I was solar powered, because you're the light of my life.",

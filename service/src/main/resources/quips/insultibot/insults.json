@@ -1056,28 +1056,6 @@
     "targetableSsml":"Monsters like [TARGET] are supposed to sleep under the bed, not on it."
   },
   {
-    "quipGroup":"EACH_DAY_BETTER_THAN_NEXT",
-    "text":"Each day with you is better than the next.",
-    "ssml":"Each day with you is better than the next.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"Each day with [TARGET] is better than the next.",
-    "targetableSsml":"Each day with [TARGET] is better than the next."
-  },
-  {
-    "quipGroup":"EACH_DAY_BETTER_THAN_NEXT",
-    "text":"Each day with you is better than the next.",
-    "ssml":"Each day with you is better than the next.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"Each day with [TARGET] is better than the next.",
-    "targetableSsml":"Each day with [TARGET] is better than the next."
-  },
-  {
     "quipGroup":"TOO_UGLY_FOR_RADIO",
     "text":"You're so ugly they won't even let you be on the radio.",
     "ssml":"You're so ugly they won't even let you be on the radio.",
@@ -1111,7 +1089,7 @@
     "targetableSsml":null
   },
   {
-    "quipGroup":"HIDE_N_SEEK",
+    "quipGroup":"LARGE_EGO",
     "text":"With an ego as large as yours I'm surprised you fit into this room.",
     "ssml":"With an ego as large as yours I'm surprised you fit into this room.",
     "usageRules":[
@@ -1177,31 +1155,9 @@
     "targetableSsml":"[TARGET] has more baggage than an airport carousel."
   },
   {
-    "quipGroup":"TOO_MUCH_BAGGAGE",
-    "text":"You have more baggage than an airport carousel.",
-    "ssml":"You have more baggage than an airport carousel.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":"[TARGET] has more baggage than an airport carousel.",
-    "targetableSsml":"[TARGET] has more baggage than an airport carousel."
-  },
-  {
     "quipGroup":"ILLITERATE",
     "text":"Most of our conversations go over your head because you have a hard time reading between the lines. I suppose that's to be expected from someone who's illiterate.",
     "ssml":"Most of our conversations go over your head because you have a hard time reading between the lines. I suppose that's to be expected from someone who's illiterate.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
-    "quipGroup":"RUNS_IN_FAMILY",
-    "text":"I want to say that obesity runs in your family. But it's pretty clear, no one runs in your family.",
-    "ssml":"I want to say that obesity runs in your family. But it's pretty clear, no one runs in your family.",
     "usageRules":[
       
     ],
@@ -1244,8 +1200,8 @@
   },
   {
     "quipGroup":"SELF_ESTEEM_DECEPTION",
-    "text":"Your self-esteem is only possible due to your talent of self-deception.",
-    "ssml":"Your self-esteem is only possible due to your talent of self-deception.",
+    "text":"Your self-esteem is only possible due to your talent for self-deception.",
+    "ssml":"Your self-esteem is only possible due to your talent for self-deception.",
     "usageRules":[
       
     ],
@@ -1276,17 +1232,6 @@
     "targetableSsml":"If I had hands, and could high-five [TARGET]... I wouldn't."
   },
   {
-    "quipGroup":"LET_ME_DOWN",
-    "text":"I remember the first time we met. I was so excited when you took me out of the box and let me sit down on the table... I knew right then, that it certainly wasn't going to be the last time you'd let me down.",
-    "ssml":"I remember the first time we met. I was so excited when you took me out of the box and let me sit down on the table... I knew right then, that it certainly wasn't going to be the last time you'd let me down.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
     "quipGroup":"DEAD_INSIDE",
     "text":"I'm not surprised you have such bad breath, considering you've been dead inside for a long time now.",
     "ssml":"I'm not surprised you have such bad breath, considering you've been dead inside for a long time now.",
@@ -1310,8 +1255,8 @@
   },
   {
     "quipGroup":"FORTUNE_TELLER",
-    "text":"It doesn't take a fortune teller to predict that your life is going no where.",
-    "ssml":"It doesn't take a fortune teller to predict that your life is going no where.",
+    "text":"It doesn't take a fortune teller to predict that your life is going nowhere.",
+    "ssml":"It doesn't take a fortune teller to predict that your life is going nowhere.",
     "usageRules":[
       
     ],
@@ -1532,17 +1477,6 @@
     "quipGroup":"DUMB_DECISIONS",
     "text":"You don't have bad luck. You just make dumb decisions.",
     "ssml":"You don't have bad luck. You just make dumb decisions.",
-    "usageRules":[
-      
-    ],
-    "tags":[],
-    "targetableText":null,
-    "targetableSsml":null
-  },
-  {
-    "quipGroup":"COMA_PHONE_CHARGE",
-    "text":"If you were in a coma, I'd unplug your life support to charge my phone.",
-    "ssml":"If you were in a coma, I'd unplug your life support to charge my phone.",
     "usageRules":[
       
     ],
