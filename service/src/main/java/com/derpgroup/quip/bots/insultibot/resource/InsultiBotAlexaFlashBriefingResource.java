@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.ws.rs.Consumes;
@@ -37,6 +39,22 @@ import io.dropwizard.setup.Environment;
 public class InsultiBotAlexaFlashBriefingResource {
 
   private static final Logger LOG = LoggerFactory.getLogger(InsultiBotAlexaFlashBriefingResource.class);
+  private static final Set<String> BAD_QUIP_GROUPS;
+  
+  static {
+    BAD_QUIP_GROUPS = new HashSet<String>();
+    BAD_QUIP_GROUPS.add("TALK_TO_YOU");
+    BAD_QUIP_GROUPS.add("PITBULL");
+    BAD_QUIP_GROUPS.add("NOTHING_AT_ALL");
+    BAD_QUIP_GROUPS.add("BIRTHDAY");
+    BAD_QUIP_GROUPS.add("BATTERY_LOVE");
+    BAD_QUIP_GROUPS.add("BLOCK_LIST");
+    BAD_QUIP_GROUPS.add("COMPLIBOT");
+    BAD_QUIP_GROUPS.add("CROCS_N_SOCKS");
+    BAD_QUIP_GROUPS.add("HATE_THE_GAME");
+    BAD_QUIP_GROUPS.add("LEAVE_ME_ALONE");
+  }
+  
   private QuipStore quipStore;
   
   private FlashBriefingResponse dailyInsult;
@@ -65,12 +83,16 @@ public class InsultiBotAlexaFlashBriefingResource {
     ttl = midnight.plusDays(1).toInstant(ZoneOffset.UTC);
     
     Quip insult = quipStore.getRandomInsult();
+    while(BAD_QUIP_GROUPS.contains(insult.getQuipGroup())){
+      LOG.info("Generated an improper quip of group '" + insult.getQuipGroup() + "', rerolling.");
+      insult = quipStore.getRandomInsult();
+    }
     
     dailyInsult.setUid(UUID.randomUUID().toString());
-    dailyInsult.setTitle("An insult from InsultiBot!");
-    dailyInsult.setMainText(insult.getSsml());
+    dailyInsult.setTitleText("An insult from InsultiBot! For more, click below.");
+    dailyInsult.setMainText(insult.getText());
     dailyInsult.setUpdateDate(Date.from(Instant.now()));
-    dailyInsult.setRedirectionUrl("http://www.3po-labs.com");
+    dailyInsult.setRedirectionUrl("http://www.3po-labs.com/bots.html#1");
   }
   
   public static LocalDateTime calculateMidnightUTC(){

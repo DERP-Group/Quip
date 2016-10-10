@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.ws.rs.Consumes;
@@ -37,6 +39,17 @@ import io.dropwizard.setup.Environment;
 public class CompliBotAlexaFlashBriefingResource {
 
   private static final Logger LOG = LoggerFactory.getLogger(CompliBotAlexaFlashBriefingResource.class);
+  private static final Set<String> BAD_QUIP_GROUPS;
+  
+  static {
+    BAD_QUIP_GROUPS = new HashSet<String>();
+    BAD_QUIP_GROUPS.add("SNEAKY_WINKY");
+    BAD_QUIP_GROUPS.add("PURRFECT");
+    BAD_QUIP_GROUPS.add("CREATIVITY");
+    BAD_QUIP_GROUPS.add("TALKING");
+    BAD_QUIP_GROUPS.add("BELIEVE_IN_YOU");
+  }
+  
   private QuipStore quipStore;
   
   private FlashBriefingResponse dailyCompliment;
@@ -65,12 +78,16 @@ public class CompliBotAlexaFlashBriefingResource {
     ttl = midnight.plusDays(1).toInstant(ZoneOffset.UTC);
     
     Quip compliment = quipStore.getRandomCompliment();
+    while(BAD_QUIP_GROUPS.contains(compliment.getQuipGroup())){
+      LOG.info("Generated an improper quip of group '" + compliment.getQuipGroup() + "', rerolling.");
+      compliment = quipStore.getRandomCompliment();
+    }
     
     dailyCompliment.setUid(UUID.randomUUID().toString());
-    dailyCompliment.setTitle("A Compliment from CompliBot!");
-    dailyCompliment.setMainText(compliment.getSsml());
+    dailyCompliment.setTitleText("A Compliment from CompliBot! For more, click below.");
+    dailyCompliment.setMainText(compliment.getText());
     dailyCompliment.setUpdateDate(Date.from(Instant.now()));
-    dailyCompliment.setRedirectionUrl("http://www.3po-labs.com");
+    dailyCompliment.setRedirectionUrl("http://www.3po-labs.com/bots.html#0");
   }
   
   public static LocalDateTime calculateMidnightUTC(){
