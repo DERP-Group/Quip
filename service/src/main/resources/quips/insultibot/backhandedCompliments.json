@@ -273,5 +273,49 @@
     "tags":[],
     "targetableText":"[TARGET] puts the \"fun\" back in \"fungal infection\".",
     "targetableSsml":"[TARGET] puts the fun<break /> back in fungal infection."
+  },
+  {
+    "quipGroup":"PEOPLE_OF_WALMART",
+    "text":"You're famous! I saw your picture on the internet. I think it was on 'People of Walmart'.",
+    "ssml":"You're famous! I saw your picture on the internet. I think it was on 'People of Walmart'.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"BLIND_IGNORANCE",
+    "text":"You have a remarkable air of confidence, made possible only through blind ignorance.",
+    "ssml":"You have a remarkable air of confidence, made possible only through blind ignorance.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] has a remarkable air of confidence, made possible only through blind ignorance.",
+    "targetableSsml":"[TARGET] has a remarkable air of confidence, made possible only through blind ignorance."
+  },
+  {
+    "quipGroup":"AMAZINGLY_TOLERANT",
+    "text":"You're the most amazingly tolerant person I know. I can barely stand living with you, and yet you somehow live with yourself every day!",
+    "ssml":"You're the most amazingly tolerant person I know. I can barely stand living with you, and yet you somehow live with yourself every day!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"LAZY_LIFE",
+    "text":"I'm impressed with how far you've made it in life, considering how lazy you are.",
+    "ssml":"I'm impressed with how far you've made it in life, considering how lazy you are.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
   }
 ]
