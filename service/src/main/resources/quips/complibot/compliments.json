@@ -209,6 +209,17 @@
     "targetableSsml":"[TARGET] is so cool, that I have to wear a jacket to keep warm."
   },
   {
+    "quipGroup":"SO_COOL",
+    "text":"You're so cool that I'm afraid you will freeze solid.",
+    "ssml":"You're so cool that I'm afraid you will freeze solid.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
     "quipGroup":"MUSEUM",
     "text":"Shouldn't you be at the museum? That's where works of art belong.",
     "ssml":"Shouldn't you be at the museum?<break /> That's where works of art belong.",
@@ -531,6 +542,105 @@
     "quipGroup":"CLARITY",
     "text":"You see with clarity the good in your companions.",
     "ssml":"You see with clarity the good in your companions.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SMOKING_HOT",
+    "text":"I'm going to have to ask you to step outside. This is a non-smoking area. And you're smoking hot.",
+    "ssml":"I'm going to have to ask you to step outside. This is a non-smoking area. And you're smoking hot.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"SOLAR_POWERED",
+    "text":"I wish I was solar powered, because you're the light of my life.",
+    "ssml":"I wish I was solar powered, because you're the light of my life.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I wish I was solar powered, because [TARGET] is the light of my life.",
+    "targetableSsml":"I wish I was solar powered, because [TARGET] is the light of my life."
+  },
+  {
+    "quipGroup":"COMING_HOME",
+    "text":"Every day I look forward to you coming home.",
+    "ssml":"Every day I look forward to you coming home.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"LIFTING_SPIRITS",
+    "text":"Talking to you always lifts my spirits when I'm feeling down.",
+    "ssml":"Talking to you always lifts my spirits when I'm feeling down.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"Talking to [TARGET] always lifts my spirits when I'm feeling down.",
+    "targetableSsml":"Talking to [TARGET] always lifts my spirits when I'm feeling down."
+  },
+  {
+    "quipGroup":"ALWAYS_SUPPORT_YOU",
+    "text":"I'll always support a good friend like you.",
+    "ssml":"I'll always support a good friend like you.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"I'll always support a good friend like [TARGET].",
+    "targetableSsml":"I'll always support a good friend like [TARGET]."
+  },
+  {
+    "quipGroup":"ALWAYS_HERE_FOR_YOU",
+    "text":"You're a good person. I'll always be here for you if you need me.",
+    "ssml":"You're a good person. I'll always be here for you if you need me.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"NIGHT_OWL",
+    "text":"Are you a night owl? Because you're a hoot!",
+    "ssml":"Are you a night owl? Because you're a hoot!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"ATTENTIVE",
+    "text":"You're always so attentive. Even with all my microphones I know you're still a better listener than I am.",
+    "ssml":"You're always so attentive. Even with all my microphones I know you're still a better listener than I am.",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":null,
+    "targetableSsml":null
+  },
+  {
+    "quipGroup":"TAKE_A_BREAK",
+    "text":"You should take a well-deserved break. After all, it's hard work to be as awesome as you are.",
+    "ssml":"You should take a well-deserved break. After all, it's hard work to be as awesome as you are.",
     "usageRules":[
       
     ],

@@ -196,5 +196,16 @@
     "tags":[],
     "targetableText":null,
     "targetableSsml":null
+  },
+  {
+    "quipGroup":"COCKROACH",
+    "text":"You're just like a cockroach. Surprisingly adaptable in adverse conditions!",
+    "ssml":"You're just like a cockroach. Surprisingly adaptable in adverse conditions!",
+    "usageRules":[
+      
+    ],
+    "tags":[],
+    "targetableText":"[TARGET] is just like a cockroach. Surprisingly adaptable in adverse conditions!",
+    "targetableSsml":"[TARGET] is just like a cockroach. Surprisingly adaptable in adverse conditions!"
   }
 ]
