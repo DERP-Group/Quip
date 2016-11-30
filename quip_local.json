@@ -1,9 +1,9 @@
 {
   "quipConfig": {
-    "complimentsFile": "./service/src/main/resources/quips/complibot/compliments.json",
-    "winsultsFile": "./service/src/main/resources/quips/complibot/winsults.json",
-    "insultsFile": "./service/src/main/resources/quips/insultibot/insults.json",
-    "backhandedComplimentsFile": "./service/src/main/resources/quips/insultibot/backhandedCompliments.json",
+    "complimentsFile": "../service/src/main/resources/quips/complibot/compliments.json",
+    "winsultsFile": "../service/src/main/resources/quips/complibot/winsults.json",
+    "insultsFile": "../service/src/main/resources/quips/insultibot/insults.json",
+    "backhandedComplimentsFile": "../service/src/main/resources/quips/insultibot/backhandedCompliments.json",
     "refreshRate": "300"
   },
   "handholdMode":true,

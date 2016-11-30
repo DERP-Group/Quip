@@ -44,6 +44,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class App extends Application<MainConfig> {
 
   public static void main(String[] args) throws Exception {
+	  if(args.length == 0){
+		  args = new String[]{"server", "../quip_local.json"};
+	  }
     new App().run(args);
   }
 
