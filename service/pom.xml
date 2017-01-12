@@ -21,6 +21,11 @@
     </dependency>
     <dependency>
       <groupId>com.derpgroup.derpwizard</groupId>
+      <artifactId>derpwizard-core</artifactId>
+      <version>${derpwizard.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.derpgroup.derpwizard</groupId>
       <artifactId>derpwizard-service</artifactId>
       <version>${derpwizard.version}</version>
     </dependency>
