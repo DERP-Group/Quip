@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.derpgroup.derpwizard.voice.exception.DerpwizardException;
+import com._3po_labs.derpwizard.core.exception.DerpwizardException;
 import com.derpgroup.quip.model.Quip;
 
 public class QuipUtilTest {

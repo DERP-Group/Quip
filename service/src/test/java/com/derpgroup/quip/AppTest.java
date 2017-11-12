@@ -26,6 +26,7 @@ import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Environment;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -39,6 +40,7 @@ import com.derpgroup.quip.bots.insultibot.resource.InsultiBotAlexaResource;
 import com.derpgroup.quip.configuration.MainConfig;
 import com.derpgroup.quip.health.BasicHealthCheck;
 
+@Ignore
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
   App app;
