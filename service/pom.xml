@@ -10,7 +10,7 @@
 
   <properties>
     <dropwizard.version>0.9.2</dropwizard.version>
-    <derpwizard.version>0.0.2-SNAPSHOT</derpwizard.version>
+    <derpwizard.version>0.0.4-SNAPSHOT</derpwizard.version>
   </properties>
 
   <dependencies>

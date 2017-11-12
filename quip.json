@@ -13,14 +13,6 @@
       {
         "type": "http",
         "port" : 8080
-      },
-      {
-        "type": "https",
-        "port" : 8443,
-        "keyStorePath": "/var/lib/quip/keystore.jks",
-        "keyStorePassword": "changeit",
-        "trustStorePath": "/usr/lib/jvm/jre/lib/security/cacerts",
-        "certAlias": "selfsigned"
       }
     ],
     "adminConnectors": [

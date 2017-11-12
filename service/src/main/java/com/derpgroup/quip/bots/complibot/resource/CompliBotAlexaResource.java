@@ -24,6 +24,8 @@ import java.util.Map;
 
 import io.dropwizard.setup.Environment;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -40,6 +42,7 @@ import com._3po_labs.derpwizard.core.exception.DerpwizardException;
 import com._3po_labs.derpwizard.core.exception.DerpwizardException.DerpwizardExceptionReasons;
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
+import com.amazon.speech.speechlet.CoreSpeechletRequest;
 import com.amazon.speech.speechlet.SpeechletRequest;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.speechlet.User;
@@ -86,7 +89,7 @@ public class CompliBotAlexaResource {
    * @return The message, never null
    */
   @POST
-  public SpeechletResponseEnvelope doAlexaRequest(SpeechletRequestEnvelope request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
+  public SpeechletResponseEnvelope doAlexaRequest(@NotNull @Valid SpeechletRequestEnvelope<? extends CoreSpeechletRequest> request, @HeaderParam("SignatureCertChainUrl") String signatureCertChainUrl, 
       @HeaderParam("Signature") String signature, @QueryParam("testFlag") Boolean testFlag){
     
     ObjectMapper mapper = new ObjectMapper().registerModule(new MixInModule());

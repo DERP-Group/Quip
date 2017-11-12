@@ -7,7 +7,7 @@
     "refreshRate": "300"
   },
   "handholdMode":true,
-  "ignoreUnknownJsonProperties":false,
+  "ignoreUnknownJsonProperties":true,
   "server": {
     "applicationConnectors": [
       {
